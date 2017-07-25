@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/info"
+        android:title="@string/title_info"
+        app:showAsAction="never">
+
+    </item>
+
+    <item
+        android:id="@+id/about"
+        app:showAsAction="never"
+        android:title="@string/title_about">
+
+    </item>
+
+    <item
+        android:id="@+id/currency_change"
+        app:showAsAction="never"
+        android:title="@string/currency_change">
+
+    </item>
+    <item
+        android:id="@+id/cart"
+        android:icon="@drawable/cart_logo"
+        android:actionLayout="@layout/count_badge"
+        android:title="@string/title_cart"
+        app:showAsAction="ifRoom"/>
+
+</menu>

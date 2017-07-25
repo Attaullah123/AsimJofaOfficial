@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#dededf</color>
+    <color name="colorPrimaryDark">#616269</color>
+    <color name="colorAccent">#212020</color>
+
+    <color name="tab_background_selected">#606060</color>
+    <color name="tab_background_unselected">#ffffff</color>
+    <color name="tab_indicator_color">#fff</color>
+    <color name="color">#151415</color>
+
+    <color name="viewBg">#f1f5f8</color>
+    <color name="album_title">#4c4c4c</color>
+
+    <color name="spinner_color">#000</color>
+
+    <color name="colorAccentDark">#201e1f</color>
+
+    //Toast color
+    <color name="semi_transparent">#bd000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="colorAccentLight">#F8BBD0</color>
+
+    <color name="btn_logut_bg">#ff6861</color>
+
+    <color name="colorPrimaryLight">#b4b4b4</color>
+</resources>

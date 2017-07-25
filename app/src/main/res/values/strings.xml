@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">Asim Jofa Official</string>
+
+    <string name="title_home">PRODUCTS</string>
+    <string name="title_dashboard">PROFILE</string>
+    <string name="title_notifications">STORES</string>
+    <string name="title_cart">Cart</string>
+    <string name="logo">logo</string>
+    <string name="activity_title_cart">Cart</string>
+    <string name="title_info">info</string>
+    <string name="title_about">about</string>
+    <string name="profile_toolbar_title">Asim Jofa</string>
+
+    <string name="terms">terms and conditions</string>
+    <string name="agree">privacy policy</string>
+
+    <string name="action_add_favourite">Add to Favourites</string>
+    <string name="action_play_next">Play Next</string>
+    <string name="backdrop_title">LOVE MUSIC</string>
+    <string name="backdrop_subtitle">This season top 20 albums</string>
+    <string name="No_network_connection">No network connection</string>
+    <string name="Internal_error">Internal error, please try it later</string>
+    <string name="Filter_unavailable">Filter is unavailable</string>
+    <string name="Product">Product</string>
+    <string name="Your_cart_is_empty">Your cart is empty</string>
+
+    <string name="shipping_charger">Free Shipping within Pakistan</string>
+    <string name="payment_name">Select Payment Method</string>
+
+    <string name="spinner_prompt_name">Select Size</string>
+    <string name="google_api_key">AIzaSyBPWNgE0tcbY7DQhVhIQIlbDiy-Z2x77vI</string>
+
+    <string name="currency_change">Currency Change</string>
+</resources>

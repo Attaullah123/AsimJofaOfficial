@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/shipping_charge"
+            android:layout_width="fill_parent"
+            android:layout_height="25dp"
+            android:gravity="center"
+            android:background="#8f8f8d"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:text="@string/shipping_charger"/>
+    </LinearLayout>
+
+    <View
+        android:paddingTop="5dp"
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:background="#000"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="55dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/shipping_method_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:paddingLeft="10dp"
+            android:text="BY-Air"/>
+
+        <TextView
+            android:id="@+id/shipping_currency_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="USD:"
+            android:textColor="#000"
+            android:layout_gravity="center"
+            android:layout_marginLeft="180dp"/>
+        <TextView
+            android:id="@+id/shipping_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5000.0"
+            android:textSize="15dp"
+            android:layout_gravity="center"
+            android:textColor="#000"
+            android:layout_marginLeft="10dp"/>
+    </LinearLayout>
+
+    <View
+        android:paddingTop="5dp"
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dp"
+        android:background="#000"/>
+
+</LinearLayout>
