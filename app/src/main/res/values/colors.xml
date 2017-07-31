@@ -24,4 +24,7 @@
     <color name="btn_logut_bg">#ff6861</color>
 
     <color name="colorPrimaryLight">#b4b4b4</color>
+
+    <color name="progress_color">#28B463</color>
+
 </resources>

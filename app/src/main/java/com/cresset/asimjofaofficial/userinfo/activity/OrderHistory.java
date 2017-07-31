@@ -1,19 +1,15 @@
-package com.cresset.asimjofaofficial;
+package com.cresset.asimjofaofficial.userinfo.activity;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.TextView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -22,12 +18,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.cresset.asimjofaofficial.adapter.CurrencyAdapter;
+import com.cresset.asimjofaofficial.R;
+import com.cresset.asimjofaofficial.adapter.OrderHistoryAdapter;
 import com.cresset.asimjofaofficial.adapter.ProductListAdapter;
-import com.cresset.asimjofaofficial.models.CurrencyListModel;
-import com.cresset.asimjofaofficial.models.CurrencyModel;
+import com.cresset.asimjofaofficial.models.OrderModel;
+import com.cresset.asimjofaofficial.models.OrdersListModel;
 import com.cresset.asimjofaofficial.models.ProductListModel;
-import com.cresset.asimjofaofficial.models.ProductModel;
+import com.cresset.asimjofaofficial.recylerview.RecyclerDivider;
 import com.cresset.asimjofaofficial.utilities.Config;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -39,59 +36,73 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class CurrencyChange extends AppCompatActivity {
+
+public class OrderHistory extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private CurrencyAdapter currencyAdapter;
+    Toolbar toolbar;
+    private OrderHistoryAdapter adapter;
+    private ImageView back;
     private ProgressDialog progressDialog;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.currency_change);
+        setContentView(R.layout.activity_order_info);
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(currencyAdapter);
+        back = (ImageView) findViewById(R.id.img_back);
+//        toolbar = (Toolbar) findViewById(R.id.toolbar_1);
+//        setSupportActionBar(toolbar);
+//       // getSupportActionBar().setDisplayShowTitleEnabled(false);
+//        //toolbar.setNavigationIcon(R.drawable.ic_toolbar);
+//        toolbar.setTitle("");
+//        toolbar.setSubtitle("");
+        //initCollapsingToolbar();
+
+        //prodId = getIntent().getStringExtra("categoryId");
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading.....");
         progressDialog.setCancelable(false);
 
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.addItemDecoration(new RecyclerDivider(this, LinearLayoutManager.VERTICAL));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(adapter);
 
-        getCurrency();
+        getOderHistory();
     }
 
-    public void getCurrency(){
+    public void getOderHistory(){
         progressDialog.show();
 
-        Map<String,String> params = new HashMap<>();
+        //creating json array list
+        Map<String, String> params = new HashMap<String, String>();
         params.put("ProjectId", Config.PROJECTID);
+        params.put("CustomerId","1");
 
-        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_CURRENCY, new JSONObject(params),
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_ORDER_HISTORY, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         //CategoryModel categoryModel = new CategoryModel();
 
-                        Log.d("Response", response.toString());
+                        Log.d("Response userDetail", response.toString());
                         //Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
 
                         Gson gson = new Gson();
-                        CurrencyModel currencyModel = gson.fromJson(response.toString(), new TypeToken<CurrencyModel>(){}.getType());
+                        OrderModel orderModel = gson.fromJson(response.toString(), new TypeToken<OrderModel>(){}.getType());
 
-                        ArrayList<CurrencyListModel> detailLists = new ArrayList<CurrencyListModel>(currencyModel.getCurrencyList());
+                        ArrayList<OrdersListModel> orderList = new ArrayList<OrdersListModel>(orderModel.getCustomerOrders());
 
-                        currencyAdapter = new CurrencyAdapter(getApplicationContext(), detailLists);
-                        recyclerView.setAdapter(currencyAdapter);
+                        adapter = new OrderHistoryAdapter(getApplicationContext(), orderList);
+                        recyclerView.setAdapter(adapter);
                         progressDialog.dismiss();
-                        //currencyAdapter.notifyDataSetChanged();
+
 
                     }
-
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {

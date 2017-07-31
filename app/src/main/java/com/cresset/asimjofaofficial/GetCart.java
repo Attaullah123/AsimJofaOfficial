@@ -33,6 +33,7 @@ import com.cresset.asimjofaofficial.models.CategoryList;
 import com.cresset.asimjofaofficial.models.CategoryModel;
 import com.cresset.asimjofaofficial.models.ProductListModel;
 import com.cresset.asimjofaofficial.models.ProductModel;
+import com.cresset.asimjofaofficial.recylerview.RecyclerDivider;
 import com.cresset.asimjofaofficial.utilities.Config;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
 import com.google.gson.Gson;
@@ -86,6 +87,7 @@ public class GetCart extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.addItemDecoration(new RecyclerDivider(this, LinearLayoutManager.VERTICAL));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(cartAdapter);
 
@@ -128,7 +130,7 @@ public class GetCart extends AppCompatActivity {
         progressDialog.show();
         HashMap<String,String> params = new HashMap<>();
         if (GlobalClass.userData != null) {
-            params.put("ProjectId", "1");
+            params.put("ProjectId", Config.PROJECTID);
             params.put("CustomerId", GlobalClass.userData.getUserID());
 
             JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_GET_CART, new JSONObject(params),
@@ -201,6 +203,12 @@ public class GetCart extends AppCompatActivity {
             if (recyclerView != null) recyclerView.setVisibility(View.GONE);
             if (recyclerView != null) recyclerView.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        getCartDetail();
     }
 
     public void UpdateTotal(String totalP,String subT,TextView sTotal){

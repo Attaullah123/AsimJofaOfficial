@@ -27,4 +27,7 @@ public class Config  {
     public static final String URL_State_List= "http://preview.cressettech.net/MobileAPI/Service1.svc/StateProvinceBillingShippingList";
     public static final String URL_PlaceOrder= "http://preview.cressettech.net/MobileAPI/Service1.svc/PlaceOrder";
     public static final String URL_CURRENCY= "http://preview.cressettech.net/MobileAPI/Service1.svc/CurrencyList";
+    public static final String URL_ORDER_HISTORY= "http://preview.cressettech.net/MobileAPI/Service1.svc/CustomerOrders";
+    public static final String URL_Delete_Cart_Items= "http://preview.cressettech.net/MobileAPI/Service1.svc/DeleteCartItems";
+    public static final String URL_Cart_Count= "http://preview.cressettech.net/MobileAPI/Service1.svc/GetCartCount";
 }

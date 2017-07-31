@@ -161,7 +161,7 @@ public class Profile extends AppCompatActivity {
                         UserModel userData = new UserModel();
                         userData.setUserID(model.getCustomerId());
                         userData.setGuest(false);
-                        userData.setUserName(email);
+                        userData.setEmail(email);
 
                         GuestUserchangeToLogin(GlobalClass.userData,userData);
                     }

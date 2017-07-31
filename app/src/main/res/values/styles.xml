@@ -10,7 +10,9 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-
+    <style name="CircularProgress" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">@color/progress_color</item>
+    </style>
     <style name="MaterialDialogSheet" parent="@android:style/Theme.Dialog">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>

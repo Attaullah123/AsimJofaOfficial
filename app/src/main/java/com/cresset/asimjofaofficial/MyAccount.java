@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,14 +16,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.cresset.asimjofaofficial.database.UserDataStore;
 import com.cresset.asimjofaofficial.models.CustomerDetailResponse;
 import com.cresset.asimjofaofficial.models.UserModel;
-import com.cresset.asimjofaofficial.userinfo.activity.OrderPlaceActivity;
+import com.cresset.asimjofaofficial.userinfo.activity.OrderHistory;
 import com.cresset.asimjofaofficial.userinfo.activity.UserInfoActivity;
 import com.cresset.asimjofaofficial.utilities.Config;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
-import com.cresset.asimjofaofficial.utilities.UserSessionManager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -65,7 +62,7 @@ public class MyAccount extends AppCompatActivity {
         userOrderInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), OrderPlaceActivity.class);
+                Intent intent = new Intent(getApplicationContext(), OrderHistory.class);
                 startActivity(intent);
             }
         });
@@ -147,7 +144,7 @@ public class MyAccount extends AppCompatActivity {
                         } catch (Exception e) {
                             // JSON error
                             e.printStackTrace();
-                            Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
                         }
 
                     }
@@ -156,8 +153,7 @@ public class MyAccount extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "User Detail Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_LONG).show();
             }
         });
         // Adding request to request queue

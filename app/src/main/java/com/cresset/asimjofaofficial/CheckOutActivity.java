@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,7 +42,6 @@ public class CheckOutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.checkout_activity);
 
-
         selectShippingandBillingAdd = (TextView) findViewById(R.id.shipping_edit_method);
         selectShippingMethod = (TextView) findViewById(R.id.shipping_edit);
         selectPaymentMethod = (TextView) findViewById(R.id.payment_edit);
@@ -52,7 +52,13 @@ public class CheckOutActivity extends AppCompatActivity {
         shippingPrice = (TextView) findViewById(R.id.country_shipping_price);
 
         //initialize cart method getting detail from cart activity
-
+        TextView back = (TextView) findViewById(R.id.txt_cancel);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         getCartDetail();
 
         finaliseOrder = (Button) findViewById(R.id.finalise_order);

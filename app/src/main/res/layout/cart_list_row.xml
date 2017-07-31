@@ -10,7 +10,7 @@
     <ImageView
         android:id="@+id/cart_thumbnail"
         android:layout_width="115dp"
-        android:layout_height="140dp"
+        android:layout_height="150dp"
         android:layout_gravity="center" />
 
     <LinearLayout
@@ -121,13 +121,7 @@
 
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_above="@+id/amount"
-                android:background="#dad8d8"
-                android:elevation="1dp"
-                android:gravity="bottom" />
+
 
         </LinearLayout>
 

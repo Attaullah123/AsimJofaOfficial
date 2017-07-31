@@ -27,6 +27,8 @@ import com.cresset.asimjofaofficial.adapter.CartAdapter;
 import com.cresset.asimjofaofficial.adapter.UpdateCartAdapter;
 import com.cresset.asimjofaofficial.models.CartModel;
 import com.cresset.asimjofaofficial.models.CartModelItems;
+import com.cresset.asimjofaofficial.models.UpdateProductQuantity;
+import com.cresset.asimjofaofficial.recylerview.RecyclerDivider;
 import com.cresset.asimjofaofficial.utilities.Config;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
 import com.google.gson.Gson;
@@ -63,6 +65,10 @@ public class UpdateCart extends AppCompatActivity{
         toolbar.setBackgroundColor(Color.parseColor("#ffffff"));
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        //delete item
+        GlobalClass.deleteSelectedCartItems = new ArrayList<Integer>();
+        GlobalClass.updateProductQuantity = new ArrayList<UpdateProductQuantity>();
+
         cartDone = (TextView) findViewById(R.id.cart_done);
         emptyCart = findViewById(R.id.cart_empty);
         deleteList = (TextView) findViewById(R.id.btn_delete);
@@ -76,6 +82,7 @@ public class UpdateCart extends AppCompatActivity{
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.addItemDecoration(new RecyclerDivider(this, LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(cartAdapter);
 
         progressDialog = new ProgressDialog(this);
@@ -83,14 +90,14 @@ public class UpdateCart extends AppCompatActivity{
         progressDialog.setCancelable(false);
 
         //delete item
-        GlobalClass.itemDelete = new ArrayList<Integer>();
+        //GlobalClass.itemDelete = new ArrayList<Integer>();
 
         getCartDetail();
         cartDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
-            }
+                    }
         });
         cross.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,7 +109,17 @@ public class UpdateCart extends AppCompatActivity{
         deleteList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(GlobalClass.deleteSelectedCartItems != null){
+                    if(GlobalClass.deleteSelectedCartItems.size() > 0){
+                        DeleteSelectedCartItems();
+                    }
+                    else{
 
+                    }
+                }
+                else{
+
+                }
             }
         });
 
@@ -124,31 +141,8 @@ public class UpdateCart extends AppCompatActivity{
                         Log.d("Response", response.toString());
                         //Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
 
-                        Gson gson = new Gson();
-                        cartModelData = gson.fromJson(response.toString(), new TypeToken<CartModel>(){}.getType());
+                        CartDetailList(response.toString());
 
-
-
-                        Log.d("CartModel ",gson.toJson(cartModelData));
-
-                        //totalP = (cartModelData.getTotalDetail().getSubTotalAmount());
-                        subTo = (cartModelData.getTotalDetail().getSubTotalAmount());
-
-
-                        //totalPrice.setText(Float.toString(totalP));
-                        //subTotal.setText( Float.toString(subTo));
-
-                        ArrayList<CartModelItems> cartItems = new ArrayList<>(cartModelData.getCartItems());
-
-                        if (cartModelData.getCartItems() == null || cartModelData.getCartItems().size() == 0){
-                            setCartVisibility(false);
-                        } else {
-                            setCartVisibility(true);
-                            //cartAdapter.refreshItems(cartDetailModel);
-                        }
-
-                        cartAdapter = new UpdateCartAdapter(getApplicationContext(),cartItems);
-                        recyclerView.setAdapter(cartAdapter);
                         progressDialog.dismiss();
 
 
@@ -167,6 +161,64 @@ public class UpdateCart extends AppCompatActivity{
         return cartModelData;
     }
 
+    public void DeleteSelectedCartItems() {
+
+        progressDialog.show();
+        HashMap<String, String> params = new HashMap<>();
+        params.put("ProjectId", Config.PROJECTID);
+        params.put("CustomerId", GlobalClass.userData.getUserID());
+
+        String deletedIds = android.text.TextUtils.join(",", GlobalClass.deleteSelectedCartItems);
+        params.put("CartItemIds", deletedIds );
+
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_Delete_Cart_Items, new JSONObject(params),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        //CategoryModel categoryModel = new CategoryModel();
+
+                        Log.d("Response", response.toString());
+                        CartDetailList(response.toString());
+                        progressDialog.dismiss();
+
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
+                Log.d("Error", error.toString());
+                progressDialog.dismiss();
+            }
+        });
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        requestQueue.add(objectRequest);
+
+    }
+
+    public void CartDetailList(String response){
+        Gson gson = new Gson();
+        cartModelData = gson.fromJson(response, new TypeToken<CartModel>(){}.getType());
+
+        Log.d("CartModel ",gson.toJson(cartModelData));
+
+        subTo = (cartModelData.getTotalDetail().getSubTotalAmount());
+
+        //totalPrice.setText(Float.toString(totalP));
+        //subTotal.setText( Float.toString(subTo));
+
+        ArrayList<CartModelItems> cartItems = new ArrayList<>(cartModelData.getCartItems());
+
+        if (cartModelData.getCartItems() == null || cartModelData.getCartItems().size() == 0){
+            setCartVisibility(false);
+        } else {
+            setCartVisibility(true);
+            //cartAdapter.refreshItems(cartDetailModel);
+        }
+
+        cartAdapter = new UpdateCartAdapter(getApplicationContext(),cartItems);
+        recyclerView.setAdapter(cartAdapter);
+    }
     private void setCartVisibility(boolean visible) {
         if (visible) {
             if (emptyCart != null) emptyCart.setVisibility(View.GONE);

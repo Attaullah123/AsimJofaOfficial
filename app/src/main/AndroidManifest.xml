@@ -57,7 +57,7 @@
         <activity android:name=".UpdateCart"/>
         <activity android:name=".ContactUs"/>
         <activity android:name=".userinfo.activity.UserInfoActivity"/>
-        <activity android:name=".userinfo.activity.OrderPlaceActivity"/>
+        <activity android:name=".userinfo.activity.OrderHistory"/>
         <activity android:name=".MyAccount"/>
         <activity android:name=".CurrencyChange"/>
         <activity android:name=".GotoWebview"/>

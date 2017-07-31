@@ -41,6 +41,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.cresset.asimjofaofficial.GetCart;
 import com.cresset.asimjofaofficial.HomeActivity;
+import com.cresset.asimjofaofficial.MainActivity;
 import com.cresset.asimjofaofficial.R;
 import com.cresset.asimjofaofficial.adapter.AddonsAdapter;
 import com.cresset.asimjofaofficial.adapter.ProductImagePagerAdapter;
@@ -102,6 +103,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
     JSONArray array = new JSONArray();
     String mUrl;  //initialized somewhere else
     ArrayList<String> attribute;  //initialized somewhere else
+    private Menu menu;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -214,17 +216,6 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         });
 
 
-//        quantitySpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//            @Override
-//
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//                Toast.makeText(getApplicationContext(), "Item number: " + position, Toast.LENGTH_LONG).show();
-//
-//            }
-//
-//        });
 
 
 
@@ -237,7 +228,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
 
                 if (!proDetail.isOutOfStock()){
                     AddToCartModel addToCartModel = new AddToCartModel();
-                    addToCartModel.setProjectId("1");
+                    addToCartModel.setProjectId(Config.PROJECTID);
                     addToCartModel.setProductId(String.valueOf(proDetail.getId()));
                     addToCartModel.setCustomerId(GlobalClass.userData.getUserID());
                     addToCartModel.setQuantity(quantityName);
@@ -277,6 +268,8 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
 
                                     Log.d("Response", response.toString());
                                     Toast.makeText(getApplicationContext(), "value Add to cart", Toast.LENGTH_SHORT).show();
+
+                                    GetCartItemsCount();
 
                                     try {
                                         String status = response.getString("Status");
@@ -488,12 +481,72 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.top_menu, menu);
-
-//        MenuItem cartItem = menu.findItem(R.id.cart);
-//        MenuItemCompat.setActionView(cartItem, R.layout.count_badge);
-//        View view = MenuItemCompat.getActionView(cartItem);
-//        cartCountView = (TextView) view.findViewById(R.id.shopping_cart_notify);
+        this.menu = menu;
+        GetCartItemsCount();
         return super.onCreateOptionsMenu(menu);
+    }
+
+    public void UpdateCartCount(){
+        MenuItem cartItem = menu.findItem(R.id.cart);
+        MenuItemCompat.setActionView(cartItem, R.layout.count_badge);
+        View view = MenuItemCompat.getActionView(cartItem);
+        cartCountView = (TextView) view.findViewById(R.id.shopping_cart_notify);
+        cartCountView.setText(Integer.toString(GlobalClass.CartCount));
+        cartCountView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), GetCart.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageView imageView = (ImageView) findViewById(R.id.shopping_cart_icon);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), GetCart.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        GetCartItemsCount();
+    }
+
+    public void GetCartItemsCount() {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("ProjectId", "1");
+        params.put("CustomerId", GlobalClass.userData.getUserID());
+
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_Cart_Count, new JSONObject(params),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        //CategoryModel categoryModel = new CategoryModel();
+
+                        Log.d("Response", response.toString());
+                        JSONObject jsonObject = null;
+                        try {
+                            jsonObject = new JSONObject(response.toString());
+                            GlobalClass.CartCount = jsonObject.getInt("CartCount");
+                            UpdateCartCount();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
+                Log.d("Error", error.toString());
+            }
+        });
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        requestQueue.add(objectRequest);
     }
 
     @Override

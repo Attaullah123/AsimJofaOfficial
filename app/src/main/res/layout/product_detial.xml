@@ -182,7 +182,7 @@
                 android:background="@drawable/spinner_background_black_baseline"
                 android:gravity="start"
                 android:paddingBottom="8dp"
-                android:spinnerMode="dialog"/>
+                android:spinnerMode="dialog" />
         </LinearLayout>
 
 

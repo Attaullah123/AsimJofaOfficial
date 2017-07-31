@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +37,7 @@ import com.google.gson.reflect.TypeToken;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabSelectedListener;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences.Editor sharedPreferencesEditor;
     CoordinatorLayout coordinatorLayout;
     Gson gson;
+    private Menu menu;
 
     private int cartCountNotificationValue = GlobalClass.DEFAULT_EMPTY_ID;
     @Override
@@ -77,17 +80,18 @@ public class MainActivity extends AppCompatActivity {
         //Toast.makeText(getApplicationContext(),"User Data" + GlobalClass.userData,Toast.LENGTH_LONG).show();
         if(GlobalClass.userData == null){
             String guestUserData = sharedPreferences.getString(Config.GuestPreference,null);
-            show("guestUserData: " + guestUserData);
             String registeredUserData = sharedPreferences.getString(Config.RegisteredPreference,null);
             if(registeredUserData != null && registeredUserData != ""){
+                show("Registered: " + registeredUserData);
                 UserModel userModel = gson.fromJson(registeredUserData.toString(), new TypeToken<UserModel>(){}.getType());
                 GlobalClass.userData = userModel;
-                show("registered user find");
+                //show("registered user find");
             }
             else if(guestUserData != null && guestUserData != ""){
+                show("Guest: " + guestUserData);
                 UserModel userModel = gson.fromJson(guestUserData.toString(), new TypeToken<UserModel>(){}.getType());
                 GlobalClass.userData = userModel;
-                show("guest user find");
+                //show("guest user find");
             }
             else{
                 RegisterGuestUser();
@@ -136,11 +140,72 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.top_menu, menu);
-//        MenuItem cartItem = menu.findItem(R.id.cart);
-//        MenuItemCompat.setActionView(cartItem, R.layout.count_badge);
-//        View view = MenuItemCompat.getActionView(cartItem);
-//        cartCountView = (TextView) view.findViewById(R.id.shopping_cart_notify);
+        this.menu = menu;
+        GetCartItemsCount();
         return super.onCreateOptionsMenu(menu);
+    }
+
+    public void UpdateCartCount(){
+        MenuItem cartItem = menu.findItem(R.id.cart);
+        MenuItemCompat.setActionView(cartItem, R.layout.count_badge);
+        View view = MenuItemCompat.getActionView(cartItem);
+        cartCountView = (TextView) view.findViewById(R.id.shopping_cart_notify);
+        cartCountView.setText(Integer.toString(GlobalClass.CartCount));
+        cartCountView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, GetCart.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageView imageView = (ImageView) findViewById(R.id.shopping_cart_icon);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, GetCart.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        GetCartItemsCount();
+    }
+
+    public void GetCartItemsCount() {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("ProjectId", Config.PROJECTID);
+        params.put("CustomerId", GlobalClass.userData.getUserID());
+
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_Cart_Count, new JSONObject(params),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        //CategoryModel categoryModel = new CategoryModel();
+
+                        Log.d("Response", response.toString());
+                        JSONObject jsonObject = null;
+                        try {
+                            jsonObject = new JSONObject(response.toString());
+                            GlobalClass.CartCount = jsonObject.getInt("CartCount");
+                            UpdateCartCount();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
+                Log.d("Error", error.toString());
+            }
+        });
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        requestQueue.add(objectRequest);
     }
 
     @Override
@@ -229,6 +294,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void show(String message){
+
+//        Snackbar snackbar = Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_LONG);
+//        snackbar.show();
+
         Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
     }
 }

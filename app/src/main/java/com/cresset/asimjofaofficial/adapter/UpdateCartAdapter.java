@@ -14,16 +14,27 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.cresset.asimjofaofficial.GetCart;
 import com.cresset.asimjofaofficial.R;
 import com.cresset.asimjofaofficial.models.CartAttributes;
 import com.cresset.asimjofaofficial.models.CartDetailModel;
 import com.cresset.asimjofaofficial.models.CartModelItems;
+import com.cresset.asimjofaofficial.models.UpdateProductQuantity;
+import com.cresset.asimjofaofficial.utilities.Config;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
 import com.google.gson.Gson;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import timber.log.Timber;
 
@@ -38,7 +49,7 @@ public class UpdateCartAdapter extends RecyclerView.Adapter<UpdateCartAdapter.My
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView proName, proPrice, proSkuCode, proSize, proQuantity;
-        public Button btnIncrement,btnDecrement;
+        public Button btnIncrement, btnDecrement;
         public ImageView thumbnailImage;
         public CheckBox listSelected;
         //public CardView cardView;
@@ -54,7 +65,7 @@ public class UpdateCartAdapter extends RecyclerView.Adapter<UpdateCartAdapter.My
             proQuantity = (TextView) itemView.findViewById(R.id.cart_product_quantity);
             thumbnailImage = (ImageView) itemView.findViewById(R.id.cart_thumbnail);
             btnDecrement = (Button) itemView.findViewById(R.id.quantity_decrement);
-            btnIncrement= (Button) itemView.findViewById(R.id.quantity_increment);
+            btnIncrement = (Button) itemView.findViewById(R.id.quantity_increment);
             listSelected = (CheckBox) itemView.findViewById(R.id.select_cart_list);
 
 //            deleteItem.setOnClickListener((View.OnClickListener) this);
@@ -64,7 +75,7 @@ public class UpdateCartAdapter extends RecyclerView.Adapter<UpdateCartAdapter.My
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     int position = getAdapterPosition();
-                    if (buttonView.isChecked()){
+                    if (buttonView.isChecked()) {
                         CartModelItems cartModelItems = cartModelItemses.get(position);
                     }
                 }
@@ -103,9 +114,7 @@ public class UpdateCartAdapter extends RecyclerView.Adapter<UpdateCartAdapter.My
     public void onBindViewHolder(final UpdateCartAdapter.MyViewHolder holder, final int position) {
 
         final CartModelItems cartListModel = cartModelItemses.get(position);
-        //delete item 
-        GlobalClass.itemDelete = new ArrayList<Integer>();
-        
+
         Gson gson = new Gson();
         Log.d("CartModel List", gson.toJson(cartListModel));
 
@@ -124,6 +133,11 @@ public class UpdateCartAdapter extends RecyclerView.Adapter<UpdateCartAdapter.My
                     cartModelItemses.get(position).setQuantity(cartModelItemses.get(position).getQuantity() + 1);
                     holder.proQuantity.setText(String.valueOf(cartModelItemses.get(position).getQuantity()));
 
+                    UpdateCart(cartModelItemses.get(position), position);
+//                    UpdateProductQuantity updatemode = new UpdateProductQuantity();
+//                    updatemode.setQuantity(Integer.toString(cartModelItemses.get(position).getQuantity()));
+//                    updatemode.setCartItemId(Integer.toString(cartModelItemses.get(position).getCartItemId()));
+//                    UpdateCartData(updatemode);
                 }
             }
         });
@@ -135,27 +149,31 @@ public class UpdateCartAdapter extends RecyclerView.Adapter<UpdateCartAdapter.My
                 //count = 0;
 
                 if (cartListModel.getQuantity() > 1) {
-
                     cartModelItemses.get(position).setQuantity(cartModelItemses.get(position).getQuantity() - 1);
                     holder.proQuantity.setText(String.valueOf(cartModelItemses.get(position).getQuantity()));
 
+                    UpdateCart(cartModelItemses.get(position), position);
+//                    UpdateProductQuantity updatemode = new UpdateProductQuantity();
+//                    updatemode.setQuantity(Integer.toString(cartModelItemses.get(position).getQuantity()));
+//                    updatemode.setCartItemId(Integer.toString(cartModelItemses.get(position).getCartItemId()));
+//                    UpdateCartData(updatemode);
                 }
             }
         });
         //selected list initialization
 
-//        holder.listSelected.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if (buttonView.isChecked()){
-//                    cartModelItemses.get(position);
-//                    //notifyItemRemoved(position);
-//                    Toast.makeText(mContext, "position " + position, Toast.LENGTH_SHORT).show();
-//                }else{
-//                    Toast.makeText(mContext, "unchecked" + position, Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
+        holder.listSelected.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (buttonView.isChecked()) {
+                    GlobalClass.deleteSelectedCartItems.add(cartModelItemses.get(position).CartItemId);
+                    //notifyItemRemoved(position);
+                    //Toast.makeText(mContext, "position", Toast.LENGTH_SHORT).show();
+                } else {
+                    //Toast.makeText(mContext, "unchecked" + position, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         String strAttributes = "";
         float productPrice = cartListModel.getProductPrice();
@@ -171,6 +189,59 @@ public class UpdateCartAdapter extends RecyclerView.Adapter<UpdateCartAdapter.My
         holder.proSize.setText(Html.fromHtml(strAttributes));
         holder.proPrice.setText(Float.toString(productPrice));
         Glide.with(mContext).load(cartListModel.getImageLink()).into(holder.thumbnailImage);
+    }
+
+    /*public void UpdateCartData(UpdateProductQuantity updateModel){
+        boolean cartItemAdded = false;
+        int loopIndex = 0;
+        if(GlobalClass.updateProductQuantity.size() > 0){
+            for (UpdateProductQuantity model: GlobalClass.updateProductQuantity
+                 ) {
+                if(model.getCartItemId() == updateModel.getCartItemId()){
+                    GlobalClass.updateProductQuantity.get(loopIndex).setQuantity(updateModel.getQuantity());
+                    cartItemAdded = true;
+                }
+                loopIndex++;
+            }
+
+            if(!cartItemAdded){
+                GlobalClass.updateProductQuantity.add(updateModel);
+            }
+        }
+        else{
+            GlobalClass.updateProductQuantity.add(updateModel);
+        }
+    }*/
+
+    public void UpdateCart(final CartModelItems cartModel, final int position) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("ProjectId", Config.PROJECTID);
+        params.put("CustomerId", GlobalClass.userData.getUserID());
+        params.put("CartItemId", String.valueOf(cartModel.getCartItemId()));
+        params.put("Quantity", String.valueOf(cartModel.getQuantity()));
+        params.put("IsRemoveItem", "false");
+
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_UPDATE_CART, new JSONObject(params),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        notifyItemRemoved(position);
+                        notifyItemRangeChanged(position, cartModelItemses.size());
+
+                        // Show the removed item label
+                        //Toast.makeText(mContext,"Quantity update", Toast.LENGTH_SHORT).show();
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(mContext.getApplicationContext(), "Couldn't delete, check connection", Toast.LENGTH_SHORT).show();
+                Log.d("Error", error.toString());
+            }
+        });
+        RequestQueue requestQueue = Volley.newRequestQueue(mContext.getApplicationContext());
+        requestQueue.add(objectRequest);
     }
 
     public void refreshItems(CartDetailModel cartDetailModel) {
@@ -195,74 +266,5 @@ public class UpdateCartAdapter extends RecyclerView.Adapter<UpdateCartAdapter.My
     public int getItemCount() {
         return cartModelItemses.size();
     }
-
-//    public void UpdateCart(final CartModelItems cartModel, final int position) {
-//        HashMap<String, String> params = new HashMap<>();
-//        params.put("ProjectId", "1");
-//        params.put("CustomerId", "1");
-//        params.put("CartItemId", String.valueOf(cartModel.getCartItemId()));
-//        params.put("Quantity", String.valueOf(cartModel.getQuantity()));
-//        params.put("IsRemoveItem", "true");
-//
-//        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_UPDATE_CART, new JSONObject(params),
-//                new Response.Listener<JSONObject>() {
-//                    @Override
-//                    public void onResponse(JSONObject response) {
-//
-//                        cartModelItemses.remove(cartModel);
-//                        getUpdatedCartDetail(totalPrice, subTotal);
-//
-//                        notifyItemRemoved(position);
-//                        notifyItemRangeChanged(position, cartModelItemses.size());
-//
-//                        // Show the removed item label
-//                        Toast.makeText(mContext, "Item removed", Toast.LENGTH_SHORT).show();
-//
-//                    }
-//                }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Toast.makeText(mContext.getApplicationContext(), "Couldn't delete, check connection", Toast.LENGTH_SHORT).show();
-//                Log.d("Error", error.toString());
-//            }
-//        });
-//        RequestQueue requestQueue = Volley.newRequestQueue(mContext.getApplicationContext());
-//        requestQueue.add(objectRequest);
-//    }
-//
-//    public void getUpdatedCartDetail(TextView tPrice, TextView sTotal) {
-//        HashMap<String, String> params = new HashMap<>();
-//        params.put("ProjectId", "1");
-//        params.put("CustomerId", "1");
-//
-//        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_GET_CART, new JSONObject(params),
-//                new Response.Listener<JSONObject>() {
-//                    @Override
-//                    public void onResponse(JSONObject response) {
-//                        //CategoryModel categoryModel = new CategoryModel();
-//
-//                        Log.d("Response", response.toString());
-//
-//                        Gson gson = new Gson();
-//                        CartModel cartModel = gson.fromJson(response.toString(), new TypeToken<CartModel>() {
-//                        }.getType());
-//
-//                        String totalP = String.valueOf(cartModel.getTotalDetail().getSubTotalAmount());
-//                        String subTo = String.valueOf(cartModel.getTotalDetail().getSubTotalAmount());
-//
-//                        getCart.UpdateTotal(totalP, subTo, subTotal);
-//
-//
-//                    }
-//                }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Toast.makeText(mContext.getApplicationContext(), "Couldn't get cart, check connection", Toast.LENGTH_SHORT).show();
-//                Log.d("Error", error.toString());
-//            }
-//        });
-//        RequestQueue requestQueue = Volley.newRequestQueue(mContext.getApplicationContext());
-//        requestQueue.add(objectRequest);
-//    }
 
 }

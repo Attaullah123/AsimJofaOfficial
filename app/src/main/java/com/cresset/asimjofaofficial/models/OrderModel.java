@@ -2,12 +2,14 @@ package com.cresset.asimjofaofficial.models;
 
 import java.util.List;
 
+/**
+ * Created by cresset on 28/07/2017.
+ */
 
-public class CurrencyModel {
+public class OrderModel {
     public String Message;
     public String Status;
-    public List<CurrencyListModel> CurrencyList;
-
+    public List<OrdersListModel> CustomerOrders;
 
     public String getMessage() {
         return Message;
@@ -25,13 +27,11 @@ public class CurrencyModel {
         Status = status;
     }
 
-    public List<CurrencyListModel> getCurrencyList() {
-        return CurrencyList;
+    public List<OrdersListModel> getCustomerOrders() {
+        return CustomerOrders;
     }
 
-    public void setCurrencyList(List<CurrencyListModel> currencyList) {
-        CurrencyList = currencyList;
+    public void setCustomerOrders(List<OrdersListModel> customerOrders) {
+        CustomerOrders = customerOrders;
     }
-
-
 }

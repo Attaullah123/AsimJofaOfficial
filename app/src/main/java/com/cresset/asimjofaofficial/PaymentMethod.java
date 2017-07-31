@@ -22,6 +22,7 @@ import com.cresset.asimjofaofficial.models.PaymentMethodModel;
 import com.cresset.asimjofaofficial.models.PaymentModel;
 import com.cresset.asimjofaofficial.models.ShippingMethodModel;
 import com.cresset.asimjofaofficial.models.ShippingmethodList;
+import com.cresset.asimjofaofficial.recylerview.RecyclerDivider;
 import com.cresset.asimjofaofficial.utilities.Config;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
 import com.google.gson.Gson;
@@ -52,6 +53,7 @@ public class PaymentMethod extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.addItemDecoration(new RecyclerDivider(this, LinearLayoutManager.VERTICAL));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(paymentAdapter);
 

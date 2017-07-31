@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
@@ -17,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -30,9 +32,11 @@ import com.cresset.asimjofaofficial.adapter.ProductListAdapter;
 import com.cresset.asimjofaofficial.models.ProductListModel;
 import com.cresset.asimjofaofficial.models.ProductModel;
 import com.cresset.asimjofaofficial.utilities.Config;
+import com.cresset.asimjofaofficial.utilities.GlobalClass;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -50,7 +54,8 @@ public class ProductListActivity extends AppCompatActivity {
     private ImageView back;
     private ProgressDialog progressDialog;
     private String prodId;
-
+    private TextView cartCountView;
+    private Menu menu;
 
     //    public static final String TAG_FIRST_APPEARANCE = "firstAppearance";
 //    public static final String TAG_POWERS = "powers";
@@ -152,8 +157,73 @@ public class ProductListActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.top_menu,menu);
+        getMenuInflater().inflate(R.menu.top_menu, menu);
+        this.menu = menu;
+        GetCartItemsCount();
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        GetCartItemsCount();
+    }
+
+    public void UpdateCartCount(){
+        MenuItem cartItem = menu.findItem(R.id.cart);
+        MenuItemCompat.setActionView(cartItem, R.layout.count_badge);
+        View view = MenuItemCompat.getActionView(cartItem);
+        cartCountView = (TextView) view.findViewById(R.id.shopping_cart_notify);
+        cartCountView.setText(Integer.toString(GlobalClass.CartCount));
+        cartCountView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), GetCart.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageView imageView = (ImageView) findViewById(R.id.shopping_cart_icon);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), GetCart.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    public void GetCartItemsCount() {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("ProjectId", Config.PROJECTID);
+        params.put("CustomerId", GlobalClass.userData.getUserID());
+
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_Cart_Count, new JSONObject(params),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        //CategoryModel categoryModel = new CategoryModel();
+
+                        Log.d("Response", response.toString());
+                        JSONObject jsonObject = null;
+                        try {
+                            jsonObject = new JSONObject(response.toString());
+                            GlobalClass.CartCount = jsonObject.getInt("CartCount");
+                            UpdateCartCount();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
+                Log.d("Error", error.toString());
+            }
+        });
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        requestQueue.add(objectRequest);
     }
 
     @Override

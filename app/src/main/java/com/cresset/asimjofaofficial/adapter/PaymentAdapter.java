@@ -32,26 +32,8 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.MyViewHo
             paymentName = (TextView) itemView.findViewById(R.id.payment_name);
             //paymentSystemName = (TextView) itemView.findViewById(R.id.payment_system_name);
             //proId = (TextView) itemView.findViewById(R.id.product_list_id);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    int position = getAdapterPosition();
-                    Context context = v.getContext();
-                    // Gson gson = new Gson();
-                    GlobalClass.paymentModel = paymentLists.get(position);
-                    Toast.makeText(context.getApplicationContext(),paymentLists.get(position).getName(), Toast.LENGTH_LONG).show();
-
-                    /*Intent intent = new Intent();
-                    intent.putExtra("editTextValue", "value_here");
-                    ((Activity)context).setResult(RESULT_OK, intent);*/
-                    ((Activity)context).finish();
-                    //GlobalClass
-
-                }
-            });
         }
+
 
     }
     public PaymentAdapter(Context mContext, ArrayList<PaymentMethodModel> paymentList) {
@@ -61,7 +43,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.MyViewHo
     @Override
     public PaymentAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.payment_list_row, parent, false);
+                .inflate(R.layout.order_history_design, parent, false);
 
         return new PaymentAdapter.MyViewHolder(itemView);
     }
