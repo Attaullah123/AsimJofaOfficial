@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayUseLogoEnabled(true);
         }
         getSupportActionBar().setTitle("");
-        toolbar.setBackgroundColor(Color.parseColor("#ffffff"));
+        //toolbar.setBackgroundColor(Color.parseColor("#ffffff"));
 
         Fragment fragment = new HomeActivity();
         FragmentManager manager = getSupportFragmentManager();
@@ -82,13 +82,13 @@ public class MainActivity extends AppCompatActivity {
             String guestUserData = sharedPreferences.getString(Config.GuestPreference,null);
             String registeredUserData = sharedPreferences.getString(Config.RegisteredPreference,null);
             if(registeredUserData != null && registeredUserData != ""){
-                show("Registered: " + registeredUserData);
+                //show("Registered: " + registeredUserData);
                 UserModel userModel = gson.fromJson(registeredUserData.toString(), new TypeToken<UserModel>(){}.getType());
                 GlobalClass.userData = userModel;
                 //show("registered user find");
             }
             else if(guestUserData != null && guestUserData != ""){
-                show("Guest: " + guestUserData);
+                //show("Guest: " + guestUserData);
                 UserModel userModel = gson.fromJson(guestUserData.toString(), new TypeToken<UserModel>(){}.getType());
                 GlobalClass.userData = userModel;
                 //show("guest user find");
@@ -141,7 +141,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.top_menu, menu);
         this.menu = menu;
-        GetCartItemsCount();
+        if (GlobalClass.userData != null){
+            GetCartItemsCount();
+        }
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -172,7 +174,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        GetCartItemsCount();
+        if (GlobalClass.userData != null){
+            GetCartItemsCount();
+        }
     }
 
     public void GetCartItemsCount() {
@@ -189,9 +193,12 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("Response", response.toString());
                         JSONObject jsonObject = null;
                         try {
-                            jsonObject = new JSONObject(response.toString());
-                            GlobalClass.CartCount = jsonObject.getInt("CartCount");
-                            UpdateCartCount();
+                            if (GlobalClass.userData.getUserID()!= null){
+                                jsonObject = new JSONObject(response.toString());
+                                GlobalClass.CartCount = jsonObject.getInt("CartCount");
+                                UpdateCartCount();
+                            }
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

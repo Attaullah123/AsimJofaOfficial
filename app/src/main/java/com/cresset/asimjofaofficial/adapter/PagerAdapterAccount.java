@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.cresset.asimjofaofficial.CompanyAccount;
+
 import com.cresset.asimjofaofficial.IndiviualAccount;
 
 
@@ -31,8 +31,8 @@ public class PagerAdapterAccount extends FragmentStatePagerAdapter {
                 IndiviualAccount indiviualAccount = new IndiviualAccount();
                 return indiviualAccount;
             case 1:
-                CompanyAccount CompanyAccount = new CompanyAccount();
-                return CompanyAccount;
+//                CompanyAccount CompanyAccount = new CompanyAccount();
+//                return CompanyAccount;
             default:
                 return null;
         }

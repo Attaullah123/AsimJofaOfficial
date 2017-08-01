@@ -31,4 +31,7 @@
     <string name="google_api_key">AIzaSyBPWNgE0tcbY7DQhVhIQIlbDiy-Z2x77vI</string>
 
     <string name="currency_change">Currency Change</string>
+    <string name="infoText">
+        <br/> + <font color="blue"> Info </font>
+</string>
 </resources>

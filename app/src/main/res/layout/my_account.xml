@@ -24,7 +24,7 @@
             android:minHeight="?attr/actionBarSize"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="#f9f9f9">
+            android:background="@color/toolbar_color">
 
             <TextView
                 android:layout_width="20dp"
@@ -48,12 +48,13 @@
 
         <TextView
             android:id="@+id/acc_email"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:background="@color/toolbar_color"
             android:textColor="#000"
             android:textSize="16dp"
             android:text="abc@gmail.com"
-            android:layout_gravity="center"/>
+            android:gravity="center"/>
 
         <View
             android:paddingTop="5dp"
@@ -171,7 +172,7 @@
         android:id="@+id/log_out"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ededed"
+        android:background="#eaeaea"
         android:text="Log Out"
         android:textSize="20dp"
         android:textColor="#000"

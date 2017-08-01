@@ -1,28 +1,32 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical">
-
+    android:animateLayoutChanges="true"
+    android:orientation="vertical"
+    android:weightSum="1">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        >
+        android:background="#ffffff">
+
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:minHeight="?attr/actionBarSize"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary">
+            android:background="@color/toolbar_color">
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="23sp"
+                android:contentDescription="@string/logo"
                 android:id="@+id/img_back"
-                android:layout_height="wrap_content"
-                android:background="@drawable/cross_logo"/>
+                android:layout_height="23sp"
+                android:layout_gravity="start"
+                android:src="@drawable/cross_logo"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -42,13 +46,8 @@
 
         </android.support.v7.widget.Toolbar>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/cart_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical"/>
-
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/cart_empty"
         android:layout_width="match_parent"
@@ -69,35 +68,57 @@
             android:layout_height="20dp"/>
 
         <TextView
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
             android:text="@string/Your_cart_is_empty"/>
 
-    </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#dad8d8"
-        android:gravity="bottom"
-        android:layout_above="@+id/amount"
-        android:elevation="1dp"
-        />
-    <!--******TOTAL*******-->
+        <TextView
+            android:id="@+id/cart_empty_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/base_margin"
 
-    <com.cresset.asimjofaofficial.customfonts.MyTextView
-        android:id="@+id/btn_delete"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/cart_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="vertical"/>
+
+    <View
+        android:paddingTop="5dp"
+        android:layout_width="fill_parent"
+        android:layout_height="0.2dp"
+        android:background="#393838"/>
+
+
+    <LinearLayout
+        android:id="@+id/cart_footer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#292828"
-        android:text="DELETE"
-        android:textSize="18dp"
-        android:textColor="#fff"
-        android:padding="16dp"
         android:gravity="center"
-        android:textStyle="bold"
-        android:layout_alignParentBottom="true"
-        />
+        android:orientation="vertical"
+        android:visibility="visible">
 
 
-</RelativeLayout>
+        <com.cresset.asimjofaofficial.customfonts.MyTextView
+            android:id="@+id/btn_delete"
+            android:layout_width="208dp"
+            android:layout_height="70dp"
+            android:background="#f5f5f5"
+            android:text="Delete"
+            android:textSize="18dp"
+            android:textColor="#fe0a0a"
+            android:layout_gravity="end"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_alignParentBottom="true"/>
+    </LinearLayout>
+</LinearLayout>

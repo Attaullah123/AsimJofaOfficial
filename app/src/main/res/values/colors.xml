@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#dededf</color>
-    <color name="colorPrimaryDark">#616269</color>
+    <color name="colorPrimaryDark">#ffffff</color>
     <color name="colorAccent">#212020</color>
 
     <color name="tab_background_selected">#606060</color>
@@ -26,5 +26,7 @@
     <color name="colorPrimaryLight">#b4b4b4</color>
 
     <color name="progress_color">#28B463</color>
+
+    <color name="toolbar_color">#f9f9f9</color>
 
 </resources>

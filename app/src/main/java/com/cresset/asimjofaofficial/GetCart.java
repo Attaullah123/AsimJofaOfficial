@@ -72,7 +72,7 @@ public class GetCart extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        toolbar.setBackgroundColor(Color.parseColor("#ffffff"));
+        //toolbar.setBackgroundColor(Color.parseColor("#ffffff"));
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         emptyCart = findViewById(R.id.cart_empty);

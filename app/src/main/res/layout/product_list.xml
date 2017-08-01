@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:titleTextColor="@android:color/black"
-        android:background="#faf6f6">
+        android:background="@color/toolbar_color">
 
         <ImageView
             android:layout_width="23sp"

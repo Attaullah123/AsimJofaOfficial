@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:titleTextColor="@android:color/black"
-        android:background="?attr/colorPrimary">
+        android:background="@color/toolbar_color">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -45,8 +45,8 @@
 
         <android.support.v4.view.ViewPager
             android:id="@+id/pager"
-            android:layout_width="320sp"
-            android:layout_height="460sp"
+            android:layout_width="340sp"
+            android:layout_height="470sp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
@@ -55,30 +55,33 @@
 
         <com.viewpagerindicator.CirclePageIndicator
             android:id="@+id/indicator"
-            android:layout_width="fill_parent"
+            android:layout_width="112dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:gravity="bottom"
             android:padding="10dip"
+            android:paddingBottom="10dp"
+            android:layout_marginLeft="40dp"
             app:centered="true"
             app:fillColor="#000"
             app:pageColor="#fff"
-            app:snap="false" />
+            app:snap="false"
+            android:layout_alignTop="@+id/btn_info" />
 
-
-        <ImageButton
+        <Button
             android:id="@+id/btn_info"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
+            android:layout_width="110dp"
+            android:layout_height="45dp"
+            android:textAllCaps="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
+            android:background="@color/toolbar_color"
             android:layout_marginEnd="13dp"
-            android:layout_marginRight="13dp"
+            android:layout_marginRight="15dp"
             android:layout_marginTop="30dp"
+            android:text="@string/infoText"
+            android:textSize="18sp"
             android:onClick="openBottomInfo"
-            app:srcCompat="@drawable/btnn_info" />
+             />
 
 
     </RelativeLayout>

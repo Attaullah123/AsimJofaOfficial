@@ -85,15 +85,15 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
     private ArrayList<ProductListModel> listModelArrayList;
     private SizeSpinnerAdapter sizeSpinnerAdapter;
     private Context mContext;
-    private ImageButton infoButton;
+    private Button infoButton;
     private Button sizeCheck;
     private String id;
     private String fulldiscrip;
     private String btmProNames;
     private String btmSku;
     private ListView listviewAddon;
-    ArrayList<ProductAddons> productAddonsArrayList;
-    AddonsAdapter addonsAdapter;
+    private ArrayList<ProductAddons> productAddonsArrayList;
+    private AddonsAdapter addonsAdapter;
     private TextView addTocart;
     private ProductDetailList proDetail;
     private String atrribute;
@@ -117,7 +117,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        toolbar.setBackgroundColor(Color.parseColor("#ffffff"));
+        //toolbar.setBackgroundColor(Color.parseColor("#ffffff"));
         setSupportActionBar(toolbar);
 
         GlobalClass.selectedProductAddons = new ArrayList<ProductAddons>();
@@ -128,7 +128,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         name = (TextView) findViewById(R.id.text_code);
         addTocart = (TextView) findViewById(R.id.addTocart);
         productSize = (Spinner) findViewById(R.id.size_Spinner);
-        infoButton = (ImageButton) findViewById(R.id.btn_info);
+        infoButton = (Button) findViewById(R.id.btn_info);
         ImageView cancelBtn = (ImageView) findViewById(R.id.img_back);
         proDetailId = (TextView) findViewById(R.id.product_detail_id);
         mPager = (ViewPager) findViewById(R.id.pager);
@@ -518,7 +518,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
 
     public void GetCartItemsCount() {
         HashMap<String, String> params = new HashMap<>();
-        params.put("ProjectId", "1");
+        params.put("ProjectId", Config.PROJECTID);
         params.put("CustomerId", GlobalClass.userData.getUserID());
 
         JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_Cart_Count, new JSONObject(params),
@@ -530,9 +530,12 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                         Log.d("Response", response.toString());
                         JSONObject jsonObject = null;
                         try {
-                            jsonObject = new JSONObject(response.toString());
-                            GlobalClass.CartCount = jsonObject.getInt("CartCount");
-                            UpdateCartCount();
+                            if (GlobalClass.userData.getUserID()!= null ){
+                                jsonObject = new JSONObject(response.toString());
+                                GlobalClass.CartCount = jsonObject.getInt("CartCount");
+                                UpdateCartCount();
+                            }
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

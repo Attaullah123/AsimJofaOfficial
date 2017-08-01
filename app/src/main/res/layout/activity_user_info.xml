@@ -8,7 +8,7 @@
         android:minHeight="?attr/actionBarSize"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="#faf7f7">
+        android:background="@color/toolbar_color">
 
         <ImageView
             android:layout_width="wrap_content"

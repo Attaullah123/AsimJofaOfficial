@@ -62,7 +62,7 @@ public class UpdateCart extends AppCompatActivity{
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        toolbar.setBackgroundColor(Color.parseColor("#ffffff"));
+        //toolbar.setBackgroundColor(Color.parseColor("#ffffff"));
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         //delete item
