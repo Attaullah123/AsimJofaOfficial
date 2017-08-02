@@ -129,7 +129,7 @@ public class UpdateCart extends AppCompatActivity{
 
         progressDialog.show();
         HashMap<String, String> params = new HashMap<>();
-        params.put("ProjectId", "1");
+        params.put("ProjectId", Config.PROJECTID);
         params.put("CustomerId", GlobalClass.userData.getUserID());
 
         JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_GET_CART, new JSONObject(params),

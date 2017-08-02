@@ -11,8 +11,7 @@
         android:layout_alignParentTop="true"
         android:background="#eaeaea"
         android:elevation="6dp"
-        android:minHeight="?attr/actionBarSize"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+        >
 
         <TextView
             android:layout_width="wrap_content"
@@ -25,6 +24,10 @@
             android:textSize="22dp"/>
 
         </android.support.v7.widget.Toolbar>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.2dp"
+        android:background="#393838"/>
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tab_layout"

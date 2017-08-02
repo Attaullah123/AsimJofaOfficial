@@ -30,7 +30,8 @@
     </android.support.v7.widget.Toolbar>
 
     <View
-        android:layout_width="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="#dad8d8" />
 

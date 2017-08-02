@@ -171,7 +171,7 @@ public class Profile extends AppCompatActivity {
                 } catch (Exception e) {
                     // JSON error
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -214,7 +214,7 @@ public class Profile extends AppCompatActivity {
                             sharedPreferencesEditor.putString(Config.RegisteredPreference,json);
                             sharedPreferencesEditor.commit();
 
-                            Toast.makeText(getApplicationContext(), "Registered user login!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "You are login Successfully!", Toast.LENGTH_LONG).show();
 
 
                             Intent intent = new Intent(Profile.this,MainActivity.class);
@@ -225,7 +225,7 @@ public class Profile extends AppCompatActivity {
                         } catch (Exception e) {
                             // JSON error
                             e.printStackTrace();
-                            Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_LONG).show();
                         }
 
                     }

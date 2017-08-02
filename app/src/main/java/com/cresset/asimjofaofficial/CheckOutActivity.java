@@ -63,6 +63,12 @@ public class CheckOutActivity extends AppCompatActivity {
 
         finaliseOrder = (Button) findViewById(R.id.finalise_order);
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         //shipping & billing select method call also check credential
 
         selectShippingandBillingAdd.setOnClickListener(new View.OnClickListener() {

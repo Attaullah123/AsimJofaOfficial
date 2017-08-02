@@ -25,6 +25,10 @@
             android:layout_gravity="center"/>
 
     </android.support.v7.widget.Toolbar>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.2dp"
+        android:background="#393838"/>
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"

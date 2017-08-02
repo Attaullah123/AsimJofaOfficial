@@ -1,6 +1,7 @@
 package com.cresset.asimjofaofficial.productdetail;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -103,6 +104,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
     JSONArray array = new JSONArray();
     String mUrl;  //initialized somewhere else
     ArrayList<String> attribute;  //initialized somewhere else
+    private ProgressDialog progressDialog;
     private Menu menu;
 
     @Override
@@ -119,7 +121,9 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
 
         //toolbar.setBackgroundColor(Color.parseColor("#ffffff"));
         setSupportActionBar(toolbar);
-
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading.....");
+        progressDialog.setCancelable(false);
         GlobalClass.selectedProductAddons = new ArrayList<ProductAddons>();
 
         price = (TextView) findViewById(R.id.product_price1);
@@ -138,6 +142,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
 
         //quantity spinner
 
+        infoButton.setBackgroundColor(Color.WHITE);
         final List<String> quantityList = new ArrayList<String>();
         quantityList.add("1");
         quantityList.add("2");
@@ -306,7 +311,8 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
 
 //fetching data
     private void getProductDetail(){
-        System.out.println(id);
+        //System.out.println(id);
+        progressDialog.show();
         Map<String, String> params = new HashMap<>();
 
         params.put("ProjectId", Config.PROJECTID);
@@ -372,7 +378,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                             }
 
                         });
-
+                        progressDialog.dismiss();
 
                     }
 
@@ -381,7 +387,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(),"Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
                 Log.d("Error", error.toString());
-               // progressDialog.dismiss();
+               progressDialog.dismiss();
             }
 
 
@@ -500,7 +506,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
             }
         });
 
-        ImageView imageView = (ImageView) findViewById(R.id.shopping_cart_icon);
+        Button imageView = (Button) findViewById(R.id.shopping_cart_icon);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

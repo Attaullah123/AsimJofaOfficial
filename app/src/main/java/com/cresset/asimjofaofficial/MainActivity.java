@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -161,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ImageView imageView = (ImageView) findViewById(R.id.shopping_cart_icon);
+        Button imageView = (Button) findViewById(R.id.shopping_cart_icon);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -227,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent1);
                 return true;
             case R.id.info:
-                Intent intent2 = new Intent(getApplicationContext(), EasyPaisaActivity.class);
+                Intent intent2 = new Intent(getApplicationContext(), ContactUs.class);
                 startActivity(intent2);
                 return true;
             default:
@@ -255,7 +256,7 @@ public class MainActivity extends AppCompatActivity {
                             Gson gson = new Gson();
                             GuestOrLoginResponseModel model = gson.fromJson(response.toString(), new TypeToken<GuestOrLoginResponseModel>(){}.getType());
 
-                            show("Customer id:" + model.getCustomerId());
+                            //show("Customer id:" + model.getCustomerId());
 
                             if (model.getCustomerId() != null && model.getCustomerId() != "") {
 
@@ -269,7 +270,7 @@ public class MainActivity extends AppCompatActivity {
                                 //show(Config.GuestPreference + ": " + json);
                                 sharedPreferencesEditor.commit();
 
-                                show("Guest user created!");
+                               // show("Guest user created!");
                             }
 
                         }catch (Exception e){

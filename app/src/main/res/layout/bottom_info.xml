@@ -68,8 +68,8 @@
             android:layout_height="wrap_content"
             android:drawablePadding="15dp"
             android:gravity="center_vertical"
-            android:textSize="12sp"
-            android:padding="10dp"
+            android:textSize="15sp"
+            android:padding="8dp"
             android:text="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
             />
 
@@ -89,7 +89,7 @@
         android:layout_height="wrap_content"
         android:drawablePadding="15dp"
         android:gravity="center_vertical"
-        android:padding="12dp"
+        android:padding="10dp"
         android:textColor="#000"
         android:text="Share"
         android:textAppearance="?android:attr/textAppearanceMedium" />

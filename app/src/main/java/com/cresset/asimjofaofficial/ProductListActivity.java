@@ -17,6 +17,7 @@ import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -183,7 +184,7 @@ public class ProductListActivity extends AppCompatActivity {
             }
         });
 
-        ImageView imageView = (ImageView) findViewById(R.id.shopping_cart_icon);
+        Button imageView = (Button) findViewById(R.id.shopping_cart_icon);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
