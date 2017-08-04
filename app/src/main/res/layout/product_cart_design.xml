@@ -18,12 +18,12 @@
             android:layout_height="match_parent">
 
             <ImageView
-            android:id="@+id/product_thumbnail"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:scaleType="fitXY"
-            android:src="@drawable/pic3" />
+                android:id="@+id/product_thumbnail"
+                android:layout_width="wrap_content"
+                android:layout_height="250dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="fitXY"
+                android:src="@drawable/pic3" />
 
             <TextView
                 android:id="@+id/product_list_id"
@@ -50,7 +50,6 @@
                 android:gravity="center"
                 android:orientation="horizontal"
                 >
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

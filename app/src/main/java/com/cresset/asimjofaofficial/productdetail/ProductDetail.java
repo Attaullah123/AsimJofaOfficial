@@ -75,7 +75,7 @@ import java.util.TimerTask;
 
 
 public class ProductDetail extends AppCompatActivity implements View.OnClickListener{
-    private TextView price, name, sku, fullDiscription, proDetailId,sizePro,proName,cartCountView;
+    private TextView price, name, sku, fullDiscription, proDetailId,sizePro,proName,cartCountView,currencyNmae;
     private Spinner productSize,quantitySpinner;
     private ProductImagePagerAdapter pagerAdapter;
     private static ViewPager mPager;
@@ -129,6 +129,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         price = (TextView) findViewById(R.id.product_price1);
         quantitySpinner = (Spinner) findViewById(R.id.product_quantity_spinner);
         SearchView searchView = (SearchView) findViewById(R.id.sv_productList);
+
         name = (TextView) findViewById(R.id.text_code);
         addTocart = (TextView) findViewById(R.id.addTocart);
         productSize = (Spinner) findViewById(R.id.size_Spinner);
@@ -138,8 +139,10 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         mPager = (ViewPager) findViewById(R.id.pager);
         indicator = (CirclePageIndicator) findViewById(R.id.indicator);
         listviewAddon = (ListView) findViewById(R.id.checkbox_listview);
+        currencyNmae = (TextView) findViewById(R.id.product_currency_name);
         setListViewHeightBasedOnChildren(listviewAddon);
 
+        currencyNmae.setText("USD");
         //quantity spinner
 
         infoButton.setBackgroundColor(Color.WHITE);
@@ -397,17 +400,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         requestQueue.add(objectRequest);
     }
 
-    //checkbox checkListener
-//    @Override
-//    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//
-////        int pos = listviewAddon.getPositionForView(buttonView);
-////        if (pos != ListView.INVALID_POSITION) {
-////            ProductAddons p = productAddonsArrayList.get(pos);
-////            p.setSelected(isChecked);
-//
-//            Toast.makeText(this, "Clicked on Planet: ", Toast.LENGTH_SHORT).show();
-//        }
+
 
 
     //bottom sheet info

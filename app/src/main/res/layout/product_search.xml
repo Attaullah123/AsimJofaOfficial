@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -26,9 +26,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:text="New In"
+            android:text="Search Products"
             android:textSize="23sp"
-            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:textColor="#000"
             android:layout_gravity="center"
             />
     </android.support.v7.widget.Toolbar>
@@ -37,40 +37,45 @@
         android:layout_height="0.2dp"
         android:background="#393838"/>
     <LinearLayout
+        android:id="@+id/cart_empty"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="gone">
 
-        <android.support.v7.widget.SearchView
-            android:id="@+id/sv_productList"
-            android:layout_width="300sp"
+        <ImageView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:addStatesFromChildren="false">
+            android:contentDescription="@string/Your_cart_is_empty"
+            android:src="@drawable/placeholder_error"/>
 
-        </android.support.v7.widget.SearchView>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"/>
 
         <TextView
-            android:id="@+id/search_product"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:layout_gravity="center"
-            android:gravity="end"
-            android:textColor="#000000"
-            android:textStyle="bold"
-            android:text="SEARCH" />
 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/Your_cart_is_empty"/>
+
+        <TextView
+            android:id="@+id/cart_empty_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/base_margin"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
     </LinearLayout>
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:scrollbars="vertical"/>
-
-
-
-
-
 </LinearLayout>

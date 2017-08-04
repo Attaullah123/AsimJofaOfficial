@@ -30,4 +30,6 @@ public class Config  {
     public static final String URL_ORDER_HISTORY= "http://preview.cressettech.net/MobileAPI/Service1.svc/CustomerOrders";
     public static final String URL_Delete_Cart_Items= "http://preview.cressettech.net/MobileAPI/Service1.svc/DeleteCartItems";
     public static final String URL_Cart_Count= "http://preview.cressettech.net/MobileAPI/Service1.svc/GetCartCount";
+    public static final String URL_SEARCH_PRODUCT= "http://preview.cressettech.net/MobileAPI/Service1.svc/ProductListBySearchKeyword";
+
 }

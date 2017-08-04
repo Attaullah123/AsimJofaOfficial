@@ -63,6 +63,7 @@
         <activity android:name=".GotoWebview"/>
         <activity android:name=".EasyPaisaWebView"/>
         <activity android:name=".easypasiapayment.EasyPaisaActivity"/>
+        <activity android:name=".SearchProductActivity"/>
 
         <meta-data
             android:name="com.google.android.gms.version"

@@ -62,7 +62,7 @@ public class GetCart extends AppCompatActivity {
     private String prodId;
     private View emptyCart;
     private CartModel cartModelData;
-    private TextView checkOut;
+    private TextView checkOut,currencyName;
     private float totalP,subTo;
 
     @Override
@@ -78,11 +78,13 @@ public class GetCart extends AppCompatActivity {
         emptyCart = findViewById(R.id.cart_empty);
         checkOut = (TextView) findViewById(R.id.pay);
         //totalPrice = (TextView) findViewById(R.id.total_amount);
+        currencyName = (TextView) findViewById(R.id.detail_currency);
         subTotal = (TextView) findViewById(R.id.sub_total);
         recyclerView = (RecyclerView) findViewById(R.id.cart_recycler_view);
         ImageView cross = (ImageView) findViewById(R.id.img_back);
         cartEdit = (TextView) findViewById(R.id.edit_cart);
 
+        currencyName.setText("USD");
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -143,8 +145,7 @@ public class GetCart extends AppCompatActivity {
                             //Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
 
                             Gson gson = new Gson();
-                            cartModelData = gson.fromJson(response.toString(), new TypeToken<CartModel>() {
-                            }.getType());
+                            cartModelData = gson.fromJson(response.toString(), new TypeToken<CartModel>() {}.getType());
 
 
                             Log.d("CartModel ", gson.toJson(cartModelData));

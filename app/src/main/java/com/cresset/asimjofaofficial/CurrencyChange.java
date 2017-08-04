@@ -9,8 +9,10 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -44,12 +46,14 @@ public class CurrencyChange extends AppCompatActivity {
     private RecyclerView recyclerView;
     private CurrencyAdapter currencyAdapter;
     private ProgressDialog progressDialog;
+    private ImageView back;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.currency_change);
 
+        back = (ImageView) findViewById(R.id.img_cross);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -61,8 +65,14 @@ public class CurrencyChange extends AppCompatActivity {
         progressDialog.setMessage("Loading.....");
         progressDialog.setCancelable(false);
 
-
         getCurrency();
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
     public void getCurrency(){

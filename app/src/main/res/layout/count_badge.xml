@@ -12,8 +12,8 @@
 
     <Button
         android:id="@+id/shopping_cart_icon"
-        android:layout_width="35sp"
-        android:layout_height="32sp"
+        android:layout_width="38sp"
+        android:layout_height="35sp"
         android:layout_margin="0dp"
         android:gravity="center"
         android:padding="3dp"
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textColor="#000"
-        android:textSize="13sp"
+        android:textSize="14sp"
         android:text="1"
         android:layout_alignBaseline="@+id/shopping_cart_icon"
         android:layout_alignBottom="@+id/shopping_cart_icon"

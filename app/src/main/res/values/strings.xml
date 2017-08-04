@@ -22,7 +22,7 @@
     <string name="Internal_error">Internal error, please try it later</string>
     <string name="Filter_unavailable">Filter is unavailable</string>
     <string name="Product">Product</string>
-    <string name="Your_cart_is_empty">Your cart is empty</string>
+    <string name="Your_cart_is_empty">Product not found</string>
 
     <string name="shipping_charger">Free Shipping within Pakistan</string>
     <string name="payment_name">Select Payment Method</string>

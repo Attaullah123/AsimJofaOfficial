@@ -2,6 +2,7 @@ package com.cresset.asimjofaofficial.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -95,6 +96,12 @@ public class ShippingAddress extends android.support.v4.app.Fragment{
                     shippingAddress();
                     Toast.makeText(getContext(), "Info save successfully! Also Add Billing Address", Toast.LENGTH_LONG).show();
 
+//                    BillingAddress billingAddress=new BillingAddress();
+//                    FragmentTransaction transaction=getFragmentManager().beginTransaction();
+//                    transaction.replace(R.id.frame_content,billingAddress); // give your fragment container id in first parameter
+//                    transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
+//                    transaction.commit();
+
 
                 }else {
                     Toast.makeText(getContext(), "Please enter your remaining fields!", Toast.LENGTH_LONG).show();
@@ -109,7 +116,7 @@ public class ShippingAddress extends android.support.v4.app.Fragment{
 
     public void CountryList(){
         HashMap<String, String> params = new HashMap<>();
-        params.put("ProjectId", "1");
+        params.put("ProjectId", Config.PROJECTID);
 
         JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_Country_List, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
@@ -183,7 +190,7 @@ public class ShippingAddress extends android.support.v4.app.Fragment{
 
         Toast.makeText(getContext(),"selected country : " +countryId, Toast.LENGTH_SHORT).show();
         HashMap<String, String> params = new HashMap<>();
-        params.put("ProjectId", "1");
+        params.put("ProjectId", Config.PROJECTID);
         params.put("CountryId", countryId);
 
         JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_State_List, new JSONObject(params),

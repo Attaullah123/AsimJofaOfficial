@@ -4,10 +4,12 @@ import com.cresset.asimjofaofficial.PaymentMethod;
 import com.cresset.asimjofaofficial.fragments.ShippingAddress;
 import com.cresset.asimjofaofficial.models.BillingModel;
 import com.cresset.asimjofaofficial.models.CartModelItems;
+import com.cresset.asimjofaofficial.models.IndexImage;
 import com.cresset.asimjofaofficial.models.OrderPlaceResponse;
 import com.cresset.asimjofaofficial.models.PaymentMethodModel;
 import com.cresset.asimjofaofficial.models.PaymentModel;
 import com.cresset.asimjofaofficial.models.ProductAddons;
+import com.cresset.asimjofaofficial.models.ProductListModel;
 import com.cresset.asimjofaofficial.models.ShippingModel;
 import com.cresset.asimjofaofficial.models.ShippingmethodList;
 import com.cresset.asimjofaofficial.models.UpdateProductQuantity;
@@ -32,7 +34,10 @@ public class GlobalClass {
     public static List<Integer> deleteSelectedCartItems = new ArrayList<>();
 
     public static UserModel userData = null;
+    public static IndexImage indexData = null;
+    public static ProductListModel productLisItem = null;
     public static OrderPlaceResponse orderResponse = null;
+
     public static final int LONG_DELAY = 3500; // 3.5 seconds
     public static final int DEFAULT_EMPTY_ID = -131;
     public static int CartCount = 0;

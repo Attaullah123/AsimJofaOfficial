@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,9 +18,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.cresset.asimjofaofficial.adapter.CheckoutProductAdapter;
+import com.cresset.asimjofaofficial.adapter.IndexAdapter;
 import com.cresset.asimjofaofficial.models.CartModel;
+import com.cresset.asimjofaofficial.models.CartModelItems;
+import com.cresset.asimjofaofficial.models.IndexImage;
 import com.cresset.asimjofaofficial.models.OrderPlaceModel;
 import com.cresset.asimjofaofficial.models.OrderPlaceResponse;
+import com.cresset.asimjofaofficial.models.ProductHeader;
 import com.cresset.asimjofaofficial.utilities.Config;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
 import com.google.gson.Gson;
@@ -27,7 +33,9 @@ import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 public class CheckOutActivity extends AppCompatActivity {
@@ -36,6 +44,8 @@ public class CheckOutActivity extends AppCompatActivity {
             totalPrice,totalProductPrice,shippingPrice;
     private Button finaliseOrder;
     private CartModel cartModel;
+    private CheckoutProductAdapter indexAdapter;
+    private ExpandableListView expandList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,6 +60,7 @@ public class CheckOutActivity extends AppCompatActivity {
         totalProductPrice = (TextView) findViewById(R.id.total_product_price);
         selectShippingMethodName = (TextView) findViewById(R.id.select_shipping_method);
         shippingPrice = (TextView) findViewById(R.id.country_shipping_price);
+        expandList = (ExpandableListView) findViewById(R.id.expandableListView);
 
         //initialize cart method getting detail from cart activity
         TextView back = (TextView) findViewById(R.id.txt_cancel);
@@ -239,11 +250,15 @@ public class CheckOutActivity extends AppCompatActivity {
                         }
                         totalPrice.setText(Float.toString(total));
 
+                        List<CartModelItems> cartItems = new ArrayList<CartModelItems>(cartModel.getCartItems());
 
+//                        indexAdapter = new CheckoutProductAdapter(getApplicationContext(), cartItems);
+//                        expandList.setAdapter(indexAdapter);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+
                 Toast.makeText(getApplicationContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
                 Log.d("Error", error.toString());
             }

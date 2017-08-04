@@ -45,7 +45,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
     private TextView totalPrice,subTotal;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView proName, proPrice, proSkuCode,proSize,deleteItem,proQuantity;
+        public TextView proName, proPrice, proSkuCode,proSize,proCurrencyName,proQuantity;
         public ImageView thumbnailImage;
         //public CardView cardView;
         private Context context;
@@ -54,24 +54,25 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             super(itemView);
             proName = (TextView) itemView.findViewById(R.id.product_name);
             proSkuCode = (TextView) itemView.findViewById(R.id.product_sku_code);
-            deleteItem = (TextView) itemView.findViewById(R.id.cart_product_delete);
+            proCurrencyName = (TextView) itemView.findViewById(R.id.product_cart_price_name);
             proPrice = (TextView) itemView.findViewById(R.id.product_cart_price);
             proSize = (TextView) itemView.findViewById(R.id.product_cart_size);
             proQuantity = (TextView) itemView.findViewById(R.id.cart_product_quantity);
             thumbnailImage = (ImageView) itemView.findViewById(R.id.cart_thumbnail);
 
+            proCurrencyName.setText("USD");
 //            deleteItem.setOnClickListener((View.OnClickListener) this);
             //cardView = (CardView) itemView.findViewById(R.id.card_view);
 
-            deleteItem.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    //Context context = v.getContext();
-                    CartModelItems cartModel = cartModelItemses.get(position);
-                    UpdateCart(cartModel,position);
-                }
-            });
+//            deleteItem.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    int position = getAdapterPosition();
+//                    //Context context = v.getContext();
+//                    CartModelItems cartModel = cartModelItemses.get(position);
+//                    UpdateCart(cartModel,position);
+//                }
+//            });
 
         }
     }
@@ -149,7 +150,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 
     public void UpdateCart(final CartModelItems cartModel, final int position){
         HashMap<String, String> params = new HashMap<>();
-        params.put("ProjectId", "1");
+        params.put("ProjectId", Config.PROJECTID);
         params.put("CustomerId", GlobalClass.userData.getUserID());
         params.put("CartItemId", String.valueOf(cartModel.getCartItemId()));
         params.put("Quantity", String.valueOf(cartModel.getQuantity()));
@@ -183,7 +184,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 
     public void getUpdatedCartDetail(TextView tPrice,TextView sTotal) {
         HashMap<String, String> params = new HashMap<>();
-        params.put("ProjectId", "1");
+        params.put("ProjectId", Config.PROJECTID);
         params.put("CustomerId", GlobalClass.userData.getUserID());
 
         JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_GET_CART, new JSONObject(params),

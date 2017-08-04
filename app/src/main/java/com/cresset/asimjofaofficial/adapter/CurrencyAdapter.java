@@ -42,11 +42,12 @@ public class CurrencyAdapter extends RecyclerView.Adapter<CurrencyAdapter.MyView
 
     public class MyViewHolder extends RecyclerView.ViewHolder  {
         public TextView currencyName;
+        public CheckBox selectCurrency;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             currencyName = (TextView) itemView.findViewById(R.id.curruncy_name);
-
+            selectCurrency = (CheckBox) itemView.findViewById(R.id.select_currency);
             //overflow = (ImageView) view.findViewById(R.id.overflow);
         }
 
@@ -63,13 +64,24 @@ public class CurrencyAdapter extends RecyclerView.Adapter<CurrencyAdapter.MyView
         return new CurrencyAdapter.MyViewHolder(itemView);
     }
     @Override
-    public void onBindViewHolder(final CurrencyAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(final CurrencyAdapter.MyViewHolder holder, final int position) {
         CurrencyListModel listModel = currencyListModels.get(position);
 
         //holder.currencyName.setText(listModel.getId());
         holder.currencyName.setText(listModel.getName());
         //holder.price.setText(listModel.getPrice());
+        holder.selectCurrency.setChecked(currencyListModels.get(position).isSelected);
 
+        holder.selectCurrency.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (buttonView.isChecked()){
+                    Toast.makeText(mContext, "select currency" ,Toast.LENGTH_LONG ).show();
+                }else {
+                    Toast.makeText(mContext, "UnSelect currency" ,Toast.LENGTH_LONG ).show();
+                }
+            }
+        });
     }
 
     @Override

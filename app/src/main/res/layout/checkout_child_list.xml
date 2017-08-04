@@ -1,36 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="8dp"
+    android:paddingTop="8dp"
     >
-
-    <CheckBox
-        android:id="@+id/select_cart_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:button="@drawable/custom_checkbox" />
 
     <ImageView
         android:id="@+id/cart_thumbnail"
         android:layout_width="115dp"
         android:layout_height="150dp"
-        android:layout_gravity="center|bottom"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/Product"/>
+        android:layout_gravity="center" />
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="143dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:layout_weight="1"
             android:gravity="center_vertical"
             android:orientation="vertical"
             android:paddingLeft="8dp"
@@ -41,7 +34,6 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"
-                android:paddingTop="10dp"
                 android:textColor="#000"
                 android:textSize="15sp"
                 tools:text="Product name" />
@@ -69,40 +61,15 @@
             </LinearLayout>
 
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/cart_product_quantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center">
-
-                <Button
-                    android:id="@+id/quantity_decrement"
-                    android:layout_width="20dp"
-                    android:layout_height="23dp"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="15dp"
-                    android:background="@drawable/decre_ic"
-                    android:gravity="center"/>
-
-                <TextView
-                    android:id="@+id/cart_product_quantity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:textColor="#000"
-                    android:layout_gravity="center"
-                    android:textSize="16sp"
-                    tools:text="1" />
-
-                <Button
-                    android:id="@+id/quantity_increment"
-                    android:layout_width="20dp"
-                    android:layout_height="23dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="15dp"
-                    android:background="@drawable/incre_icon"
-                    android:gravity="center"/>
-            </LinearLayout>
+                android:fontFamily="sans-serif-light"
+                android:paddingTop="2sp"
+                android:textColor="#000"
+                android:textSize="16sp"
+                tools:text="1" />
 
 
             <TextView
@@ -117,34 +84,38 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:layout_gravity="right"
-                android:gravity="right"
+                android:layout_height="fill_parent"
                 android:orientation="horizontal">
 
                 <TextView
-
                     android:id="@+id/product_cart_price_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="5sp"
+                    android:layout_gravity="end"
+                    android:paddingLeft="160dp"
+                    android:paddingTop="5dp"
                     android:textColor="#000"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    tools:text="USD"/>
+                    android:textSize="15sp"
+                    tools:text="USD" />
 
                 <TextView
                     android:id="@+id/product_cart_price"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="9500"
-                    android:textStyle="bold"
+                    android:layout_gravity="end"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="4dp"
                     android:textColor="#000"
-                    android:textSize="16sp"/>
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    tools:text="500.0" />
+
             </LinearLayout>
 
+
         </LinearLayout>
+
+
     </LinearLayout>
 
 

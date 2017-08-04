@@ -219,6 +219,7 @@ public class UpdateCart extends AppCompatActivity{
         cartAdapter = new UpdateCartAdapter(getApplicationContext(),cartItems);
         recyclerView.setAdapter(cartAdapter);
     }
+
     private void setCartVisibility(boolean visible) {
         if (visible) {
             if (emptyCart != null) emptyCart.setVisibility(View.GONE);

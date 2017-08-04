@@ -5,13 +5,37 @@
     android:layout_height="match_parent"
     android:paddingTop="50dp">
 
-    <SearchView
-        android:id="@+id/searchView"
-        android:layout_width="fill_parent"
-        android:elevation="2dp"
-        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-    </SearchView>
+        <android.support.v7.widget.SearchView
+            android:id="@+id/sv_productList"
+            android:layout_width="300sp"
+            android:layout_height="wrap_content"
+            android:addStatesFromChildren="false">
+
+        </android.support.v7.widget.SearchView>
+
+        <TextView
+            android:id="@+id/search_product"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            android:gravity="end"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:text="SEARCH" />
+    </LinearLayout>
+    <!--<SearchView-->
+        <!--android:id="@+id/searchView"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:elevation="2dp"-->
+        <!--android:layout_height="wrap_content">-->
+
+    <!--</SearchView>-->
 
 
     <ExpandableListView

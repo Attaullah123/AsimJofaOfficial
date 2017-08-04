@@ -43,7 +43,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.MyViewHo
     @Override
     public PaymentAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.order_history_design, parent, false);
+                .inflate(R.layout.payment_list_row, parent, false);
 
         return new PaymentAdapter.MyViewHolder(itemView);
     }

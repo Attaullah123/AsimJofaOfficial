@@ -6,11 +6,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.widget.EditText;
+import android.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -47,6 +50,9 @@ public class HomeActivity extends Fragment {
     private IndexAdapter indexAdapter;
     private ExpandableListView expandList;
     private ArrayList<CategoryList> categoryLists;
+    private android.support.v7.widget.SearchView searchView;
+   //private EditText searchView;
+    private TextView searchProduct;
 
     @Nullable
     @Override
@@ -54,14 +60,33 @@ public class HomeActivity extends Fragment {
         View view = inflater.inflate(R.layout.home_activity,container,false);
         expandList = (ExpandableListView) view.findViewById(R.id.expandableListView);
 
+        //searchView = (SearchView) view.findViewById(R.id.sv_productList);
+        searchView  = (android.support.v7.widget.SearchView) view.findViewById(R.id.sv_productList);
+        searchProduct = (TextView) view.findViewById(R.id.search_product);
         expandList.setGroupIndicator(null);
         PD = new ProgressDialog(getContext());
         PD.setMessage("Loading.....");
         PD.setCancelable(false);
 
         getCategoryList();
-        return view;
 
+        searchProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String searchWord = searchView.getQuery().toString().trim();
+                if (!searchWord.isEmpty()){
+                    Intent intent = new Intent(getContext(), SearchProductActivity.class);
+                    intent.putExtra("keyword", searchWord);
+                    startActivity(intent);
+                }else{
+
+                    Toast.makeText(getContext(), "enter product name", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+        return view;
     }
 
     private void getCategoryList() {

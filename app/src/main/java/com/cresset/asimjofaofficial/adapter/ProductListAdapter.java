@@ -25,6 +25,7 @@ import com.cresset.asimjofaofficial.models.ProductListModel;
 import com.cresset.asimjofaofficial.models.ProductModel;
 import com.cresset.asimjofaofficial.productdetail.ProductDetail;
 import com.cresset.asimjofaofficial.utilities.CustomVolleyRequest;
+import com.cresset.asimjofaofficial.utilities.ResizableImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -116,7 +117,11 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         return productModelList.size();
     }
 
-
+    public void clearCart() {
+        productModelList.clear();
+        productModelList.clear();
+        notifyDataSetChanged();
+    }
     @Override
     public Filter getFilter() {
 
