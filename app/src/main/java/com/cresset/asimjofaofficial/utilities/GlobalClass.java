@@ -4,6 +4,7 @@ import com.cresset.asimjofaofficial.PaymentMethod;
 import com.cresset.asimjofaofficial.fragments.ShippingAddress;
 import com.cresset.asimjofaofficial.models.BillingModel;
 import com.cresset.asimjofaofficial.models.CartModelItems;
+import com.cresset.asimjofaofficial.models.CurrencyListModel;
 import com.cresset.asimjofaofficial.models.IndexImage;
 import com.cresset.asimjofaofficial.models.OrderPlaceResponse;
 import com.cresset.asimjofaofficial.models.PaymentMethodModel;
@@ -33,6 +34,7 @@ public class GlobalClass {
     public static ArrayList<UpdateProductQuantity> updateProductQuantity = new ArrayList<UpdateProductQuantity>();
     public static List<Integer> deleteSelectedCartItems = new ArrayList<>();
 
+    public static CurrencyListModel currency = null;
     public static UserModel userData = null;
     public static IndexImage indexData = null;
     public static ProductListModel productLisItem = null;

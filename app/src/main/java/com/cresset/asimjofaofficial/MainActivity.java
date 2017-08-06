@@ -28,7 +28,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.cresset.asimjofaofficial.adapter.CurrencyAdapter;
 import com.cresset.asimjofaofficial.easypasiapayment.EasyPaisaActivity;
+import com.cresset.asimjofaofficial.models.CurrencyListModel;
+import com.cresset.asimjofaofficial.models.CurrencyModel;
 import com.cresset.asimjofaofficial.models.GuestOrLoginResponseModel;
 import com.cresset.asimjofaofficial.models.UserModel;
 import com.cresset.asimjofaofficial.utilities.Config;
@@ -41,7 +44,11 @@ import com.roughike.bottombar.OnMenuTabSelectedListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -61,8 +68,10 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         gson = new Gson();
+
         sharedPreferencesEditor = getSharedPreferences(Config.PREFS_NAME, MODE_PRIVATE).edit();
         sharedPreferences = getSharedPreferences(Config.PREFS_NAME, MODE_PRIVATE);
+
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
 
         if (getSupportActionBar()!=null) {
@@ -98,6 +107,8 @@ public class MainActivity extends AppCompatActivity {
                 RegisterGuestUser();
             }
         }
+
+        SelectCurrency();
 
         //bottom menu
         BottomBar bottomBar = BottomBar.attach(this, savedInstanceState);
@@ -170,6 +181,19 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public void SelectCurrency(){
+        String selectedCurrency = sharedPreferences.getString(Config.CurrencyPreference,null);
+        if(selectedCurrency != null && !selectedCurrency.isEmpty()){
+            //show("Registered: " + registeredUserData);
+            CurrencyListModel currency = gson.fromJson(selectedCurrency.toString(), new TypeToken<CurrencyListModel>(){}.getType());
+            GlobalClass.currency = currency;
+            //show("registered user find");
+        }
+        else{
+            SelectByDefaultCurrency();
+        }
     }
 
     @Override
@@ -299,6 +323,41 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(objectRequest);
 
 
+    }
+
+    public void SelectByDefaultCurrency(){
+        Map<String,String> params = new HashMap<>();
+        params.put("ProjectId", Config.PROJECTID);
+
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_CURRENCY, new JSONObject(params),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("Response", response.toString());
+
+                        Gson gson = new Gson();
+                        CurrencyModel currencyModel = gson.fromJson(response.toString(), new TypeToken<CurrencyModel>(){}.getType());
+                        for (CurrencyListModel model:currencyModel.getCurrencyList()
+                             ) {
+                            if(model.isSelected()){
+                                String json = gson.toJson(model);
+                                sharedPreferencesEditor.putString(Config.CurrencyPreference,json);
+                                sharedPreferencesEditor.commit();
+                                GlobalClass.currency = model;
+                            }
+                        }
+
+                    }
+
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
+                Log.d("Error", error.toString());
+            }
+        });
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        requestQueue.add(objectRequest);
     }
 
     public void show(String message){

@@ -66,13 +66,13 @@ public class CurrencyChange extends AppCompatActivity {
         progressDialog.setCancelable(false);
 
         getCurrency();
-
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+//
+//        back.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onBackPressed();
+//            }
+//        });
     }
 
     public void getCurrency(){

@@ -7,6 +7,7 @@ public class Config  {
     public static final String PROJECTID = "1";
     public static final String PREFS_NAME = "AsimJofa_PREFS_NAME";
     public static final String GuestPreference = "GlobalClass.userDataGuest";
+    public static final String CurrencyPreference = "GlobalClass.selectedCurrency";
     public static final String RegisteredPreference = "GlobalClass.userDataRegistered";
 
     public static final String URL_CATEGORY_LIST = "http://preview.cressettech.net/MobileAPI/Service1.svc/CategoryList";
