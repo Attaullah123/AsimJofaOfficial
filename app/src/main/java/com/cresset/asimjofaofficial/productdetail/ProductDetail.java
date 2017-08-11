@@ -161,6 +161,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
 
         // attaching data adapter to spinner
         quantitySpinner.setAdapter(dataAdapter);
+        quantitySpinner.setPrompt("Select Quantity");
         quantitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -198,7 +199,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
             public void run() {
                 handler.post(Update);
             }
-        }, 5000, 5000);
+        }, 6000, 6000);
 
         // Pager listener over indicator
         indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -222,10 +223,6 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                 onBackPressed();
             }
         });
-
-
-
-
 
         getProductDetail();
 //AddTo cart post parameters
@@ -275,7 +272,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                                     //CategoryModel categoryModel = new CategoryModel();
 
                                     Log.d("Response", response.toString());
-                                    Toast.makeText(getApplicationContext(), "value Add to cart", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Item Add to cart", Toast.LENGTH_SHORT).show();
 
                                     GetCartItemsCount();
 
@@ -306,7 +303,6 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                 else{
                     Toast.makeText(getApplicationContext(),"Out of Stock", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
 
@@ -315,7 +311,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
 //fetching data
     private void getProductDetail(){
         //System.out.println(id);
-        progressDialog.show();
+        //progressDialog.show();
         Map<String, String> params = new HashMap<>();
 
         params.put("ProjectId", Config.PROJECTID);
@@ -357,12 +353,14 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                         ArrayList<ProductAddons> adonList = new ArrayList<ProductAddons>(list.getAddons());
                         addonsAdapter = new AddonsAdapter(getApplicationContext(), adonList,price);
                         listviewAddon.setAdapter(addonsAdapter);
-                        productSize.setPrompt("Select Size");
+
+
 
                         ArrayList<ProductDetailSize> sizeList = new ArrayList<ProductDetailSize>(list.getSize());
 
                         sizeSpinnerAdapter = new SizeSpinnerAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, sizeList);
                         productSize.setAdapter(sizeSpinnerAdapter);
+                        productSize.setPrompt("Select Size");
 
                         productSize.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -381,7 +379,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                             }
 
                         });
-                        progressDialog.dismiss();
+                        //progressDialog.dismiss();
 
                     }
 
@@ -390,7 +388,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(),"Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
                 Log.d("Error", error.toString());
-               progressDialog.dismiss();
+              // progressDialog.dismiss();
             }
 
 

@@ -8,6 +8,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -112,6 +113,8 @@ public class MainActivity extends AppCompatActivity {
 
         //bottom menu
         BottomBar bottomBar = BottomBar.attach(this, savedInstanceState);
+
+
         bottomBar.setItemsFromMenu(R.menu.navigation, new OnMenuTabSelectedListener() {
             @Override
             public void onMenuItemSelected(int itemId) {
@@ -259,6 +262,8 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
 
     public void RegisterGuestUser(){
         HashMap<String,String> params = new HashMap<>();

@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,7 @@ public class MyAccount extends AppCompatActivity {
 
     private TextView txName,txEmail,userOrderInfo,userAccInfo,contactUs,logout;
     private UserModel globalUserData;
+    private ImageView back;
     private SharedPreferences.Editor sharedPreferencesEditor;
     private static final String TAG = IndiviualAccount.class.getSimpleName();
 
@@ -44,11 +46,20 @@ public class MyAccount extends AppCompatActivity {
         setContentView(R.layout.my_account);
 
         //txName = (TextView) findViewById(R.id.name);
-        txEmail = (TextView) findViewById(R.id.acc_email);
+        txName = (TextView) findViewById(R.id.acc_name);
         userOrderInfo = (TextView) findViewById(R.id.acc_order_placed);
         userAccInfo = (TextView) findViewById(R.id.acc_user_info);
         contactUs = (TextView) findViewById(R.id.contact_us);
         logout = (TextView) findViewById(R.id.log_out);
+        back = (ImageView) findViewById(R.id.img_back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         sharedPreferencesEditor = getSharedPreferences(Config.PREFS_NAME, MODE_PRIVATE).edit();
 
         userAccInfo.setOnClickListener(new View.OnClickListener() {
@@ -139,7 +150,7 @@ public class MyAccount extends AppCompatActivity {
                             sharedPreferencesEditor.putString(Config.RegisteredPreference,json);
                             sharedPreferencesEditor.commit();
 
-                            txEmail.setText(GlobalClass.userData.getUserName());
+                            txName.setText(GlobalClass.userData.getUserName());
 
                         } catch (Exception e) {
                             // JSON error

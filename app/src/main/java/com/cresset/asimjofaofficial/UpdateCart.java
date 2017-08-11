@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,11 +48,12 @@ public class UpdateCart extends AppCompatActivity{
     Toolbar toolbar;
     private TextView cartDone;
     private UpdateCartAdapter cartAdapter;
-    private ProgressDialog progressDialog;
+    //private ProgressDialog progressDialog;
     private String prodId;
     private View emptyCart;
     private CartModel cartModelData;
     private TextView deleteList;
+    private ProgressBar progressBar;
     private float totalP,subTo;
 
     @Override
@@ -76,6 +78,7 @@ public class UpdateCart extends AppCompatActivity{
         //subTotal = (TextView) findViewById(R.id.sub_total);
         recyclerView = (RecyclerView) findViewById(R.id.cart_recycler_view);
         ImageView cross = (ImageView) findViewById(R.id.img_back);
+        progressBar=(ProgressBar) findViewById(R.id.progressBar);
 
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -84,10 +87,6 @@ public class UpdateCart extends AppCompatActivity{
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new RecyclerDivider(this, LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(cartAdapter);
-
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading.....");
-        progressDialog.setCancelable(false);
 
         //delete item
         //GlobalClass.itemDelete = new ArrayList<Integer>();
@@ -127,7 +126,7 @@ public class UpdateCart extends AppCompatActivity{
 
     public CartModel getCartDetail() {
 
-        progressDialog.show();
+        progressBar.setVisibility(View.VISIBLE);
         HashMap<String, String> params = new HashMap<>();
         params.put("ProjectId", Config.PROJECTID);
         params.put("CustomerId", GlobalClass.userData.getUserID());
@@ -143,7 +142,7 @@ public class UpdateCart extends AppCompatActivity{
 
                         CartDetailList(response.toString());
 
-                        progressDialog.dismiss();
+                        progressBar.setVisibility(View.GONE);
 
 
                     }
@@ -152,7 +151,7 @@ public class UpdateCart extends AppCompatActivity{
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
                 Log.d("Error", error.toString());
-                progressDialog.dismiss();
+                progressBar.setVisibility(View.GONE);
             }
         });
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -163,7 +162,7 @@ public class UpdateCart extends AppCompatActivity{
 
     public void DeleteSelectedCartItems() {
 
-        progressDialog.show();
+        progressBar.setVisibility(View.VISIBLE);
         HashMap<String, String> params = new HashMap<>();
         params.put("ProjectId", Config.PROJECTID);
         params.put("CustomerId", GlobalClass.userData.getUserID());
@@ -179,7 +178,7 @@ public class UpdateCart extends AppCompatActivity{
 
                         Log.d("Response", response.toString());
                         CartDetailList(response.toString());
-                        progressDialog.dismiss();
+                        progressBar.setVisibility(View.GONE);
 
 
                     }
@@ -188,7 +187,7 @@ public class UpdateCart extends AppCompatActivity{
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
                 Log.d("Error", error.toString());
-                progressDialog.dismiss();
+                progressBar.setVisibility(View.GONE);
             }
         });
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());

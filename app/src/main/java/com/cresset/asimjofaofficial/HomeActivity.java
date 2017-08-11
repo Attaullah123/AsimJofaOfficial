@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -45,7 +46,8 @@ import java.util.Map;
 
 public class HomeActivity extends Fragment {
     //String url = "http://preview.cressettech.net/MobileAPI/Service1.svc/CategoryList";
-    ProgressDialog PD;
+    //ProgressDialog PD;
+    private ProgressBar progressBar;
     View view;
     private IndexAdapter indexAdapter;
     private ExpandableListView expandList;
@@ -64,9 +66,12 @@ public class HomeActivity extends Fragment {
         searchView  = (android.support.v7.widget.SearchView) view.findViewById(R.id.sv_productList);
         searchProduct = (TextView) view.findViewById(R.id.search_product);
         expandList.setGroupIndicator(null);
-        PD = new ProgressDialog(getContext());
-        PD.setMessage("Loading.....");
-        PD.setCancelable(false);
+
+        progressBar=(ProgressBar) view.findViewById(R.id.progressBar);
+//        PD = new ProgressDialog(getContext());
+//        PD.setMessage("Loading.....");
+//        PD.setCancelable(false);
+        //progressBar.setVisibility();
 
         getCategoryList();
 
@@ -90,7 +95,7 @@ public class HomeActivity extends Fragment {
     }
 
     private void getCategoryList() {
-        PD.show();
+        progressBar.setVisibility(View.VISIBLE);
         Map<String, String> params = new HashMap<String, String>();
         params.put("ProjectId", Config.PROJECTID );
 
@@ -120,7 +125,8 @@ public class HomeActivity extends Fragment {
                             return true;
                         }
                     });
-                PD.dismiss();
+                progressBar.setVisibility(View.GONE);
+                //PD.dismiss();
 
 //                try {
 //                    JSONArray categoryJsonList = response.getJSONArray("Parentlist");
@@ -183,7 +189,8 @@ public class HomeActivity extends Fragment {
 
                 Toast.makeText(getContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
                 Log.d("Error",error.toString());
-                PD.dismiss();
+                progressBar.setVisibility(View.GONE);
+
             }
         });
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());

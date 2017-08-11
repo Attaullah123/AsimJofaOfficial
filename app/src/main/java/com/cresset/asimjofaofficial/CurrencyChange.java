@@ -24,6 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.cresset.asimjofaofficial.adapter.AddonsAdapter;
 import com.cresset.asimjofaofficial.adapter.CurrencyAdapter;
 import com.cresset.asimjofaofficial.adapter.ProductListAdapter;
 import com.cresset.asimjofaofficial.models.CurrencyListModel;
@@ -43,7 +44,7 @@ import java.util.Map;
 
 public class CurrencyChange extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
+    private ListView listView;
     private CurrencyAdapter currencyAdapter;
     private ProgressDialog progressDialog;
     private ImageView back;
@@ -54,12 +55,9 @@ public class CurrencyChange extends AppCompatActivity {
         setContentView(R.layout.currency_change);
 
         back = (ImageView) findViewById(R.id.img_cross);
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(currencyAdapter);
+        listView = (ListView) findViewById(R.id.currency_listview);
+
+        //listView.setAdapter(currencyAdapter);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading.....");
@@ -96,7 +94,7 @@ public class CurrencyChange extends AppCompatActivity {
                         ArrayList<CurrencyListModel> detailLists = new ArrayList<CurrencyListModel>(currencyModel.getCurrencyList());
 
                         currencyAdapter = new CurrencyAdapter(getApplicationContext(), detailLists);
-                        recyclerView.setAdapter(currencyAdapter);
+                        listView.setAdapter(currencyAdapter);
                         progressDialog.dismiss();
                         //currencyAdapter.notifyDataSetChanged();
 

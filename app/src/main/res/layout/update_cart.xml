@@ -21,12 +21,11 @@
             android:background="@color/toolbar_color">
 
             <ImageView
-                android:layout_width="23sp"
                 android:contentDescription="@string/logo"
                 android:id="@+id/img_back"
-                android:layout_height="23sp"
-                android:layout_gravity="start"
-                android:src="@drawable/cross_logo"/>
+                android:layout_height="20dp"
+                android:layout_width="20dp"
+                android:src="@drawable/ic_close2"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -88,12 +87,27 @@
             android:textStyle="bold"/>
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/cart_recycler_view"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:scrollbars="vertical"/>
+        android:layout_height="match_parent"
+        android:paddingTop="5dp"
+        android:layout_weight="1">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/cart_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:theme="@style/CircularProgress"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
 
     <View
         android:paddingTop="5dp"
@@ -115,7 +129,7 @@
             android:id="@+id/btn_delete"
             android:layout_width="208dp"
             android:layout_height="70dp"
-            android:background="#f5f5f5"
+            android:background="#dcdcdc"
             android:text="Delete"
             android:textSize="18dp"
             android:textColor="#fe0a0a"

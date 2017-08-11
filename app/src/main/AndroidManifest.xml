@@ -60,7 +60,6 @@
         <activity android:name=".userinfo.activity.OrderHistory"/>
         <activity android:name=".MyAccount"/>
         <activity android:name=".CurrencyChange"/>
-        <activity android:name=".GotoWebview"/>
         <activity android:name=".EasyPaisaWebView"/>
         <activity android:name=".easypasiapayment.EasyPaisaActivity"/>
         <activity android:name=".SearchProductActivity"/>

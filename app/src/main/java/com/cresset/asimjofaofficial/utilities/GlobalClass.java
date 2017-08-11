@@ -36,6 +36,7 @@ public class GlobalClass {
 
     public static CurrencyListModel currency = null;
     public static UserModel userData = null;
+
     public static IndexImage indexData = null;
     public static ProductListModel productLisItem = null;
     public static OrderPlaceResponse orderResponse = null;

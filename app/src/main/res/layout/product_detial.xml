@@ -15,11 +15,11 @@
         android:background="@color/toolbar_color">
 
         <ImageView
-            android:layout_width="wrap_content"
             android:contentDescription="@string/logo"
             android:id="@+id/img_back"
-            android:layout_height="wrap_content"
-            android:src="@drawable/cross_logo"/>
+            android:layout_height="20dp"
+            android:layout_width="20dp"
+            android:src="@drawable/ic_close2"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,17 +46,18 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="9.5">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="#fff"
             android:orientation="vertical">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="#fff">
 
                 <android.support.v4.view.ViewPager
@@ -84,8 +85,8 @@
 
                 <Button
                     android:id="@+id/btn_info"
-                    android:layout_width="90dp"
-                    android:layout_height="30dp"
+                    android:layout_width="95dp"
+                    android:layout_height="35dp"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
@@ -104,7 +105,7 @@
             <!-- Name, code and price -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:baselineAligned="false"
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/base_margin_horizontal"
@@ -205,42 +206,67 @@
                 </LinearLayout>
 
 
-                <RelativeLayout
-                    android:id="@+id/product_add_to_cart_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/base_margin_horizontal"
-                    android:layout_marginRight="@dimen/base_margin_horizontal"
-                    android:layout_marginTop="@dimen/base_margin_vertical"
-                    android:gravity="center"
-                    android:paddingBottom="10sp"
-                    android:paddingEnd="@dimen/base_margin_horizontal"
-                    android:paddingLeft="@dimen/base_margin_horizontal"
-                    android:paddingRight="@dimen/base_margin_horizontal"
-                    android:paddingStart="@dimen/base_margin_horizontal">
+                <!--<RelativeLayout-->
+                    <!--android:id="@+id/product_add_to_cart_layout"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="@dimen/base_margin_horizontal"-->
+                    <!--android:layout_marginRight="@dimen/base_margin_horizontal"-->
+                    <!--android:layout_marginTop="@dimen/base_margin_vertical"-->
+                    <!--android:gravity="center"-->
+                    <!--android:paddingBottom="10sp"-->
+                    <!--android:paddingEnd="@dimen/base_margin_horizontal"-->
+                    <!--android:paddingLeft="@dimen/base_margin_horizontal"-->
+                    <!--android:paddingRight="@dimen/base_margin_horizontal"-->
+                    <!--android:paddingStart="@dimen/base_margin_horizontal">-->
 
 
-                    <com.cresset.asimjofaofficial.customfonts.MyTextView
-                        android:id="@+id/addTocart"
-                        android:layout_width="150dp"
-                        android:layout_height="40dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:background="#202020"
-                        android:gravity="center"
-                        android:text="BUY"
-                        android:textColor="#fff"
-                        android:textSize="17dp"
-                        android:textStyle="bold" />
-                </RelativeLayout>
+                    <!--<com.cresset.asimjofaofficial.customfonts.MyTextView-->
+                        <!--android:id="@+id/addTocart"-->
+                        <!--android:layout_width="150dp"-->
+                        <!--android:layout_height="40dp"-->
+                        <!--android:layout_alignParentTop="true"-->
+                        <!--android:layout_centerHorizontal="true"-->
+                        <!--android:background="#202020"-->
+                        <!--android:gravity="center"-->
+                        <!--android:text="BUY"-->
+                        <!--android:textColor="#fff"-->
+                        <!--android:textSize="17dp"-->
+                        <!--android:textStyle="bold" />-->
+                <!--</RelativeLayout>-->
 
                 <ListView
                     android:id="@+id/checkbox_listview"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"></ListView>
+                    android:layout_height="wrap_content">
+
+                </ListView>
 
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:layout_weight="0.5"
+        android:elevation="30dp"
+        android:background="#fff"
+        android:orientation="horizontal"
+        android:layout_gravity="end"
+        android:weightSum="1">
+
+        <com.cresset.asimjofaofficial.customfonts.MyTextView
+            android:id="@+id/addTocart"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:background="#202020"
+            android:gravity="center"
+            android:layout_gravity="end"
+            android:text="BUY"
+            android:textColor="#fff"
+            android:textSize="17dp"
+            android:textStyle="bold" />
+    </LinearLayout>
 </LinearLayout>

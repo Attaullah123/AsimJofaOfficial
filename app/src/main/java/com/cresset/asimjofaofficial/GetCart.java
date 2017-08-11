@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,11 +59,12 @@ public class GetCart extends AppCompatActivity {
     private TextView totalPrice,subTotal,cartEdit;
     Toolbar toolbar;
     private CartAdapter cartAdapter;
-    private ProgressDialog progressDialog;
+    //private ProgressDialog progressDialog;
     private String prodId;
     private View emptyCart;
     private CartModel cartModelData;
     private TextView checkOut,currencyName;
+    private ProgressBar progressBar;
     private float totalP,subTo;
 
     @Override
@@ -83,6 +85,7 @@ public class GetCart extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.cart_recycler_view);
         ImageView cross = (ImageView) findViewById(R.id.img_back);
         cartEdit = (TextView) findViewById(R.id.edit_cart);
+        progressBar=(ProgressBar) findViewById(R.id.progressBar);
 
         currencyName.setText("USD");
 
@@ -93,9 +96,9 @@ public class GetCart extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(cartAdapter);
 
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading.....");
-        progressDialog.setCancelable(false);
+//        progressDialog = new ProgressDialog(this);
+//        progressDialog.setMessage("Loading.....");
+//        progressDialog.setCancelable(false);
 
         getCartDetail();
 
@@ -129,7 +132,7 @@ public class GetCart extends AppCompatActivity {
     }
 
     public CartModel getCartDetail() {
-        progressDialog.show();
+        progressBar.setVisibility(View.VISIBLE);
         HashMap<String,String> params = new HashMap<>();
         if (GlobalClass.userData != null) {
             params.put("ProjectId", Config.PROJECTID);
@@ -168,7 +171,7 @@ public class GetCart extends AppCompatActivity {
 
                             cartAdapter = new CartAdapter(getApplicationContext(), cartItems, totalPrice, subTotal);
                             recyclerView.setAdapter(cartAdapter);
-                            progressDialog.dismiss();
+                            progressBar.setVisibility(View.GONE);
 
 
                         }
@@ -179,7 +182,7 @@ public class GetCart extends AppCompatActivity {
                 public void onErrorResponse(VolleyError error) {
                     Toast.makeText(getApplicationContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
                     Log.d("Error", error.toString());
-                    progressDialog.dismiss();
+                    progressBar.setVisibility(View.VISIBLE);
                 }
             });
 
@@ -187,7 +190,7 @@ public class GetCart extends AppCompatActivity {
             requestQueue.add(objectRequest);
         }else {
             Toast.makeText(getApplicationContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
-            progressDialog.dismiss();
+            progressBar.setVisibility(View.VISIBLE);
         }
 
         return cartModelData;

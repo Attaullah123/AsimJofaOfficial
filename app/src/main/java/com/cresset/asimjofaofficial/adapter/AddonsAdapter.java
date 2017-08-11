@@ -70,6 +70,7 @@ public class AddonsAdapter extends ArrayAdapter<ProductAddons> {
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     float price = Float.parseFloat(productPrice.getText().toString());
                     ProductAddons checkAddons = productAddons.get(position);
+
                     float addonPrice = Float.parseFloat(checkAddons.getAddonsPrice().toString());
 
                     if (buttonView.isChecked()){

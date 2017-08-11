@@ -26,13 +26,12 @@
             android:layout_height="wrap_content"
             android:background="@color/toolbar_color">
 
-            <TextView
-                android:layout_width="20dp"
+            <ImageView
+                android:contentDescription="@string/logo"
                 android:id="@+id/img_back"
                 android:layout_height="20dp"
-                android:textSize="16dp"
-                android:textColor="#312e2e"
-                android:background="@drawable/cross_icon"/>
+                android:layout_width="20dp"
+                android:src="@drawable/ic_close2"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -47,13 +46,13 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/acc_email"
+            android:id="@+id/acc_name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@color/toolbar_color"
             android:textColor="#000"
             android:textSize="16dp"
-            android:text="abc@gmail.com"
+            android:text="attaullah"
             android:gravity="center"/>
 
         <View

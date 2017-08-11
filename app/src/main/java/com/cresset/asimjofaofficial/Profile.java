@@ -164,6 +164,8 @@ public class Profile extends AppCompatActivity {
                         userData.setEmail(email);
 
                         GuestUserchangeToLogin(GlobalClass.userData,userData);
+                    }else {
+                        Toast.makeText(getApplicationContext(), "Wrong Credentials", Toast.LENGTH_SHORT).show();
                     }
 
 
@@ -180,8 +182,7 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "Login Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "please check connection", Toast.LENGTH_LONG).show();
                 hideDialog();
             }
         });

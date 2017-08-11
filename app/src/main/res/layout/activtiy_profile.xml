@@ -14,20 +14,20 @@
         app:titleTextColor="@android:color/white"
         android:background="@color/toolbar_color">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:contentDescription="@string/logo"
-        android:id="@+id/img_cross"
-        android:layout_height="wrap_content"
-        android:src="@drawable/cross_logo"/>
+        <ImageView
+            android:contentDescription="@string/logo"
+            android:id="@+id/img_cross"
+            android:layout_height="20dp"
+            android:layout_width="20dp"
+            android:src="@drawable/ic_close2"/>
         <TextView
             android:id="@+id/toolbar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:text="@string/profile_toolbar_title"
-            android:textSize="23sp"
-            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:textColor="#000"
+            android:textSize="22sp"
             android:layout_gravity="center"
             />
     </android.support.v7.widget.Toolbar>

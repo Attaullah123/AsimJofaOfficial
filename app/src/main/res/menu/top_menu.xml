@@ -24,7 +24,7 @@
     </item>
     <item
         android:id="@+id/cart"
-        android:icon="@drawable/cart_logo"
+        android:icon="@drawable/ic_cart"
         android:actionLayout="@layout/count_badge"
         android:title="@string/title_cart"
         app:showAsAction="ifRoom"/>

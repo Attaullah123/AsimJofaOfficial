@@ -46,6 +46,7 @@ public class CheckOutActivity extends AppCompatActivity {
     private CartModel cartModel;
     private CheckoutProductAdapter indexAdapter;
     private ExpandableListView expandList;
+    private TextView cancel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,26 +62,27 @@ public class CheckOutActivity extends AppCompatActivity {
         selectShippingMethodName = (TextView) findViewById(R.id.select_shipping_method);
         shippingPrice = (TextView) findViewById(R.id.country_shipping_price);
         expandList = (ExpandableListView) findViewById(R.id.expandableListView);
-
+        cancel = (TextView) findViewById(R.id.txt_cancel);
         //initialize cart method getting detail from cart activity
-        TextView back = (TextView) findViewById(R.id.txt_cancel);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+
         getCartDetail();
 
         finaliseOrder = (Button) findViewById(R.id.finalise_order);
 
-        back.setOnClickListener(new View.OnClickListener() {
+        cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
         //shipping & billing select method call also check credential
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         selectShippingandBillingAdd.setOnClickListener(new View.OnClickListener() {
             @Override

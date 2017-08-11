@@ -48,7 +48,7 @@ public class ShippingMethod extends AppCompatActivity {
     Toolbar toolbar;
     private ShippingMethodAdapter shippingAdapter;
     private List<ShippingMethodModel> shippingModels;
-    private TextView cancel;
+    private ImageView back;
     private ProgressDialog progressDialog;
     //private String prodId;
 
@@ -62,12 +62,19 @@ public class ShippingMethod extends AppCompatActivity {
         progressDialog.setMessage("Loading.....");
         progressDialog.setCancelable(false);
 
+        back = (ImageView) findViewById(R.id.img_back);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(shippingAdapter);
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         getShippingData();
     }
 

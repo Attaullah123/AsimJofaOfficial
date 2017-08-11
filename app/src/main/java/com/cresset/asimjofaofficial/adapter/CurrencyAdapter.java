@@ -40,96 +40,101 @@ import java.util.Locale;
 import static android.content.Context.MODE_PRIVATE;
 
 
-public class CurrencyAdapter extends RecyclerView.Adapter<CurrencyAdapter.MyViewHolder> {
-
-    private Context mContext;
+public class CurrencyAdapter extends ArrayAdapter<CurrencyListModel> {
+    private Context context;
     private ArrayList<CurrencyListModel> currencyListModels;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sharedPreferencesEditor;
     CurrencyListModel listModel;
     Gson gson;
 
-//    public String productName;
-//    private ImageLoader imageLoader;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder  {
+    public CurrencyAdapter(Context context, ArrayList<CurrencyListModel> currencyList){
+        super(context, R.layout.currency_select_item, currencyList);
+        this.context = context;
+        this.currencyListModels = currencyList;
+        //this.productPrice = productPrice;
+    }
+    private static class CheckboxHolder{
         public TextView currencyName;
         public CheckBox selectCurrency;
+    }
 
-        public MyViewHolder(View itemView) {
-            super(itemView);
-            currencyName = (TextView) itemView.findViewById(R.id.curruncy_name);
-            selectCurrency = (CheckBox) itemView.findViewById(R.id.select_currency);
-            //overflow = (ImageView) view.findViewById(R.id.overflow);
+    @NonNull
+    @Override
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        View view = convertView;
+        CurrencyAdapter.CheckboxHolder holder = new CurrencyAdapter.CheckboxHolder();
+
+        if (convertView == null){
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = inflater.inflate(R.layout.currency_select_item, null);
+
+            holder.currencyName = (TextView) view.findViewById(R.id.curruncy_name);
+            holder.selectCurrency = (CheckBox) view.findViewById(R.id.select_currency);
+
+            sharedPreferencesEditor =  context.getSharedPreferences(Config.PREFS_NAME, MODE_PRIVATE).edit();
+            sharedPreferences = context.getSharedPreferences(Config.PREFS_NAME, MODE_PRIVATE);
+
+            //convertView.setTag(holder);
+            //holder.addonCheckbox.setOnCheckedChangeListener(new ProductDetail());
+            holder.selectCurrency.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    CurrencyAdapter.CheckboxHolder holder = new CurrencyAdapter.CheckboxHolder();
+
+                    listModel = currencyListModels.get(position);
+
+                    if (buttonView.isChecked()){
+                        if(GlobalClass.currency != null){
+                            if(listModel.getId() == GlobalClass.currency.getId()){
+                                holder.selectCurrency.setChecked(true);
+                                show("Please choose different currency!");
+                            }
+                            else{
+                                //holder.
+                                setCurrency(listModel);
+                            }
+                        }
+                        else{
+                            setCurrency(listModel);
+                        }
+                    }else {
+                        if(listModel.getId() == GlobalClass.currency.getId()){
+                            holder.selectCurrency.setChecked(true);
+                            show("Please choose different currency!");
+                        }
+                    }
+                }
+            });
+
+//Toast.makeText(getContext(),"Check Clickhed ", Toast.LENGTH_LONG).show();
+        } else {
+            holder = (CurrencyAdapter.CheckboxHolder) view.getTag();
         }
+        view.setTag(holder);
 
-    }
-    public CurrencyAdapter(Context mContext, ArrayList<CurrencyListModel> currencyList) {
-        this.mContext = mContext;
-        this.currencyListModels = currencyList;
-    }
-    @Override
-    public CurrencyAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.currency_select_item, parent, false);
-
-        sharedPreferencesEditor =  mContext.getSharedPreferences(Config.PREFS_NAME, MODE_PRIVATE).edit();
-        sharedPreferences = mContext.getSharedPreferences(Config.PREFS_NAME, MODE_PRIVATE);
-
-        return new CurrencyAdapter.MyViewHolder(itemView);
-    }
-    @Override
-    public void onBindViewHolder(final CurrencyAdapter.MyViewHolder holder, final int position) {
-        listModel = currencyListModels.get(position);
+        listModel =currencyListModels.get(position);
 
         //holder.currencyName.setText(listModel.getId());
         holder.currencyName.setText(listModel.getName());
         //holder.price.setText(listModel.getPrice());
         holder.selectCurrency.setChecked(currencyListModels.get(position).isSelected);
+        holder.selectCurrency.setTag(listModel);
 
-        holder.selectCurrency.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                listModel = currencyListModels.get(position);
-                if (buttonView.isChecked()){
-                    if(GlobalClass.currency != null){
-                        if(listModel.getId() == GlobalClass.currency.getId()){
-                            holder.selectCurrency.setChecked(true);
-                            show("Please choose different currency!");
-                        }
-                        else{
-                            //holder.
-                            setCurrency(listModel);
-                        }
-                    }
-                    else{
-                        setCurrency(listModel);
-                    }
-                }else {
-                    if(listModel.getId() == GlobalClass.currency.getId()){
-                        holder.selectCurrency.setChecked(true);
-                        show("Please choose different currency!");
-                    }
-                }
-            }
-        });
+        return view;
     }
 
-    public void  setCurrency(CurrencyListModel listModel){
+    public void show(String message){
+        Toast.makeText(context, message ,Toast.LENGTH_LONG ).show();
+    }
+
+    public void setCurrency(CurrencyListModel listModel){
         gson = new Gson();
         String json = gson.toJson(listModel);
         sharedPreferencesEditor.putString(Config.CurrencyPreference,json);
         sharedPreferencesEditor.commit();
         GlobalClass.currency = listModel;
         show(listModel.getName() + " currency selected!" );
-    }
-
-    @Override
-    public int getItemCount() {
-        return currencyListModels.size();
-    }
-
-    public void show(String message){
-        Toast.makeText(mContext, message ,Toast.LENGTH_LONG ).show();
     }
 }

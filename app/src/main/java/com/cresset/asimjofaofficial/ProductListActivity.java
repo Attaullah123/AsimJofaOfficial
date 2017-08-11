@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,7 +54,8 @@ public class ProductListActivity extends AppCompatActivity {
     private List<ProductListModel> productList;
     private SearchView searchView;
     private ImageView back;
-    private ProgressDialog progressDialog;
+    //private ProgressDialog progressDialog;
+    private ProgressBar progressBar;
     private String prodId;
     private TextView cartCountView,searchProduct;
     private Menu menu;
@@ -75,10 +77,10 @@ public class ProductListActivity extends AppCompatActivity {
 
         prodId = getIntent().getStringExtra("categoryId");
 
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading.....");
-        progressDialog.setCancelable(false);
-
+//        progressDialog = new ProgressDialog(this);
+//        progressDialog.setMessage("Loading.....");
+//        progressDialog.setCancelable(false);
+        progressBar=(ProgressBar) findViewById(R.id.progressBar);
         searchView = (SearchView) findViewById(R.id.sv_productList);
         searchProduct = (TextView) findViewById(R.id.search_product);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
@@ -120,7 +122,7 @@ public class ProductListActivity extends AppCompatActivity {
     }
 
     public void getProductData() {
-        progressDialog.show();
+        progressBar.setVisibility(View.VISIBLE);
 
         //creating json array list
         Map<String, String> params = new HashMap<String, String>();
@@ -144,7 +146,8 @@ public class ProductListActivity extends AppCompatActivity {
                         searchKeyword();
                         adapter = new ProductListAdapter(getApplicationContext(), detailLists);
                         recyclerView.setAdapter(adapter);
-                        progressDialog.dismiss();
+                        progressBar.setVisibility(View.GONE);
+                        //progressDialog.dismiss();
 
 
                     }
@@ -153,7 +156,8 @@ public class ProductListActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
                 Log.d("Error", error.toString());
-                progressDialog.dismiss();
+                progressBar.setVisibility(View.GONE);
+                //progressDialog.dismiss();
             }
         });
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
