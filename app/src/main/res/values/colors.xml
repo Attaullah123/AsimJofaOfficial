@@ -6,7 +6,7 @@
 
     <color name="tab_background_selected">#606060</color>
     <color name="tab_background_unselected">#ffffff</color>
-    <color name="tab_indicator_color">#fff</color>
+    <color name="tab_indicator_color">#ffffff</color>
     <color name="color">#151415</color>
 
     <color name="viewBg">#f1f5f8</color>
@@ -28,5 +28,10 @@
     <color name="progress_color">#28B463</color>
 
     <color name="toolbar_color">#f9f9f9</color>
+    <color name="color_transparent">#FFFFFFFF</color>
+
+    <color name="button_pressed">#ff8a00</color>
+    <color name="button_focused">#ff8a00</color>
+    <color name="button_default">#1c76bb</color>
 
 </resources>

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".RegistrationActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar_2"
@@ -88,6 +88,51 @@
                     android:textColorHint="#000000" />
             </android.support.design.widget.TextInputLayout>
 
+            <!--birthday-->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Birthday: "
+                    android:textSize="16sp"
+                    android:textColor="#000"/>
+
+                <EditText
+                    android:id="@+id/birthday_day"
+                    android:layout_width="100dp"
+                    android:layout_height="35sp"
+                    android:gravity="center"
+                    android:background="@drawable/ed_border"
+                    android:hint="Day"
+
+                    />
+
+                <EditText
+                    android:id="@+id/birthday_month"
+                    android:layout_width="100dp"
+                    android:layout_height="35sp"
+                    android:gravity="center"
+                    android:background="@drawable/ed_border"
+                    android:hint="Month"
+                    />
+
+                <EditText
+                    android:id="@+id/birthday_year"
+                    android:layout_width="100dp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/ed_border"
+                    android:gravity="center"
+                    android:hint="Year" />
+
+            </LinearLayout>
+
             <!-- Email Label -->
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -121,66 +166,6 @@
 
 
 
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/link_newsletter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="17dp"
-                    android:layout_marginStart="17dp"
-                    android:text="@string/terms"
-                    android:textColor="#000"
-                    android:textSize="15sp" />
-
-                <CheckBox
-                    android:id="@+id/imageView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginEnd="12dp"
-                    android:layout_marginRight="12dp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
-
-
-                <CheckBox
-                    android:id="@+id/imageView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginEnd="14dp"
-                    android:layout_marginRight="16dp" />
-
-                <TextView
-                    android:id="@+id/agree"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginStart="18dp"
-                    android:text="@string/agree"
-                    android:textColor="#000000"
-                    android:textSize="15dp" />
-
-
-            </RelativeLayout>
-            <!-- Signup Button -->
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btn_signup"
                 android:layout_width="fill_parent"
@@ -193,7 +178,11 @@
                 android:textColor="#ffffff"
                 android:textSize="20sp" />
 
-
         </LinearLayout>
+
+
     </ScrollView>
+    <!-- Signup Button -->
+
+
 </LinearLayout>

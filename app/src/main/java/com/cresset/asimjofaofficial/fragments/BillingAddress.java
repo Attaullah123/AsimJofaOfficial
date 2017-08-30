@@ -33,6 +33,7 @@ import com.cresset.asimjofaofficial.models.StateList;
 import com.cresset.asimjofaofficial.models.StateModel;
 import com.cresset.asimjofaofficial.utilities.Config;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
+import com.cresset.asimjofaofficial.volley.AppController;
 import com.google.gson.Gson;
 import com.google.gson.internal.Streams;
 import com.google.gson.reflect.TypeToken;
@@ -127,8 +128,7 @@ public class BillingAddress extends android.support.v4.app.Fragment{
                 Log.d("Error", error.toString());
             }
         });
-        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        requestQueue.add(objectRequest);
+        AppController.getInstance().addToRequestQueue(objectRequest);
     }
 
     public void CountrySpinner(final List<CountryList> countryList){
@@ -198,8 +198,7 @@ public class BillingAddress extends android.support.v4.app.Fragment{
                 Log.d("Error", error.toString());
             }
         });
-        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        requestQueue.add(objectRequest);
+        AppController.getInstance().addToRequestQueue(objectRequest);
     }
 
     public void StateSpinner(List<StateList> stateList,String countryId){

@@ -1,9 +1,20 @@
 package com.cresset.asimjofaofficial;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.Context;
+import android.content.DialogInterface;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.Uri;
 import android.net.wifi.WifiManager;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -36,7 +47,9 @@ import com.cresset.asimjofaofficial.models.CurrencyModel;
 import com.cresset.asimjofaofficial.models.GuestOrLoginResponseModel;
 import com.cresset.asimjofaofficial.models.UserModel;
 import com.cresset.asimjofaofficial.utilities.Config;
+import com.cresset.asimjofaofficial.utilities.CustomVolleyRequest;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
+import com.cresset.asimjofaofficial.volley.AppController;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.roughike.bottombar.BottomBar;
@@ -60,8 +73,9 @@ public class MainActivity extends AppCompatActivity {
     CoordinatorLayout coordinatorLayout;
     Gson gson;
     private Menu menu;
-
+    Button retrybtn;
     private int cartCountNotificationValue = GlobalClass.DEFAULT_EMPTY_ID;
+    private String tag_json_obj = "json_obj_req";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,46 +124,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         SelectCurrency();
-
-        //bottom menu
-        BottomBar bottomBar = BottomBar.attach(this, savedInstanceState);
+        setupBottomNavigation();
 
 
-        bottomBar.setItemsFromMenu(R.menu.navigation, new OnMenuTabSelectedListener() {
-            @Override
-            public void onMenuItemSelected(int itemId) {
-               /* Fragment detail = null;
-                FragmentManager fm = getSupportFragmentManager();*/
-                switch (itemId) {
-                    case R.id.navigation_home:
-                        //detail = new HomeActivity();
-                        Fragment homeFragment = new HomeActivity();
-                        FragmentManager fragmentManager = getSupportFragmentManager();
-                        fragmentManager.beginTransaction().replace(R.id.frame_content, homeFragment).commit();
-                        break;
-                    case R.id.navigation_profile:
-                        // detail = new Profile();
-                        //toolbar.setVisibility(View.GONE);
-                        Intent intent = new Intent(MainActivity.this, MyAccount.class);
-                        startActivity(intent);
-                       /* Bundle arg = new Bundle();
-                        arg.putString("title", "Dialog with Action Bar");
-                        detail = new LoginDialogFragment();
-                        detail.setArguments(arg);*/
 
-                        break;
-
-                    case R.id.navigation_store:
-                        //detail = new Store();
-                        Fragment storeFragment = new Store();
-                        FragmentManager fragmentManager1 = getSupportFragmentManager();
-                        fragmentManager1.beginTransaction().replace(R.id.frame_content, storeFragment).commit();
-                        break;
-
-                }
-                //fm.beginTransaction().replace(R.id.frame_content, detail).addToBackStack("tag").commit();
-            }
-        });
     }
 
     @Override
@@ -239,8 +217,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("Error", error.toString());
             }
         });
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.add(objectRequest);
+        //AppController.getInstance().addToRequestQueue(objectRequest, tag_json_obj);
+        CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
     }
 
     @Override
@@ -255,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent1);
                 return true;
             case R.id.info:
-                Intent intent2 = new Intent(getApplicationContext(), ContactUs.class);
+                Intent intent2 = new Intent(getApplicationContext(), ShowMap.class);
                 startActivity(intent2);
                 return true;
             default:
@@ -269,7 +247,7 @@ public class MainActivity extends AppCompatActivity {
         HashMap<String,String> params = new HashMap<>();
         params.put("ProjectId",Config.PROJECTID);
 
-        WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
+        @SuppressLint("WifiManagerLeak") WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
         String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
 
         params.put("IpAddress", ip);
@@ -324,10 +302,9 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("Error", error.toString());
             }
         });
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.add(objectRequest);
+       // AppController.getInstance().addToRequestQueue(objectRequest, tag_json_obj);
 
-
+        CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
     }
 
     public void SelectByDefaultCurrency(){
@@ -361,9 +338,70 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("Error", error.toString());
             }
         });
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.add(objectRequest);
+        //AppController.getInstance().addToRequestQueue(objectRequest, tag_json_obj);
+        CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
     }
+
+    public void setupBottomNavigation(){
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        if (bottomNavigationView != null) {
+
+            // Select first menu item by default and show Fragment accordingly.
+            Menu menu = bottomNavigationView.getMenu();
+            selectFragment(menu.getItem(0));
+
+            // Set action to perform when any menu-item is selected.
+            bottomNavigationView.setOnNavigationItemSelectedListener(
+                    new BottomNavigationView.OnNavigationItemSelectedListener() {
+                        @Override
+                        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                            selectFragment(item);
+                            return false;
+                        }
+                    });
+        }
+    }
+
+    /**
+     * Perform action when any item is selected.
+     *
+     * @param item Item that is selected.
+     */
+    protected void selectFragment(MenuItem item) {
+
+        item.setChecked(true);
+
+        switch (item.getItemId()) {
+            case R.id.navigation_home:
+                        //detail = new HomeActivity();
+                Fragment homeFragment = new HomeActivity();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.frame_content, homeFragment).commit();
+                break;
+            case R.id.navigation_profile:
+                // detail = new Profile();
+//                        //toolbar.setVisibility(View.GONE);
+                Intent intent = new Intent(MainActivity.this, MyAccount.class);
+                startActivity(intent);
+                       /* Bundle arg = new Bundle();
+                        arg.putString("title", "Dialog with Action Bar");
+                        detail = new LoginDialogFragment();
+                        detail.setArguments(arg);*/
+
+                        break;
+            case R.id.navigation_store:
+                // Action to perform when Account Menu item is selected.
+
+                Intent intent1 = new Intent(MainActivity.this, ShowMap.class);
+                startActivity(intent1);
+//                Fragment storeFragment = new Store();
+//                FragmentManager fragmentManager1 = getSupportFragmentManager();
+//                fragmentManager1.beginTransaction().replace(R.id.frame_content, storeFragment).commit();
+                break;
+        }
+        //fm.beginTransaction().replace(R.id.frame_content, detail).addToBackStack("tag").commit();
+    }
+
 
     public void show(String message){
 
@@ -372,4 +410,6 @@ public class MainActivity extends AppCompatActivity {
 
         Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
     }
+
+
 }

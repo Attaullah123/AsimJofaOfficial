@@ -6,9 +6,11 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,13 +20,16 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.cresset.asimjofaofficial.adapter.CartSpinnerAdapter;
 import com.cresset.asimjofaofficial.adapter.CheckoutProductAdapter;
 import com.cresset.asimjofaofficial.adapter.IndexAdapter;
+import com.cresset.asimjofaofficial.adapter.SizeSpinnerAdapter;
 import com.cresset.asimjofaofficial.models.CartModel;
 import com.cresset.asimjofaofficial.models.CartModelItems;
 import com.cresset.asimjofaofficial.models.IndexImage;
 import com.cresset.asimjofaofficial.models.OrderPlaceModel;
 import com.cresset.asimjofaofficial.models.OrderPlaceResponse;
+import com.cresset.asimjofaofficial.models.ProductDetailSize;
 import com.cresset.asimjofaofficial.models.ProductHeader;
 import com.cresset.asimjofaofficial.utilities.Config;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
@@ -42,12 +47,14 @@ public class CheckOutActivity extends AppCompatActivity {
     private TextView selectShippingandBillingAdd,selectShippingMethod,
             selectPaymentMethod,selectShippingMethodName, paymentName,
             totalPrice,totalProductPrice,shippingPrice;
-    private Button finaliseOrder;
+    private TextView finaliseOrder;
     private CartModel cartModel;
     private CheckoutProductAdapter indexAdapter;
     private ExpandableListView expandList;
     private TextView cancel;
-
+    private Spinner cartSpinner;
+    private CartSpinnerAdapter cartSpinnerAdapter;
+    private CartModelItems cartModelItems;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,13 +68,16 @@ public class CheckOutActivity extends AppCompatActivity {
         totalProductPrice = (TextView) findViewById(R.id.total_product_price);
         selectShippingMethodName = (TextView) findViewById(R.id.select_shipping_method);
         shippingPrice = (TextView) findViewById(R.id.country_shipping_price);
-        expandList = (ExpandableListView) findViewById(R.id.expandableListView);
+        //expandList = (ExpandableListView) findViewById(R.id.expandableListView);
+        cartSpinner = (Spinner) findViewById(R.id.spinner_cart_detail);
         cancel = (TextView) findViewById(R.id.txt_cancel);
+
         //initialize cart method getting detail from cart activity
+
 
         getCartDetail();
 
-        finaliseOrder = (Button) findViewById(R.id.finalise_order);
+        finaliseOrder = (TextView) findViewById(R.id.finalise_order);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -252,7 +262,34 @@ public class CheckOutActivity extends AppCompatActivity {
                         }
                         totalPrice.setText(Float.toString(total));
 
-                        List<CartModelItems> cartItems = new ArrayList<CartModelItems>(cartModel.getCartItems());
+                        ArrayList<CartModelItems> cartItems = new ArrayList<CartModelItems>(cartModel.getCartItems());
+
+                        cartSpinnerAdapter = new CartSpinnerAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, cartItems);
+                        cartSpinner.setAdapter(cartSpinnerAdapter);
+                        //cartSpinner.setPrompt("Select Size");
+                        //cartSpinnerAdapter.add("");
+
+                       // cartSpinner.setSelection(cartSpinnerAdapter.getCount());
+                        cartSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+                            @Override
+                            public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+
+                                if(cartSpinner.getSelectedItem() == "This is Hint Text"){
+
+                                }else {
+                                    cartModelItems = (CartModelItems) cartSpinner.getSelectedItem();
+                                }
+                                //Log.i("Selected item : ", productDetailSize.getSizeName().toString());
+                                //Toast.makeText(getApplicationContext(),productDetailSize.getSizeName().toString(), Toast.LENGTH_LONG).show();
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> arg0) {
+
+                            }
+
+                        });
 
 //                        indexAdapter = new CheckoutProductAdapter(getApplicationContext(), cartItems);
 //                        expandList.setAdapter(indexAdapter);

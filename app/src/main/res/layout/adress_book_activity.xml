@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_2"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleTextColor="@android:color/white"
+        android:background="@color/toolbar_color">
+
+        <ImageView
+            android:contentDescription="@string/logo"
+            android:id="@+id/img_cross"
+            android:layout_height="20dp"
+            android:layout_width="20dp"
+            android:src="@drawable/ic_close2"/>
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="Contact Us"
+            android:textColor="#000"
+            android:textSize="22sp"
+            android:layout_gravity="center"
+            />
+    </android.support.v7.widget.Toolbar>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.2dp"
+        android:background="#393838"/>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_layout_address_book"
+        android:layout_width="310dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/toolbar_2"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        app:tabTextColor="#000"
+        app:tabSelectedTextColor="#fff"
+        android:background="@drawable/tab_background"
+        app:tabPaddingStart="0dp"
+        app:tabPaddingEnd="0dp"
+        app:tabTextAppearance="@style/TabTextAppearance"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        />
+
+</LinearLayout>

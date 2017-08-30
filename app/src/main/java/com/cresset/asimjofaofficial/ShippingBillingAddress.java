@@ -28,7 +28,6 @@ public class ShippingBillingAddress extends AppCompatActivity{
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("");
-        toolbar.setBackgroundColor(Color.parseColor("#d5d5d5"));
 
        // selectMethod = (CheckBox) findViewById(R.id.checkbox_check_method);
         final TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout_shipping);

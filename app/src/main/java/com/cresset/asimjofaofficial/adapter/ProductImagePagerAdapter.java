@@ -1,22 +1,30 @@
 package com.cresset.asimjofaofficial.adapter;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Parcelable;
 import android.support.v4.view.*;
 import android.util.Size;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
+
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.cresset.asimjofaofficial.R;
+
 import com.cresset.asimjofaofficial.models.ProductDetailList;
+import com.cresset.asimjofaofficial.productdetail.ProductDetail;
 
 import java.util.ArrayList;
 
@@ -50,12 +58,12 @@ public class ProductImagePagerAdapter extends android.support.v4.view.PagerAdapt
 
     @Override
     public Object instantiateItem(ViewGroup view, int position) {
-        String image = imagesList.get(position).toString();
+        final String image = imagesList.get(position).toString();
 
         View imageLayout = inflater.inflate(R.layout.product_image_viewer, view, false);
 
         assert imageLayout != null;
-        ImageView imageViewer = (ImageView) imageLayout.findViewById(R.id.product_image_viewer);
+        final ImageView imageViewer = (ImageView) imageLayout.findViewById(R.id.product_image_viewer);
         final ProgressBar progressBar = (ProgressBar) imageLayout.findViewById(R.id.progressBar);
 
         //imageView.setImageResource(imageLink.get(position));
@@ -74,6 +82,15 @@ public class ProductImagePagerAdapter extends android.support.v4.view.PagerAdapt
         }).into(imageViewer);
         view.addView(imageLayout, 0);
 
+//        imageLayout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(mContext,"click", Toast.LENGTH_LONG).show();
+//                Intent intent = new Intent(v.getContext(), ShowFullImage.class);
+//                intent.putExtra("picture", image);
+//                mContext.startActivity(intent);
+//            }
+//        });
         return imageLayout;
     }
 

@@ -32,6 +32,7 @@
             android:layout_gravity="center"
             />
     </android.support.v7.widget.Toolbar>
+
     <View
         android:layout_width="fill_parent"
         android:layout_height="0.2dp"
@@ -63,27 +64,26 @@
     </LinearLayout>
 
     <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scrollbars="vertical"/>
 
-        >
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical"/>
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:theme="@style/CircularProgress"
-            style="@style/Widget.AppCompat.ProgressBar"
-            android:layout_centerInParent="true"
-            />
-    </RelativeLayout>
-
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:theme="@style/CircularProgress"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_centerInParent="true"
+        />
+</RelativeLayout>
 
 
 </LinearLayout>

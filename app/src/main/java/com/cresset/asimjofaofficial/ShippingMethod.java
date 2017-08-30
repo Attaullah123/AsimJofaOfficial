@@ -32,6 +32,7 @@ import com.cresset.asimjofaofficial.models.ShippingMethodModel;
 import com.cresset.asimjofaofficial.models.ShippingmethodList;
 import com.cresset.asimjofaofficial.utilities.Config;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
+import com.cresset.asimjofaofficial.volley.AppController;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -114,8 +115,7 @@ public class ShippingMethod extends AppCompatActivity {
                 progressDialog.dismiss();
             }
         });
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.add(objectRequest);
+        AppController.getInstance().addToRequestQueue(objectRequest);
     }
 
 }

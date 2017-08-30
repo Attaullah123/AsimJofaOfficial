@@ -32,6 +32,7 @@ import com.cresset.asimjofaofficial.models.UpdateProductQuantity;
 import com.cresset.asimjofaofficial.recylerview.RecyclerDivider;
 import com.cresset.asimjofaofficial.utilities.Config;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
+import com.cresset.asimjofaofficial.volley.AppController;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -154,8 +155,7 @@ public class UpdateCart extends AppCompatActivity{
                 progressBar.setVisibility(View.GONE);
             }
         });
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.add(objectRequest);
+        AppController.getInstance().addToRequestQueue(objectRequest);
 
         return cartModelData;
     }
@@ -190,9 +190,7 @@ public class UpdateCart extends AppCompatActivity{
                 progressBar.setVisibility(View.GONE);
             }
         });
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.add(objectRequest);
-
+        AppController.getInstance().addToRequestQueue(objectRequest);
     }
 
     public void CartDetailList(String response){

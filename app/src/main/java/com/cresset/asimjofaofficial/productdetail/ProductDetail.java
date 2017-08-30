@@ -14,6 +14,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
@@ -58,6 +59,7 @@ import com.cresset.asimjofaofficial.models.ProductListModel;
 import com.cresset.asimjofaofficial.models.QuantityModel;
 import com.cresset.asimjofaofficial.utilities.Config;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
+import com.cresset.asimjofaofficial.volley.AppController;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.viewpagerindicator.CirclePageIndicator;
@@ -106,18 +108,17 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
     ArrayList<String> attribute;  //initialized somewhere else
     private ProgressDialog progressDialog;
     private Menu menu;
-
+    private String tag_json_obj = "json_obj_req";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.product_detial);
 
-        android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar_1);
-
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-        }
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_1);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar.setTitle("");
+        toolbar.setSubtitle("");
 
         //toolbar.setBackgroundColor(Color.parseColor("#ffffff"));
         setSupportActionBar(toolbar);
@@ -296,8 +297,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
 
                     });
 
-                    RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-                    requestQueue.add(objectRequest);
+                    AppController.getInstance().addToRequestQueue(objectRequest, tag_json_obj);
 
                 }
                 else{
@@ -339,6 +339,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
 
                         String proName = productList.get(0).getName();
                         String proPrice = Float.toString(productList.get(0).getPrice());
+                        btmSku = productList.get(0).getSku();
                         fulldiscrip  = productList.get(0).getFullDescription();
                         btmProNames = productList.get(0).getName();
                         //btmSku = attributesItem.getSku();
@@ -349,6 +350,8 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                         ArrayList<String> imageList = new ArrayList<String>(list.getImagesLink());
                         mPager.setAdapter(new ProductImagePagerAdapter(getApplicationContext(), imageList));
                         indicator.setViewPager(mPager);
+
+
 
                         ArrayList<ProductAddons> adonList = new ArrayList<ProductAddons>(list.getAddons());
                         addonsAdapter = new AddonsAdapter(getApplicationContext(), adonList,price);
@@ -379,6 +382,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                             }
 
                         });
+
                         //progressDialog.dismiss();
 
                     }
@@ -394,8 +398,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
 
         });
 
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.add(objectRequest);
+        AppController.getInstance().addToRequestQueue(objectRequest, tag_json_obj);
     }
 
 
@@ -545,8 +548,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                 Log.d("Error", error.toString());
             }
         });
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.add(objectRequest);
+        AppController.getInstance().addToRequestQueue(objectRequest, tag_json_obj);
     }
 
     @Override

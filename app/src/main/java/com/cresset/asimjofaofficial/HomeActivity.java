@@ -1,7 +1,12 @@
 package com.cresset.asimjofaofficial;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -32,6 +37,8 @@ import com.cresset.asimjofaofficial.models.ChildCategoryList;
 import com.cresset.asimjofaofficial.models.IndexImage;
 import com.cresset.asimjofaofficial.models.ProductModel;
 import com.cresset.asimjofaofficial.utilities.Config;
+import com.cresset.asimjofaofficial.utilities.CustomVolleyRequest;
+import com.cresset.asimjofaofficial.volley.AppController;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -47,6 +54,7 @@ import java.util.Map;
 public class HomeActivity extends Fragment {
     //String url = "http://preview.cressettech.net/MobileAPI/Service1.svc/CategoryList";
     //ProgressDialog PD;
+    private String tag_json_obj = "json_obj_req";
     private ProgressBar progressBar;
     View view;
     private IndexAdapter indexAdapter;
@@ -74,6 +82,7 @@ public class HomeActivity extends Fragment {
         //progressBar.setVisibility();
 
         getCategoryList();
+        runTask ();
 
         searchProduct.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -187,13 +196,55 @@ public class HomeActivity extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Toast.makeText(getContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
                 Log.d("Error",error.toString());
                 progressBar.setVisibility(View.GONE);
 
             }
         });
-        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        requestQueue.add(jsonObjReq);
+        //call volley
+       // AppController.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
+        CustomVolleyRequest.getInstance(getContext()).getRequestQueue().add(jsonObjReq);
+    }
+
+    public void runTask () {
+        if(isNetworkAvailable()) {
+
+    /* DO WHATEVER YOU WANT IF INTERNET IS AVAILABLE */
+
+        } else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setCancelable(false);
+            builder.setTitle("No Internet");
+            builder.setMessage("Internet is required. Please connect and Retry.");
+
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    getActivity().finish();
+                }
+            });
+
+            builder.setPositiveButton("Retry", new DialogInterface.OnClickListener(){
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+                    dialog.dismiss();
+                    getCategoryList();
+                }
+            });
+            AlertDialog dialog = builder.create(); // calling builder.create after adding buttons
+            dialog.show();
+            Toast.makeText(getContext(), "Network Unavailable!", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    // Private class isNetworkAvailable
+    private boolean isNetworkAvailable() {
+        // Using ConnectivityManager to check for Network Connection
+        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null;
     }
 }

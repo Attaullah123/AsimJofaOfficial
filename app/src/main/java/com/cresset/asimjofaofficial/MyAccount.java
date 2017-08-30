@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.cresset.asimjofaofficial.models.CustomerDetailResponse;
 import com.cresset.asimjofaofficial.models.UserModel;
+import com.cresset.asimjofaofficial.userinfo.activity.AddressBookActivity;
 import com.cresset.asimjofaofficial.userinfo.activity.OrderHistory;
 import com.cresset.asimjofaofficial.userinfo.activity.UserInfoActivity;
 import com.cresset.asimjofaofficial.utilities.Config;
@@ -35,6 +37,8 @@ import java.util.Map;
 public class MyAccount extends AppCompatActivity {
 
     private TextView txName,txEmail,userOrderInfo,userAccInfo,contactUs,logout;
+    private LinearLayout lyOrderHistory,lyUserInfo,lyAddressBook,lyContactUs;
+
     private UserModel globalUserData;
     private ImageView back;
     private SharedPreferences.Editor sharedPreferencesEditor;
@@ -47,9 +51,12 @@ public class MyAccount extends AppCompatActivity {
 
         //txName = (TextView) findViewById(R.id.name);
         txName = (TextView) findViewById(R.id.acc_name);
-        userOrderInfo = (TextView) findViewById(R.id.acc_order_placed);
-        userAccInfo = (TextView) findViewById(R.id.acc_user_info);
-        contactUs = (TextView) findViewById(R.id.contact_us);
+
+        lyOrderHistory = (LinearLayout) findViewById(R.id.ly_order_history);
+        lyUserInfo = (LinearLayout) findViewById(R.id.ly_personal_details);
+        lyAddressBook = (LinearLayout) findViewById(R.id.ly_address_book);
+        lyContactUs = (LinearLayout) findViewById(R.id.ly_contact_us);
+
         logout = (TextView) findViewById(R.id.log_out);
         back = (ImageView) findViewById(R.id.img_back);
 
@@ -62,7 +69,7 @@ public class MyAccount extends AppCompatActivity {
 
         sharedPreferencesEditor = getSharedPreferences(Config.PREFS_NAME, MODE_PRIVATE).edit();
 
-        userAccInfo.setOnClickListener(new View.OnClickListener() {
+        lyUserInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), UserInfoActivity.class);
@@ -70,7 +77,7 @@ public class MyAccount extends AppCompatActivity {
             }
         });
 
-        userOrderInfo.setOnClickListener(new View.OnClickListener() {
+        lyOrderHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), OrderHistory.class);
@@ -78,7 +85,15 @@ public class MyAccount extends AppCompatActivity {
             }
         });
 
-        contactUs.setOnClickListener(new View.OnClickListener() {
+        lyAddressBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AddressBookActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        lyContactUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ContactUs.class);
@@ -124,6 +139,7 @@ public class MyAccount extends AppCompatActivity {
         // Launching the login activity
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);
+        Toast.makeText(getApplicationContext(),"You Logout", Toast.LENGTH_LONG).show();
         finish();
     }
 

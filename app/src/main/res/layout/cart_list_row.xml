@@ -11,6 +11,7 @@
         android:id="@+id/cart_thumbnail"
         android:layout_width="115dp"
         android:layout_height="150dp"
+        android:background="@drawable/pic3"
         android:layout_gravity="center" />
 
     <LinearLayout

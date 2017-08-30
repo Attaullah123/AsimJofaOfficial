@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -49,17 +50,19 @@ public class OrderHistory extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_info);
 
-        back = (ImageView) findViewById(R.id.img_back);
-//        toolbar = (Toolbar) findViewById(R.id.toolbar_1);
-//        setSupportActionBar(toolbar);
-//       // getSupportActionBar().setDisplayShowTitleEnabled(false);
-//        //toolbar.setNavigationIcon(R.drawable.ic_toolbar);
-//        toolbar.setTitle("");
-//        toolbar.setSubtitle("");
-        //initCollapsingToolbar();
-
+        back = (ImageView) findViewById(R.id.img_cross);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("");
         //prodId = getIntent().getStringExtra("categoryId");
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading.....");
         progressDialog.setCancelable(false);

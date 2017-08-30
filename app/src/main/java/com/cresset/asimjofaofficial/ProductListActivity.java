@@ -34,7 +34,9 @@ import com.cresset.asimjofaofficial.adapter.ProductListAdapter;
 import com.cresset.asimjofaofficial.models.ProductListModel;
 import com.cresset.asimjofaofficial.models.ProductModel;
 import com.cresset.asimjofaofficial.utilities.Config;
+import com.cresset.asimjofaofficial.utilities.CustomVolleyRequest;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
+import com.cresset.asimjofaofficial.volley.AppController;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -59,6 +61,7 @@ public class ProductListActivity extends AppCompatActivity {
     private String prodId;
     private TextView cartCountView,searchProduct;
     private Menu menu;
+    private String tag_json_obj = "json_obj_req";
 
     //    public static final String TAG_FIRST_APPEARANCE = "firstAppearance";
     //    public static final String TAG_POWERS = "powers";
@@ -160,8 +163,9 @@ public class ProductListActivity extends AppCompatActivity {
                 //progressDialog.dismiss();
             }
         });
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.add(objectRequest);
+//        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+//        requestQueue.add(objectRequest);
+        CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
     }
 
     public void searchKeyword(){
@@ -246,8 +250,7 @@ public class ProductListActivity extends AppCompatActivity {
                 Log.d("Error", error.toString());
             }
         });
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.add(objectRequest);
+        CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
     }
 
     @Override

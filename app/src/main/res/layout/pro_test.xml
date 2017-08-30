@@ -30,4 +30,32 @@
 
     </LinearLayout>
 
-    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:layout_gravity="center_horizontal"
+        >
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="140dp"
+            android:layout_height="35dp"
+            android:text="Online"
+            android:background="@drawable/btn_border"
+            android:textAllCaps="false"
+            android:layout_marginRight="-2dp"
+            android:onClick="selectFrag" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="140dp"
+            android:layout_height="35dp"
+            android:textAllCaps="false"
+            android:background="@drawable/btn_border"
+            android:onClick="selectFrag"
+            android:text="Store" />
+    </LinearLayout>
+
+
+</RelativeLayout>

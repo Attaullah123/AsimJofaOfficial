@@ -68,7 +68,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 //                    Bitmap bitmap = thumbnail.getDrawingCache();
                     Intent intent = new Intent(v.getContext(), ProductDetail.class);
 //                    //intent.putExtra("product_image", bitmap,  productModelList.get(position).getThumbnail());
-                    System.out.println(productModelList.get(position).getId());
+                    //System.out.println(productModelList.get(position).getId());
                     intent.putExtra("ProductId", productModelList.get(position).getId());
 //                   intent.putExtra("product_name", productModelList.get(position).getName());
                     context.startActivity(intent);

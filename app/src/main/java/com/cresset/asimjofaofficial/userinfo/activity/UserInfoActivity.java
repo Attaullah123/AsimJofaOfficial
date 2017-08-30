@@ -20,6 +20,8 @@ public class UserInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
 
+        back = (ImageView) findViewById(R.id.img_cross);
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

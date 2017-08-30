@@ -3,22 +3,22 @@ package com.cresset.asimjofaofficial.models;
 
 
 public class ChildCategoryList {
-    int id;
-    String name;
+    int Id;
+    String Name;
 
     public int getId() {
-        return id;
+        return Id;
     }
 
     public void setId(int id) {
-        this.id = id;
+        Id = id;
     }
 
     public String getName() {
-        return name;
+        return Name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        Name = name;
     }
 }
