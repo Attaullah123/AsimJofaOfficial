@@ -12,27 +12,26 @@ import com.bumptech.glide.Glide;
 import com.cresset.asimjofaofficial.R;
 import com.cresset.asimjofaofficial.models.CartModel;
 import com.cresset.asimjofaofficial.models.CartModelItems;
-import com.cresset.asimjofaofficial.models.ChildCategoryList;
-import com.cresset.asimjofaofficial.models.IndexImage;
-import com.cresset.asimjofaofficial.models.ProductHeader;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by attaullahkhizar on 8/30/17.
+ */
 
-public class CheckoutProductAdapter extends BaseExpandableListAdapter {
+public class CheckoutCartAdapter extends BaseExpandableListAdapter {
 
     private Context context;
     private ArrayList<CartModel> cartModel;
     private TextView proName,proPrice,proQuantity,proSize;
-    private ArrayList<CartModelItems> modelItemses;
     private ImageView cartImage;
 
     //ImageLoader imageLoader = MyApplication.getInstance().getImageLoader();
 
-    public CheckoutProductAdapter(Context context, ArrayList<CartModelItems> groups) {
+    public CheckoutCartAdapter(Context context, ArrayList<CartModel> groups) {
         this.context = context;
-        this.modelItemses = groups;
+        this.cartModel = groups;
     }
 
     @Override
@@ -53,7 +52,7 @@ public class CheckoutProductAdapter extends BaseExpandableListAdapter {
 
         CartModelItems child = (CartModelItems) getChild(groupPosition, childPosition);
         if (convertView == null) {LayoutInflater infalInflater = (LayoutInflater) context
-                    .getSystemService(context.LAYOUT_INFLATER_SERVICE);
+                .getSystemService(context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.checkout_child_list, null);
         }
 
@@ -91,7 +90,7 @@ public class CheckoutProductAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getGroupCount() {
-        return modelItemses.size();
+        return cartModel.size();
     }
 
     @Override

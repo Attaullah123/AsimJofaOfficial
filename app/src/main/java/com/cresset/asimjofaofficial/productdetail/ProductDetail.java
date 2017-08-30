@@ -1,6 +1,7 @@
 package com.cresset.asimjofaofficial.productdetail;
 
 import android.app.Dialog;
+import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -60,6 +61,7 @@ import com.cresset.asimjofaofficial.models.QuantityModel;
 import com.cresset.asimjofaofficial.utilities.Config;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
 import com.cresset.asimjofaofficial.volley.AppController;
+import com.cresset.asimjofaofficial.volley.SizeDialogFragment;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.viewpagerindicator.CirclePageIndicator;
@@ -407,6 +409,8 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
     //bottom sheet info
     public void openBottomInfo(View v) {
         View view = getLayoutInflater().inflate(R.layout.bottom_info, null);
+
+        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.window_popup);
         fullDiscription = (TextView) view.findViewById(R.id.btm_prod_detial);
         proName = (TextView) view.findViewById(R.id.btm_prod_code);
         sku = (TextView) view.findViewById(R.id.btm_sku_code);
@@ -452,20 +456,11 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                 Toast.makeText(getApplicationContext(),"composition and care click", Toast.LENGTH_LONG).show();
                 break;
             case  R.id.btm_size_guide:
-                AlertDialog.Builder builder = new AlertDialog.Builder(ProductDetail.this);
-                //Yes Button
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(), "Yes button Clicked", Toast.LENGTH_LONG).show();
-                        //Log.i("Code2care ", "Yes button Clicked!");
-                        dialog.dismiss();
-                    }
-                });
-                LayoutInflater inflater = getLayoutInflater();
-                View dialogLayout = inflater.inflate(R.layout.size_alert,null);
-                builder.setView(dialogLayout);
-                builder.show();
+
+                android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
+
+                SizeDialogFragment dialogFragment = new SizeDialogFragment ();
+                dialogFragment.show(fm, "Sample Fragment");
                 break;
 
             case R.id.btm_shipping:

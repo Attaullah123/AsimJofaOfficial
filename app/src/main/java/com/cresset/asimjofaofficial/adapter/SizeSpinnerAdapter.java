@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.cresset.asimjofaofficial.HomeActivity;
 import com.cresset.asimjofaofficial.R;
 import com.cresset.asimjofaofficial.models.ProductDetailSize;
 
@@ -64,6 +65,7 @@ public class SizeSpinnerAdapter extends ArrayAdapter<ProductDetailSize> {
         size.setText(productDetialSize.getSizeName());
         mappingId.setText(String.valueOf(productDetialSize.getProductMappingAttributeId()));
         attributeId.setText(String.valueOf(productDetialSize.getProductAttributeValueId()));
+
         return row;
 
     }

@@ -33,5 +33,6 @@
     <color name="button_pressed">#ff8a00</color>
     <color name="button_focused">#ff8a00</color>
     <color name="button_default">#1c76bb</color>
+    <color name="colorBlack">#000000</color>
 
 </resources>
