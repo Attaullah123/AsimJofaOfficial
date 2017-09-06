@@ -78,7 +78,7 @@ public class UpdateCart extends AppCompatActivity{
         //totalPrice = (TextView) findViewById(R.id.total_amount);
         //subTotal = (TextView) findViewById(R.id.sub_total);
         recyclerView = (RecyclerView) findViewById(R.id.cart_recycler_view);
-        ImageView cross = (ImageView) findViewById(R.id.img_back);
+        //ImageView cross = (ImageView) findViewById(R.id.img_back);
         progressBar=(ProgressBar) findViewById(R.id.progressBar);
 
 
@@ -99,12 +99,7 @@ public class UpdateCart extends AppCompatActivity{
                 onBackPressed();
                     }
         });
-        cross.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+
 
         deleteList.setOnClickListener(new View.OnClickListener() {
             @Override

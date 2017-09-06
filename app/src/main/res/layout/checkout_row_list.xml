@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/cart_thumbnail"
-        android:layout_width="115dp"
-        android:layout_height="150dp"
+        android:layout_width="70dp"
+        android:layout_height="90dp"
         android:layout_gravity="center" />
 
     <LinearLayout
@@ -39,27 +39,6 @@
                 tools:text="Product name" />
 
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/product_sku_name"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    tools:text="SKu:" />
-
-                <TextView
-                    android:id="@+id/product_sku_code"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
-                    android:textSize="12sp"
-                    tools:text="SKu" />
-            </LinearLayout>
-
 
             <TextView
                 android:id="@+id/cart_product_quantity"
@@ -84,32 +63,30 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_gravity="end|bottom"
+                android:gravity="end|bottom"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/product_cart_price_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:paddingLeft="160dp"
-                    android:paddingTop="5dp"
+                    android:layout_marginRight="5sp"
                     android:textColor="#000"
-                    android:textSize="15sp"
-                    tools:text="USD" />
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="USD"/>
 
                 <TextView
                     android:id="@+id/product_cart_price"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:paddingLeft="5dp"
-                    android:paddingTop="4dp"
-                    android:textColor="#000"
-                    android:textSize="17sp"
+                    android:text="9500"
                     android:textStyle="bold"
-                    tools:text="500.0" />
-
+                    android:textColor="#000"
+                    android:textSize="16sp"/>
             </LinearLayout>
 
 

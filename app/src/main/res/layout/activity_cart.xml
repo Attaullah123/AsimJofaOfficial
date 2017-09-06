@@ -32,6 +32,7 @@
                 android:layout_height="wrap_content"
                 android:text="Shopping Bag"
                 android:textColor="#000"
+                android:textStyle="bold"
                 style="@style/Base.TextAppearance.AppCompat.Large"
                 android:layout_gravity="center"/>
             <TextView
@@ -39,8 +40,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="EDIT"
+                android:textSize="18sp"
                 android:textColor="#000"
-                style="@style/TextAppearance.AppCompat.Medium"
                 android:layout_gravity="end"/>
 
         </android.support.v7.widget.Toolbar>

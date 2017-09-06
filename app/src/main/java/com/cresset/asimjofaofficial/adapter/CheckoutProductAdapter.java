@@ -12,9 +12,6 @@ import com.bumptech.glide.Glide;
 import com.cresset.asimjofaofficial.R;
 import com.cresset.asimjofaofficial.models.CartModel;
 import com.cresset.asimjofaofficial.models.CartModelItems;
-import com.cresset.asimjofaofficial.models.ChildCategoryList;
-import com.cresset.asimjofaofficial.models.IndexImage;
-import com.cresset.asimjofaofficial.models.ProductHeader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +51,7 @@ public class CheckoutProductAdapter extends BaseExpandableListAdapter {
         CartModelItems child = (CartModelItems) getChild(groupPosition, childPosition);
         if (convertView == null) {LayoutInflater infalInflater = (LayoutInflater) context
                     .getSystemService(context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.checkout_child_list, null);
+            convertView = infalInflater.inflate(R.layout.checkout_row_list, null);
         }
 
 

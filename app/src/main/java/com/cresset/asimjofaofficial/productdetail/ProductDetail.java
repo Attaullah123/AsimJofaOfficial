@@ -418,12 +418,11 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         proName.setText(btmProNames);
         sku.setText(btmSku);
 
-        TextView share = (TextView)view.findViewById( R.id.btm_share);
+       // TextView share = (TextView)view.findViewById( R.id.btm_share);
         TextView infoStore = (TextView)view.findViewById( R.id.btm_store_availability);
         TextView compCare = (TextView)view.findViewById( R.id.btm_co_care);
         TextView sizeGuide = (TextView)view.findViewById( R.id.btm_size_guide);
-        TextView shipping = (TextView)view.findViewById( R.id.btm_shipping);
-        TextView returns = (TextView)view.findViewById( R.id.btm_returns);
+
 
         final Dialog dialogBottomInfo = new Dialog(ProductDetail.this, R.style.MaterialDialogSheet);
 
@@ -432,12 +431,12 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         dialogBottomInfo.getWindow ().setLayout (LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         dialogBottomInfo.getWindow ().setGravity (Gravity.BOTTOM);
         dialogBottomInfo.show ();
-        share.setOnClickListener(this);
+        //share.setOnClickListener(this);
         infoStore.setOnClickListener(this);
         compCare.setOnClickListener(this);
         sizeGuide.setOnClickListener(this);
-        shipping.setOnClickListener(this);
-        returns.setOnClickListener(this);
+       // shipping.setOnClickListener(this);
+        //returns.setOnClickListener(this);
 
 
 
@@ -446,29 +445,19 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.btm_share:
-                Toast.makeText(getApplicationContext(),"Share click", Toast.LENGTH_LONG).show();
-                break;
+
             case  R.id.btm_store_availability:
                 Toast.makeText(getApplicationContext(),"store click", Toast.LENGTH_LONG).show();
                 break;
             case R.id.btm_co_care:
                 Toast.makeText(getApplicationContext(),"composition and care click", Toast.LENGTH_LONG).show();
                 break;
-            case  R.id.btm_size_guide:
-
+            case R.id.btm_size_guide:
                 android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
-
                 SizeDialogFragment dialogFragment = new SizeDialogFragment ();
                 dialogFragment.show(fm, "Sample Fragment");
                 break;
 
-            case R.id.btm_shipping:
-                Toast.makeText(getApplicationContext(),"shipping click", Toast.LENGTH_LONG).show();
-                break;
-            case  R.id.btm_returns:
-                Toast.makeText(getApplicationContext(),"returns click", Toast.LENGTH_LONG).show();
-                break;
 
         }
     }

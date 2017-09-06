@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,7 +23,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.cresset.asimjofaofficial.adapter.CartAdapter;
 import com.cresset.asimjofaofficial.adapter.CartSpinnerAdapter;
+import com.cresset.asimjofaofficial.adapter.CheckoutCartAdapter;
 import com.cresset.asimjofaofficial.adapter.CheckoutProductAdapter;
 import com.cresset.asimjofaofficial.adapter.IndexAdapter;
 import com.cresset.asimjofaofficial.adapter.SizeSpinnerAdapter;
@@ -31,8 +36,11 @@ import com.cresset.asimjofaofficial.models.OrderPlaceModel;
 import com.cresset.asimjofaofficial.models.OrderPlaceResponse;
 import com.cresset.asimjofaofficial.models.ProductDetailSize;
 import com.cresset.asimjofaofficial.models.ProductHeader;
+import com.cresset.asimjofaofficial.recylerview.RecyclerDivider;
 import com.cresset.asimjofaofficial.utilities.Config;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
+import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
+import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -43,18 +51,18 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class CheckOutActivity extends AppCompatActivity {
+public class CheckOutActivity extends AppCompatActivity implements View.OnClickListener{
     private TextView selectShippingandBillingAdd,selectShippingMethod,
             selectPaymentMethod,selectShippingMethodName, paymentName,
             totalPrice,totalProductPrice,shippingPrice;
     private TextView finaliseOrder;
     private CartModel cartModel;
-    private CheckoutProductAdapter indexAdapter;
-    private ExpandableListView expandList;
+    private ExpandableRelativeLayout expandableAccuracy;
+    private ImageView accuracyMinus, accuracyPlus;
     private TextView cancel;
-    private Spinner cartSpinner;
-    private CartSpinnerAdapter cartSpinnerAdapter;
-    private CartModelItems cartModelItems;
+    private CheckoutCartAdapter cartAdapter;
+    private CartModel cartModelData;
+    private RecyclerView recyclerView;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,8 +76,21 @@ public class CheckOutActivity extends AppCompatActivity {
         totalProductPrice = (TextView) findViewById(R.id.total_product_price);
         selectShippingMethodName = (TextView) findViewById(R.id.select_shipping_method);
         shippingPrice = (TextView) findViewById(R.id.country_shipping_price);
-        //expandList = (ExpandableListView) findViewById(R.id.expandableListView);
-        //cartSpinner = (Spinner) findViewById(R.id.spinner_cart_detail);
+
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setVerticalScrollBarEnabled(false);
+        recyclerView.addItemDecoration(new RecyclerDivider(this, LinearLayoutManager.VERTICAL));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(cartAdapter);
+
+        expandableAccuracy = (ExpandableRelativeLayout) findViewById(R.id.expand_accuracy);
+       // expandableAccuracy.collapse();
+        accuracyMinus = (ImageView) findViewById(R.id.img_minus_accuracy);
+        accuracyPlus = (ImageView) findViewById(R.id.img_plus_accuracy);
+
         cancel = (TextView) findViewById(R.id.txt_cancel);
 
         //initialize cart method getting detail from cart activity
@@ -87,10 +108,20 @@ public class CheckOutActivity extends AppCompatActivity {
         });
         //shipping & billing select method call also check credential
 
-        cancel.setOnClickListener(new View.OnClickListener() {
+        accuracyMinus.setOnClickListener(this);
+        accuracyPlus.setOnClickListener(this);
+
+        expandableAccuracy.setListener(new ExpandableLayoutListenerAdapter() {
             @Override
-            public void onClick(View v) {
-                onBackPressed();
+            public void onPreOpen() {
+                accuracyMinus.setVisibility(View.VISIBLE);
+                accuracyPlus.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onPreClose() {
+                accuracyMinus.setVisibility(View.GONE);
+                accuracyPlus.setVisibility(View.VISIBLE);
             }
         });
 
@@ -263,6 +294,9 @@ public class CheckOutActivity extends AppCompatActivity {
                         totalPrice.setText(Float.toString(total));
 
                         ArrayList<CartModelItems> cartItems = new ArrayList<CartModelItems>(cartModel.getCartItems());
+
+                        cartAdapter = new CheckoutCartAdapter(getApplicationContext(), cartItems);
+                        recyclerView.setAdapter(cartAdapter);
 //
 //                        indexAdapter = new CheckoutProductAdapter(getApplicationContext(), cartItems);
 //                        expandList.setAdapter(indexAdapter);
@@ -309,4 +343,15 @@ public class CheckOutActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.img_minus_accuracy:
+                expandableAccuracy.collapse();
+                break;
+            case R.id.img_plus_accuracy:
+                expandableAccuracy.expand();
+                break;
+        }
+    }
 }
