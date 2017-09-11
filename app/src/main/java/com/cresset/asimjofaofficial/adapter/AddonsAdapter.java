@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -98,7 +99,8 @@ public class AddonsAdapter extends ArrayAdapter<ProductAddons> {
         holder.addonName.setText( p.getAddonsName());
 //        holder.mappingId.setText(p.getProductMappingAttributeId());
        // holder.mappingAttribute.setText(p.getProductMappingAttributeId());
-        holder.addonPrices.setText(p.getAddonsPrice());
+        //holder.addonPrices.setText(p.getAddonsPrice());
+        holder.addonPrices.setText(Html.fromHtml("&ldquo[" + p.getAddonsPrice() + "&rdquo]"));
         holder.addonCheckbox.setChecked(p.isSelected());
         holder.addonCheckbox.setTag(p);
 
