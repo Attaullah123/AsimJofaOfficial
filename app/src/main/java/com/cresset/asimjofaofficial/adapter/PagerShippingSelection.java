@@ -5,7 +5,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 
-import com.cresset.asimjofaofficial.IndiviualAccount;
 import com.cresset.asimjofaofficial.fragments.BillingAddress;
 import com.cresset.asimjofaofficial.fragments.ShippingAddress;
 

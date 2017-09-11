@@ -42,7 +42,7 @@ public class MyAccount extends AppCompatActivity {
     private UserModel globalUserData;
     private ImageView back;
     private SharedPreferences.Editor sharedPreferencesEditor;
-    private static final String TAG = IndiviualAccount.class.getSimpleName();
+    private static final String TAG = MyAccount.class.getSimpleName();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

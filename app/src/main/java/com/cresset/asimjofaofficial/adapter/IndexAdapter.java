@@ -20,11 +20,11 @@ import java.util.ArrayList;
 public class IndexAdapter extends BaseExpandableListAdapter{
 
     private Context context;
-    private ArrayList<IndexImage> indexImages;
+    private ArrayList<CategoryList> indexImages;
 
     //ImageLoader imageLoader = MyApplication.getInstance().getImageLoader();
 
-    public IndexAdapter(Context context, ArrayList<IndexImage> groups) {
+    public IndexAdapter(Context context, ArrayList<CategoryList> groups) {
         this.context = context;
         this.indexImages = groups;
     }
@@ -88,7 +88,7 @@ public class IndexAdapter extends BaseExpandableListAdapter{
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded,
                              View convertView, ViewGroup parent) {
-        IndexImage group = (IndexImage) getGroup(groupPosition);
+        CategoryList group = (CategoryList) getGroup(groupPosition);
 
         if (convertView == null) {
             LayoutInflater inf = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
@@ -96,8 +96,8 @@ public class IndexAdapter extends BaseExpandableListAdapter{
         }
         TextView tv = (TextView) convertView.findViewById(R.id.category_name);
         ImageView img=(ImageView) convertView.findViewById(R.id.image_display);
-        tv.setText(group.getCategoryName());
-        Glide.with(context).load(group.getPictureURL()).into(img);
+        tv.setText(group.getName());
+       // Glide.with(context).load(group.getPictureURL()).into(img);
 
 
         return convertView;

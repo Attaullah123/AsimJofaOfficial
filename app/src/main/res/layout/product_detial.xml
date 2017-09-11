@@ -84,17 +84,16 @@
                     android:id="@+id/btn_info"
                     android:layout_width="95dp"
                     android:layout_height="35dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginEnd="13dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="14dp"
+                    android:layout_marginRight="14dp"
                     android:background="@drawable/button_border"
                     android:onClick="openBottomInfo"
                     android:text="@string/infoText"
                     android:textAllCaps="true"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:layout_below="@+id/indicator"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
 
 
             </RelativeLayout>
@@ -107,7 +106,8 @@
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/base_margin_horizontal"
                 android:paddingRight="@dimen/base_margin_horizontal"
-                android:paddingTop="8dp">
+                android:paddingTop="8dp"
+                android:weightSum="1">
 
 
                 <RelativeLayout
@@ -203,41 +203,12 @@
                 </LinearLayout>
 
 
-                <!--<RelativeLayout-->
-                    <!--android:id="@+id/product_add_to_cart_layout"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginLeft="@dimen/base_margin_horizontal"-->
-                    <!--android:layout_marginRight="@dimen/base_margin_horizontal"-->
-                    <!--android:layout_marginTop="@dimen/base_margin_vertical"-->
-                    <!--android:gravity="center"-->
-                    <!--android:paddingBottom="10sp"-->
-                    <!--android:paddingEnd="@dimen/base_margin_horizontal"-->
-                    <!--android:paddingLeft="@dimen/base_margin_horizontal"-->
-                    <!--android:paddingRight="@dimen/base_margin_horizontal"-->
-                    <!--android:paddingStart="@dimen/base_margin_horizontal">-->
-
-
-                    <!--<com.cresset.asimjofaofficial.customfonts.MyTextView-->
-                        <!--android:id="@+id/addTocart"-->
-                        <!--android:layout_width="150dp"-->
-                        <!--android:layout_height="40dp"-->
-                        <!--android:layout_alignParentTop="true"-->
-                        <!--android:layout_centerHorizontal="true"-->
-                        <!--android:background="#202020"-->
-                        <!--android:gravity="center"-->
-                        <!--android:text="BUY"-->
-                        <!--android:textColor="#fff"-->
-                        <!--android:textSize="17dp"-->
-                        <!--android:textStyle="bold" />-->
-                <!--</RelativeLayout>-->
-
-                <ListView
-                    android:id="@+id/checkbox_listview"
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_view_adons"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                </ListView>
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"
+                    />
 
             </LinearLayout>
         </LinearLayout>
@@ -263,7 +234,7 @@
             android:layout_gravity="end"
             android:text="BUY"
             android:textColor="#fff"
-            android:textSize="17dp"
+            android:textSize="18dp"
             android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>

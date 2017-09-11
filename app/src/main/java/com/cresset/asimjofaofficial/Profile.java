@@ -42,7 +42,7 @@ import java.util.Map;
 
 
 public class Profile extends AppCompatActivity {
-    private static final String TAG = IndiviualAccount.class.getSimpleName();
+    private static final String TAG = Profile.class.getSimpleName();
     private Toolbar toolbar;
     private Button btn_login,btn_create_account;
     private EditText et_email,et_password;

@@ -32,6 +32,17 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.MyViewHo
             paymentName = (TextView) itemView.findViewById(R.id.payment_name);
             //paymentSystemName = (TextView) itemView.findViewById(R.id.payment_system_name);
             //proId = (TextView) itemView.findViewById(R.id.product_list_id);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    Context context = v.getContext();
+
+                    GlobalClass.paymentModel = paymentLists.get(position);
+                    ((Activity)context).finish();
+                }
+            });
         }
 
 

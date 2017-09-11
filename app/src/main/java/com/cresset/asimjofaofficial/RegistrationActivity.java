@@ -147,7 +147,7 @@ public class RegistrationActivity extends AppCompatActivity {
                             Gson gson = new Gson();
                             GuestOrLoginResponseModel model = gson.fromJson(response.toString(), new TypeToken<GuestOrLoginResponseModel>(){}.getType());
 
-                            show("Customer id:" + model.getCustomerId());
+                            //show("Customer id:" + model.getCustomerId());
 
                             if (model.getCustomerId() != null && model.getCustomerId() != "") {
 
@@ -177,7 +177,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Couldn't register user, check connection", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Couldn't register user, please check connection", Toast.LENGTH_SHORT).show();
                 Log.d("Error", error.toString());
                 progressDialog.dismiss();
             }

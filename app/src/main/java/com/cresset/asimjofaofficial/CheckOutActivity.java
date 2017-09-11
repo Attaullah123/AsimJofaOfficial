@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +40,7 @@ import com.cresset.asimjofaofficial.models.ProductHeader;
 import com.cresset.asimjofaofficial.recylerview.RecyclerDivider;
 import com.cresset.asimjofaofficial.utilities.Config;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
+import com.cresset.asimjofaofficial.volley.AppController;
 import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.gson.Gson;
@@ -52,8 +54,7 @@ import java.util.List;
 
 
 public class CheckOutActivity extends AppCompatActivity implements View.OnClickListener{
-    private TextView selectShippingandBillingAdd,selectShippingMethod,
-            selectPaymentMethod,selectShippingMethodName, paymentName,
+    private TextView selectShippingandBillingAdd,selectShippingMethod, selectPaymentMethod,selectShippingMethodName, paymentName,
             totalPrice,totalProductPrice,shippingPrice;
     private TextView finaliseOrder;
     private CartModel cartModel;
@@ -63,6 +64,7 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
     private CheckoutCartAdapter cartAdapter;
     private CartModel cartModelData;
     private RecyclerView recyclerView;
+    private ProgressBar progressBar;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,7 +92,7 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
        // expandableAccuracy.collapse();
         accuracyMinus = (ImageView) findViewById(R.id.img_minus_accuracy);
         accuracyPlus = (ImageView) findViewById(R.id.img_plus_accuracy);
-
+        progressBar=(ProgressBar) findViewById(R.id.progressBar);
         cancel = (TextView) findViewById(R.id.txt_cancel);
 
         //initialize cart method getting detail from cart activity
@@ -265,12 +267,12 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
 
         });
 
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.add(objectRequest);
+        AppController.getInstance().addToRequestQueue(objectRequest);
 
     }
 
     public void getCartDetail() {
+        progressBar.setVisibility(View.VISIBLE);
         HashMap<String, String> params = new HashMap<>();
         params.put("ProjectId", Config.PROJECTID);
         params.put("CustomerId", GlobalClass.userData.getUserID());
@@ -301,7 +303,7 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
 //                        indexAdapter = new CheckoutProductAdapter(getApplicationContext(), cartItems);
 //                        expandList.setAdapter(indexAdapter);
 //                        cartSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
+                        progressBar.setVisibility(View.GONE);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -309,10 +311,10 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
 
                 Toast.makeText(getApplicationContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
                 Log.d("Error", error.toString());
+                progressBar.setVisibility(View.GONE);
             }
         });
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.add(objectRequest);
+        AppController.getInstance().addToRequestQueue(objectRequest);
     }
 
     public void EmptyStaticObjects(){
