@@ -378,12 +378,12 @@
 
                         <ImageView
                             android:id="@+id/img_minus_accuracy"
-                            android:layout_width="17dp"
-                            android:layout_height="20dp"
+                            android:layout_width="22dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center_vertical"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginRight="15sp"
+                            android:layout_marginRight="10dp"
                             android:src="@mipmap/arrow_top"
                             android:visibility="visible" />
 
@@ -391,20 +391,20 @@
                             android:id="@+id/img_plus_accuracy"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:layout_gravity="center_vertical"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginRight="15sp"
-                            android:src="@mipmap/arrow_down"
-                            android:visibility="gone" />
+                            android:visibility="gone"
+                            android:layout_marginRight="10dp"
+                            android:src="@mipmap/arrow_down" />
+
                     </RelativeLayout>
 
                     <com.github.aakira.expandablelayout.ExpandableRelativeLayout
-                        android:id="@+id/expand_accuracy"
+                        android:id="@+id/expandable_in_store"
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
+                        android:layout_height="wrap_content"
                         app:ael_duration="500"
-                        app:ael_expanded="false"
+                        app:ael_expanded="true"
                         android:background="#fff"
                         app:ael_interpolator="linear"
                         app:ael_orientation="vertical">
@@ -412,7 +412,7 @@
                         <android.support.v7.widget.RecyclerView
                             android:id="@+id/recycler_view"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="200dp"
                             android:scrollbars="none"
                             />
                         <ProgressBar

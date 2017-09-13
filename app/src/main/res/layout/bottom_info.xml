@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center|bottom"
     android:padding="5dp"
     android:background="#ddffffff"
-    android:id="@+id/window_popup"
-    >
+    android:id="@+id/window_popup">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -105,9 +105,11 @@
                 android:gravity="center_horizontal" />
 
             <LinearLayout
+                android:id="@+id/header_in_store"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:onClick="inStore"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/btm_store_availability"
@@ -120,8 +122,26 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#000" />
 
-            </LinearLayout>
+                <com.github.aakira.expandablelayout.ExpandableRelativeLayout
+                    android:id="@+id/expandable_cart_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/expandableButton1"
+                    android:background="#f4f4f4"
+                    android:padding="16dp"
+                    app:ael_duration="300"
+                    app:ael_expanded="false"
+                    app:ael_interpolator="accelerate"
+                    app:ael_orientation="vertical">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000"
+                        android:text="Android is an open source and Linux-based Operating System for mobile devices such as smartphones and tablet computers." />
+                </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
+
+            </LinearLayout>
 
             <!--line-->
             <TextView

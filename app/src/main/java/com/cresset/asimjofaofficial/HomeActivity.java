@@ -62,6 +62,7 @@ public class HomeActivity extends Fragment {
     private ArrayList<CategoryList> categoryLists;
     private android.support.v7.widget.SearchView searchView;
    //private EditText searchView;
+    ArrayList<ChildCategoryList> parentList;
     private TextView searchProduct;
     private int lastExpandedPosition = -1;
 
@@ -118,7 +119,7 @@ public class HomeActivity extends Fragment {
 
                 Gson gson = new Gson();
 
-                CategoryModel categoryModel = gson.fromJson(response.toString(), new TypeToken<CategoryModel>(){}.getType());
+                final CategoryModel categoryModel = gson.fromJson(response.toString(), new TypeToken<CategoryModel>(){}.getType());
 
                 final ArrayList<CategoryList> categoryLists = new ArrayList<CategoryList>(categoryModel.getParentlist());
 
@@ -141,9 +142,12 @@ public class HomeActivity extends Fragment {
 
                     @Override
                     public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                        //parentList = new ArrayList<ChildCategoryList>();
                         indexAdapter.notifyDataSetChanged();
                         Intent intent = new Intent(getContext(), ProductListActivity.class);
                         intent.putExtra("categoryId", categoryLists.get(groupPosition).getId());
+                        intent.putExtra("categoryName",categoryLists.get(groupPosition).getName());
+                        //intent.putExtra("categoryName",categoryLists.get(groupPosition).getName());
                         startActivity(intent);
                         return false;
                     }
@@ -154,12 +158,13 @@ public class HomeActivity extends Fragment {
                     public void onGroupExpand(int groupPosition) {
                         if (lastExpandedPosition != -1 && groupPosition != lastExpandedPosition) {
                             expandList.collapseGroup(lastExpandedPosition);
-                            Intent intent = new Intent(getContext(), ProductListActivity.class);
-                            intent.putExtra("categoryId", categoryLists.get(groupPosition).getId());
-                            startActivity(intent);
+
                         }
 
-
+                        Intent intent = new Intent(getContext(), ProductListActivity.class);
+                        intent.putExtra("categoryId", categoryLists.get(groupPosition).getId());
+                        intent.putExtra("categoryName",categoryLists.get(groupPosition).getName());
+                        startActivity(intent);
                         lastExpandedPosition = groupPosition;
                     }
                 });

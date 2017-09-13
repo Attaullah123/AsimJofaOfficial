@@ -22,12 +22,11 @@
             android:layout_height="40sp"
             android:src="@mipmap/arrow_left_black"/>
         <TextView
-            android:id="@+id/toolbar_title"
+            android:id="@+id/category_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:text="New In"
-            android:textSize="23sp"
+            android:textSize="19sp"
             style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
             android:layout_gravity="center"
             />

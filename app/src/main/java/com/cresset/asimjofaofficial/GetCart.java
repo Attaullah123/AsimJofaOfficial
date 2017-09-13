@@ -36,6 +36,7 @@ import com.cresset.asimjofaofficial.models.ProductListModel;
 import com.cresset.asimjofaofficial.models.ProductModel;
 import com.cresset.asimjofaofficial.recylerview.RecyclerDivider;
 import com.cresset.asimjofaofficial.utilities.Config;
+import com.cresset.asimjofaofficial.utilities.CustomVolleyRequest;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
 import com.cresset.asimjofaofficial.volley.AppController;
 import com.google.gson.Gson;
@@ -57,7 +58,7 @@ import java.util.List;
 
 public class GetCart extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private TextView totalPrice,subTotal,cartEdit;
+    private TextView totalPrice,subTotal,cartEdit,itemCount;
     Toolbar toolbar;
     private CartAdapter cartAdapter;
     //private ProgressDialog progressDialog;
@@ -80,7 +81,7 @@ public class GetCart extends AppCompatActivity {
 
         emptyCart = findViewById(R.id.cart_empty);
         checkOut = (TextView) findViewById(R.id.pay);
-        //totalPrice = (TextView) findViewById(R.id.total_amount);
+         itemCount = (TextView) findViewById(R.id.cart_total_item);
         currencyName = (TextView) findViewById(R.id.detail_currency);
         subTotal = (TextView) findViewById(R.id.sub_total);
         recyclerView = (RecyclerView) findViewById(R.id.cart_recycler_view);
@@ -102,6 +103,8 @@ public class GetCart extends AppCompatActivity {
 //        progressDialog.setCancelable(false);
 
         getCartDetail();
+        //initialize cart count
+        GetCartItemsCount();
 
         cartEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -194,6 +197,41 @@ public class GetCart extends AppCompatActivity {
         }
 
         return cartModelData;
+        }
+
+        //call cart count item
+        public void GetCartItemsCount() {
+            HashMap<String, String> params = new HashMap<>();
+            params.put("ProjectId", Config.PROJECTID);
+            params.put("CustomerId", GlobalClass.userData.getUserID());
+
+            JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_Cart_Count, new JSONObject(params),
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            //CategoryModel categoryModel = new CategoryModel();
+
+                            Log.d("Response", response.toString());
+                            JSONObject jsonObject = null;
+                            try {
+                                jsonObject = new JSONObject(response.toString());
+                                GlobalClass.CartCount = jsonObject.getInt("CartCount");
+                                //UpdateCartCount();
+                                itemCount.setText(Integer.toString(GlobalClass.CartCount)+ " " + "items");
+                                //itemCount.setLetterSpacing(1);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getApplicationContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
+                    Log.d("Error", error.toString());
+                }
+            });
+            CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
         }
 
     private void setCartVisibility(boolean visible) {

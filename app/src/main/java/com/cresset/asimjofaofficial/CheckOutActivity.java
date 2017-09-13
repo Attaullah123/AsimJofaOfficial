@@ -88,16 +88,17 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(cartAdapter);
 
-        expandableAccuracy = (ExpandableRelativeLayout) findViewById(R.id.expand_accuracy);
        // expandableAccuracy.collapse();
+        expandableAccuracy = (ExpandableRelativeLayout) findViewById(R.id.expandable_in_store);
+
         accuracyMinus = (ImageView) findViewById(R.id.img_minus_accuracy);
         accuracyPlus = (ImageView) findViewById(R.id.img_plus_accuracy);
         progressBar=(ProgressBar) findViewById(R.id.progressBar);
         cancel = (TextView) findViewById(R.id.txt_cancel);
 
+        accuracyMinus.setOnClickListener(this);
+        accuracyPlus.setOnClickListener(this);
         //initialize cart method getting detail from cart activity
-
-
         getCartDetail();
 
         finaliseOrder = (TextView) findViewById(R.id.finalise_order);
@@ -109,9 +110,6 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
             }
         });
         //shipping & billing select method call also check credential
-
-        accuracyMinus.setOnClickListener(this);
-        accuracyPlus.setOnClickListener(this);
 
         expandableAccuracy.setListener(new ExpandableLayoutListenerAdapter() {
             @Override
@@ -126,7 +124,6 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
                 accuracyPlus.setVisibility(View.VISIBLE);
             }
         });
-
         selectShippingandBillingAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -58,8 +58,8 @@ public class ProductListActivity extends AppCompatActivity {
     private ImageView back;
     //private ProgressDialog progressDialog;
     private ProgressBar progressBar;
-    private String prodId;
-    private TextView cartCountView,searchProduct;
+    private String prodId,categoryName,childId;
+    private TextView cartCountView,searchProduct,categoryTitle;
     private Menu menu;
     private String tag_json_obj = "json_obj_req";
 
@@ -79,24 +79,24 @@ public class ProductListActivity extends AppCompatActivity {
         //initCollapsingToolbar();
 
         prodId = getIntent().getStringExtra("categoryId");
+        //childId = getIntent().getStringExtra("categoryChildId");
 
-//        progressDialog = new ProgressDialog(this);
-//        progressDialog.setMessage("Loading.....");
-//        progressDialog.setCancelable(false);
         progressBar=(ProgressBar) findViewById(R.id.progressBar);
         searchView = (SearchView) findViewById(R.id.sv_productList);
         searchProduct = (TextView) findViewById(R.id.search_product);
+        categoryTitle = (TextView) findViewById(R.id.category_title);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
         recyclerView.setAdapter(adapter);
 
         productList = new ArrayList<>();
-
         getProductData();
+
+        categoryName = getIntent().getStringExtra("categoryName");
+        categoryTitle.setText(categoryName);
         //prepareProduct();
 
         searchProduct.setOnClickListener(new View.OnClickListener() {

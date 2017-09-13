@@ -5,7 +5,6 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingTop="8dp"
     >
 
     <ImageView
@@ -17,6 +16,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="8dp"
         android:orientation="horizontal">
 
         <LinearLayout

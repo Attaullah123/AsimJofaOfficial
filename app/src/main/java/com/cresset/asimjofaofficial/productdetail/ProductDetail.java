@@ -1,5 +1,7 @@
 package com.cresset.asimjofaofficial.productdetail;
 
+import android.animation.Animator;
+import android.animation.ValueAnimator;
 import android.app.Dialog;
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
@@ -14,6 +16,9 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
@@ -24,6 +29,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -47,6 +53,7 @@ import com.cresset.asimjofaofficial.HomeActivity;
 import com.cresset.asimjofaofficial.MainActivity;
 import com.cresset.asimjofaofficial.R;
 import com.cresset.asimjofaofficial.adapter.AddonsAdapter;
+import com.cresset.asimjofaofficial.adapter.AddonsAdapterRe;
 import com.cresset.asimjofaofficial.adapter.ProductImagePagerAdapter;
 import com.cresset.asimjofaofficial.adapter.QuantitySpinner;
 import com.cresset.asimjofaofficial.adapter.SizeSpinnerAdapter;
@@ -58,10 +65,12 @@ import com.cresset.asimjofaofficial.models.ProductDetailModel;
 import com.cresset.asimjofaofficial.models.ProductDetailSize;
 import com.cresset.asimjofaofficial.models.ProductListModel;
 import com.cresset.asimjofaofficial.models.QuantityModel;
+import com.cresset.asimjofaofficial.recylerview.RecyclerDivider;
 import com.cresset.asimjofaofficial.utilities.Config;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
 import com.cresset.asimjofaofficial.volley.AppController;
 import com.cresset.asimjofaofficial.volley.SizeDialogFragment;
+import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.viewpagerindicator.CirclePageIndicator;
@@ -96,9 +105,9 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
     private String fulldiscrip;
     private String btmProNames;
     private String btmSku;
-    private ListView listviewAddon;
+    private RecyclerView recyclerView;
     private ArrayList<ProductAddons> productAddonsArrayList;
-    private AddonsAdapter addonsAdapter;
+    private AddonsAdapterRe addonsAdapter;
     private TextView addTocart;
     private ProductDetailList proDetail;
     private String atrribute;
@@ -111,6 +120,9 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
     private ProgressDialog progressDialog;
     private Menu menu;
     private String tag_json_obj = "json_obj_req";
+    private ValueAnimator mAnimator;
+    private LinearLayout headerInStore;
+    private ExpandableRelativeLayout expandInstore;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,9 +153,16 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         proDetailId = (TextView) findViewById(R.id.product_detail_id);
         mPager = (ViewPager) findViewById(R.id.pager);
         indicator = (CirclePageIndicator) findViewById(R.id.indicator);
-        listviewAddon = (ListView) findViewById(R.id.checkbox_listview);
+
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view_adons);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(addonsAdapter);
+
         currencyNmae = (TextView) findViewById(R.id.product_currency_name);
-        setListViewHeightBasedOnChildren(listviewAddon);
+
 
         currencyNmae.setText("USD");
         //quantity spinner
@@ -356,8 +375,8 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
 
 
                         ArrayList<ProductAddons> adonList = new ArrayList<ProductAddons>(list.getAddons());
-                        addonsAdapter = new AddonsAdapter(getApplicationContext(), adonList,price);
-                        listviewAddon.setAdapter(addonsAdapter);
+                        addonsAdapter = new AddonsAdapterRe(getApplicationContext(), adonList,price);
+                        recyclerView.setAdapter(addonsAdapter);
 
 
 
@@ -403,14 +422,13 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         AppController.getInstance().addToRequestQueue(objectRequest, tag_json_obj);
     }
 
-
-
-
     //bottom sheet info
     public void openBottomInfo(View v) {
         View view = getLayoutInflater().inflate(R.layout.bottom_info, null);
 
-        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.window_popup);
+         headerInStore = (LinearLayout) view.findViewById(R.id.header_in_store);
+
+
         fullDiscription = (TextView) view.findViewById(R.id.btm_prod_detial);
         proName = (TextView) view.findViewById(R.id.btm_prod_code);
         sku = (TextView) view.findViewById(R.id.btm_sku_code);
@@ -419,7 +437,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         sku.setText(btmSku);
 
        // TextView share = (TextView)view.findViewById( R.id.btm_share);
-        TextView infoStore = (TextView)view.findViewById( R.id.btm_store_availability);
+       // TextView infoStore = (TextView)view.findViewById( R.id.btm_store_availability);
         TextView compCare = (TextView)view.findViewById( R.id.btm_co_care);
         TextView sizeGuide = (TextView)view.findViewById( R.id.btm_size_guide);
 
@@ -432,23 +450,24 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         dialogBottomInfo.getWindow ().setGravity (Gravity.BOTTOM);
         dialogBottomInfo.show ();
         //share.setOnClickListener(this);
-        infoStore.setOnClickListener(this);
+        //infoStore.setOnClickListener(this);
         compCare.setOnClickListener(this);
         sizeGuide.setOnClickListener(this);
-       // shipping.setOnClickListener(this);
-        //returns.setOnClickListener(this);
 
-
-
+        //Add onPreDrawListener
     }
 
+    public void inStore(View view) {
+        expandInstore = (ExpandableRelativeLayout) view.findViewById(R.id.expandable_cart_item);
+        expandInstore.toggle(); // toggle expand and collapse
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId()){
 
-            case  R.id.btm_store_availability:
-                Toast.makeText(getApplicationContext(),"store click", Toast.LENGTH_LONG).show();
-                break;
+//            case  R.id.btm_store_availability:
+//                Toast.makeText(getApplicationContext(),"store click", Toast.LENGTH_LONG).show();
+//                break;
             case R.id.btm_co_care:
                 Toast.makeText(getApplicationContext(),"composition and care click", Toast.LENGTH_LONG).show();
                 break;
@@ -548,24 +567,5 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    public static void setListViewHeightBasedOnChildren(ListView listView) {
-        ListAdapter listAdapter = listView.getAdapter();
-        if (listAdapter == null) {
-            //pre-condition
-            return;
-        }
-
-        int totalHeight = 0;
-        for (int i = 0; i < listAdapter.getCount(); i++) {
-            View listItem = listAdapter.getView(i, null, listView);
-            listItem.measure(0, 0);
-            totalHeight += listItem.getMeasuredHeight();
-        }
-
-        ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
-        listView.setLayoutParams(params);
-        listView.requestLayout();
-    }
 
 }
