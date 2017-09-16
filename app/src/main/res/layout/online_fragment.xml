@@ -5,61 +5,135 @@
     android:background="#fff"
     android:paddingTop="40dp"
     android:orientation="vertical">
-    <LinearLayout
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:textColor="#000"
-            android:textStyle="bold"
-            android:text="BY EMAIL"/>
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:paddingTop="5dp"
-            android:textColor="#000"
-            android:text="Send an email"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:textColor="#000"
-            android:textStyle="bold"
-            android:layout_marginTop="25dp"
-            android:text="By Phone"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="BY EMAIL"
+                    android:textColor="#000"
+                    android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:paddingTop="5dp"
-            android:textColor="#000"
-            android:text="92-321-1244440"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:paddingTop="5dp"
+                    android:text="Send an email"
+                    android:textColor="#000" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="25dp"
-            android:textColor="#000"
-            android:textStyle="bold"
-            android:text="In Store"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="25dp"
+                    android:text="By Phone"
+                    android:textColor="#000"
+                    android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:paddingTop="5dp"
-            android:textColor="#000"
-            android:text="G4/3,Main Clifton Road \nBlock 09 Clifton,Karachi" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:paddingTop="5dp"
+                    android:text="Call: +92-321-1244440"
+                    android:textColor="#000" />
 
-    </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="25dp"
+                    android:text="Timing"
+                    android:textColor="#000"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:paddingTop="5dp"
+                    android:text="Monday To Saturday from 9:00 Am to 9:00 Pm PST"
+                    android:textColor="#000" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:paddingTop="5dp"
+                    android:text="Sunday from 11:00 Am to 6:00Pm"
+                    android:textColor="#000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="25dp"
+                    android:text="Facebook"
+                    android:textColor="#000"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:paddingTop="5dp"
+                    android:text="Asimjofaofficial"
+                    android:textColor="#000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="25dp"
+                    android:text="Twitter"
+                    android:textColor="#000"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:paddingTop="5dp"
+                    android:text="Asimjofa"
+                    android:textColor="#000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="25dp"
+                    android:text="Instagram"
+                    android:textColor="#000"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:paddingTop="5dp"
+                    android:text="Asimjofa"
+                    android:textColor="#000" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
 
 </LinearLayout>

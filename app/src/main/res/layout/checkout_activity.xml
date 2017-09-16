@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:background="@color/toolbar_color">
 
-            <TextView
+            <com.cresset.asimjofaofficial.customfonts.CustomFont
                 android:layout_width="wrap_content"
                 android:id="@+id/txt_cancel"
                 android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
             android:layout_gravity="center"
             android:background="#f5f5f5"
             >
-            <TextView
+            <com.cresset.asimjofaofficial.customfonts.CustomFont
                 android:id="@+id/shipping_method_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -138,7 +138,7 @@
             >
 
 
-            <TextView
+            <com.cresset.asimjofaofficial.customfonts.CustomFont
                 android:id="@+id/shopping"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -200,7 +200,7 @@
             android:layout_gravity="center"
             android:background="#f5f5f5"
             >
-            <TextView
+            <com.cresset.asimjofaofficial.customfonts.CustomFont
                 android:id="@+id/select_shipping_method"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -236,7 +236,7 @@
             android:background="#fff"
             android:orientation="horizontal">
 
-            <TextView
+            <com.cresset.asimjofaofficial.customfonts.CustomFont
                 android:id="@+id/payment_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -365,7 +365,7 @@
                         android:background="#f5f5f5">
 
                         <TextView
-                            android:id="@+id/textView4"
+                            android:id="@+id/cart_items"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
@@ -505,11 +505,9 @@
 
         <com.cresset.asimjofaofficial.customfonts.MyTextView
             android:id="@+id/finalise_order"
-            android:layout_width="160dp"
-            android:layout_height="40dp"
+            android:layout_width="fill_parent"
+            android:layout_height="45dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="2dp"
             android:layout_gravity="end"
             android:background="#202020"
             android:gravity="center"

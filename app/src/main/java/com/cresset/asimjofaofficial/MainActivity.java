@@ -233,14 +233,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent1);
                 return true;
             case R.id.info:
-                Intent intent2 = new Intent(getApplicationContext(), PrivacyPolicy.class);
+                Intent intent2 = new Intent(getApplicationContext(), PolicyActivity.class);
                 startActivity(intent2);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-
 
 
     public void RegisterGuestUser(){

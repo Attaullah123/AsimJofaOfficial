@@ -45,6 +45,7 @@ public class ContactUs extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_online));
         tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_store));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         final ContactAdapter adapter = new ContactAdapter(getSupportFragmentManager(), tabLayout.getTabCount());

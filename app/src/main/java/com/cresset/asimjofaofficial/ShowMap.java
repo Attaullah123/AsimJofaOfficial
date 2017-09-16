@@ -50,13 +50,12 @@ public class ShowMap extends AppCompatActivity {
 
         float zoomLevel = (float) 18.0;
 
-
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(ASIMJOFA, zoomLevel));
         if (map != null) {
             Marker kiel = map.addMarker(new MarkerOptions().position(ASIMJOFA).icon(BitmapDescriptorFactory
-                    .fromResource(R.drawable.currentlocation_icon)));
-            kiel.setTitle("ASIM JOFA");
-            kiel.setSnippet("Block 9, Clifton, Near Do Talwar، Karachi, Pakistan");
+                    .fromResource(R.drawable.location_icon1)));
+            //kiel.setTitle("ASIM JOFA");
+           // kiel.setSnippet("Block 9, Clifton, Near Do Talwar، Karachi, Pakistan");
             kiel.showInfoWindow();
         }
     }

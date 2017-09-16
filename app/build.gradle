@@ -47,4 +47,6 @@ dependencies {
     compile 'com.weiwangcn.betterspinner:library-material:1.1.0'
 
     compile 'com.github.aakira:expandable-layout:1.6.0@aar'
+    compile 'com.jaredrummler:material-spinner:1.1.0'
+    compile 'com.ruslankishai:unmaterialtabs:0.1a'
 }

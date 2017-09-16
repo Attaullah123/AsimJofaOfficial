@@ -187,16 +187,14 @@
 
         <com.cresset.asimjofaofficial.customfonts.MyTextView
             android:id="@+id/pay"
-            android:layout_width="150dp"
-            android:layout_height="40dp"
+            android:layout_width="fill_parent"
+            android:layout_height="45dp"
             android:background="#202020"
             android:text="NEXT"
             android:textSize="17dp"
             android:textColor="#fff"
-            android:layout_marginLeft="115dp"
             android:gravity="center"
             android:textStyle="bold"
-            android:layout_marginBottom="10dp"
             android:layout_alignParentBottom="true"/>
     </LinearLayout>
 </LinearLayout>

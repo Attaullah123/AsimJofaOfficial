@@ -33,6 +33,10 @@
 
     <string name="currency_change">Currency Change</string>
     <string name="infoText"><br/> + <font color="blue"> Info </font></string>
+
+    //contact screen text
+    <string name="monday_timing">Monday To Saturday from 9:00 Am to 9:00 Pm PST</string>
+    <string name="sunday_timing">Sunday from 11:00 Am to 6:00Pm</string>
     
     //privacy policy content
     <string name="accuracy_text">&#160;We have taken every care in the preparation of the content of this website, in particular to ensure that prices quoted
@@ -41,25 +45,38 @@
         from that shown. The weights, dimensions and capacities given are approximate only. We have made every effort to display as accurately
         as possible the colors of our products that appear on the website. However, as the actual colors you see will depend on your monitor,
         we cannot guarantee that your monitors display of any color will accurately reflect the color of the product on delivery.</string>
-    <string name="order_text">&#160;The acceptation of your order begins with the delivery of an e-mail and subsequent phone call for
-        confirmation of your order contents and relevant details</string>
-    <string name="text_ack">If you have supplied us with your email address, we will notify you by email as earliest as possible to confirm receipt of your order.
-        Our acceptance of your order will take place upon dispatch of the product(s) ordered.</string>
+    <string name="shipping_text">Our shipping timing for orders DELIVERY within PAKISTAN will be 2 weeks or it will be informed on order
+        confirmation, any delays will be informed accordingly, or if not informed it may be because of no communication (Email / Phone) working
+        or defined and for INTERNATIONAL Customers’ delivery time will be 14-20 working days after the payment confirmation (Bank Transfer).
+        There can be unexpected delivery delays due to custom clearance or may be any undefined reason. The delay can further go up to 5-6 working days or more. We are not
+        responsible for any kind of delays nor if that delay is not informed to customer for Domestic or International customers who gave order using
+        any kind of payment method.</string>
+    <string name="delivery_txt">Delivery charges may vary depending on the type of products ordered and the location you select and cannot be refunded. We take no responsibility it
+        there are any additional charges in terms of custom or duties charged by local authorities / Governments (Out of Pakistan). The custom charges have to be borne by the customer.</string>
 
-    <string name="delay_text">We shall try our level best to make deliveries in the most reasonable time possible. But order deliveries may
+    <string name="order_text">We shall try our level best to make deliveries in the most reasonable time possible. But order deliveries may
         be delayed in case of certain unexpected situations; we do not assume
         any responsibility of delayed deliveries, though it does everything in its power to avoid them.</string>
 
-    <string name="text_order_place">1.&#160;International customers can make payment through bank transfer. The order that you place is kept on hold for 36 hours after you receive a confirmation email / call from us about the order and payment details. If you plan to make payment after 36 hours of
-        receiving the confirmation, please confirm it with us if the products that you have ordered are still in stock.\n
-        2.&#160;The Asim Jofa Store(s) takes no guarantee of the products availability that you had ordered, if you are making the payment after
-        the given timeframe. Though our efforts will be to process your initial order, but if any of the ordered products is out of stock
-        you will be offered to choose any other product/design/color
+    <string name="text_order_place">1.&#160;International customers can make payment through bank transfer. The order that you place is kept on hold for 36 hours
+        after you receive a confirmation email / call from us about the order and payment details. If you plan to make payment after 36 hours of receiving
+        the confirmation, please confirm it with us if the products that you have ordered are still in stock.\n
+        2.&#160;The Asim Jofa Store(s) takes no guarantee of the products availability that you had ordered, if you are making the payment after the given timeframe. Though our
+        efforts will be to process your initial order, but if any of the ordered products is out of stock you will be offered to choose any other product/design/color
+        (within the same price range). We will not be held responsible if there are delays in delivery due to out of stock products.
         (within the same price range). We will not be held responsible if there are delays in delivery due to out of stock products.\n
         3.&#160;If we get no confirmation from the customer, the order might be cancelled without any notification.\n
         4.&#160;The International order is processed only after the international customer makes the payment.\n
         5.&#160;The customers within Pakistan can place the order online with confirmation for payment upon delivery.</string>
     //tab text
-    <string name="tab_online">Online</string>
-    <string name="tab_store">Store</string>
+    <string name="exchange_policy">An exchange will only occur in the unlikely situation that we have sent you a defective or incorrect item, and only in the even
+        the purchased goods is unused and undamaged by the customer. All lawn sales, and custom orders are non-exchangeable.</string>
+    <string name="return_policy">All orders are final, and non refundable, but you can exchange in an event where an incorrect item has been mailed to you.
+        We can only exchange the purchased items subject to product and size availability. 
+        Any exchange/returns should be brought to our notice with one-week of the receipt. Any claims made afterwards would not be honored.</string>
+    <string name="refund_policy">All sales are considered final. There are no monetary returns, but can be exchanged for products of equal or higher value.</string>
+
+    <string name="tab_online">OLINE</string>
+    <string name="tab_store">STORE</string>
+
 </resources>

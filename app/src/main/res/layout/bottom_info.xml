@@ -129,7 +129,7 @@
                     android:layout_below="@+id/expandableButton1"
                     android:background="#f4f4f4"
                     android:padding="16dp"
-                    app:ael_duration="300"
+                    app:ael_duration="10"
                     app:ael_expanded="false"
                     app:ael_interpolator="accelerate"
                     app:ael_orientation="vertical">

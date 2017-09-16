@@ -44,7 +44,7 @@ public class Store extends Fragment {
 
         mMarkersHashMap = new HashMap<Marker, MyMarker>();
 
-        mMyMarkersArray.add(new MyMarker("Brasil", "icon1", Double.parseDouble("-28.5971788"), Double.parseDouble("-52.7309824")));
+        mMyMarkersArray.add(new MyMarker("", "", Double.parseDouble("-28.5971788"), Double.parseDouble("-52.7309824")));
 
         setUpMap();
 
@@ -60,7 +60,7 @@ public class Store extends Fragment {
 
                 // Create user marker with custom icon and other options
                 MarkerOptions markerOption = new MarkerOptions().position(new LatLng(myMarker.getmLatitude(), myMarker.getmLongitude()));
-                markerOption.icon(BitmapDescriptorFactory.fromResource(R.drawable.currentlocation_icon));
+                markerOption.icon(BitmapDescriptorFactory.fromResource(R.drawable.location_icon));
 
                 Marker currentMarker = mMap.addMarker(markerOption);
                 mMarkersHashMap.put(currentMarker, myMarker);
@@ -127,14 +127,14 @@ public class Store extends Fragment {
 
             ImageView markerIcon = (ImageView) view.findViewById(R.id.marker_icon);
 
-            TextView markerLabel = (TextView)view.findViewById(R.id.marker_label);
-
-            TextView anotherLabel = (TextView)view.findViewById(R.id.another_label);
+//            TextView markerLabel = (TextView)view.findViewById(R.id.marker_label);
+//
+//            TextView anotherLabel = (TextView)view.findViewById(R.id.another_label);
 
             markerIcon.setImageResource(manageMarkerIcon(myMarker.getmIcon()));
 
-            markerLabel.setText(myMarker.getmLabel());
-            anotherLabel.setText("A custom text");
+//            markerLabel.setText(myMarker.getmLabel());
+//            anotherLabel.setText("A custom text");
 
             return view;
         }

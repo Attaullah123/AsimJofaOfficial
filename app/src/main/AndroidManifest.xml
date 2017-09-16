@@ -67,7 +67,7 @@
         <activity android:name=".ShowFullImage"/>
         <activity android:name=".ShowMap"/>
         <activity android:name=".userinfo.activity.AddressBookActivity"/>
-        <activity android:name=".PrivacyPolicy"/>
+        <activity android:name=".PolicyActivity"/>
 
         <meta-data
             android:name="com.google.android.gms.version"

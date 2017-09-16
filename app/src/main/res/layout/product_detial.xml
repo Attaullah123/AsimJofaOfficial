@@ -183,10 +183,10 @@
                     <Spinner
                         android:id="@+id/size_Spinner"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="35dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:background="@drawable/spinner_background_black_baseline"
+                        android:background="@drawable/spinner_border"
                         android:gravity="start"
                         android:paddingBottom="8dp"
                         android:spinnerMode="dialog" />
@@ -194,29 +194,29 @@
                     <Spinner
                         android:id="@+id/product_quantity_spinner"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="35dp"
                         android:layout_weight="1"
-                        android:background="@drawable/spinner_background_black_baseline"
+                        android:background="@drawable/spinner_border"
                         android:gravity="start"
                         android:paddingBottom="8dp"
-                        android:spinnerMode="dialog" />
+                        android:spinnerMode="dialog"/>
+
                 </LinearLayout>
-
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recycler_view_adons"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scrollbars="none"
-                    />
-
             </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view_adons"
+                android:layout_marginTop="2sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                />
         </LinearLayout>
     </ScrollView>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="22sp"
         android:paddingTop="5dp"
         android:layout_weight="0.5"
         android:elevation="30dp"
@@ -227,14 +227,14 @@
 
         <com.cresset.asimjofaofficial.customfonts.MyTextView
             android:id="@+id/addTocart"
-            android:layout_width="150dp"
+            android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:background="#202020"
             android:gravity="center"
             android:layout_gravity="end"
             android:text="BUY"
             android:textColor="#fff"
-            android:textSize="18dp"
+            android:textSize="20dp"
             android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>

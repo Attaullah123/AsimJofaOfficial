@@ -14,20 +14,20 @@ import com.cresset.asimjofaofficial.R;
  */
 
 public class SizeDialogFragment extends DialogFragment {
-    private Button cancel;
+    //private Button cancel;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.size_dialog_fragment, container, false);
         getDialog().setTitle("Simple Dialog");
 
-        cancel = (Button) rootView.findViewById(R.id.close_button);
-
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dismiss();
-            }
-        });
+//        cancel = (Button) rootView.findViewById(R.id.close_button);
+//
+//        cancel.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                dismiss();
+//            }
+//        });
         return rootView;
     }
 }
