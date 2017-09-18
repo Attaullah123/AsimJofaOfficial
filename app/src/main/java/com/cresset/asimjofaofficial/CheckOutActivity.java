@@ -225,6 +225,7 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
 
     public void OrderPlace(){
         OrderPlaceModel model = new OrderPlaceModel();
+
         model.setProjectId(Config.PROJECTID);
         model.setCustomerId(GlobalClass.userData.getUserID());
         model.setShippingBillingAddressSame(true);

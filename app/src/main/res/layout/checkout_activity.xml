@@ -130,6 +130,41 @@
             android:layout_height="0.2dp"
             android:background="#000"/>
 
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:background="#f5f5f5"
+                    >
+                    <com.cresset.asimjofaofficial.customfonts.CustomFont
+                        android:id="@+id/select_shipping_method"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="8dp"
+                        android:textColor="#747474"
+                        android:textSize="18sp"
+                        android:text="Select shipping method"
+                        />
+                    <TextView
+                        android:id="@+id/shipping_edit"
+                        android:layout_width="20dp"
+                        android:layout_height="21dp"
+                        android:layout_marginRight="15sp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/ic_edit"
+                        />
+                </RelativeLayout>
+
+                <View
+                    android:paddingTop="5dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.2dp"
+                    android:background="#000"/>
         <RelativeLayout
             android:id="@+id/abc"
             android:layout_width="fill_parent"
@@ -187,43 +222,6 @@
 
 
         </RelativeLayout>
-
-        <View
-            android:paddingTop="5dp"
-            android:layout_width="fill_parent"
-            android:layout_height="0.2dp"
-            android:background="#000"/>
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="48dp"
-            android:layout_gravity="center"
-            android:background="#f5f5f5"
-            >
-            <com.cresset.asimjofaofficial.customfonts.CustomFont
-                android:id="@+id/select_shipping_method"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="8dp"
-                android:textColor="#747474"
-                android:textSize="18sp"
-                android:text="Select shipping method"
-                />
-            <TextView
-                android:id="@+id/shipping_edit"
-                android:layout_width="20dp"
-                android:layout_height="21dp"
-                android:layout_marginRight="15sp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/ic_edit"
-                />
-        </RelativeLayout>
-
         <View
             android:paddingTop="5dp"
             android:layout_width="fill_parent"
@@ -294,7 +292,7 @@
             android:layout_height="48dp"
             android:background="#fff"
             >
-            <TextView
+            <com.cresset.asimjofaofficial.customfonts.CustomFont
                 android:id="@+id/product_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

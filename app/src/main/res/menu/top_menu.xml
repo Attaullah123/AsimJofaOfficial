@@ -9,12 +9,6 @@
 
     </item>
 
-    <item
-        android:id="@+id/about"
-        app:showAsAction="never"
-        android:title="@string/title_about">
-
-    </item>
 
     <item
         android:id="@+id/currency_change"

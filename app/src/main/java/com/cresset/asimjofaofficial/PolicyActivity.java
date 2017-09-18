@@ -21,9 +21,6 @@ import com.cresset.asimjofaofficial.adapter.ContactAdapter;
 import com.cresset.asimjofaofficial.adapter.PolicyAdapter;
 import com.cresset.asimjofaofficial.fragments.TermsAndConditions;
 
-/**
- * Created by attaullahkhizar on 9/13/17.
- */
 
 public class PolicyActivity extends FragmentActivity {
     private String[] tabs;
@@ -31,6 +28,7 @@ public class PolicyActivity extends FragmentActivity {
     PolicyAdapter pagerAdapter;
     ViewPager viewPager;
     private TabWidget tabWidget;
+    private ImageView back;
     private HorizontalScrollView horizontalScrollView;
 
     @Override
@@ -43,7 +41,14 @@ public class PolicyActivity extends FragmentActivity {
         tabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
         tabWidget = (TabWidget) findViewById(android.R.id.tabs);
         tabHost.setup(getApplicationContext(), getSupportFragmentManager(), R.id.realTabContent);
+        back = (ImageView) findViewById(R.id.img_back);
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         initializeHorizontalTabs();
         initializeTabs();
         setupTabHost();
@@ -100,12 +105,19 @@ public class PolicyActivity extends FragmentActivity {
     private void scrollToCurrentTab() {
         final int screenWidth = getWindowManager().getDefaultDisplay().getWidth();
         final int leftX = tabWidget.getChildAt(tabHost.getCurrentTab()).getLeft();
+
+//        for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
+//            tabHost.getTabWidget().getChildAt(i).setBackgroundResource(R.drawable.policy_tab_unselected); // unselected
+//        }
+//        tabHost.getTabWidget().getChildAt(tabHost.getCurrentTab()).setBackgroundResource(R.drawable.policy_tab_selected); // selected
+
+
         int newX = 0;
 
 //        for(int i=0;i<tabHost.getTabWidget().getChildCount();i++){
 //            tabHost.getTabWidget().getChildAt(i).setBackgroundColor(Color.parseColor("#7392B5"));
 //        }
-//        tabHost.getTabWidget().getChildAt(tabHost.getCurrentTab()).setBackgroundColor(Color.parseColor("#FFFFFF"));
+        //tabHost.getTabWidget().getChildAt(tabHost.getCurrentTab()).setBackgroundColor(Color.parseColor("#FFFFFF"));
 
         newX = leftX + (tabWidget.getChildAt(tabHost.getCurrentTab()).getWidth() / 2) - (screenWidth / 2);
         if (newX < 0) {

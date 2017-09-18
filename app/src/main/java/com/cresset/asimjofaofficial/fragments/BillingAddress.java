@@ -95,7 +95,7 @@ public class BillingAddress extends android.support.v4.app.Fragment{
                     getActivity().finish();
                 }else {
                     Toast.makeText(getContext(),
-                            "Please enter your remaining fields!", Toast.LENGTH_LONG)
+                            "Please enter the required fields!", Toast.LENGTH_LONG)
                             .show();
                 }
 

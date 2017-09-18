@@ -98,17 +98,16 @@ public class RegistrationActivity extends AppCompatActivity {
                 String email = emailAddress.getText().toString().trim();
                 String password = etpassword.getText().toString().trim();
                 String confirmPas = confirmPassword.getText().toString().trim();
-                String day = etDay.getText().toString().trim();
-                String month = etMonth.getText().toString().trim();
-                String year = etYear.getText().toString().trim();
+//                String day = etDay.getText().toString().trim();
+//                String month = etMonth.getText().toString().trim();
+//                String year = etYear.getText().toString().trim();
 
-                if (!fname.isEmpty() && !lname.isEmpty() && !email.isEmpty() && !password.isEmpty() && !confirmPas.isEmpty() && !day.isEmpty() && !month.isEmpty()
-                        && !year.isEmpty()){
-                    registerUser(fname, lname, email, password, confirmPas, day, month, year);
+                if (!fname.isEmpty() && !lname.isEmpty() && !email.isEmpty() && !password.isEmpty() && !confirmPas.isEmpty() ){
+                    registerUser(fname, lname, email, password, confirmPas);
 
                 }else {
                     Toast.makeText(getApplicationContext(),
-                            "Please enter your details!", Toast.LENGTH_LONG)
+                            "Please enter the required fields!", Toast.LENGTH_LONG)
                             .show();
                 }
 
@@ -117,7 +116,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     }
 
-    public void registerUser(final String fname, final String lname, final String email, final String password,final String confirmPassword, String day, String month,String year){
+    public void registerUser(final String fname, final String lname, final String email, final String password,final String confirmPassword){
         progressDialog.show();
         HashMap<String,String> params = new HashMap<>();
         params.put("ProjectId",Config.PROJECTID);
@@ -125,9 +124,9 @@ public class RegistrationActivity extends AppCompatActivity {
         params.put("LastName", lname);
         params.put("Email", email);
         params.put("Pasword", password);
-        params.put("Day", day);
-        params.put("month", month);
-        params.put("year", year);
+//        params.put("Day", day);
+//        params.put("month", month);
+//        params.put("year", year);
 
         WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
         String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());

@@ -14,23 +14,23 @@
         app:titleTextColor="@android:color/white"
         android:background="@color/toolbar_color">
 
-        <ImageView
-            android:contentDescription="@string/logo"
-            android:id="@+id/img_cross"
-            android:layout_height="20dp"
-            android:layout_width="20dp"
-            android:src="@drawable/ic_close2"/>
-        <TextView
-            android:id="@+id/toolbar_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="@string/profile_toolbar_title"
-            android:textColor="#000"
-            android:textSize="22sp"
-            android:layout_gravity="center"
-            />
-    </android.support.v7.widget.Toolbar>
+    <ImageView
+        android:contentDescription="@string/logo"
+        android:id="@+id/img_cross"
+        android:layout_height="20dp"
+        android:layout_width="20dp"
+        android:src="@drawable/ic_close2"/>
+    <TextView
+        android:id="@+id/toolbar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="@string/profile_toolbar_title"
+        android:textColor="#000"
+        android:textSize="22sp"
+        android:layout_gravity="center"
+        />
+</android.support.v7.widget.Toolbar>
     <View
         android:layout_width="fill_parent"
         android:layout_height="0.2dp"
@@ -43,6 +43,16 @@
         android:textColor="#000"
         android:textStyle="bold"
         android:textSize="20dp"/>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fitsSystemWindows="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -102,12 +112,15 @@
                 />
 
             <TextView
+                android:id="@+id/forget_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:paddingTop="18dp"
+                android:layout_marginTop="18dp"
                 android:text="Have your forgotten password?"
                 android:textColor="#9b9696" />
+
+
         </LinearLayout>
 
 
@@ -144,7 +157,11 @@
                 android:text="Create account"
                 android:layout_gravity="center"/>
 
-    </LinearLayout>
+
+        </LinearLayout>
+
     </RelativeLayout>
 
+            </LinearLayout>
+    </ScrollView>
 </LinearLayout>

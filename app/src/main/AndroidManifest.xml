@@ -68,6 +68,8 @@
         <activity android:name=".ShowMap"/>
         <activity android:name=".userinfo.activity.AddressBookActivity"/>
         <activity android:name=".PolicyActivity"/>
+        <activity android:name=".ForgetPassword"/>
+        <activity android:name=".userinfo.activity.ChangePassword"/>
 
         <meta-data
             android:name="com.google.android.gms.version"

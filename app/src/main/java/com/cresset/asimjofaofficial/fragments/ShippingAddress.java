@@ -105,7 +105,7 @@ public class ShippingAddress extends android.support.v4.app.Fragment{
 
 
                 }else {
-                    Toast.makeText(getContext(), "Please enter your remaining fields!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Please enter the required fields!", Toast.LENGTH_LONG).show();
                 }
 
 

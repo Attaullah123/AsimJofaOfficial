@@ -7,7 +7,7 @@
     <string name="title_cart">Cart</string>
     <string name="logo">logo</string>
     <string name="activity_title_cart">Cart</string>
-    <string name="title_info">info</string>
+    <string name="title_info">Privacy Policy</string>
     <string name="title_about">about</string>
     <string name="profile_toolbar_title">Asim Jofa</string>
 
@@ -76,6 +76,8 @@
         Any exchange/returns should be brought to our notice with one-week of the receipt. Any claims made afterwards would not be honored.</string>
     <string name="refund_policy">All sales are considered final. There are no monetary returns, but can be exchanged for products of equal or higher value.</string>
 
+    <string name="forget_text">If you have forgotten your password, enter your email address and we will send you instructions to retrieve it. </string>
+    <string name="change_password_text">If you want to change your password, enter your password and new password. </string>
     <string name="tab_online">OLINE</string>
     <string name="tab_store">STORE</string>
 

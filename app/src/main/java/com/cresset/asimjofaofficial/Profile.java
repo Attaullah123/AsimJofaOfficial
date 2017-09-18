@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -50,6 +51,7 @@ public class Profile extends AppCompatActivity {
     private ImageView back;
     //private ImageView img_cross;
     private UserModel userData;
+    private TextView forgetPassword;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sharedPreferencesEditor;
     private Gson gson;
@@ -74,11 +76,21 @@ public class Profile extends AppCompatActivity {
         back = (ImageView) findViewById(R.id.img_cross);
         et_email = (EditText) findViewById(R.id.login_email);
         et_password = (EditText) findViewById(R.id.login_password);
+        forgetPassword = (TextView) findViewById(R.id.forget_password);
 
         // Progress dialog
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         userData = GlobalClass.userData;
+
+        //go to forget activity
+        forgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ForgetPassword.class);
+                startActivity(intent);
+            }
+        });
 
         if (userData!= null){
 

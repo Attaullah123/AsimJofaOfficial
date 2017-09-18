@@ -61,10 +61,8 @@ public class HomeActivity extends Fragment {
     private ExpandableListView expandList;
     private ArrayList<CategoryList> categoryLists;
     private android.support.v7.widget.SearchView searchView;
-   //private EditText searchView;
-    ArrayList<ChildCategoryList> parentList;
+    //private EditText searchView;
     private TextView searchProduct;
-    private int lastExpandedPosition = -1;
 
     @Nullable
     @Override
@@ -110,7 +108,7 @@ public class HomeActivity extends Fragment {
         Map<String, String> params = new HashMap<String, String>();
         params.put("ProjectId", Config.PROJECTID );
 
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, Config.URL_CATEGORY_LIST,
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, Config.URL_IMAGE_INDEX,
                 new JSONObject(params), new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -119,53 +117,22 @@ public class HomeActivity extends Fragment {
 
                 Gson gson = new Gson();
 
-                final CategoryModel categoryModel = gson.fromJson(response.toString(), new TypeToken<CategoryModel>(){}.getType());
+                CategoryIndexImageModel categoryModel = gson.fromJson(response.toString(), new TypeToken<CategoryIndexImageModel>(){}.getType());
 
-                final ArrayList<CategoryList> categoryLists = new ArrayList<CategoryList>(categoryModel.getParentlist());
+                final ArrayList<IndexImage> categoryLists = new ArrayList<IndexImage>(categoryModel.getIndexImagesList());
 
                 indexAdapter = new IndexAdapter(getContext(), categoryLists);
                 expandList.setAdapter(indexAdapter);
-                //adapter.setChoiceMode(AnswersAdabter.CHOICE_MODE_SINGLE_PER_GROUP);
 
-//                expandList.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-//                        @Override
-//                        public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-//                            Intent intent = new Intent(getContext(), ProductListActivity.class);
-//                            intent.putExtra("categoryId", categoryLists.get(groupPosition).getId());
-//                            startActivity(intent);
-//                            return true;
-//                        }
-//                    });
 
-                // Handle the click when the user clicks an any child
-                expandList.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-
+                expandList.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
                     @Override
-                    public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-                        //parentList = new ArrayList<ChildCategoryList>();
-                        indexAdapter.notifyDataSetChanged();
+                    public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
                         Intent intent = new Intent(getContext(), ProductListActivity.class);
-                        intent.putExtra("categoryId", categoryLists.get(groupPosition).getId());
-                        intent.putExtra("categoryName",categoryLists.get(groupPosition).getName());
-                        //intent.putExtra("categoryName",categoryLists.get(groupPosition).getName());
+                        intent.putExtra("categoryId", categoryLists.get(groupPosition).getCategoryId());
+                        intent.putExtra("categoryName",categoryLists.get(groupPosition).getCategoryName());
                         startActivity(intent);
-                        return false;
-                    }
-                });
-
-                expandList.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
-                    @Override
-                    public void onGroupExpand(int groupPosition) {
-                        if (lastExpandedPosition != -1 && groupPosition != lastExpandedPosition) {
-                            expandList.collapseGroup(lastExpandedPosition);
-
-                        }
-
-                        Intent intent = new Intent(getContext(), ProductListActivity.class);
-                        intent.putExtra("categoryId", categoryLists.get(groupPosition).getId());
-                        intent.putExtra("categoryName",categoryLists.get(groupPosition).getName());
-                        startActivity(intent);
-                        lastExpandedPosition = groupPosition;
+                        return true;
                     }
                 });
                 progressBar.setVisibility(View.GONE);
@@ -230,15 +197,14 @@ public class HomeActivity extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-               // Toast.makeText(getContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
                 Log.d("Error",error.toString());
                 progressBar.setVisibility(View.GONE);
 
             }
         });
         //call volley
-       // AppController.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
-        CustomVolleyRequest.getInstance(getContext()).getRequestQueue().add(jsonObjReq);
+        AppController.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
     }
 
     public void runTask () {

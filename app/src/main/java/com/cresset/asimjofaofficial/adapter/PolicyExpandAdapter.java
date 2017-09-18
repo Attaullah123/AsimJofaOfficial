@@ -15,9 +15,6 @@ import com.cresset.asimjofaofficial.customfonts.CustomFont;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * Created by attaullahkhizar on 9/14/17.
- */
 
 public class PolicyExpandAdapter extends BaseExpandableListAdapter {
 
@@ -89,8 +86,8 @@ public class PolicyExpandAdapter extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.policy_list_group, null);
         }
 
-        CheckedTextView lblListHeader = (CheckedTextView) convertView.findViewById(R.id.lblListHeader);
-        lblListHeader.setChecked(isExpanded);
+        TextView lblListHeader = (TextView) convertView.findViewById(R.id.lblListHeader);
+        //lblListHeader.setChecked(isExpanded);
         lblListHeader.setText(headerTitle);
 
         return convertView;

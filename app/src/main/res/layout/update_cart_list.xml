@@ -39,9 +39,8 @@
                 android:id="@+id/product_name"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-light"
                 android:paddingTop="10dp"
-                android:textColor="#000"
+                android:textColor="#515151"
                 android:textSize="15sp"
                 tools:text="Product name" />
 
@@ -56,6 +55,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
+                    android:textColor="#515151"
                     tools:text="SKu:" />
 
                 <TextView
@@ -64,6 +64,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
                     android:textSize="12sp"
+                    android:textColor="#515151"
                     tools:text="SKu" />
             </LinearLayout>
 
@@ -72,7 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_gravity="center">
+                android:layout_gravity="end">
 
                 <Button
                     android:id="@+id/quantity_decrement"
@@ -87,7 +88,6 @@
                     android:id="@+id/cart_product_quantity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:textColor="#000"
                     android:layout_gravity="center"
                     android:textSize="16sp"
@@ -110,8 +110,8 @@
                 android:layout_height="wrap_content"
                 android:maxLines="2"
                 android:paddingTop="6dp"
-                android:textColor="#000"
-                android:textSize="15sp"
+                android:textColor="#515151"
+                android:textSize="17sp"
                 tools:text="M" />
 
             <LinearLayout

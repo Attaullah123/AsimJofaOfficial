@@ -21,6 +21,7 @@ import com.android.volley.toolbox.Volley;
 import com.cresset.asimjofaofficial.models.CustomerDetailResponse;
 import com.cresset.asimjofaofficial.models.UserModel;
 import com.cresset.asimjofaofficial.userinfo.activity.AddressBookActivity;
+import com.cresset.asimjofaofficial.userinfo.activity.ChangePassword;
 import com.cresset.asimjofaofficial.userinfo.activity.OrderHistory;
 import com.cresset.asimjofaofficial.userinfo.activity.UserInfoActivity;
 import com.cresset.asimjofaofficial.utilities.Config;
@@ -37,7 +38,7 @@ import java.util.Map;
 public class MyAccount extends AppCompatActivity {
 
     private TextView txName,txEmail,userOrderInfo,userAccInfo,contactUs,logout;
-    private LinearLayout lyOrderHistory,lyUserInfo,lyAddressBook,lyContactUs;
+    private LinearLayout lyOrderHistory,lyUserInfo,lyAddressBook,lyContactUs,lyChnagePassword;
 
     private UserModel globalUserData;
     private ImageView back;
@@ -56,6 +57,7 @@ public class MyAccount extends AppCompatActivity {
         lyUserInfo = (LinearLayout) findViewById(R.id.ly_personal_details);
         lyAddressBook = (LinearLayout) findViewById(R.id.ly_address_book);
         lyContactUs = (LinearLayout) findViewById(R.id.ly_contact_us);
+        lyChnagePassword = (LinearLayout) findViewById(R.id.ly_change_password);
 
         logout = (TextView) findViewById(R.id.log_out);
         back = (ImageView) findViewById(R.id.img_back);
@@ -97,6 +99,14 @@ public class MyAccount extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ContactUs.class);
+                startActivity(intent);
+            }
+        });
+
+        lyChnagePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ChangePassword.class);
                 startActivity(intent);
             }
         });
