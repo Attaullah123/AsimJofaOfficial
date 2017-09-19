@@ -55,7 +55,7 @@ import java.util.List;
 
 public class CheckOutActivity extends AppCompatActivity implements View.OnClickListener{
     private TextView selectShippingandBillingAdd,selectShippingMethod, selectPaymentMethod,selectShippingMethodName, paymentName,
-            totalPrice,total_curruncy_name,totalProductPrice,total_product_curruncy_name,shippingPrice,shippingPrice_currency;
+            totalPrice,total_curruncy_name,totalProductPrice,total_product_curruncy_name,shippingPrice,shippingPrice_currency,cartItem;
     private TextView finaliseOrder;
     private CartModel cartModel;
     private ExpandableRelativeLayout expandableAccuracy;
@@ -81,6 +81,8 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
         selectShippingMethodName = (TextView) findViewById(R.id.select_shipping_method);
         shippingPrice = (TextView) findViewById(R.id.country_shipping_price);
         shippingPrice_currency = (TextView) findViewById(R.id.country_shipping_currency);
+
+        cartItem = (TextView) findViewById(R.id.cart_items);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -312,7 +314,7 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
                         }
 
                         totalProductPrice.setText(Float.toString(total));
-
+                        cartItem.setText(Integer.toString(GlobalClass.CartCount)+ " " + "items");
                         // renew again
                         total = cartModel.getTotalDetail().getSubTotalAmount();
                         if(GlobalClass.shippingMethod != null){

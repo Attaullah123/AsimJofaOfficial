@@ -136,6 +136,7 @@ public class BillingAddress extends android.support.v4.app.Fragment{
 
         billingCountrySpinnerAdapter = new BillingCountrySpinnerAdapter(getContext(), android.R.layout.simple_spinner_item, contList );
         bCountry.setAdapter(billingCountrySpinnerAdapter);
+        bCountry.setPrompt("Select Country");
 
         if (GlobalClass.shippingModel!= null){
             if (!GlobalClass.shippingModel.getCountryId().equals(null))
@@ -173,7 +174,7 @@ public class BillingAddress extends android.support.v4.app.Fragment{
     public void StateList(final String countryId){
         Log.d("stateModel", countryId.toString());
 
-        Toast.makeText(getContext(),"selected country : " +countryId, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(),"selected country : " +countryId, Toast.LENGTH_SHORT).show();
         HashMap<String, String> params = new HashMap<>();
         params.put("ProjectId", Config.PROJECTID);
         params.put("CountryId", countryId);
@@ -205,6 +206,7 @@ public class BillingAddress extends android.support.v4.app.Fragment{
         ArrayList<StateList> statList = new ArrayList<StateList>(stateList);
         billingStateSpinnerAdapter = new BillingStateSpinnerAdapter(getContext(), android.R.layout.simple_spinner_item, statList);
         bProvince.setAdapter(billingStateSpinnerAdapter);
+        bProvince.setPrompt("Select State");
 
         if (GlobalClass.shippingModel!= null){
             if (!GlobalClass.shippingModel.getCountryId().equals(null))

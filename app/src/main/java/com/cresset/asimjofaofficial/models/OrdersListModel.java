@@ -9,7 +9,7 @@ public class OrdersListModel {
     public String OrderStatus;
     public String PaymentStatus;
     public String ShippingStatus;
-    public String OrderTotal;
+    public float OrderTotal;
     public String OrderDate;
 
     public int getId() {
@@ -44,11 +44,11 @@ public class OrdersListModel {
         ShippingStatus = shippingStatus;
     }
 
-    public String getOrderTotal() {
+    public float getOrderTotal() {
         return OrderTotal;
     }
 
-    public void setOrderTotal(String orderTotal) {
+    public void setOrderTotal(float orderTotal) {
         OrderTotal = orderTotal;
     }
 

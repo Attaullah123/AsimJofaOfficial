@@ -41,7 +41,7 @@ public class PolicyActivity extends FragmentActivity {
         tabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
         tabWidget = (TabWidget) findViewById(android.R.id.tabs);
         tabHost.setup(getApplicationContext(), getSupportFragmentManager(), R.id.realTabContent);
-        back = (ImageView) findViewById(R.id.img_back);
+        back = (ImageView) findViewById(R.id.img_cross);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override

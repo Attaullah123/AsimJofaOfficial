@@ -260,9 +260,16 @@ public class ProductListActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), GetCart.class);
                 startActivity(intent);
                 return true;
-
+            case R.id.currency_change:
+                Intent intent1 = new Intent(getApplicationContext(), CurrencyChange.class);
+                startActivity(intent1);
+                return true;
+            case R.id.info:
+                Intent intent2 = new Intent(getApplicationContext(), PolicyActivity.class);
+                startActivity(intent2);
+                return true;
             default:
-            return super.onOptionsItemSelected(item);
+                return super.onOptionsItemSelected(item);
         }
 
 

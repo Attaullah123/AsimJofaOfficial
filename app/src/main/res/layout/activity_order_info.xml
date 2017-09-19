@@ -23,7 +23,8 @@
             android:layout_height="wrap_content"
             android:text="Order History"
             android:textColor="#000"
-            style="@style/Base.TextAppearance.AppCompat.Large"
+            android:textStyle="bold"
+            android:textSize="22sp"
             android:layout_gravity="center"/>
 
     </android.support.v7.widget.Toolbar>

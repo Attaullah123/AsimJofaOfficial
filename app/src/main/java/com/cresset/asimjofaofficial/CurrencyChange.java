@@ -1,6 +1,7 @@
 package com.cresset.asimjofaofficial;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -54,11 +55,20 @@ public class CurrencyChange extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.currency_change);
 
-        back = (ImageView) findViewById(R.id.img_cross);
+        back = (ImageView) findViewById(R.id.img_back);
         listView = (ListView) findViewById(R.id.currency_listview);
 
         //listView.setAdapter(currencyAdapter);
-
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+            }
+        });
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading.....");
         progressDialog.setCancelable(false);

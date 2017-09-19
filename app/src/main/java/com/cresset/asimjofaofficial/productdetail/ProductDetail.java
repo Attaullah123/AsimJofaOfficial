@@ -48,9 +48,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.cresset.asimjofaofficial.CurrencyChange;
 import com.cresset.asimjofaofficial.GetCart;
 import com.cresset.asimjofaofficial.HomeActivity;
 import com.cresset.asimjofaofficial.MainActivity;
+import com.cresset.asimjofaofficial.PolicyActivity;
+import com.cresset.asimjofaofficial.PrivacyPolicyNew;
 import com.cresset.asimjofaofficial.R;
 import com.cresset.asimjofaofficial.adapter.AddonsAdapter;
 import com.cresset.asimjofaofficial.adapter.AddonsAdapterRe;
@@ -67,6 +70,7 @@ import com.cresset.asimjofaofficial.models.ProductListModel;
 import com.cresset.asimjofaofficial.models.QuantityModel;
 import com.cresset.asimjofaofficial.recylerview.RecyclerDivider;
 import com.cresset.asimjofaofficial.utilities.Config;
+import com.cresset.asimjofaofficial.utilities.CustomVolleyRequest;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
 import com.cresset.asimjofaofficial.volley.AppController;
 import com.cresset.asimjofaofficial.volley.SizeDialogFragment;
@@ -431,7 +435,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
 
         });
 
-        AppController.getInstance().addToRequestQueue(objectRequest, tag_json_obj);
+        CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
     }
 
     //bottom sheet info
@@ -563,7 +567,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                 Log.d("Error", error.toString());
             }
         });
-        AppController.getInstance().addToRequestQueue(objectRequest, tag_json_obj);
+        CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
     }
 
     @Override
@@ -572,6 +576,14 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
             case R.id.cart:
                 Intent intent = new Intent(getApplicationContext(), GetCart.class);
                 startActivity(intent);
+                return true;
+            case R.id.currency_change:
+                Intent intent1 = new Intent(getApplicationContext(), CurrencyChange.class);
+                startActivity(intent1);
+                return true;
+            case R.id.info:
+                Intent intent2 = new Intent(getApplicationContext(), PolicyActivity.class);
+                startActivity(intent2);
                 return true;
             default:
 

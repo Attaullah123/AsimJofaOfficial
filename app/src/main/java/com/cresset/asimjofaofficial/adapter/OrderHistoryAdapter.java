@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.cresset.asimjofaofficial.R;
 import com.cresset.asimjofaofficial.models.CurrencyListModel;
 import com.cresset.asimjofaofficial.models.OrdersListModel;
+import com.cresset.asimjofaofficial.utilities.GlobalClass;
 
 import java.util.ArrayList;
 
@@ -23,7 +24,7 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
 //    private ImageLoader imageLoader;
 
     public class MyViewHolder extends RecyclerView.ViewHolder  {
-        public TextView orderNo,orderStatus,orderDate,orderTotal;
+        public TextView orderNo,orderStatus,orderDate,orderTotal,orderCurrencyName;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -31,7 +32,9 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
             orderStatus = (TextView) itemView.findViewById(R.id.order_status);
             orderDate = (TextView) itemView.findViewById(R.id.order_date);
             orderTotal = (TextView) itemView.findViewById(R.id.order_total);
+            orderCurrencyName = (TextView) itemView.findViewById(R.id.order_currency);
             //overflow = (ImageView) view.findViewById(R.id.overflow);
+
         }
 
     }
@@ -53,7 +56,18 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
         holder.orderNo.setText(String.valueOf(orderList.getId()));
         holder.orderStatus.setText(orderList.getOrderStatus());
         holder.orderDate.setText(orderList.getOrderDate());
-        holder.orderTotal.setText(orderList.getOrderTotal());
+
+        float productPrice = orderList.getOrderTotal();
+        //change currency
+
+        if(GlobalClass.currency != null){
+            productPrice = productPrice * GlobalClass.currency.getRate();
+            holder.orderCurrencyName.setText(GlobalClass.currency.CurrencyCode);
+        }else{
+            holder.orderCurrencyName.setText("USD");
+        }
+
+        holder.orderTotal.setText(Float.toString(productPrice));
 
     }
 

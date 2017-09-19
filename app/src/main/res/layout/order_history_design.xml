@@ -44,7 +44,7 @@
     <View
         android:paddingTop="5dp"
         android:layout_width="fill_parent"
-        android:layout_height="0.2dp"
+        android:layout_height="0.4dp"
         android:background="#333030"/>
 
     <LinearLayout

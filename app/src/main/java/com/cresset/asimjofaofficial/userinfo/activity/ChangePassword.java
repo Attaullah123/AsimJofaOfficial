@@ -21,6 +21,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.cresset.asimjofaofficial.Profile;
 import com.cresset.asimjofaofficial.R;
+import com.cresset.asimjofaofficial.models.ChnagePasswordModel;
 import com.cresset.asimjofaofficial.models.GuestOrLoginResponseModel;
 import com.cresset.asimjofaofficial.models.UserModel;
 import com.cresset.asimjofaofficial.utilities.Config;
@@ -95,14 +96,13 @@ public class ChangePassword extends AppCompatActivity {
         Map<String, String> params = new HashMap<String, String>();
         params.put("ProjectId", Config.PROJECTID);
         params.put("Email", email);
-        params.put("Password", password);
-        params.put("Password", newPassword);
-        String tag_string_req = "req_login";
+        params.put("OldPassword", password);
+        params.put("NewPassword", newPassword);
 
         pDialog.setMessage("Logging in ...");
         showDialog();
 
-        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_LOGIN_USER, new JSONObject(params),
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_UPDATE_PASSWORD, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -112,22 +112,20 @@ public class ChangePassword extends AppCompatActivity {
 
                         try {
                             Gson gson = new Gson();
-                            GuestOrLoginResponseModel model = gson.fromJson(response.toString(), new TypeToken<GuestOrLoginResponseModel>(){}.getType());
+                            ChnagePasswordModel model = gson.fromJson(response.toString(), new TypeToken<ChnagePasswordModel>(){}.getType());
 
-                            //Toast.makeText(getApplicationContext(), "Customer id:" + model.getCustomerId() , Toast.LENGTH_SHORT).show();
-
-                            if (model.getCustomerId() != null && model.getCustomerId() != "") {
-
-                                UserModel userData = new UserModel();
-                                userData.setUserID(model.getCustomerId());
-                                userData.setGuest(false);
-                                userData.setEmail(email);
-
-                            }else {
-                                Toast.makeText(getApplicationContext(), "Wrong Credentials", Toast.LENGTH_SHORT).show();
-                            }
-
-
+                            model.setEmail(email);
+                            model.setOldPassword(password);
+                            model.setNewPassword(newPassword);
+//                            if (model.getCustomerId() != null && model.getCustomerId() != "") {
+//
+//                                UserModel userData = new UserModel();
+//                                userData.setUserID(model.getCustomerId());
+//                                userData.setGuest(false);
+//                                userData.setEmail(email);
+//                            }else {
+//                                Toast.makeText(getApplicationContext(), "Wrong Credentials", Toast.LENGTH_SHORT).show();
+//                            }
 
                         } catch (Exception e) {
                             // JSON error

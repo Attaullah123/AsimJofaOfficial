@@ -27,6 +27,7 @@ import com.cresset.asimjofaofficial.models.OrdersListModel;
 import com.cresset.asimjofaofficial.models.ProductListModel;
 import com.cresset.asimjofaofficial.recylerview.RecyclerDivider;
 import com.cresset.asimjofaofficial.utilities.Config;
+import com.cresset.asimjofaofficial.utilities.GlobalClass;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -84,7 +85,7 @@ public class OrderHistory extends AppCompatActivity {
         //creating json array list
         Map<String, String> params = new HashMap<String, String>();
         params.put("ProjectId", Config.PROJECTID);
-        params.put("CustomerId","1");
+        params.put("CustomerId", GlobalClass.userData.getUserID());
 
         JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_ORDER_HISTORY, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
