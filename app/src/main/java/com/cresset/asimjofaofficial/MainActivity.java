@@ -233,13 +233,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent1);
                 return true;
             case R.id.info:
-                Intent intent2 = new Intent(getApplicationContext(), PolicyActivity.class);
+                Intent intent2 = new Intent(getApplicationContext(), PrivacyPolicy.class);
                 startActivity(intent2);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+
 
 
     public void RegisterGuestUser(){
@@ -276,7 +277,7 @@ public class MainActivity extends AppCompatActivity {
                                 //show(Config.GuestPreference + ": " + json);
                                 sharedPreferencesEditor.commit();
 
-                               // show("Guest user created!");
+                                // show("Guest user created!");
                             }
 
                         }catch (Exception e){
@@ -301,7 +302,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("Error", error.toString());
             }
         });
-       // AppController.getInstance().addToRequestQueue(objectRequest, tag_json_obj);
+        // AppController.getInstance().addToRequestQueue(objectRequest, tag_json_obj);
 
         CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
     }
@@ -319,7 +320,7 @@ public class MainActivity extends AppCompatActivity {
                         Gson gson = new Gson();
                         CurrencyModel currencyModel = gson.fromJson(response.toString(), new TypeToken<CurrencyModel>(){}.getType());
                         for (CurrencyListModel model:currencyModel.getCurrencyList()
-                             ) {
+                                ) {
                             if(model.isSelected()){
                                 String json = gson.toJson(model);
                                 sharedPreferencesEditor.putString(Config.CurrencyPreference,json);
@@ -372,7 +373,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.navigation_home:
-                        //detail = new HomeActivity();
+                //detail = new HomeActivity();
                 Fragment homeFragment = new HomeActivity();
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.frame_content, homeFragment).commit();
@@ -387,7 +388,7 @@ public class MainActivity extends AppCompatActivity {
                         detail = new LoginDialogFragment();
                         detail.setArguments(arg);*/
 
-                        break;
+                break;
             case R.id.navigation_store:
                 // Action to perform when Account Menu item is selected.
 

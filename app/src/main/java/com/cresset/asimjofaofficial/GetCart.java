@@ -160,9 +160,17 @@ public class GetCart extends AppCompatActivity {
                             //totalP = (cartModelData.getTotalDetail().getSubTotalAmount());
                             subTo = (cartModelData.getTotalDetail().getSubTotalAmount());
 
-
+                            //set currency
+                            if(GlobalClass.currency != null){
+                                subTo = subTo * GlobalClass.currency.getRate();
+                                currencyName.setText(GlobalClass.currency.CurrencyCode);
+                            }
+                            else{
+                                currencyName.setText("USD");
+                            }
                             //totalPrice.setText(Float.toString(totalP));
                             subTotal.setText(Float.toString(subTo));
+
 
                             ArrayList<CartModelItems> cartItems = new ArrayList<>(cartModelData.getCartItems());
 

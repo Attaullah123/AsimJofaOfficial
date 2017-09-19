@@ -61,22 +61,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             thumbnailImage = (ImageView) itemView.findViewById(R.id.cart_thumbnail);
 
             proCurrencyName.setText("USD");
-//            deleteItem.setOnClickListener((View.OnClickListener) this);
-            //cardView = (CardView) itemView.findViewById(R.id.card_view);
-
-//            deleteItem.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    int position = getAdapterPosition();
-//                    //Context context = v.getContext();
-//                    CartModelItems cartModel = cartModelItemses.get(position);
-//                    UpdateCart(cartModel,position);
-//                }
-//            });
 
         }
     }
-        
+
     public CartAdapter(Context mContext, ArrayList<CartModelItems> cartList,TextView totalPrice,TextView subTotal) {
         this.mContext = mContext;
         this.cartModelItemses = cartList;
@@ -120,6 +108,15 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 
 
         holder.proSize.setText(Html.fromHtml(strAttributes));
+
+        if(GlobalClass.currency != null){
+            productPrice = productPrice * GlobalClass.currency.getRate();
+            holder.proCurrencyName.setText(GlobalClass.currency.CurrencyCode);
+        }
+        else{
+            holder.proCurrencyName.setText("USD");
+        }
+
         holder.proPrice.setText(Float.toString(productPrice));
 
         Glide.with(mContext).load(cartListModel.getImageLink()).into(holder.thumbnailImage);

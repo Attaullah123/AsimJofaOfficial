@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.cresset.asimjofaofficial.R;
 import com.cresset.asimjofaofficial.models.ProductAddons;
+import com.cresset.asimjofaofficial.utilities.GlobalClass;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,7 @@ public class AddonsAdapterRe extends RecyclerView.Adapter<AddonsAdapterRe.ViewHo
     private ArrayList<ProductAddons> productAddons;
     private Context mContext;
     private TextView productPrice;
+    private float price;
     public static ArrayList<ProductAddons> selectedProductAddons;
 
 
@@ -41,6 +43,7 @@ public class AddonsAdapterRe extends RecyclerView.Adapter<AddonsAdapterRe.ViewHo
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.bindData(productAddons.get(position));
         selectedProductAddons = new ArrayList<ProductAddons>();
+        GlobalClass.selectedProductAddons = new ArrayList<ProductAddons>();
         //in some cases, it will prevent unwanted situations
         //holder.addonCheckbox.setOnCheckedChangeListener(null);
 
@@ -50,26 +53,27 @@ public class AddonsAdapterRe extends RecyclerView.Adapter<AddonsAdapterRe.ViewHo
         holder.addonCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                float price = Float.parseFloat(productPrice.getText().toString());
+                price = Float.parseFloat(productPrice.getText().toString());
                 ProductAddons checkAddons = productAddons.get(position);
 
                 float addonPrice = Float.parseFloat(checkAddons.getAddonsPrice().toString());
 
                 if (buttonView.isChecked()) {
                     selectedProductAddons.add(checkAddons);
-                    productPrice.setText(Float.toString(addonPrice + price));
-                    checkAddons.setSelected(true);
-
+                    GlobalClass.selectedProductAddons.add(checkAddons);
+                        productPrice.setText(Float.toString(addonPrice + price));
+                        checkAddons.setSelected(true);
                     Toast.makeText(mContext, "value add ", Toast.LENGTH_LONG).show();
                 } else {
                     selectedProductAddons.remove(checkAddons);
+                    GlobalClass.selectedProductAddons.remove(checkAddons);
                     productPrice.setText(Float.toString(price - addonPrice));
                     checkAddons.setSelected(false);
                     Toast.makeText(mContext, "value reversed", Toast.LENGTH_LONG).show();
                 }
             }
 
-            });
+        });
     }
 
     @Override

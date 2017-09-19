@@ -62,7 +62,9 @@ public class HomeActivity extends Fragment {
     private ArrayList<CategoryList> categoryLists;
     private android.support.v7.widget.SearchView searchView;
     //private EditText searchView;
+    ArrayList<ChildCategoryList> parentList;
     private TextView searchProduct;
+    private int lastExpandedPosition = -1;
 
     @Nullable
     @Override
@@ -108,7 +110,7 @@ public class HomeActivity extends Fragment {
         Map<String, String> params = new HashMap<String, String>();
         params.put("ProjectId", Config.PROJECTID );
 
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, Config.URL_IMAGE_INDEX,
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, Config.URL_CATEGORY_LIST,
                 new JSONObject(params), new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -117,22 +119,59 @@ public class HomeActivity extends Fragment {
 
                 Gson gson = new Gson();
 
-                CategoryIndexImageModel categoryModel = gson.fromJson(response.toString(), new TypeToken<CategoryIndexImageModel>(){}.getType());
+                final CategoryModel categoryModel = gson.fromJson(response.toString(), new TypeToken<CategoryModel>(){}.getType());
 
-                final ArrayList<IndexImage> categoryLists = new ArrayList<IndexImage>(categoryModel.getIndexImagesList());
+                final ArrayList<CategoryList> categoryLists = new ArrayList<CategoryList>(categoryModel.getParentlist());
 
                 indexAdapter = new IndexAdapter(getContext(), categoryLists);
                 expandList.setAdapter(indexAdapter);
+                //adapter.setChoiceMode(AnswersAdabter.CHOICE_MODE_SINGLE_PER_GROUP);
 
+//                expandList.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+//                        @Override
+//                        public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+//                            Intent intent = new Intent(getContext(), ProductListActivity.class);
+//                            intent.putExtra("categoryId", categoryLists.get(groupPosition).getId());
+//                            startActivity(intent);
+//                            return true;
+//                        }
+//                    });
 
-                expandList.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+                // Handle the click when the user clicks an any child
+                expandList.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+
                     @Override
-                    public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                    public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                        //parentList = new ArrayList<ChildCategoryList>();
+                        indexAdapter.notifyDataSetChanged();
+
+                        //show(Integer.toString(childPosition));
+                        //show(Integer.toString(categoryLists.get(groupPosition).getChild().get(childPosition).getId()));
+
+
                         Intent intent = new Intent(getContext(), ProductListActivity.class);
-                        intent.putExtra("categoryId", categoryLists.get(groupPosition).getCategoryId());
-                        intent.putExtra("categoryName",categoryLists.get(groupPosition).getCategoryName());
+                        intent.putExtra("categoryId", Integer.toString(categoryLists.get(groupPosition).getChild().get(childPosition).getId()));
+                        intent.putExtra("categoryName",categoryLists.get(groupPosition).getChild().get(childPosition).getName());
+                        //intent.putExtra("categoryName",categoryLists.get(groupPosition).getName());
                         startActivity(intent);
-                        return true;
+                        return false;
+                    }
+                });
+
+                expandList.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+                    @Override
+                    public void onGroupExpand(int groupPosition) {
+                        //if (lastExpandedPosition != -1 && groupPosition != lastExpandedPosition) {
+                        if (!categoryLists.get(groupPosition).getChild().isEmpty()) {
+                            expandList.collapseGroup(lastExpandedPosition);
+                        }
+                        else{
+                            Intent intent = new Intent(getContext(), ProductListActivity.class);
+                            intent.putExtra("categoryId", categoryLists.get(groupPosition).getId());
+                            intent.putExtra("categoryName",categoryLists.get(groupPosition).getName());
+                            startActivity(intent);
+                        }
+                        lastExpandedPosition = groupPosition;
                     }
                 });
                 progressBar.setVisibility(View.GONE);
@@ -204,7 +243,16 @@ public class HomeActivity extends Fragment {
             }
         });
         //call volley
-        AppController.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
+        // AppController.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
+        CustomVolleyRequest.getInstance(getContext()).getRequestQueue().add(jsonObjReq);
+    }
+
+
+    public void show(String message){
+//        Snackbar snackbar = Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_LONG);
+//        snackbar.show();
+
+        Toast.makeText(getContext(),message,Toast.LENGTH_LONG).show();
     }
 
     public void runTask () {

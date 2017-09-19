@@ -35,6 +35,7 @@ public class GlobalClass {
     public static List<Integer> deleteSelectedCartItems = new ArrayList<>();
 
     public static CurrencyListModel currency = null;
+
     public static UserModel userData = null;
 
     public static IndexImage indexData = null;

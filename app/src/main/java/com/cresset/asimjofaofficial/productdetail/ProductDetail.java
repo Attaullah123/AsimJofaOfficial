@@ -329,7 +329,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
 
     }
 
-//fetching data
+    //fetching data
     private void getProductDetail(){
         //System.out.println(id);
         //progressDialog.show();
@@ -350,8 +350,8 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                         //Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
                         Gson gson = new Gson();
                         ProductDetailModel list = gson.fromJson(response.toString(), new TypeToken<ProductDetailModel>(){}.getType());
-                       // Log.d("list", list.getName())
-                       List<ProductDetailList>  productList = list.getProductDetail();
+                        // Log.d("list", list.getName())
+                        List<ProductDetailList>  productList = list.getProductDetail();
                         proDetail = productList.get(0);
 
                         if (proDetail.isOutOfStock()){
@@ -359,13 +359,23 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                         }
 
                         String proName = productList.get(0).getName();
-                        String proPrice = Float.toString(productList.get(0).getPrice());
+                        //String proPrice = Float.toString(productList.get(0).getPrice());
                         btmSku = productList.get(0).getSku();
                         fulldiscrip  = productList.get(0).getFullDescription();
                         btmProNames = productList.get(0).getName();
                         //btmSku = attributesItem.getSku();
                         name.setText(proName);
-                        price.setText(proPrice);
+
+                        float proPrice =productList.get(0).getPrice();
+                        if(GlobalClass.currency != null){
+                            proPrice = proPrice * GlobalClass.currency.getRate();
+                            currencyNmae.setText(GlobalClass.currency.CurrencyCode);
+                        }
+                        else{
+                            currencyNmae.setText("USD");
+                        }
+
+                        price.setText(Float.toString(proPrice));
                         System.out.println(list.getStatus());
 
                         ArrayList<String> imageList = new ArrayList<String>(list.getImagesLink());
@@ -413,7 +423,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(),"Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
                 Log.d("Error", error.toString());
-              // progressDialog.dismiss();
+                // progressDialog.dismiss();
             }
 
 
@@ -426,7 +436,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
     public void openBottomInfo(View v) {
         View view = getLayoutInflater().inflate(R.layout.bottom_info, null);
 
-         headerInStore = (LinearLayout) view.findViewById(R.id.header_in_store);
+        headerInStore = (LinearLayout) view.findViewById(R.id.header_in_store);
 
 
         fullDiscription = (TextView) view.findViewById(R.id.btm_prod_detial);
@@ -436,8 +446,8 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         proName.setText(btmProNames);
         sku.setText(btmSku);
 
-       // TextView share = (TextView)view.findViewById( R.id.btm_share);
-       // TextView infoStore = (TextView)view.findViewById( R.id.btm_store_availability);
+        // TextView share = (TextView)view.findViewById( R.id.btm_share);
+        // TextView infoStore = (TextView)view.findViewById( R.id.btm_store_availability);
         TextView compCare = (TextView)view.findViewById( R.id.btm_co_care);
         TextView sizeGuide = (TextView)view.findViewById( R.id.btm_size_guide);
 

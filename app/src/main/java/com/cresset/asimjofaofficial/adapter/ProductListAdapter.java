@@ -25,6 +25,7 @@ import com.cresset.asimjofaofficial.models.ProductListModel;
 import com.cresset.asimjofaofficial.models.ProductModel;
 import com.cresset.asimjofaofficial.productdetail.ProductDetail;
 import com.cresset.asimjofaofficial.utilities.CustomVolleyRequest;
+import com.cresset.asimjofaofficial.utilities.GlobalClass;
 import com.cresset.asimjofaofficial.utilities.ResizableImageView;
 
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 //    private ImageLoader imageLoader;
 
     public class MyViewHolder extends RecyclerView.ViewHolder  {
-        public TextView title, price,proId,outOfStock;
+        public TextView title, price,pricecode,proId,outOfStock;
         public ImageView thumbnail;
         public CardView cardView;
         private Context context;
@@ -53,6 +54,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
 
             price = (TextView) itemView.findViewById(R.id.product_list_price);
+            pricecode = (TextView) itemView.findViewById(R.id.product_list_price_code);
             thumbnail = (ImageView) itemView.findViewById(R.id.product_thumbnail);
             proId = (TextView) itemView.findViewById(R.id.product_list_id);
             cardView = (CardView) itemView.findViewById(R.id.card_view);
@@ -95,7 +97,16 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
         holder.proId.setText(productListModel.getId());
         holder.title.setText(productListModel.getName());
-        holder.price.setText(productListModel.getPrice());
+        float proprice = Float.parseFloat(productListModel.getPrice());
+        if(GlobalClass.currency != null){
+            proprice = proprice * GlobalClass.currency.getRate();
+            holder.pricecode.setText(GlobalClass.currency.CurrencyCode);
+        }
+        else{
+            holder.pricecode.setText("USD");
+        }
+
+        holder.price.setText(Float.toString(proprice));
 
         if(productListModel.isOutOfStock()){
             holder.outOfStock.setBackgroundColor(Color.BLACK);
@@ -162,3 +173,4 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         };
     }
 }
+

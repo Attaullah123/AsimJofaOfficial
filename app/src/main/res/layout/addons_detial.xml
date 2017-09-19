@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="3dp">
+    android:orientation="vertical"
+    android:paddingTop="5dp">
     <TextView
         android:id="@+id/addons_mapping_id"
         android:layout_width="0dp"
@@ -15,16 +16,27 @@
         android:layout_height="0dp"
         />
 
+    <TextView
+        android:id="@+id/addons_get_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GET IT AS"
+        android:textSize="18sp"
+        android:textColor="#000"
+        android:layout_marginLeft="13sp"
+        android:layout_marginRight="13sp"/>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5sp"
         android:orientation="horizontal">
 
         <CheckBox
             android:id="@+id/addon_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5sp"
+            android:layout_marginLeft="8sp"
             android:button="@drawable/custom_checkbox"
             android:layout_alignParentLeft="true" />
 
@@ -54,7 +66,7 @@
 
 
 
-</RelativeLayout>
+</LinearLayout>
 <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
     <!--android:orientation="horizontal"-->
     <!--android:layout_width="match_parent"-->
