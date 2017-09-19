@@ -188,6 +188,15 @@ public class UpdateCartAdapter extends RecyclerView.Adapter<UpdateCartAdapter.My
             }
         }
         holder.proSize.setText(Html.fromHtml(strAttributes));
+
+        if(GlobalClass.currency != null){
+            productPrice = productPrice * GlobalClass.currency.getRate();
+            holder.proCurrencyName.setText(GlobalClass.currency.CurrencyCode);
+        }
+        else{
+            holder.proCurrencyName.setText("USD");
+        }
+
         holder.proPrice.setText(Float.toString(productPrice));
         Glide.with(mContext).load(cartListModel.getImageLink()).into(holder.thumbnailImage);
     }

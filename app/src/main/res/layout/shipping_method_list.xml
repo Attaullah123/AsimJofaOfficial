@@ -43,7 +43,6 @@
         android:orientation="horizontal">
 
         <TextView
-
             android:id="@+id/shipping_currency_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,8 +50,7 @@
             android:textColor="#000"
             android:textSize="16sp"
             android:layout_centerVertical="true"
-            android:textStyle="bold"
-            android:text="USD"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/shipping_price"

@@ -320,8 +320,7 @@
                 android:id="@+id/linearLayout">
 
                 <TextView
-
-                    android:id="@+id/curruncy_name"
+                    android:id="@+id/total_product_curruncy_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"

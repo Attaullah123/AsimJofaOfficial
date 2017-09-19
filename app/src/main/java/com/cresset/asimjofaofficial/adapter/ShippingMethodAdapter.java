@@ -33,13 +33,14 @@ public class ShippingMethodAdapter  extends RecyclerView.Adapter<ShippingMethodA
 //    private ImageLoader imageLoader;
 
     public class MyViewHolder extends RecyclerView.ViewHolder  {
-        public TextView shippingName, shippingPrice,productId;
+        public TextView shippingName, shippingPrice,productId,productCurrencyName;
         private Context context;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             shippingName = (TextView) itemView.findViewById(R.id.shipping_method_name);
             shippingPrice = (TextView) itemView.findViewById(R.id.shipping_price);
+            productCurrencyName = (TextView) itemView.findViewById(R.id.shipping_currency_name);
             //proId = (TextView) itemView.findViewById(R.id.product_list_id);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -77,10 +78,18 @@ public class ShippingMethodAdapter  extends RecyclerView.Adapter<ShippingMethodA
         ShippingmethodList list = shippingmethodList.get(position);
 
         holder.shippingName.setText(list.getName());
-        holder.shippingPrice.setText(list.getPrice());
+
+
+        float productPrice = list.getPrice();
         //holder.price.setText(productListModel.getPrice());
-
-
+        if(GlobalClass.currency != null){
+            productPrice = productPrice * GlobalClass.currency.getRate();
+            holder.productCurrencyName.setText(GlobalClass.currency.CurrencyCode);
+        }
+        else{
+            holder.productCurrencyName.setText("USD");
+        }
+        holder.shippingPrice.setText(Float.toString(productPrice));
     }
 
     @Override

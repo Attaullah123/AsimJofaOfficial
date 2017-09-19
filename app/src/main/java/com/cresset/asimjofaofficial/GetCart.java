@@ -81,7 +81,7 @@ public class GetCart extends AppCompatActivity {
 
         emptyCart = findViewById(R.id.cart_empty);
         checkOut = (TextView) findViewById(R.id.pay);
-         itemCount = (TextView) findViewById(R.id.cart_total_item);
+        itemCount = (TextView) findViewById(R.id.cart_total_item);
         currencyName = (TextView) findViewById(R.id.detail_currency);
         subTotal = (TextView) findViewById(R.id.sub_total);
         recyclerView = (RecyclerView) findViewById(R.id.cart_recycler_view);
@@ -160,6 +160,7 @@ public class GetCart extends AppCompatActivity {
                             //totalP = (cartModelData.getTotalDetail().getSubTotalAmount());
                             subTo = (cartModelData.getTotalDetail().getSubTotalAmount());
 
+
                             //set currency
                             if(GlobalClass.currency != null){
                                 subTo = subTo * GlobalClass.currency.getRate();
@@ -168,9 +169,8 @@ public class GetCart extends AppCompatActivity {
                             else{
                                 currencyName.setText("USD");
                             }
-                            //totalPrice.setText(Float.toString(totalP));
-                            subTotal.setText(Float.toString(subTo));
 
+                            subTotal.setText(Float.toString(subTo));
 
                             ArrayList<CartModelItems> cartItems = new ArrayList<>(cartModelData.getCartItems());
 
@@ -205,42 +205,42 @@ public class GetCart extends AppCompatActivity {
         }
 
         return cartModelData;
-        }
+    }
 
-        //call cart count item
-        public void GetCartItemsCount() {
-            HashMap<String, String> params = new HashMap<>();
-            params.put("ProjectId", Config.PROJECTID);
-            params.put("CustomerId", GlobalClass.userData.getUserID());
+    //call cart count item
+    public void GetCartItemsCount() {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("ProjectId", Config.PROJECTID);
+        params.put("CustomerId", GlobalClass.userData.getUserID());
 
-            JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_Cart_Count, new JSONObject(params),
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            //CategoryModel categoryModel = new CategoryModel();
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_Cart_Count, new JSONObject(params),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        //CategoryModel categoryModel = new CategoryModel();
 
-                            Log.d("Response", response.toString());
-                            JSONObject jsonObject = null;
-                            try {
-                                jsonObject = new JSONObject(response.toString());
-                                GlobalClass.CartCount = jsonObject.getInt("CartCount");
-                                //UpdateCartCount();
-                                itemCount.setText(Integer.toString(GlobalClass.CartCount)+ " " + "items");
-                                //itemCount.setLetterSpacing(1);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
+                        Log.d("Response", response.toString());
+                        JSONObject jsonObject = null;
+                        try {
+                            jsonObject = new JSONObject(response.toString());
+                            GlobalClass.CartCount = jsonObject.getInt("CartCount");
+                            //UpdateCartCount();
+                            itemCount.setText(Integer.toString(GlobalClass.CartCount)+ " " + "items");
+                            //itemCount.setLetterSpacing(1);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(getApplicationContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
-                    Log.d("Error", error.toString());
-                }
-            });
-            CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
-        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
+                Log.d("Error", error.toString());
+            }
+        });
+        CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
+    }
 
     private void setCartVisibility(boolean visible) {
         if (visible) {

@@ -39,7 +39,6 @@ import com.cresset.asimjofaofficial.models.ProductDetailSize;
 import com.cresset.asimjofaofficial.models.ProductHeader;
 import com.cresset.asimjofaofficial.recylerview.RecyclerDivider;
 import com.cresset.asimjofaofficial.utilities.Config;
-import com.cresset.asimjofaofficial.utilities.CustomVolleyRequest;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
 import com.cresset.asimjofaofficial.volley.AppController;
 import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
@@ -47,7 +46,6 @@ import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -57,8 +55,8 @@ import java.util.List;
 
 public class CheckOutActivity extends AppCompatActivity implements View.OnClickListener{
     private TextView selectShippingandBillingAdd,selectShippingMethod, selectPaymentMethod,selectShippingMethodName, paymentName,
-            totalPrice,totalProductPrice,shippingPrice;
-    private TextView finaliseOrder,itemCount;
+            totalPrice,total_curruncy_name,totalProductPrice,total_product_curruncy_name,shippingPrice,shippingPrice_currency;
+    private TextView finaliseOrder;
     private CartModel cartModel;
     private ExpandableRelativeLayout expandableAccuracy;
     private ImageView accuracyMinus, accuracyPlus;
@@ -77,10 +75,12 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
         selectPaymentMethod = (TextView) findViewById(R.id.payment_edit);
         paymentName = (TextView) findViewById(R.id.payment_method_name);
         totalPrice = (TextView) findViewById(R.id.total_price);
+        total_curruncy_name = (TextView) findViewById(R.id.total_curruncy_name);
         totalProductPrice = (TextView) findViewById(R.id.total_product_price);
+        total_product_curruncy_name = (TextView) findViewById(R.id.total_product_curruncy_name);
         selectShippingMethodName = (TextView) findViewById(R.id.select_shipping_method);
         shippingPrice = (TextView) findViewById(R.id.country_shipping_price);
-        itemCount = (TextView) findViewById(R.id.cart_items);
+        shippingPrice_currency = (TextView) findViewById(R.id.country_shipping_currency);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -91,7 +91,7 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(cartAdapter);
 
-       // expandableAccuracy.collapse();
+        // expandableAccuracy.collapse();
         expandableAccuracy = (ExpandableRelativeLayout) findViewById(R.id.expandable_in_store);
 
         accuracyMinus = (ImageView) findViewById(R.id.img_minus_accuracy);
@@ -101,12 +101,8 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
 
         accuracyMinus.setOnClickListener(this);
         accuracyPlus.setOnClickListener(this);
-
         //initialize cart method getting detail from cart activity
         getCartDetail();
-
-        //initialize cart count
-        GetCartItemsCount();
 
         finaliseOrder = (TextView) findViewById(R.id.finalise_order);
 
@@ -189,13 +185,8 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
         });
         //use check for get selected item name to checkout screen
 
-        if (GlobalClass.shippingMethod!= null){
-            shippingPrice.setText(GlobalClass.shippingMethod.getPrice());
-        }
 
-        if (GlobalClass.shippingMethod!= null){
-            selectShippingMethodName.setText(GlobalClass.shippingMethod.getName());
-        }
+        DisplayShippingMethodDetail();
 
         if (GlobalClass.paymentModel!= null ){
             paymentName.setText(GlobalClass.paymentModel.getName());
@@ -223,9 +214,26 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
         });
     }
 
+    // shiiping method detail
+    public void DisplayShippingMethodDetail(){
+        float shipping = 0;
+        if(GlobalClass.currency != null){
+            if (GlobalClass.shippingMethod!= null)
+                shipping = Float.parseFloat(String.valueOf(GlobalClass.shippingMethod.getPrice())) * GlobalClass.currency.getRate();
+            shippingPrice_currency.setText(GlobalClass.currency.CurrencyCode);
+        }
+        else{
+            shippingPrice_currency.setText("USD");
+        }
+
+        shippingPrice.setText(Float.toString(shipping));
+        if(GlobalClass.shippingMethod!= null)
+            selectShippingMethodName.setText(GlobalClass.shippingMethod.getName());
+    }
+
+
     public void OrderPlace(){
         OrderPlaceModel model = new OrderPlaceModel();
-
         model.setProjectId(Config.PROJECTID);
         model.setCustomerId(GlobalClass.userData.getUserID());
         model.setShippingBillingAddressSame(true);
@@ -294,12 +302,34 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
                         cartModel = gson.fromJson(response.toString(), new TypeToken<CartModel>(){}.getType());
 
                         float total = cartModel.getTotalDetail().getSubTotalAmount();
-                        totalProductPrice.setText(Float.toString(total));
-                        if(GlobalClass.shippingMethod != null){
-                           total = total + Float.parseFloat(GlobalClass.shippingMethod.getPrice());
+
+                        if(GlobalClass.currency != null){
+                            total = total * GlobalClass.currency.getRate();
+                            total_product_curruncy_name.setText(GlobalClass.currency.CurrencyCode);
                         }
+                        else{
+                            total_product_curruncy_name.setText("USD");
+                        }
+
+                        totalProductPrice.setText(Float.toString(total));
+
+                        // renew again
+                        total = cartModel.getTotalDetail().getSubTotalAmount();
+                        if(GlobalClass.shippingMethod != null){
+                            total = total + Float.parseFloat(String.valueOf(GlobalClass.shippingMethod.getPrice()));
+                        }
+
+                        if(GlobalClass.currency != null){
+                            total = total * GlobalClass.currency.getRate();
+                            total_curruncy_name.setText(GlobalClass.currency.CurrencyCode);
+                        }
+                        else{
+                            total_curruncy_name.setText("USD");
+                        }
+
                         totalPrice.setText(Float.toString(total));
 
+                        //total_curruncy_name
                         ArrayList<CartModelItems> cartItems = new ArrayList<CartModelItems>(cartModel.getCartItems());
 
                         cartAdapter = new CheckoutCartAdapter(getApplicationContext(), cartItems);
@@ -322,40 +352,12 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
         AppController.getInstance().addToRequestQueue(objectRequest);
     }
 
-    //get cart item in cart
-
-    public void GetCartItemsCount() {
-        HashMap<String, String> params = new HashMap<>();
-        params.put("ProjectId", Config.PROJECTID);
-        params.put("CustomerId", GlobalClass.userData.getUserID());
-
-        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_Cart_Count, new JSONObject(params),
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        //CategoryModel categoryModel = new CategoryModel();
-
-                        Log.d("Response", response.toString());
-                        JSONObject jsonObject = null;
-                        try {
-                            jsonObject = new JSONObject(response.toString());
-                            GlobalClass.CartCount = jsonObject.getInt("CartCount");
-                            //UpdateCartCount();
-                            itemCount.setText(Integer.toString(GlobalClass.CartCount)+ " " + "items");
-                            //itemCount.setLetterSpacing(1);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
-                Log.d("Error", error.toString());
-            }
-        });
-        CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
+    public void EmptyStaticObjects(){
+        GlobalClass.shippingModel = null;
+        GlobalClass.billingModel = null;
+        GlobalClass.shippingMethod = null;
+        GlobalClass.paymentModel=null;
+        GlobalClass.paymentMethod=null;
     }
 
     public void Show(String message){
@@ -366,9 +368,17 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
     protected void onResume() {
         super.onResume();
         if (GlobalClass.shippingMethod!= null){
-            shippingPrice.setText(GlobalClass.shippingMethod.getPrice());
-        }
-        if (GlobalClass.shippingMethod!= null){
+            float shipping = 0;
+            if(GlobalClass.currency != null){
+                shipping = Float.parseFloat(String.valueOf(GlobalClass.shippingMethod.getPrice())) * GlobalClass.currency.getRate();
+                shippingPrice_currency.setText(GlobalClass.currency.CurrencyCode);
+            }
+            else{
+                shippingPrice_currency.setText("USD");
+            }
+
+            shippingPrice.setText(Float.toString(shipping));
+
             selectShippingMethodName.setText(GlobalClass.shippingMethod.getName());
             getCartDetail();
         }

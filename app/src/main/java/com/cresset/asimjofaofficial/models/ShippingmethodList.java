@@ -7,7 +7,7 @@ public class ShippingmethodList {
     public String Name;
     public String ShippingRateComputationMethodSystemName;
     public String Description;
-    public String Price;
+    public float Price;
 
     public String getId() {
         return Id;
@@ -41,11 +41,11 @@ public class ShippingmethodList {
         Description = description;
     }
 
-    public String getPrice() {
+    public float getPrice() {
         return Price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(float price) {
         Price = price;
     }
 }

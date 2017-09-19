@@ -7,7 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -36,15 +39,20 @@ import java.util.Map;
 
 
 public class PaymentMethod extends AppCompatActivity {
-
+    private Toolbar toolbar;
     private RecyclerView recyclerView;
     private ProgressDialog progressDialog;
     private PaymentAdapter paymentAdapter;
+    private ImageView back;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.payment_method);
+        toolbar = (Toolbar) findViewById(R.id.toolbar_2);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("");
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading.....");
@@ -58,6 +66,14 @@ public class PaymentMethod extends AppCompatActivity {
         recyclerView.setAdapter(paymentAdapter);
 
         getpaymentMethod();
+
+        back = (ImageView) findViewById(R.id.img_back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
     public void getpaymentMethod(){

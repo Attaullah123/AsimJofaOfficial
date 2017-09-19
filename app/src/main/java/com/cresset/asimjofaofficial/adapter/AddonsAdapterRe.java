@@ -24,7 +24,6 @@ public class AddonsAdapterRe extends RecyclerView.Adapter<AddonsAdapterRe.ViewHo
     private ArrayList<ProductAddons> productAddons;
     private Context mContext;
     private TextView productPrice;
-    private float price;
     public static ArrayList<ProductAddons> selectedProductAddons;
 
 
@@ -53,7 +52,7 @@ public class AddonsAdapterRe extends RecyclerView.Adapter<AddonsAdapterRe.ViewHo
         holder.addonCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                price = Float.parseFloat(productPrice.getText().toString());
+                float price = Float.parseFloat(productPrice.getText().toString());
                 ProductAddons checkAddons = productAddons.get(position);
 
                 float addonPrice = Float.parseFloat(checkAddons.getAddonsPrice().toString());
@@ -61,8 +60,9 @@ public class AddonsAdapterRe extends RecyclerView.Adapter<AddonsAdapterRe.ViewHo
                 if (buttonView.isChecked()) {
                     selectedProductAddons.add(checkAddons);
                     GlobalClass.selectedProductAddons.add(checkAddons);
-                        productPrice.setText(Float.toString(addonPrice + price));
-                        checkAddons.setSelected(true);
+                    productPrice.setText(Float.toString(addonPrice + price));
+                    checkAddons.setSelected(true);
+
                     Toast.makeText(mContext, "value add ", Toast.LENGTH_LONG).show();
                 } else {
                     selectedProductAddons.remove(checkAddons);

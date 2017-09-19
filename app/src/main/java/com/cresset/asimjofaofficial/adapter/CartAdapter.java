@@ -105,8 +105,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                 }
             }
         }
-
-
         holder.proSize.setText(Html.fromHtml(strAttributes));
 
         if(GlobalClass.currency != null){

@@ -59,17 +59,22 @@ public class ShippingMethod extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shipping_method);
 
+        toolbar = (Toolbar) findViewById(R.id.toolbar_2);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("");
+
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading.....");
         progressDialog.setCancelable(false);
 
-        back = (ImageView) findViewById(R.id.img_back);
+
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(shippingAdapter);
-
+        back = (ImageView) findViewById(R.id.img_back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

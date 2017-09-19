@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar_1"
+        android:id="@+id/toolbar_2"
         android:minHeight="?attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,12 +15,12 @@
         android:background="@color/toolbar_color">
 
         <ImageView
-            android:layout_width="23sp"
+            android:layout_width="20sp"
             android:contentDescription="@string/logo"
             android:id="@+id/img_back"
-            android:layout_height="23sp"
+            android:layout_height="20sp"
             android:layout_gravity="start"
-            android:src="@drawable/back_btn"/>
+            android:src="@drawable/ic_close2"/>
         <TextView
             android:id="@+id/toolbar_title"
             android:layout_width="wrap_content"

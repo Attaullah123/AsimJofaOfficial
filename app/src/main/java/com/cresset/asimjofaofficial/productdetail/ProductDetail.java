@@ -157,6 +157,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_adons);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.addItemDecoration(new RecyclerDivider(this, LinearLayoutManager.VERTICAL));
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(addonsAdapter);
@@ -376,6 +377,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                         }
 
                         price.setText(Float.toString(proPrice));
+
                         System.out.println(list.getStatus());
 
                         ArrayList<String> imageList = new ArrayList<String>(list.getImagesLink());
