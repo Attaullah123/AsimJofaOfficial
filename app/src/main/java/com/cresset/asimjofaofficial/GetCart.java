@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -65,7 +66,8 @@ public class GetCart extends AppCompatActivity {
     private String prodId;
     private View emptyCart;
     private CartModel cartModelData;
-    private TextView checkOut,currencyName;
+    private TextView currencyName;
+    private Button checkOut;
     private ProgressBar progressBar;
     private float totalP,subTo;
 
@@ -80,7 +82,7 @@ public class GetCart extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         emptyCart = findViewById(R.id.cart_empty);
-        checkOut = (TextView) findViewById(R.id.pay);
+        checkOut = (Button) findViewById(R.id.pay);
         itemCount = (TextView) findViewById(R.id.cart_total_item);
         currencyName = (TextView) findViewById(R.id.detail_currency);
         subTotal = (TextView) findViewById(R.id.sub_total);

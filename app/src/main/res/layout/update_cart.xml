@@ -60,13 +60,13 @@
 
 
             <TextView
-                style="@style/Base.TextAppearance.AppCompat.Large"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Shopping Bag"
-                android:textStyle="bold"
-                android:textColor="#000" />
+                android:textColor="#000"
+                android:textSize="19sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/cart_done"
@@ -74,12 +74,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
+                android:layout_marginRight="5dp"
                 android:text="Done"
                 android:textColor="#000" />
 
         </android.support.v7.widget.Toolbar>
 
     </LinearLayout>
+
     <View
         android:layout_width="fill_parent"
         android:layout_height="0.2dp"

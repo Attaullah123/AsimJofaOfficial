@@ -230,7 +230,7 @@ public class Profile extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "You are login Successfully!", Toast.LENGTH_LONG).show();
 
 
-                            Intent intent = new Intent(Profile.this,MainActivity.class);
+                            Intent intent = new Intent(Profile.this,MyAccount.class);
                             startActivity(intent);
                             finish();
                             //Gson gson = new Gson();

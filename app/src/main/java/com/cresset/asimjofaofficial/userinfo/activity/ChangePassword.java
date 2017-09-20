@@ -1,6 +1,7 @@
 package com.cresset.asimjofaofficial.userinfo.activity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.cresset.asimjofaofficial.MyAccount;
 import com.cresset.asimjofaofficial.Profile;
 import com.cresset.asimjofaofficial.R;
 import com.cresset.asimjofaofficial.models.ChnagePasswordModel;
@@ -99,7 +101,7 @@ public class ChangePassword extends AppCompatActivity {
         params.put("OldPassword", password);
         params.put("NewPassword", newPassword);
 
-        pDialog.setMessage("Logging in ...");
+        pDialog.setMessage("please wait ...");
         showDialog();
 
         JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_UPDATE_PASSWORD, new JSONObject(params),
@@ -117,6 +119,11 @@ public class ChangePassword extends AppCompatActivity {
                             model.setEmail(email);
                             model.setOldPassword(password);
                             model.setNewPassword(newPassword);
+                            Toast.makeText(getApplicationContext(), "your password change successfully", Toast.LENGTH_LONG)
+                                    .show();
+                            Intent intent = new Intent(getApplicationContext(), Profile.class);
+                            startActivity(intent);
+                            finish();
 //                            if (model.getCustomerId() != null && model.getCustomerId() != "") {
 //
 //                                UserModel userData = new UserModel();

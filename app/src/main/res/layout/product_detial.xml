@@ -225,16 +225,19 @@
         android:layout_gravity="end"
         android:weightSum="1">
 
-        <com.cresset.asimjofaofficial.customfonts.MyTextView
-            android:id="@+id/addTocart"
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:background="#202020"
-            android:gravity="center"
-            android:layout_gravity="end"
-            android:text="BUY"
-            android:textColor="#fff"
-            android:textSize="20dp"
-            android:textStyle="bold" />
-    </LinearLayout>
+    <com.cresset.asimjofaofficial.customfonts.MyTextView
+        android:id="@+id/addTocart"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="3dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#000000"
+        android:gravity="center"
+        android:layout_gravity="end"
+        android:text="ADD TO CART"
+        android:textColor="#fff"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+</LinearLayout>
 </LinearLayout>

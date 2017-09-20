@@ -42,6 +42,8 @@ public class PrivacyPolicyNew extends Fragment {
 
         // setting list adapter
         expListView.setAdapter(listAdapter);
+
+        expListView.setGroupIndicator(null);
         return rootView;
     }
 

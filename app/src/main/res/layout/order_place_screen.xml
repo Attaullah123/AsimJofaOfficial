@@ -1,16 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleTextColor="@android:color/white"
+        android:background="@color/toolbar_color">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:contentDescription="@string/logo"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/app_logo"/>
+    </android.support.v7.widget.Toolbar>
+    <View
+        android:layout_below="@+id/toolbar"
+        android:layout_width="fill_parent"
+        android:layout_height="0.4dp"
+        android:background="#393838"/>
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16dp"
-        android:textColor="#086013"
+        android:textSize="17dp"
+        android:textColor="#000000"
         android:textStyle="bold"
         android:text="Congratulation Your Order Place Successfully"
         android:layout_centerVertical="true"
@@ -23,6 +43,8 @@
         android:layout_marginLeft="81dp"
         android:layout_marginStart="81dp"
         android:layout_marginTop="34dp"
+        android:textStyle="bold"
+        android:textColor="#000000"
         android:text="Place Order no:"
         android:layout_below="@+id/textView"
         android:layout_alignLeft="@+id/textView"
@@ -32,7 +54,7 @@
         android:id="@+id/order_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="123156"
+        android:text=""
         android:textColor="#000000"
         android:layout_alignBaseline="@+id/order_name"
         android:layout_alignBottom="@+id/order_name"
@@ -50,7 +72,7 @@
         android:background="#000"
         android:textColor="#fff"
         android:textAllCaps="true"
-        android:layout_marginTop="49dp"
+        android:layout_marginTop="30dp"
         android:text="back to store" />
 
 </RelativeLayout>

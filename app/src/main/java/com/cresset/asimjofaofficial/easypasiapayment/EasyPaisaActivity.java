@@ -31,11 +31,15 @@ public class EasyPaisaActivity  extends AppCompatActivity{
     private WebView webView;
     private ProgressBar progressBar;
     private LinearLayout layoutProgress;
+    String orderId,orderAmount;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.easypaisa_payment);
+
+        orderId = getIntent().getStringExtra("orderId");
+        orderAmount = getIntent().getStringExtra("orderAmount");
 
         //button = (Button) findViewById(R.id.button);
         //instantiate the webview
@@ -77,7 +81,7 @@ public class EasyPaisaActivity  extends AppCompatActivity{
             }
         });
         if(isOnline()) {
-            webView.loadUrl("https://www.asimjofa.com/CustomeCode/EsseyPassCompleted?orderId=25002");
+            webView.loadUrl("https://www.asimjofa.com/CustomeCode/EsseyPassMobileCompleted/" + orderId);
         } else {
             String summary = "<center><html><body><font color='black'>No Internet Connection</font></body></center></html>";
             webView.loadData(summary, "text/html", null);
@@ -106,4 +110,5 @@ public class EasyPaisaActivity  extends AppCompatActivity{
 //        return super.onKeyDown(keyCode, event);
 //    }
 }
+
 

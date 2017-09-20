@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Asim Jofa Official</string>
+    <string name="app_name">Asim Jofa</string>
 
     <string name="title_home">PRODUCTS</string>
     <string name="title_dashboard">PROFILE</string>
@@ -77,6 +77,7 @@
     <string name="refund_policy">All sales are considered final. There are no monetary returns, but can be exchanged for products of equal or higher value.</string>
 
     <string name="forget_text">If you have forgotten your password, enter your email address and we will send you instructions to retrieve it. </string>
+    <string name="copy_code">When you get code successfully copy that code and paste(within 2-3 min) in to your login account and then update your password with the same code</string>
     <string name="change_password_text">If you want to change your password, enter your password and new password. </string>
     <string name="tab_online">OLINE</string>
     <string name="tab_store">STORE</string>

@@ -14,12 +14,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:background="@color/toolbar_color"
-        android:elevation="6dp"
-        android:minHeight="?attr/actionBarSize"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+        android:elevation="4dp"
+        android:minHeight="?attr/actionBarSize">
 
         <TextView
-            style="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Large"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -30,98 +28,110 @@
 
     </android.support.v7.widget.Toolbar>
 
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.4dp"
+        android:background="#393838"/>
+
     <ScrollView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:fitsSystemWindows="true">
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fitsSystemWindows="true">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-            <!-- FIRST Name Label -->
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="15dp">
-
-                <EditText
-                    android:id="@+id/reg_first_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Fist Name"
-                    android:textColorHint="#000"
-                    android:inputType="textCapWords" />
-            </android.support.design.widget.TextInputLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="13dp"
+            android:orientation="vertical">
 
             <!-- FIRST Name Label -->
-            <android.support.design.widget.TextInputLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:text="First Name" />
+
+            <EditText
+                android:id="@+id/reg_first_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="15dp">
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:inputType="textCapWords" />
 
-                <EditText
-                    android:id="@+id/reg_last_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Last Name"
-                    android:textColorHint="#000"
-                    android:inputType="textCapWords" />
-            </android.support.design.widget.TextInputLayout>
+            <!-- FIRST Name Label -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="5dp"
+                android:text="Last Name" />
+
+            <EditText
+                android:id="@+id/reg_last_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:inputType="textCapWords" />
+
 
             <!-- Email Label -->
-            <android.support.design.widget.TextInputLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="5dp"
+                android:text="Email" />
+
+            <EditText
+                android:id="@+id/reg_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp">
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:inputType="textEmailAddress" />
 
-                <EditText
-                    android:id="@+id/reg_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Email"
-                    android:inputType="textEmailAddress"
-                    android:textColorHint="#000000" />
-            </android.support.design.widget.TextInputLayout>
 
             <!--birthday-->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:text="Birthday: "
+                android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center_horizontal"
-                >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Birthday: "
-                    android:textSize="16sp"
-                    android:textColor="#000"/>
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
 
                 <EditText
                     android:id="@+id/birthday_day"
                     android:layout_width="100dp"
                     android:layout_height="35sp"
-                    android:gravity="center"
                     android:background="@drawable/ed_border"
+                    android:gravity="center"
                     android:hint="Day"
-
-                    />
+                    android:inputType="number" />
 
                 <EditText
                     android:id="@+id/birthday_month"
                     android:layout_width="100dp"
                     android:layout_height="35sp"
-                    android:gravity="center"
                     android:background="@drawable/ed_border"
+                    android:gravity="center"
                     android:hint="Month"
-                    />
+                    android:inputType="number" />
 
                 <EditText
                     android:id="@+id/birthday_year"
@@ -129,51 +139,53 @@
                     android:layout_height="35sp"
                     android:background="@drawable/ed_border"
                     android:gravity="center"
-                    android:hint="Year" />
+                    android:hint="Year"
+                    android:inputType="number" />
 
             </LinearLayout>
 
             <!-- Email Label -->
-            <android.support.design.widget.TextInputLayout
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="5dp"
+                android:text="Password" />
+
+            <EditText
+                android:id="@+id/reg_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp">
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:inputType="textPassword" />
 
-                <EditText
-                    android:id="@+id/reg_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Password"
-                    android:inputType="textPassword"
-                    android:textColorHint="#000000" />
-            </android.support.design.widget.TextInputLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="5dp"
+                android:text="Confirm Password" />
 
-            <android.support.design.widget.TextInputLayout
+            <EditText
+                android:id="@+id/reg_confirm_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp">
-
-                <EditText
-                    android:id="@+id/reg_confirm_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Confirm Password"
-                    android:textColorHint="#000"
-                    android:inputType="textPassword" />
-            </android.support.design.widget.TextInputLayout>
-
-
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:inputType="textPassword" />
 
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btn_signup"
                 android:layout_width="fill_parent"
-                android:layout_height="50dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
+                android:layout_height="45dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="24dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
                 android:background="#000000"
                 android:text="SAVE"

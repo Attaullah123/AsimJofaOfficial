@@ -71,16 +71,16 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/shipping_charge_within_country"
-                android:layout_width="fill_parent"
-                android:layout_height="45dp"
-                android:gravity="center"
-                android:background="#feb832"
-                android:textColor="#fff"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:text="@string/shipping_charger"/>
+                    <com.cresset.asimjofaofficial.customfonts.CustomFont
+                        android:id="@+id/shipping_charge_within_country"
+                        android:layout_width="fill_parent"
+                        android:layout_height="45dp"
+                        android:gravity="center"
+                        android:background="#feb832"
+                        android:textColor="#fff"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:text="@string/shipping_charger"/>
 
         </LinearLayout>
 
@@ -197,7 +197,7 @@
                 android:gravity="right"
                 android:orientation="horizontal">
 
-                <TextView
+                <com.cresset.asimjofaofficial.customfonts.CustomFont
 
                     android:id="@+id/country_shipping_currency"
                     android:layout_width="wrap_content"
@@ -209,15 +209,15 @@
                     android:textStyle="bold"
                     android:text="USD"/>
 
-                <TextView
+                <com.cresset.asimjofaofficial.customfonts.CustomFont
                     android:id="@+id/country_shipping_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="0.00"
-                    android:textStyle="bold"
                     android:layout_centerVertical="true"
+                    android:text="0.00"
                     android:textColor="#000"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
 
@@ -319,7 +319,7 @@
                 android:orientation="horizontal"
                 android:id="@+id/linearLayout">
 
-                <TextView
+                <com.cresset.asimjofaofficial.customfonts.CustomFont
                     android:id="@+id/total_product_curruncy_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -330,7 +330,7 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <com.cresset.asimjofaofficial.customfonts.CustomFont
                     android:id="@+id/total_product_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -459,7 +459,7 @@
 
                 android:weightSum="1">
 
-                <TextView
+                <com.cresset.asimjofaofficial.customfonts.CustomFont
                     android:id="@+id/total_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -479,7 +479,7 @@
                 android:layout_marginTop="3dp"
                 android:orientation="horizontal">
 
-                <TextView
+                <com.cresset.asimjofaofficial.customfonts.CustomFont
                     android:id="@+id/total_curruncy_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -489,7 +489,7 @@
                     android:textSize="16sp"
                     android:text="USD"/>
 
-                <TextView
+                <com.cresset.asimjofaofficial.customfonts.CustomFont
                     android:id="@+id/total_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -504,13 +504,17 @@
             android:id="@+id/finalise_order"
             android:layout_width="fill_parent"
             android:layout_height="45dp"
+            android:layout_marginTop="3dp"
             android:layout_alignParentBottom="true"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_gravity="end"
-            android:background="#202020"
+            android:background="#000000"
             android:gravity="center"
             android:text="Finalise Order"
             android:textColor="#fff"
-            android:textSize="17dp"
+            android:textSize="18dp"
             android:textStyle="bold" />
     </LinearLayout>
 

@@ -33,7 +33,7 @@
                 android:text="Shopping Bag"
                 android:textColor="#000"
                 android:textStyle="bold"
-                style="@style/Base.TextAppearance.AppCompat.Large"
+                android:textSize="19sp"
                 android:layout_gravity="center"/>
             <TextView
                 android:id="@+id/edit_cart"
@@ -42,13 +42,14 @@
                 android:text="EDIT"
                 android:textSize="18sp"
                 android:textColor="#000"
+                android:layout_marginRight="5dp"
                 android:layout_gravity="end"/>
 
         </android.support.v7.widget.Toolbar>
 
         <View
             android:layout_width="fill_parent"
-            android:layout_height="0.2dp"
+            android:layout_height="0.4dp"
             android:background="#393838"/>
     </LinearLayout>
 
@@ -117,6 +118,7 @@
         android:layout_width="fill_parent"
         android:layout_height="0.2dp"
         android:background="#393838"/>
+
     <LinearLayout
         android:id="@+id/cart_footer"
         android:layout_width="match_parent"
@@ -149,13 +151,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
+                    android:layout_marginLeft="5dp"
                     android:background="?attr/selectableItemBackground"
                     android:paddingBottom="5dp"
-                    android:layout_marginLeft="5dp"
                     android:paddingTop="8dp"
                     android:text=""
                     android:textColor="#000000"
-                    android:textSize="19sp"/>
+                    android:textSize="19sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -169,32 +171,36 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5sp"
+                    android:text="USD"
                     android:textColor="#000"
-                    android:textStyle="bold"
                     android:textSize="16sp"
-                    android:text="USD"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/sub_total"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="9500"
-                    android:textStyle="bold"
                     android:textColor="#000"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp"
+                    android:textIsSelectable="true"
+                    android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
 
-        <com.cresset.asimjofaofficial.customfonts.MyTextView
+        <android.support.v7.widget.AppCompatButton
             android:id="@+id/pay"
             android:layout_width="fill_parent"
-            android:layout_height="45dp"
-            android:background="#202020"
-            android:text="NEXT"
-            android:textSize="17dp"
-            android:textColor="#fff"
+            android:layout_height="43sp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="#000000"
             android:gravity="center"
-            android:textStyle="bold"
-            android:layout_alignParentBottom="true"/>
+            android:text="NEXT"
+            android:textColor="#fff"
+            android:textSize="17dp"
+            android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>

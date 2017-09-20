@@ -83,6 +83,7 @@ public class PolicyActivity extends FragmentActivity {
             @Override
             public void onTabChanged(String tabId) {
                 viewPager.setCurrentItem(tabHost.getCurrentTab());
+
                 scrollToCurrentTab();
 
             }

@@ -1,6 +1,7 @@
 package com.cresset.asimjofaofficial;
 
 import android.app.ProgressDialog;
+import android.content.ClipboardManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -41,10 +42,12 @@ public class ForgetPassword extends AppCompatActivity {
     private Button retrievePassword;
     private ProgressDialog pDialog;
     private TextView passCode;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.forget_password);
+
 
         toolbar = (Toolbar) findViewById(R.id.toolbar_1);
         setSupportActionBar(toolbar);
@@ -96,7 +99,7 @@ public class ForgetPassword extends AppCompatActivity {
         params.put("Email", "test1@gmail.com");
         String tag_string_req = "req_login";
 
-        pDialog.setMessage("Logging in ...");
+        pDialog.setMessage("Please wait ...");
         showDialog();
 
         JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_FORGET_PASSWORD, new JSONObject(params),
@@ -115,6 +118,8 @@ public class ForgetPassword extends AppCompatActivity {
                             model.setEmail(email);
                             String userName =model.getPassword();
                             passCode.setText(userName);
+
+
 
                         } catch (Exception e) {
                             // JSON error

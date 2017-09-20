@@ -105,7 +105,7 @@ public class AddonsAdapterRe extends RecyclerView.Adapter<AddonsAdapterRe.ViewHo
             addonName.setText( productAddons.getAddonsName());
 //        holder.mappingId.setText(p.getProductMappingAttributeId());
             // holder.mappingAttribute.setText(p.getProductMappingAttributeId());
-            addonPrices.setText(productAddons.getAddonsPrice());
+            addonPrices.setText("+" + productAddons.getAddonsPrice());
             //addonPrices.setText(Html.fromHtml("&ldquo[" + productAddons.getAddonsPrice() + "&rdquo]"));
             addonCheckbox.setChecked(productAddons.isSelected());
             addonCheckbox.setTag(productAddons);

@@ -30,6 +30,7 @@ import com.cresset.asimjofaofficial.adapter.CheckoutCartAdapter;
 import com.cresset.asimjofaofficial.adapter.CheckoutProductAdapter;
 import com.cresset.asimjofaofficial.adapter.IndexAdapter;
 import com.cresset.asimjofaofficial.adapter.SizeSpinnerAdapter;
+import com.cresset.asimjofaofficial.easypasiapayment.EasyPaisaActivity;
 import com.cresset.asimjofaofficial.models.CartModel;
 import com.cresset.asimjofaofficial.models.CartModelItems;
 import com.cresset.asimjofaofficial.models.IndexImage;
@@ -53,9 +54,9 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class CheckOutActivity extends AppCompatActivity implements View.OnClickListener{
-    private TextView selectShippingandBillingAdd,selectShippingMethod, selectPaymentMethod,selectShippingMethodName, paymentName,
-            totalPrice,total_curruncy_name,totalProductPrice,total_product_curruncy_name,shippingPrice,shippingPrice_currency,cartItem;
+public class CheckOutActivity extends AppCompatActivity implements View.OnClickListener {
+    private TextView selectShippingandBillingAdd, selectShippingMethod, selectPaymentMethod, selectShippingMethodName, paymentName,
+            totalPrice, total_curruncy_name, totalProductPrice, total_product_curruncy_name, shippingPrice, shippingPrice_currency, cartItem;
     private TextView finaliseOrder;
     private CartModel cartModel;
     private ExpandableRelativeLayout expandableAccuracy;
@@ -65,6 +66,7 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
     private CartModel cartModelData;
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,7 +100,7 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
 
         accuracyMinus = (ImageView) findViewById(R.id.img_minus_accuracy);
         accuracyPlus = (ImageView) findViewById(R.id.img_plus_accuracy);
-        progressBar=(ProgressBar) findViewById(R.id.progressBar);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
         cancel = (TextView) findViewById(R.id.txt_cancel);
 
         accuracyMinus.setOnClickListener(this);
@@ -134,10 +136,10 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
             public void onClick(View v) {
 
                 //use check for get info back to checkout screen
-                if(GlobalClass.shippingModel != null){
+                if (GlobalClass.shippingModel != null) {
                 }
 
-                if(GlobalClass.billingModel != null){
+                if (GlobalClass.billingModel != null) {
                 }
 
                 Intent intent = new Intent(getApplicationContext(), ShippingBillingAddress.class);
@@ -151,17 +153,15 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void onClick(View v) {
 
-                if(GlobalClass.shippingModel != null){
+                if (GlobalClass.shippingModel != null) {
                     String countryId = GlobalClass.shippingModel.getCountryId();
 
-                    if(!countryId.equals(null) && countryId != ""){
+                    if (!countryId.equals(null) && countryId != "") {
                         Intent intent = new Intent(getApplicationContext(), ShippingMethod.class);
                         startActivity(intent);
-                    }
-                    else
+                    } else
                         Show("Please select shipping country!");
-                }
-                else{
+                } else {
                     Show("Please select shipping country!");
                 }
             }
@@ -171,16 +171,14 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
         selectPaymentMethod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(GlobalClass.billingModel != null){
+                if (GlobalClass.billingModel != null) {
                     String countryId = GlobalClass.billingModel.getCountryId();
-                    if(!countryId.equals(null) && countryId != ""){
+                    if (!countryId.equals(null) && countryId != "") {
                         Intent intent = new Intent(getApplicationContext(), PaymentMethod.class);
                         startActivity(intent);
-                    }
-                    else
+                    } else
                         Show("Please select billing country!");
-                }
-                else{
+                } else {
                     Show("Please select billing country!");
                 }
             }
@@ -190,7 +188,7 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
 
         DisplayShippingMethodDetail();
 
-        if (GlobalClass.paymentModel!= null ){
+        if (GlobalClass.paymentModel != null) {
             paymentName.setText(GlobalClass.paymentModel.getName());
         }
 
@@ -199,16 +197,13 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
         finaliseOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(GlobalClass.shippingModel != null && GlobalClass.billingModel != null)
-                {
-                    if(GlobalClass.paymentModel != null && GlobalClass.shippingMethod != null){
+                if (GlobalClass.shippingModel != null && GlobalClass.billingModel != null) {
+                    if (GlobalClass.paymentModel != null && GlobalClass.shippingMethod != null) {
                         OrderPlace();
-                    }
-                    else{
+                    } else {
                         Show("Please select payement and shipping method first");
                     }
-                }
-                else{
+                } else {
                     Show("Please fill billing & shipping address first");
                 }
                 //EmptyStaticObjects();
@@ -217,24 +212,23 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
     }
 
     // shiiping method detail
-    public void DisplayShippingMethodDetail(){
+    public void DisplayShippingMethodDetail() {
         float shipping = 0;
-        if(GlobalClass.currency != null){
-            if (GlobalClass.shippingMethod!= null)
+        if (GlobalClass.currency != null) {
+            if (GlobalClass.shippingMethod != null)
                 shipping = Float.parseFloat(String.valueOf(GlobalClass.shippingMethod.getPrice())) * GlobalClass.currency.getRate();
             shippingPrice_currency.setText(GlobalClass.currency.CurrencyCode);
-        }
-        else{
+        } else {
             shippingPrice_currency.setText("USD");
         }
 
         shippingPrice.setText(Float.toString(shipping));
-        if(GlobalClass.shippingMethod!= null)
+        if (GlobalClass.shippingMethod != null)
             selectShippingMethodName.setText(GlobalClass.shippingMethod.getName());
     }
 
 
-    public void OrderPlace(){
+    public void OrderPlace() {
         OrderPlaceModel model = new OrderPlaceModel();
         model.setProjectId(Config.PROJECTID);
         model.setCustomerId(GlobalClass.userData.getUserID());
@@ -248,7 +242,7 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
         Gson gson = new Gson();
         String json = gson.toJson(model);
 
-        Log.i("Order Placed",json);
+        Log.i("Order Placed", json);
         JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_PlaceOrder, json,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -256,25 +250,35 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
 
                         try {
                             Gson gson = new Gson();
-                            OrderPlaceResponse ordResponse = gson.fromJson(response.toString(), new TypeToken<OrderPlaceResponse>(){}.getType());
+                            OrderPlaceResponse ordResponse = gson.fromJson(response.toString(), new TypeToken<OrderPlaceResponse>() {
+                            }.getType());
 
-                            if(!ordResponse.getOrderId().equals(null)){
+                            if (!ordResponse.getOrderId().equals(null)) {
                                 Show("Order placed: " + ordResponse.getOrderId());
-                                Intent intent = new Intent(getApplicationContext(), FinalOrderActivity.class);
-                                intent.putExtra("orderId",  ordResponse.getOrderId());
-                                startActivity(intent);
+
+                                if (GlobalClass.paymentModel.getSystemName().trim().toLowerCase().equals("payments.easypaisa")) {
+                                    Intent intent = new Intent(getApplicationContext(), EasyPaisaActivity.class);
+                                    intent.putExtra("orderId", ordResponse.getOrderId());
+                                    intent.putExtra("orderAmount", ordResponse.getOrderTotal());
+                                    startActivity(intent);
+                                } else {
+                                    Intent intent = new Intent(getApplicationContext(), FinalOrderActivity.class);
+                                    intent.putExtra("orderId", ordResponse.getOrderId());
+                                    intent.putExtra("paymentMethod", GlobalClass.paymentModel.getName());
+                                    startActivity(intent);
+                                }
                             }
 
-                        }catch (Exception e){
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
 
                     }
 
-                },  new Response.ErrorListener() {
+                }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(),"Couldn't place order, check connection", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Couldn't place order, check connection", Toast.LENGTH_SHORT).show();
                 Log.d("Error", error.toString());
                 // progressDialog.dismiss();
             }
@@ -301,31 +305,30 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
                         Log.d("Response", response.toString());
 
                         Gson gson = new Gson();
-                        cartModel = gson.fromJson(response.toString(), new TypeToken<CartModel>(){}.getType());
+                        cartModel = gson.fromJson(response.toString(), new TypeToken<CartModel>() {
+                        }.getType());
 
                         float total = cartModel.getTotalDetail().getSubTotalAmount();
 
-                        if(GlobalClass.currency != null){
+                        if (GlobalClass.currency != null) {
                             total = total * GlobalClass.currency.getRate();
                             total_product_curruncy_name.setText(GlobalClass.currency.CurrencyCode);
-                        }
-                        else{
+                        } else {
                             total_product_curruncy_name.setText("USD");
                         }
 
                         totalProductPrice.setText(Float.toString(total));
-                        cartItem.setText(Integer.toString(GlobalClass.CartCount)+ " " + "items");
+                        cartItem.setText(Integer.toString(GlobalClass.CartCount) + " " + "items");
                         // renew again
                         total = cartModel.getTotalDetail().getSubTotalAmount();
-                        if(GlobalClass.shippingMethod != null){
+                        if (GlobalClass.shippingMethod != null) {
                             total = total + Float.parseFloat(String.valueOf(GlobalClass.shippingMethod.getPrice()));
                         }
 
-                        if(GlobalClass.currency != null){
+                        if (GlobalClass.currency != null) {
                             total = total * GlobalClass.currency.getRate();
                             total_curruncy_name.setText(GlobalClass.currency.CurrencyCode);
-                        }
-                        else{
+                        } else {
                             total_curruncy_name.setText("USD");
                         }
 
@@ -354,28 +357,27 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
         AppController.getInstance().addToRequestQueue(objectRequest);
     }
 
-    public void EmptyStaticObjects(){
+    public void EmptyStaticObjects() {
         GlobalClass.shippingModel = null;
         GlobalClass.billingModel = null;
         GlobalClass.shippingMethod = null;
-        GlobalClass.paymentModel=null;
-        GlobalClass.paymentMethod=null;
+        GlobalClass.paymentModel = null;
+        GlobalClass.paymentMethod = null;
     }
 
-    public void Show(String message){
-        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
+    public void Show(String message) {
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (GlobalClass.shippingMethod!= null){
+        if (GlobalClass.shippingMethod != null) {
             float shipping = 0;
-            if(GlobalClass.currency != null){
+            if (GlobalClass.currency != null) {
                 shipping = Float.parseFloat(String.valueOf(GlobalClass.shippingMethod.getPrice())) * GlobalClass.currency.getRate();
                 shippingPrice_currency.setText(GlobalClass.currency.CurrencyCode);
-            }
-            else{
+            } else {
                 shippingPrice_currency.setText("USD");
             }
 
@@ -385,7 +387,7 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
             getCartDetail();
         }
 
-        if (GlobalClass.paymentModel!= null ){
+        if (GlobalClass.paymentModel != null) {
             paymentName.setText(GlobalClass.paymentModel.getName());
         }
     }
@@ -401,4 +403,5 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
                 break;
         }
     }
+
 }

@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal" >
 
-    <TextView
+    <com.cresset.asimjofaofficial.customfonts.CustomFont
         android:id="@+id/category_child_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -11,6 +11,6 @@
         android:layout_marginTop="14dp"
         android:layout_marginLeft="15dp"
         android:text="Main List"
-        android:textSize="15dp"
+        android:textSize="17dp"
         android:textColor="#1b1a1a"/>
 </RelativeLayout>

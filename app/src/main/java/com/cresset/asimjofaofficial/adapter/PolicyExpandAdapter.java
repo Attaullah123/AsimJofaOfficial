@@ -90,6 +90,19 @@ public class PolicyExpandAdapter extends BaseExpandableListAdapter {
         //lblListHeader.setChecked(isExpanded);
         lblListHeader.setText(headerTitle);
 
+        if (isExpanded) {
+            lblListHeader.setTypeface(null, Typeface.BOLD);
+            lblListHeader.setCompoundDrawablesWithIntrinsicBounds(0, 0,
+                    R.mipmap.minus_black, 0);
+        } else {
+            // If group is not expanded then change the text back into normal
+            // and change the icon
+
+            lblListHeader.setTypeface(null, Typeface.NORMAL);
+            lblListHeader.setCompoundDrawablesWithIntrinsicBounds(0, 0,
+                    R.mipmap.plus_black, 0);
+        }
+
         return convertView;
     }
 

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
+
     android:layout_height="match_parent">
 
     <android.support.v7.widget.Toolbar
@@ -37,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="30dp">
 
         <EditText
             android:id="@+id/user_name"
@@ -70,7 +71,7 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_signup"
+        android:id="@+id/change_user_info"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:layout_marginRight="10dp"

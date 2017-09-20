@@ -8,6 +8,8 @@ public class OrderPlaceResponse {
     String Status;
     String Message;
     String OrderId;
+    String OrderTotal;
+    String OrderMessage;
 
     public String getStatus() {
         return Status;
@@ -31,5 +33,21 @@ public class OrderPlaceResponse {
 
     public void setOrderId(String orderId) {
         OrderId = orderId;
+    }
+
+    public String getOrderTotal() {
+        return OrderTotal;
+    }
+
+    public void setOrderTotal(String orderTotal) {
+        OrderTotal = orderTotal;
+    }
+
+    public String getOrderMessage() {
+        return OrderMessage;
+    }
+
+    public void setOrderMessage(String orderMessage) {
+        OrderMessage = orderMessage;
     }
 }

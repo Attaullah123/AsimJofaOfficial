@@ -161,11 +161,11 @@ public class RegistrationActivity extends AppCompatActivity {
                                 sharedPreferencesEditor.putString(Config.RegisteredPreference,json);
                                 sharedPreferencesEditor.commit();
 
-                                show("Registered user created!");
+                                show("Registered successfully!");
                             }
 
                             // Launch login activity
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            Intent intent = new Intent(getApplicationContext(), MyAccount.class);
                             startActivity(intent);
                             finish();
 
