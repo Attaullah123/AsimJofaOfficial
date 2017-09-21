@@ -1,6 +1,7 @@
 package com.cresset.asimjofaofficial.fragments;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -54,6 +55,7 @@ public class BillingAddress extends android.support.v4.app.Fragment{
     private BillingStateSpinnerAdapter billingStateSpinnerAdapter;
     private int CountryId,StateId;
     private CountryList countryListItem;
+    private ProgressDialog progressDialog;
     private StateList stateListItem;
     View view;
     @Nullable
@@ -76,6 +78,9 @@ public class BillingAddress extends android.support.v4.app.Fragment{
         bProvince = (Spinner) view.findViewById(R.id.billing_spinner_select_province);
         btnBillingAddress = (Button)view.findViewById(R.id.billing_save);
 
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setCancelable(false);
+        progressDialog.setTitle("please wait...");
         CountryList();
 
         loadData();

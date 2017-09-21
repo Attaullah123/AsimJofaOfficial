@@ -1,5 +1,6 @@
 package com.cresset.asimjofaofficial.fragments;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
@@ -50,6 +51,7 @@ public class ShippingAddress extends android.support.v4.app.Fragment{
     private CountryList countryListItem;
     private StateList stateListItem;
     View view;
+    private ProgressDialog progressDialog;
     private ShippingCountrySpinnerAdapter shippingCountrySpinnerAdapter;
     private ShippingStateSpinnerAdapter shippingStateSpinnerAdapter;
 
@@ -73,6 +75,9 @@ public class ShippingAddress extends android.support.v4.app.Fragment{
         sMonth = (EditText) view.findViewById(R.id.shipping_birthday_month);
         sYear = (EditText) view.findViewById(R.id.shipping_birthday_year);
 
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setCancelable(false);
+        progressDialog.setTitle("please wait...");
         CountryList();
 
         loadData();
@@ -124,6 +129,7 @@ public class ShippingAddress extends android.support.v4.app.Fragment{
 
 
     public void CountryList(){
+        progressDialog.show();
         HashMap<String, String> params = new HashMap<>();
         params.put("ProjectId", Config.PROJECTID);
 
@@ -133,6 +139,7 @@ public class ShippingAddress extends android.support.v4.app.Fragment{
                     public void onResponse(JSONObject response) {
 
                         Log.d("Response", response.toString());
+                        progressDialog.dismiss();
 
                         Gson gson = new Gson();
                         CountryModel countryModel= gson.fromJson(response.toString(), new TypeToken<CountryModel>(){}.getType());
@@ -145,6 +152,7 @@ public class ShippingAddress extends android.support.v4.app.Fragment{
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getContext(), "Couldn't get countries, check connection", Toast.LENGTH_SHORT).show();
                 Log.d("Error", error.toString());
+                progressDialog.dismiss();
             }
         });
         AppController.getInstance().addToRequestQueue(objectRequest);

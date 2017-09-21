@@ -30,12 +30,12 @@
             android:layout_height="wrap_content"
             android:background="@color/toolbar_color">
 
-            <com.cresset.asimjofaofficial.customfonts.CustomFont
+            <TextView
                 android:layout_width="wrap_content"
                 android:id="@+id/txt_cancel"
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
-                android:textColor="#252323"
+                android:textColor="#131212"
                 android:text="Cancel"/>
 
             <TextView
@@ -99,7 +99,7 @@
             android:layout_gravity="center"
             android:background="#f5f5f5"
             >
-            <com.cresset.asimjofaofficial.customfonts.CustomFont
+            <TextView
                 android:id="@+id/shipping_method_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -136,7 +136,7 @@
                     android:layout_gravity="center"
                     android:background="#f5f5f5"
                     >
-                    <com.cresset.asimjofaofficial.customfonts.CustomFont
+                    <TextView
                         android:id="@+id/select_shipping_method"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -173,7 +173,7 @@
             >
 
 
-            <com.cresset.asimjofaofficial.customfonts.CustomFont
+            <TextView
                 android:id="@+id/shopping"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -197,7 +197,7 @@
                 android:gravity="right"
                 android:orientation="horizontal">
 
-                <com.cresset.asimjofaofficial.customfonts.CustomFont
+                <TextView
 
                     android:id="@+id/country_shipping_currency"
                     android:layout_width="wrap_content"
@@ -209,7 +209,7 @@
                     android:textStyle="bold"
                     android:text="USD"/>
 
-                <com.cresset.asimjofaofficial.customfonts.CustomFont
+                <TextView
                     android:id="@+id/country_shipping_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -234,7 +234,7 @@
             android:background="#fff"
             android:orientation="horizontal">
 
-            <com.cresset.asimjofaofficial.customfonts.CustomFont
+            <TextView
                 android:id="@+id/payment_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -292,7 +292,7 @@
             android:layout_height="48dp"
             android:background="#fff"
             >
-            <com.cresset.asimjofaofficial.customfonts.CustomFont
+            <TextView
                 android:id="@+id/product_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -319,7 +319,7 @@
                 android:orientation="horizontal"
                 android:id="@+id/linearLayout">
 
-                <com.cresset.asimjofaofficial.customfonts.CustomFont
+                <TextView
                     android:id="@+id/total_product_curruncy_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -330,7 +330,7 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <com.cresset.asimjofaofficial.customfonts.CustomFont
+                <TextView
                     android:id="@+id/total_product_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

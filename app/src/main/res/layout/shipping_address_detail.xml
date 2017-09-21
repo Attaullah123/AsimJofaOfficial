@@ -1,11 +1,259 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="10dp"
+    >
 
-    <TextView
-        android:id="@+id/textView5"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Shipping Address" />
-</LinearLayout>
+        android:id="@+id/sc_v"
+        android:fitsSystemWindows="true"
+        android:layout_above="@+id/footer"
+
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- FIRST Name Label -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:text="First Name" />
+
+            <EditText
+                android:id="@+id/shipping_input_full_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:inputType="textCapWords" />
+
+            <!-- FIRST Name Label -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:text="Email" />
+
+            <EditText
+                android:id="@+id/shipping_input_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:inputType="textEmailAddress" />
+
+
+            <!-- Email Label -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:text="Address" />
+
+            <EditText
+                android:id="@+id/shipping_input_Address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:text="Birthday: "
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/shipping_birthday_day"
+                    android:layout_width="100dp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/ed_border"
+                    android:gravity="center"
+                    android:hint="Day"
+                    android:maxLength="2"
+                    android:inputType="number" />
+
+                <EditText
+                    android:id="@+id/shipping_birthday_month"
+                    android:layout_width="100dp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/ed_border"
+                    android:gravity="center"
+                    android:hint="Month"
+                    android:maxLength="2"
+                    android:inputType="number" />
+
+                <EditText
+                    android:id="@+id/shipping_birthday_year"
+                    android:layout_width="100dp"
+                    android:layout_height="35sp"
+                    android:background="@drawable/ed_border"
+                    android:gravity="center"
+                    android:hint="Year"
+                    android:maxLength="4"
+                    android:inputType="number" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="7dp"
+                    android:text="Country:"
+                    android:gravity="center"
+                    android:textSize="17dp"/>
+
+                <Spinner
+                    android:id="@+id/shipping_size_country_select"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="80dp"
+                    android:background="@drawable/spinner_background_black_baseline"
+                    android:paddingBottom="8dp"
+                    android:spinnerMode="dialog"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="5dp"
+                android:text="Zip Code or postal code" />
+
+            <EditText
+                android:id="@+id/shipping_input_zipcode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:inputType="textPostalAddress" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="7dp"
+                    android:gravity="center"
+                    android:text="State / Province:"
+                    android:textSize="17dp"/>
+
+                <Spinner
+                    android:id="@+id/shipping_spinner_select_province"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/spinner_background_black_baseline"
+                    android:paddingBottom="8dp"
+                    android:spinnerMode="dialog"/>
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:text="City" />
+
+            <EditText
+                android:id="@+id/shipping_input_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"  />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Phone"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"/>
+
+
+                <EditText
+                    android:id="@+id/shipping_input_phone"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:layout_marginRight="10dp"
+                    />
+
+            </LinearLayout>
+
+            <!-- Signup Button -->
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center" >
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/shipping_save"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#000000"
+            android:text="SAVE"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="3dp"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+</RelativeLayout>
