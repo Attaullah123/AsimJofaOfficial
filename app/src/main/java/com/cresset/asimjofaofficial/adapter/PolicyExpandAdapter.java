@@ -93,14 +93,14 @@ public class PolicyExpandAdapter extends BaseExpandableListAdapter {
         if (isExpanded) {
             lblListHeader.setTypeface(null, Typeface.BOLD);
             lblListHeader.setCompoundDrawablesWithIntrinsicBounds(0, 0,
-                    R.mipmap.minus_black, 0);
+                    R.drawable.minus_btn1, 0);
         } else {
             // If group is not expanded then change the text back into normal
             // and change the icon
 
             lblListHeader.setTypeface(null, Typeface.NORMAL);
             lblListHeader.setCompoundDrawablesWithIntrinsicBounds(0, 0,
-                    R.mipmap.plus_black, 0);
+                    R.drawable.plus_btn2, 0);
         }
 
         return convertView;

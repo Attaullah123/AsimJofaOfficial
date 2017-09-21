@@ -136,7 +136,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Product is available in-store and autorize retailer."
-                        android:textColor="#000" />
+                        android:textSize="15sp"
+                         />
                 </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
 
             </LinearLayout>
@@ -187,7 +188,8 @@
                         android:layout_alignParentStart="true"
                         android:layout_alignParentTop="true"
                         android:text="@string/com_care_string"
-                        android:textColor="#000" />
+                        android:textSize="15sp"
+                      />
                 </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
 
             </LinearLayout>

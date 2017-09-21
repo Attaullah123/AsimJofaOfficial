@@ -61,6 +61,10 @@ public class RegistrationActivity extends AppCompatActivity {
         confirmPassword = (EditText) findViewById(R.id.reg_confirm_password);
         saveButton = (AppCompatButton) findViewById(R.id.btn_signup);
 
+        etDay = (EditText) findViewById(R.id.birthday_day);
+        etMonth = (EditText) findViewById(R.id.birthday_month);
+        etYear = (EditText) findViewById(R.id.birthday_year);
+
         gson = new Gson();
         sharedPreferencesEditor = getSharedPreferences(Config.PREFS_NAME, MODE_PRIVATE).edit();
 
@@ -98,12 +102,13 @@ public class RegistrationActivity extends AppCompatActivity {
                 String email = emailAddress.getText().toString().trim();
                 String password = etpassword.getText().toString().trim();
                 String confirmPas = confirmPassword.getText().toString().trim();
-//                String day = etDay.getText().toString().trim();
-//                String month = etMonth.getText().toString().trim();
-//                String year = etYear.getText().toString().trim();
+                String day = etDay.getText().toString().trim();
+                String month = etMonth.getText().toString().trim();
+                String year = etYear.getText().toString().trim();
 
-                if (!fname.isEmpty() && !lname.isEmpty() && !email.isEmpty() && !password.isEmpty() && !confirmPas.isEmpty() ){
-                    registerUser(fname, lname, email, password, confirmPas);
+                if (!fname.isEmpty() && !lname.isEmpty() && !email.isEmpty() && !password.isEmpty() && !confirmPas.isEmpty()
+                        && !day.isEmpty() && !month.isEmpty() && !year.isEmpty()){
+                    registerUser(fname, lname, email, password, confirmPas ,day, month, year);
 
                 }else {
                     Toast.makeText(getApplicationContext(),
@@ -116,7 +121,8 @@ public class RegistrationActivity extends AppCompatActivity {
 
     }
 
-    public void registerUser(final String fname, final String lname, final String email, final String password,final String confirmPassword){
+    public void registerUser(final String fname, final String lname, final String email, final String password,final String confirmPassword,
+                             final String day, final String month,final String year){
         progressDialog.show();
         HashMap<String,String> params = new HashMap<>();
         params.put("ProjectId",Config.PROJECTID);
@@ -124,9 +130,9 @@ public class RegistrationActivity extends AppCompatActivity {
         params.put("LastName", lname);
         params.put("Email", email);
         params.put("Pasword", password);
-//        params.put("Day", day);
-//        params.put("month", month);
-//        params.put("year", year);
+        params.put("Day", day);
+       params.put("month", month);
+       params.put("year", year);
 
         WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
         String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
@@ -154,6 +160,11 @@ public class RegistrationActivity extends AppCompatActivity {
                                 userData.setUserID(model.getCustomerId());
                                 userData.setUserName(fname);
                                 userData.setEmail(email);
+
+                                userData.setBirthdayDay(day);
+                                userData.setBirthdayMonth(month);
+                                userData.setBirthdayYear(year);
+
                                 userData.setGuest(false);
 
                                 GlobalClass.userData = userData;

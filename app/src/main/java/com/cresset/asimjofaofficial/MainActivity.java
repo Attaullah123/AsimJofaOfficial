@@ -229,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.currency_change:
-                Intent intent1 = new Intent(getApplicationContext(), CurrencyChange.class);
+                Intent intent1 = new Intent(getApplicationContext(), CurrencySelector.class);
                 startActivity(intent1);
                 return true;
             case R.id.info:

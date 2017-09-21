@@ -15,6 +15,8 @@
             android:id="@+id/lvExp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:groupIndicator="@drawable/list_expand"
+
             />
 
         <View

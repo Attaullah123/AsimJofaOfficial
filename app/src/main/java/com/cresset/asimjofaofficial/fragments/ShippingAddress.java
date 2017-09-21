@@ -43,7 +43,7 @@ import java.util.List;
 
 
 public class ShippingAddress extends android.support.v4.app.Fragment{
-    private EditText sfullname,sEmail,sAdress,sPhoneNo,sCity,sPostalCode;
+    private EditText sfullname,sEmail,sAdress,sPhoneNo,sCity,sPostalCode,sDay,sMonth,sYear;
     private Spinner sCountry,sProvince;
     private Button btnShippingAddress;
     private ShippingModel shippingModel;
@@ -69,6 +69,10 @@ public class ShippingAddress extends android.support.v4.app.Fragment{
         sProvince = (Spinner) view.findViewById(R.id.shipping_spinner_select_province);
         btnShippingAddress = (Button)view.findViewById(R.id.shipping_save);
 
+        sDay = (EditText) view.findViewById(R.id.shipping_birthday_day);
+        sMonth = (EditText) view.findViewById(R.id.shipping_birthday_month);
+        sYear = (EditText) view.findViewById(R.id.shipping_birthday_year);
+
         CountryList();
 
         loadData();
@@ -84,6 +88,9 @@ public class ShippingAddress extends android.support.v4.app.Fragment{
                 String city = sCity.getText().toString().trim();
                 String postCode = sPostalCode.getText().toString().trim();
                 //String city = bCity.getText().toString().trim();
+                String day = sDay.getText().toString().trim();
+                String month = sMonth.getText().toString().trim();
+                String year = sYear.getText().toString().trim();
 
                 Log.d("fname ", fname);
                 Log.d("laddress ", laddress);
@@ -92,7 +99,8 @@ public class ShippingAddress extends android.support.v4.app.Fragment{
                 Log.d("city ", city);
                 Log.d("postCode ", postCode);
 
-                if (!fname.isEmpty() && !laddress.isEmpty() && !email.isEmpty() && !phone.isEmpty() && !city.isEmpty()&& !postCode.isEmpty()){
+                if (!fname.isEmpty() && !laddress.isEmpty() && !email.isEmpty() && !phone.isEmpty() && !city.isEmpty()&& !postCode.isEmpty()
+                        && !day.isEmpty() && !month.isEmpty() && !year.isEmpty()){
 
                     shippingAddress();
                     Toast.makeText(getContext(), "Info save successfully! Also Add Billing Address", Toast.LENGTH_LONG).show();
@@ -262,18 +270,28 @@ public class ShippingAddress extends android.support.v4.app.Fragment{
             sAdress.setText(GlobalClass.shippingModel.getAddress1());
             sPhoneNo.setText(GlobalClass.shippingModel.getPhoneNumber());
             sPostalCode.setText(GlobalClass.shippingModel.getZipPostalCode());
+
+            sDay.setText(GlobalClass.shippingModel.getBirthdayDay());
+            sMonth.setText(GlobalClass.shippingModel.getBirthdayMonth());
+            sYear.setText(GlobalClass.shippingModel.getBirthdayYear());
         }
     }
     public void shippingAddress(){
         shippingModel = new ShippingModel();
         shippingModel.setFullName(sfullname.getText().toString());
         shippingModel.setEmail(sEmail.getText().toString());
+
         shippingModel.setCountryId(countryListItem.getId().toString());
         shippingModel.setStateProvinceId(String.valueOf(stateListItem.getId()));
+
         shippingModel.setCity(sCity.getText().toString());
         shippingModel.setAddress1(sAdress.getText().toString());
         shippingModel.setZipPostalCode(sPostalCode.getText().toString());
         shippingModel.setPhoneNumber(sPhoneNo.getText().toString());
+
+        shippingModel.setBirthdayDay(sDay.getText().toString());
+        shippingModel.setBirthdayMonth(sMonth.getText().toString());
+        shippingModel.setBirthdayYear(sYear.getText().toString());
 
         GlobalClass.shippingModel = shippingModel;
     }

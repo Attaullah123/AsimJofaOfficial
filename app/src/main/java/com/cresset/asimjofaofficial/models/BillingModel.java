@@ -11,6 +11,10 @@ public class BillingModel {
     public String Address1;
     public String ZipPostalCode;
     public String PhoneNumber;
+    public String birthdayDay;
+    public String birthdayMonth;
+    public String birthdayYear;
+
 
     public String getFullName() {
         return FullName;
@@ -76,4 +80,27 @@ public class BillingModel {
         PhoneNumber = phoneNumber;
     }
 
+    public String getBirthdayDay() {
+        return birthdayDay;
+    }
+
+    public void setBirthdayDay(String birthdayDay) {
+        this.birthdayDay = birthdayDay;
+    }
+
+    public String getBirthdayMonth() {
+        return birthdayMonth;
+    }
+
+    public void setBirthdayMonth(String birthdayMonth) {
+        this.birthdayMonth = birthdayMonth;
+    }
+
+    public String getBirthdayYear() {
+        return birthdayYear;
+    }
+
+    public void setBirthdayYear(String birthdayYear) {
+        this.birthdayYear = birthdayYear;
+    }
 }

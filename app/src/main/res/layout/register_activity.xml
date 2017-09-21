@@ -104,8 +104,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
+                android:layout_marginTop="5dp"
                 android:text="Birthday: "
-                android:textSize="16sp" />
+                 />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -113,6 +114,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="5dp"
+                android:layout_gravity="center"
                 android:orientation="horizontal">
 
                 <EditText
@@ -122,6 +124,7 @@
                     android:background="@drawable/ed_border"
                     android:gravity="center"
                     android:hint="Day"
+                    android:maxLength="2"
                     android:inputType="number" />
 
                 <EditText
@@ -131,6 +134,7 @@
                     android:background="@drawable/ed_border"
                     android:gravity="center"
                     android:hint="Month"
+                    android:maxLength="2"
                     android:inputType="number" />
 
                 <EditText
@@ -140,6 +144,7 @@
                     android:background="@drawable/ed_border"
                     android:gravity="center"
                     android:hint="Year"
+                    android:maxLength="4"
                     android:inputType="number" />
 
             </LinearLayout>
@@ -151,7 +156,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:text="Password" />
 
             <EditText

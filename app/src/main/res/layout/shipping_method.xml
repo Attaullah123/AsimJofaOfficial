@@ -47,12 +47,20 @@
                 android:background="#393838"/>
         </LinearLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#000"
+            android:layout_marginTop="10dp"
+            android:textSize="17sp"
+            android:text="Select Shipping Method"/>
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:paddingTop="10sp"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="vertical"/>
     </LinearLayout>
-pr
 </LinearLayout>

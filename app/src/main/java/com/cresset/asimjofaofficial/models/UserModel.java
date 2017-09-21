@@ -21,6 +21,9 @@ public class UserModel {
     public String UserName;
     public String Email;
     public boolean IsGuest;
+    public String birthdayDay;
+    public String birthdayMonth;
+    public String birthdayYear;
 
     public String getUserID() {
         return UserID;
@@ -52,5 +55,29 @@ public class UserModel {
 
     public void setEmail(String email) {
         Email = email;
+    }
+
+    public String getBirthdayDay() {
+        return birthdayDay;
+    }
+
+    public void setBirthdayDay(String birthdayDay) {
+        this.birthdayDay = birthdayDay;
+    }
+
+    public String getBirthdayMonth() {
+        return birthdayMonth;
+    }
+
+    public void setBirthdayMonth(String birthdayMonth) {
+        this.birthdayMonth = birthdayMonth;
+    }
+
+    public String getBirthdayYear() {
+        return birthdayYear;
+    }
+
+    public void setBirthdayYear(String birthdayYear) {
+        this.birthdayYear = birthdayYear;
     }
 }

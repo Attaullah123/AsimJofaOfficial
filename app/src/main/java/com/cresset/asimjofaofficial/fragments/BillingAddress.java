@@ -46,7 +46,7 @@ import java.util.List;
 
 public class BillingAddress extends android.support.v4.app.Fragment{
 
-    private EditText bfullname,bEmail,bAdress,bPhoneNo,bCity,bPostalCode;
+    private EditText bfullname,bEmail,bAdress,bPhoneNo,bCity,bPostalCode,bDay,bMonth,bYear;
     private Spinner bCountry,bProvince;
     private Button btnBillingAddress;
     private BillingModel billingModel;
@@ -67,6 +67,10 @@ public class BillingAddress extends android.support.v4.app.Fragment{
         bPhoneNo = (EditText) view.findViewById(R.id.billing_input_phone);
         bCity = (EditText) view.findViewById(R.id.billing_input_city);
         bPostalCode = (EditText) view.findViewById(R.id.billing_input_zipcode);
+
+        bDay = (EditText) view.findViewById(R.id.billing_birthday_day);
+        bMonth = (EditText) view.findViewById(R.id.billing_birthday_month);
+        bYear = (EditText) view.findViewById(R.id.billing_birthday_year);
         //spinner view
         bCountry = (Spinner) view.findViewById(R.id.billing_country_select);
         bProvince = (Spinner) view.findViewById(R.id.billing_spinner_select_province);
@@ -86,10 +90,15 @@ public class BillingAddress extends android.support.v4.app.Fragment{
                 String phone = bPhoneNo.getText().toString().trim();
                 String city = bCity.getText().toString().trim();
                 String postCode = bPostalCode.getText().toString().trim();
+
+                String day = bDay.getText().toString().trim();
+                String month = bMonth.getText().toString().trim();
+                String year = bYear.getText().toString().trim();
                 //String city = bCity.getText().toString().trim();
 
 
-                if (!fname.isEmpty() && !laddress.isEmpty() && !email.isEmpty() && !phone.isEmpty() && !city.isEmpty()&& !postCode.isEmpty()){
+                if (!fname.isEmpty() && !laddress.isEmpty() && !email.isEmpty() && !phone.isEmpty() && !city.isEmpty()&& !postCode.isEmpty()
+                        && !day.isEmpty() && !month.isEmpty() && !year.isEmpty()){
                     billingAddress();
                     Toast.makeText(getContext(), "Your info save successfully!", Toast.LENGTH_LONG).show();
                     getActivity().finish();
@@ -246,6 +255,11 @@ public class BillingAddress extends android.support.v4.app.Fragment{
             bCity.setText(GlobalClass.billingModel.getCity());
             bPostalCode.setText(GlobalClass.billingModel.getZipPostalCode());
 
+            bDay.setText(GlobalClass.billingModel.getBirthdayDay());
+            bMonth.setText(GlobalClass.billingModel.getBirthdayMonth());
+            bYear.setText(GlobalClass.billingModel.getBirthdayYear());
+
+
         }
     }
     public void billingAddress(){
@@ -258,6 +272,10 @@ public class BillingAddress extends android.support.v4.app.Fragment{
         billingModel.setAddress1(bAdress.getText().toString());
         billingModel.setZipPostalCode(bPostalCode.getText().toString());
         billingModel.setPhoneNumber(bPhoneNo.getText().toString());
+
+        billingModel.setBirthdayDay(bDay.getText().toString());
+        billingModel.setBirthdayMonth(bMonth.getText().toString());
+        billingModel.setBirthdayYear(bYear.getText().toString());
 
         GlobalClass.billingModel = billingModel;
     }

@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar_2"
+        android:id="@+id/toolbar_1"
         android:minHeight="?attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,42 +15,43 @@
         android:background="@color/toolbar_color">
 
         <ImageView
-            android:layout_width="20sp"
+            android:layout_width="23sp"
             android:contentDescription="@string/logo"
             android:id="@+id/img_back"
-            android:layout_height="20sp"
+            android:layout_height="23sp"
             android:layout_gravity="start"
             android:src="@drawable/ic_close2"/>
         <TextView
             android:id="@+id/toolbar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:text="Payment List"
+            android:text="Currency List"
             android:textSize="23sp"
             style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
             android:layout_gravity="center"
             />
     </android.support.v7.widget.Toolbar>
     <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#dad8d8" />
+        android:layout_width="fill_parent"
+        android:layout_height="0.2dp"
+        android:background="#393838"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:text="Select Currency"
         android:textColor="#000"
-        android:layout_marginTop="10dp"
-        android:textSize="17sp"
-        android:text="Select Payment Method"/>
+        android:textSize="18dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <ListView
+        android:layout_gravity="center_vertical"
+        android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
+        android:choiceMode="multipleChoice"
+        android:layout_marginTop="30dp"
         android:scrollbars="vertical"/>
 
 </LinearLayout>

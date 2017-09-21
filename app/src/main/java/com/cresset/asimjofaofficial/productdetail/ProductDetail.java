@@ -557,6 +557,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
     protected void onPostResume() {
         super.onPostResume();
         GetCartItemsCount();
+        getProductDetail();
     }
 
     public void GetCartItemsCount() {

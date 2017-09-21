@@ -243,8 +243,8 @@ public class HomeActivity extends Fragment {
             }
         });
         //call volley
-        // AppController.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
-        CustomVolleyRequest.getInstance(getContext()).getRequestQueue().add(jsonObjReq);
+        AppController.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
+        //CustomVolleyRequest.getInstance(getContext()).getRequestQueue().add(jsonObjReq);
     }
 
 

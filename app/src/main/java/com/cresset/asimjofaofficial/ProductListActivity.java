@@ -195,6 +195,7 @@ public class ProductListActivity extends AppCompatActivity {
     protected void onPostResume() {
         super.onPostResume();
         GetCartItemsCount();
+        getProductData();
     }
 
     public void UpdateCartCount(){
@@ -253,6 +254,8 @@ public class ProductListActivity extends AppCompatActivity {
         CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
     }
 
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
@@ -261,7 +264,7 @@ public class ProductListActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.currency_change:
-                Intent intent1 = new Intent(getApplicationContext(), CurrencyChange.class);
+                Intent intent1 = new Intent(getApplicationContext(), CurrencySelector.class);
                 startActivity(intent1);
                 return true;
             case R.id.info:

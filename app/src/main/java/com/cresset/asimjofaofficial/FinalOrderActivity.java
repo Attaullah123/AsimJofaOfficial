@@ -43,7 +43,8 @@ public class FinalOrderActivity extends AppCompatActivity {
         String paymentMethod = intent.getStringExtra("paymentMethod");
         oderId.setText(id);
 
-        if(paymentMethod == "PurchaseOrder"){
+        if(paymentMethod == "BankTransfer"){
+            order_message.setText("");
             OrderPlace("checkout.banktransferdetail");
         }
 
