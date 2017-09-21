@@ -125,8 +125,8 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
     private Menu menu;
     private String tag_json_obj = "json_obj_req";
     private ValueAnimator mAnimator;
-    private LinearLayout headerInStore;
-    private ExpandableRelativeLayout expandInstore;
+    private LinearLayout headerInStore,headerComp;
+    private ExpandableRelativeLayout expandInstore,expandComandCare;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -258,76 +258,83 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
             @Override
             public void onClick(View v) {
 
-                if (!proDetail.isOutOfStock()){
-                    AddToCartModel addToCartModel = new AddToCartModel();
-                    addToCartModel.setProjectId(Config.PROJECTID);
-                    addToCartModel.setProductId(String.valueOf(proDetail.getId()));
-                    addToCartModel.setCustomerId(GlobalClass.userData.getUserID());
-                    addToCartModel.setQuantity(quantityName);
+                if (!proDetail.isOutOfStock() && !proDetail.isCallForPrice()){
+                    {
+                        AddToCartModel addToCartModel = new AddToCartModel();
+                        addToCartModel.setProjectId(Config.PROJECTID);
+                        addToCartModel.setProductId(String.valueOf(proDetail.getId()));
+                        addToCartModel.setCustomerId(GlobalClass.userData.getUserID());
+                        addToCartModel.setQuantity(quantityName);
 
-                    List<AttributesItem> items = new ArrayList<AttributesItem>();
+                        List<AttributesItem> items = new ArrayList<AttributesItem>();
 
-                    AttributesItem at = new AttributesItem();
-                    if(productDetailSize != null){
-                        at.setProductMappingAttributeId(productDetailSize.getProductMappingAttributeId());
-                        at.setProductAttributeValueId(productDetailSize.getProductAttributeValueId());
-                        items.add(at);
-                    }
-
-                    if(!GlobalClass.selectedProductAddons.isEmpty()){
-                        for (int index = 0; index<GlobalClass.selectedProductAddons.size(); index++){
-                            at = new AttributesItem();
-                            ProductAddons prodAddons = GlobalClass.selectedProductAddons.get(index);
-                            at.setProductMappingAttributeId(prodAddons.getProductMappingAttributeId());
-                            at.setProductAttributeValueId(prodAddons.getProductAttributeValueId());
+                        AttributesItem at = new AttributesItem();
+                        if(productDetailSize != null){
+                            at.setProductMappingAttributeId(productDetailSize.getProductMappingAttributeId());
+                            at.setProductAttributeValueId(productDetailSize.getProductAttributeValueId());
                             items.add(at);
                         }
-                    }
 
-                    addToCartModel.setAttribute(items);
-                    Gson gson = new Gson();
-                    String json = gson.toJson(addToCartModel);
-
-                    // JSONArray jonArr =new JSONArray(json);
-                    Log.d("output", json.toString());
-
-
-                    JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_ADD_TO_CART, json,
-                            new Response.Listener<JSONObject>() {
-                                @Override
-                                public void onResponse(JSONObject response) {
-                                    //CategoryModel categoryModel = new CategoryModel();
-
-                                    Log.d("Response", response.toString());
-                                    Toast.makeText(getApplicationContext(), "Item Add to cart", Toast.LENGTH_SHORT).show();
-
-                                    GetCartItemsCount();
-
-                                    try {
-                                        String status = response.getString("Status");
-
-                                    }catch (JSONException e){
-                                        e.printStackTrace();
-                                    }
-
-                                }
-
-                            },  new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(getApplicationContext(),"Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
-                            Log.d("Error", error.toString());
-                            // progressDialog.dismiss();
+                        if(!GlobalClass.selectedProductAddons.isEmpty()){
+                            for (int index = 0; index<GlobalClass.selectedProductAddons.size(); index++){
+                                at = new AttributesItem();
+                                ProductAddons prodAddons = GlobalClass.selectedProductAddons.get(index);
+                                at.setProductMappingAttributeId(prodAddons.getProductMappingAttributeId());
+                                at.setProductAttributeValueId(prodAddons.getProductAttributeValueId());
+                                items.add(at);
+                            }
                         }
 
+                        addToCartModel.setAttribute(items);
+                        Gson gson = new Gson();
+                        String json = gson.toJson(addToCartModel);
 
-                    });
+                        // JSONArray jonArr =new JSONArray(json);
+                        Log.d("output", json.toString());
 
-                    AppController.getInstance().addToRequestQueue(objectRequest, tag_json_obj);
 
+                        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_ADD_TO_CART, json,
+                                new Response.Listener<JSONObject>() {
+                                    @Override
+                                    public void onResponse(JSONObject response) {
+                                        //CategoryModel categoryModel = new CategoryModel();
+
+                                        Log.d("Response", response.toString());
+                                        Toast.makeText(getApplicationContext(), "Item Add to cart", Toast.LENGTH_SHORT).show();
+
+                                        GetCartItemsCount();
+
+                                        try {
+                                            String status = response.getString("Status");
+
+                                        }catch (JSONException e){
+                                            e.printStackTrace();
+                                        }
+
+                                    }
+
+                                },  new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(getApplicationContext(),"Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
+                                Log.d("Error", error.toString());
+                                // progressDialog.dismiss();
+                            }
+
+
+                        });
+
+                        AppController.getInstance().addToRequestQueue(objectRequest, tag_json_obj);
+
+                    }
                 }
                 else{
-                    Toast.makeText(getApplicationContext(),"Out of Stock", Toast.LENGTH_SHORT).show();
+                    if(proDetail.isCallForPrice()){
+                        Toast.makeText(getApplicationContext(),"Call for Price", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(),"Out of Stock", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -357,9 +364,12 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                         ProductDetailModel list = gson.fromJson(response.toString(), new TypeToken<ProductDetailModel>(){}.getType());
                         // Log.d("list", list.getName())
                         List<ProductDetailList>  productList = list.getProductDetail();
-                        proDetail = productList.get(0);
+                            proDetail = productList.get(0);
 
-                        if (proDetail.isOutOfStock()){
+                        if(proDetail.isCallForPrice()){
+                            addTocart.setText("Call for Price");
+                        }
+                        else if (proDetail.isOutOfStock()){
                             addTocart.setText("SOLD OUT");
                         }
 
@@ -371,16 +381,24 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                         //btmSku = attributesItem.getSku();
                         name.setText(proName);
 
-                        float proPrice =productList.get(0).getPrice();
-                        if(GlobalClass.currency != null){
-                            proPrice = proPrice * GlobalClass.currency.getRate();
-                            currencyNmae.setText(GlobalClass.currency.CurrencyCode);
+                        if(productList.get(0).isCallForPrice()){
+                            currencyNmae.setText("");
+                            price.setText("Call for Price");
                         }
                         else{
-                            currencyNmae.setText("USD");
+                            float proPrice =productList.get(0).getPrice();
+                            if(GlobalClass.currency != null){
+                                proPrice = proPrice * GlobalClass.currency.getRate();
+                                currencyNmae.setText(GlobalClass.currency.CurrencyCode);
+                            }
+                            else{
+                                currencyNmae.setText("USD");
+                            }
+
+                            price.setText(Float.toString(proPrice));
                         }
 
-                        price.setText(Float.toString(proPrice));
+                        //price.setText(Float.toString(proPrice));
 
                         System.out.println(list.getStatus());
 
@@ -443,6 +461,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         View view = getLayoutInflater().inflate(R.layout.bottom_info, null);
 
         headerInStore = (LinearLayout) view.findViewById(R.id.header_in_store);
+        headerComp = (LinearLayout) view.findViewById(R.id.header_in_com_care);
 
 
         fullDiscription = (TextView) view.findViewById(R.id.btm_prod_detial);
@@ -454,7 +473,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
 
         // TextView share = (TextView)view.findViewById( R.id.btm_share);
         // TextView infoStore = (TextView)view.findViewById( R.id.btm_store_availability);
-        TextView compCare = (TextView)view.findViewById( R.id.btm_co_care);
+        //TextView compCare = (TextView)view.findViewById( R.id.btm_co_care);
         TextView sizeGuide = (TextView)view.findViewById( R.id.btm_size_guide);
 
 
@@ -467,10 +486,15 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         dialogBottomInfo.show ();
         //share.setOnClickListener(this);
         //infoStore.setOnClickListener(this);
-        compCare.setOnClickListener(this);
+        //compCare.setOnClickListener(this);
         sizeGuide.setOnClickListener(this);
 
         //Add onPreDrawListener
+    }
+
+    public void comCare(View view){
+        expandComandCare = (ExpandableRelativeLayout) view.findViewById(R.id.expandable_com_care);
+        expandComandCare.toggle(); // toggle expand and collapse
     }
 
     public void inStore(View view) {

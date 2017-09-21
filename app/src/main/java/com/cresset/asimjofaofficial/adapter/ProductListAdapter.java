@@ -97,16 +97,24 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
         holder.proId.setText(productListModel.getId());
         holder.title.setText(productListModel.getName());
-        float proprice = Float.parseFloat(productListModel.getPrice());
-        if(GlobalClass.currency != null){
-            proprice = proprice * GlobalClass.currency.getRate();
-            holder.pricecode.setText(GlobalClass.currency.CurrencyCode);
+
+        if(productListModel.isCallForPrice()){
+            holder.pricecode.setText("");
+            holder.price.setText("Call for Price");
         }
         else{
-            holder.pricecode.setText("USD");
+            float proprice = Float.parseFloat(productListModel.getPrice());
+            if(GlobalClass.currency != null){
+                proprice = proprice * GlobalClass.currency.getRate();
+                holder.pricecode.setText(GlobalClass.currency.CurrencyCode);
+            }
+            else{
+                holder.pricecode.setText("USD");
+            }
+
+            holder.price.setText(Float.toString(proprice));
         }
 
-        holder.price.setText(Float.toString(proprice));
 
         if(productListModel.isOutOfStock()){
             holder.outOfStock.setBackgroundColor(Color.BLACK);

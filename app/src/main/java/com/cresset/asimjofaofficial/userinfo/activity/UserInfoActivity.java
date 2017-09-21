@@ -47,6 +47,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.cresset.asimjofaofficial.R.id.progressBar;
+
 
 public class UserInfoActivity extends AppCompatActivity {
     private static final String TAG = ChangePassword.class.getSimpleName();
@@ -83,30 +85,24 @@ public class UserInfoActivity extends AppCompatActivity {
             }
         });
 
-        saveUserInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String fname = etuserName.getText().toString().trim();
-                String email = etuserEmail.getText().toString().trim();
+//        saveUserInfo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String fname = etuserName.getText().toString().trim();
+//                String email = etuserEmail.getText().toString().trim();
+//
+//                if (!fname.isEmpty() && !email.isEmpty()){
+//                    saveChnageInfo(fname, email);
+//
+//                }else {
+//                    Toast.makeText(getApplicationContext(),
+//                            "Please enter the required fields!", Toast.LENGTH_LONG)
+//                            .show();
+//                }
+//
+//            }
+//        });
 
-                if (!fname.isEmpty() && !email.isEmpty()){
-                    saveChnageInfo(fname, email);
-
-                }else {
-                    Toast.makeText(getApplicationContext(),
-                            "Please enter the required fields!", Toast.LENGTH_LONG)
-                            .show();
-                }
-
-            }
-        });
-
-        if(!globalUserData.isGuest() && globalUserData.getUserName() != null && globalUserData.getUserName() != "")
-        {
-            Intent intent = new Intent(getApplicationContext(), MyAccount.class);
-            startActivity(intent);
-            finish();
-        }
 //        userName.setText("Attaullah");
 //        userEmail.setText("atta.789@gmail.com");
 
@@ -155,72 +151,72 @@ public class UserInfoActivity extends AppCompatActivity {
         CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
     }
 
-    public void saveChnageInfo(final String fname, final String email){
-        progressDialog.show();
-        HashMap<String,String> params = new HashMap<>();
-        params.put("ProjectId",Config.PROJECTID);
-        params.put("FirstName", fname);
-        params.put("Email", email);
-//        params.put("Day", day);
-//        params.put("month", month);
-//        params.put("year", year);
-
-        WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
-        String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
-
-        params.put("IpAddress", ip);
-
-        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_USER_REGISTER, new JSONObject(params),
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try{
-
-                            JSONObject jObj = new JSONObject(response.toString());
-                            String result = jObj.getString("Status");
-                            progressDialog.dismiss();
-
-                            Gson gson = new Gson();
-                            GuestOrLoginResponseModel model = gson.fromJson(response.toString(), new TypeToken<GuestOrLoginResponseModel>(){}.getType());
-
-                            //show("Customer id:" + model.getCustomerId());
-
-                            if (model.getCustomerId() != null && model.getCustomerId() != "") {
-
-                                UserModel userData = new UserModel();
-                                userData.setUserID(model.getCustomerId());
-                                userData.setUserName(fname);
-                                userData.setEmail(email);
-                                userData.setGuest(false);
-
-                                GlobalClass.userData = userData;
-                                String json = gson.toJson(userData);
-                                sharedPreferencesEditor.putString(Config.RegisteredPreference,json);
-                                sharedPreferencesEditor.commit();
-
-                                Toast.makeText(getApplicationContext(), "svae info successfully!", Toast.LENGTH_SHORT).show();
-                            }
-
-                            // Launch login activity
-                            Intent intent = new Intent(getApplicationContext(), MyAccount.class);
-                            startActivity(intent);
-                            finish();
-
-                        }catch (JSONException e){
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Couldn't register user, please check connection", Toast.LENGTH_SHORT).show();
-                Log.d("Error", error.toString());
-                progressDialog.dismiss();
-            }
-        });
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.add(objectRequest);
-    }
+//    public void saveChnageInfo(final String fname, final String email){
+//        progressDialog.show();
+//        HashMap<String,String> params = new HashMap<>();
+//        params.put("ProjectId",Config.PROJECTID);
+//        params.put("FirstName", fname);
+//        params.put("Email", email);
+////        params.put("Day", day);
+////        params.put("month", month);
+////        params.put("year", year);
+//
+//        WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
+//        String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
+//
+//        params.put("IpAddress", ip);
+//
+//        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_USER_REGISTER, new JSONObject(params),
+//                new Response.Listener<JSONObject>() {
+//                    @Override
+//                    public void onResponse(JSONObject response) {
+//                        try{
+//
+//                            JSONObject jObj = new JSONObject(response.toString());
+//                            String result = jObj.getString("Status");
+//                            progressDialog.dismiss();
+//
+//                            Gson gson = new Gson();
+//                            GuestOrLoginResponseModel model = gson.fromJson(response.toString(), new TypeToken<GuestOrLoginResponseModel>(){}.getType());
+//
+//                            //show("Customer id:" + model.getCustomerId());
+//
+//                            if (model.getCustomerId() != null && model.getCustomerId() != "") {
+//
+//                                UserModel userData = new UserModel();
+//                                userData.setUserID(model.getCustomerId());
+//                                userData.setUserName(fname);
+//                                userData.setEmail(email);
+//                                userData.setGuest(false);
+//
+//                                GlobalClass.userData = userData;
+//                                String json = gson.toJson(userData);
+//                                sharedPreferencesEditor.putString(Config.RegisteredPreference,json);
+//                                sharedPreferencesEditor.commit();
+//
+//                                Toast.makeText(getApplicationContext(), "svae info successfully!", Toast.LENGTH_SHORT).show();
+//                            }
+//
+//                            // Launch login activity
+//                            Intent intent = new Intent(getApplicationContext(), MyAccount.class);
+//                            startActivity(intent);
+//                            finish();
+//
+//                        }catch (JSONException e){
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Toast.makeText(getApplicationContext(), "Couldn't register user, please check connection", Toast.LENGTH_SHORT).show();
+//                Log.d("Error", error.toString());
+//                progressDialog.dismiss();
+//            }
+//        });
+//        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+//        requestQueue.add(objectRequest);
+//    }
 
 }
 

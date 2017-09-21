@@ -81,5 +81,13 @@
     <string name="change_password_text">If you want to change your password, enter your password and new password. </string>
     <string name="tab_online">OLINE</string>
     <string name="tab_store">STORE</string>
+    <string name="com_care_string">Pure chiffon thread  (depend on parent category)\n\n
+        Care:\n
+        Hand washes recommended. \n
+        Do not bleach.\n
+        Iron with care.\n
+        Do not Tumble dry.\n
+
+    </string>
 
 </resources>

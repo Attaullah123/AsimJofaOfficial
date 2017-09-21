@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class CategoryList {
     public String Id;
     public String Name;
+    public String PictureURL;
     public ArrayList<ChildCategoryList> Child;
 
     public String getId() {
@@ -30,5 +31,13 @@ public class CategoryList {
 
     public void setChild(ArrayList<ChildCategoryList> child) {
         Child = child;
+    }
+
+    public String getPictureURL() {
+        return PictureURL;
+    }
+
+    public void setPictureURL(String pictureURL) {
+        PictureURL = pictureURL;
     }
 }

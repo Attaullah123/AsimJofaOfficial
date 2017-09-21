@@ -10,6 +10,7 @@ public class ProductListModel {
     public String ImageLink;
     public boolean IsNewProduct;
     public boolean IsOutOfStock;
+    private boolean CallForPrice;
 
     public String getId() {
         return Id;
@@ -73,5 +74,13 @@ public class ProductListModel {
 
     public void setOutOfStock(boolean outOfStock) {
         IsOutOfStock = outOfStock;
+    }
+
+    public boolean isCallForPrice() {
+        return CallForPrice;
+    }
+
+    public void setCallForPrice(boolean callForPrice) {
+        CallForPrice = callForPrice;
     }
 }

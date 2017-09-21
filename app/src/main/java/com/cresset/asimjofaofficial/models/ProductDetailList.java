@@ -14,6 +14,7 @@ public class ProductDetailList {
     public String FullDescription;
     public boolean IsNewProduct;
     public boolean IsOutOfStock;
+    public boolean CallForPrice;
 
     public int getId() {
         return Id;
@@ -85,5 +86,13 @@ public class ProductDetailList {
 
     public void setOutOfStock(boolean outOfStock) {
         IsOutOfStock = outOfStock;
+    }
+
+    public boolean isCallForPrice() {
+        return CallForPrice;
+    }
+
+    public void setCallForPrice(boolean callForPrice) {
+        CallForPrice = callForPrice;
     }
 }

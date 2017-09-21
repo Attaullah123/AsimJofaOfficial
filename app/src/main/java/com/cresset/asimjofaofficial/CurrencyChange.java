@@ -63,10 +63,6 @@ public class CurrencyChange extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
             }
         });
         progressDialog = new ProgressDialog(this);

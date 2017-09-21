@@ -1,6 +1,7 @@
 package com.cresset.asimjofaofficial.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,9 @@ import com.cresset.asimjofaofficial.R;
 import com.cresset.asimjofaofficial.models.CategoryList;
 import com.cresset.asimjofaofficial.models.ChildCategoryList;
 import com.cresset.asimjofaofficial.models.IndexImage;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -97,7 +101,12 @@ public class IndexAdapter extends BaseExpandableListAdapter {
         TextView tv = (TextView) convertView.findViewById(R.id.category_name);
         ImageView img = (ImageView) convertView.findViewById(R.id.image_display);
         tv.setText(group.getName());
-        // Glide.with(context).load(group.getPictureURL()).into(img);
+       Glide.with(context).load(group.getPictureURL()).into(img);
+        //Picasso.with(context).load(group.getPictureURL()).into(img);
+//        ImageLoader imageLoader = ImageLoader.getInstance();
+//        String imgUri = group.getPictureURL();
+//
+//        imageLoader.displayImage(imgUri, img);
 
 
         return convertView;
