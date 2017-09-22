@@ -321,7 +321,7 @@ public class MainActivity extends AppCompatActivity {
                         CurrencyModel currencyModel = gson.fromJson(response.toString(), new TypeToken<CurrencyModel>(){}.getType());
                         for (CurrencyListModel model:currencyModel.getCurrencyList()
                                 ) {
-                            if(model.isSelected()){
+                            if(model.getCurrencyCode().toLowerCase().equals("pkr")){
                                 String json = gson.toJson(model);
                                 sharedPreferencesEditor.putString(Config.CurrencyPreference,json);
                                 sharedPreferencesEditor.commit();

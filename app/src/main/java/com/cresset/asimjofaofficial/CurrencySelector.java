@@ -64,7 +64,7 @@ public class CurrencySelector extends ListActivity {
         sharedPreferencesEditor =  getApplicationContext().getSharedPreferences(Config.PREFS_NAME, MODE_PRIVATE).edit();
         sharedPreferences = getApplicationContext().getSharedPreferences(Config.PREFS_NAME, MODE_PRIVATE);
 
-        back = (ImageView) findViewById(R.id.img_back);
+        getCurrency();
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,10 +72,6 @@ public class CurrencySelector extends ListActivity {
                 onBackPressed();
             }
         });
-
-        getCurrency();
-
-
 
         /** Defining click event listener for the listitem checkbox */
         AdapterView.OnItemClickListener itemClickListener = new AdapterView.OnItemClickListener() {
@@ -160,7 +156,7 @@ public class CurrencySelector extends ListActivity {
                         currencyList = new ArrayList<CurrencyListModel>(currencyModel.getCurrencyList());
 
                         for (CurrencyListModel model:currencyList
-                             ) {
+                                ) {
                             currencies.add(model.getCurrencyCode());
                         }
                         setAdapter(currencies);
@@ -210,3 +206,4 @@ public class CurrencySelector extends ListActivity {
         }
     }
 }
+

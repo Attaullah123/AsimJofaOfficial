@@ -163,7 +163,8 @@ public class HomeActivity extends Fragment {
                     public void onGroupExpand(int groupPosition) {
                         //if (lastExpandedPosition != -1 && groupPosition != lastExpandedPosition) {
                         if (!categoryLists.get(groupPosition).getChild().isEmpty()) {
-                            expandList.collapseGroup(lastExpandedPosition);
+                            expandList.collapseGroup(0);
+
                         }
                         else{
                             Intent intent = new Intent(getContext(), ProductListActivity.class);
@@ -247,13 +248,18 @@ public class HomeActivity extends Fragment {
         //CustomVolleyRequest.getInstance(getContext()).getRequestQueue().add(jsonObjReq);
     }
 
-
     public void show(String message){
 //        Snackbar snackbar = Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_LONG);
 //        snackbar.show();
 
         Toast.makeText(getContext(),message,Toast.LENGTH_LONG).show();
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+        getCategoryList();
+    }
+
 
     public void runTask () {
         if(isNetworkAvailable()) {
@@ -295,4 +301,6 @@ public class HomeActivity extends Fragment {
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null;
     }
+
+
 }

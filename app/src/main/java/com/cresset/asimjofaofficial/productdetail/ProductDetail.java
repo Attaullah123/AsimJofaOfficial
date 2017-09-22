@@ -92,7 +92,7 @@ import java.util.TimerTask;
 
 
 public class ProductDetail extends AppCompatActivity implements View.OnClickListener{
-    private TextView price, name, sku, fullDiscription, proDetailId,sizePro,proName,cartCountView,currencyNmae;
+    private TextView price, name, sku, fullDiscription, proDetailId,sizePro,proName,cartCountView,currencyNmae,bottomCancel;
     private Spinner productSize,quantitySpinner;
     private ProductImagePagerAdapter pagerAdapter;
     private static ViewPager mPager;
@@ -358,7 +358,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                     public void onResponse(JSONObject response) {
                         //CategoryModel categoryModel = new CategoryModel();
 
-                        Log.d("Response", response.toString());
+                        Log.d("ResponseCart", response.toString());
                         //Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
                         Gson gson = new Gson();
                         ProductDetailModel list = gson.fromJson(response.toString(), new TypeToken<ProductDetailModel>(){}.getType());
@@ -463,7 +463,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         headerInStore = (LinearLayout) view.findViewById(R.id.header_in_store);
         headerComp = (LinearLayout) view.findViewById(R.id.header_in_com_care);
 
-
+        bottomCancel = (TextView) view.findViewById(R.id.close);
         fullDiscription = (TextView) view.findViewById(R.id.btm_prod_detial);
         proName = (TextView) view.findViewById(R.id.btm_prod_code);
         sku = (TextView) view.findViewById(R.id.btm_sku_code);
@@ -471,9 +471,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         proName.setText(btmProNames);
         sku.setText(btmSku);
 
-        // TextView share = (TextView)view.findViewById( R.id.btm_share);
-        // TextView infoStore = (TextView)view.findViewById( R.id.btm_store_availability);
-        //TextView compCare = (TextView)view.findViewById( R.id.btm_co_care);
+
         TextView sizeGuide = (TextView)view.findViewById( R.id.btm_size_guide);
 
 
@@ -484,11 +482,15 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         dialogBottomInfo.getWindow ().setLayout (LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         dialogBottomInfo.getWindow ().setGravity (Gravity.BOTTOM);
         dialogBottomInfo.show ();
-        //share.setOnClickListener(this);
-        //infoStore.setOnClickListener(this);
-        //compCare.setOnClickListener(this);
+
         sizeGuide.setOnClickListener(this);
 
+        bottomCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogBottomInfo.dismiss();
+            }
+        });
         //Add onPreDrawListener
     }
 

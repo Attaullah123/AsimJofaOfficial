@@ -37,5 +37,6 @@ public class Config  {
     public static final String URL_UPDATE_PASSWORD = "http://preview.cressettech.net/mobileapi/Service1.svc/UpdatePassword";
     public static final String URL_BILLING_SHIPPING_GET= "http://preview.cressettech.net/mobileapi/Service1.svc/GetShippingAndBillingAddress";
 
+    public static final String URL_BANK_TRANSCTION= "http://preview.cressettech.net/mobileapi/Service1.svc/GetResourceValue";
 
 }

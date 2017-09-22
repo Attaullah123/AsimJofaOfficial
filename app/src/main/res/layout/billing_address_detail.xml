@@ -73,80 +73,33 @@
                 android:layout_marginTop="5dp" />
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:text="Birthday: "
-                android:textSize="16sp" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="5dp"
-                android:layout_gravity="center"
-                android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/billing_birthday_day"
-                    android:layout_width="100dp"
-                    android:layout_height="35sp"
-                    android:background="@drawable/ed_border"
-                    android:gravity="center"
-                    android:hint="Day"
-                    android:maxLength="2"
-                    android:inputType="number" />
+            <!--<LinearLayout-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="12dp"-->
+                <!--android:layout_marginRight="12dp"-->
+                <!--android:layout_marginTop="12dp"-->
+                <!--android:orientation="horizontal">-->
 
-                <EditText
-                    android:id="@+id/billing_birthday_month"
-                    android:layout_width="100dp"
-                    android:layout_height="35sp"
-                    android:background="@drawable/ed_border"
-                    android:gravity="center"
-                    android:hint="Month"
-                    android:maxLength="2"
-                    android:inputType="number" />
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:paddingTop="7dp"-->
+                    <!--android:text="Country:"-->
+                    <!--android:textSize="17dp"/>-->
 
-                <EditText
-                    android:id="@+id/billing_birthday_year"
-                    android:layout_width="100dp"
-                    android:layout_height="35sp"
-                    android:background="@drawable/ed_border"
-                    android:gravity="center"
-                    android:hint="Year"
-                    android:maxLength="4"
-                    android:inputType="number" />
+                <!--<Spinner-->
+                    <!--android:id="@+id/billing_country_select"-->
+                    <!--android:layout_width="170dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="80dp"-->
+                    <!--android:background="@drawable/spinner_background_black_baseline"-->
+                    <!--android:paddingBottom="8dp"-->
+                    <!--android:spinnerMode="dialog"/>-->
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginTop="12dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="7dp"
-                    android:text="Country:"
-                    android:textSize="17dp"/>
-
-                <Spinner
-                    android:id="@+id/billing_country_select"
-                    android:layout_width="170dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="80dp"
-                    android:background="@drawable/spinner_background_black_baseline"
-                    android:paddingBottom="8dp"
-                    android:spinnerMode="dialog"/>
-
-            </LinearLayout>
+            <!--</LinearLayout>-->
 
             <TextView
                 android:layout_width="wrap_content"
@@ -164,30 +117,30 @@
                 android:layout_marginTop="5dp"
                 android:inputType="textPostalAddress" />
 
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:orientation="horizontal">
+            <!--<LinearLayout-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="12dp"-->
+                <!--android:layout_marginRight="12dp"-->
+                <!--android:orientation="horizontal">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="7dp"
-                    android:text="State / Province:"
-                    android:textSize="17dp"/>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:paddingTop="7dp"-->
+                    <!--android:text="State / Province:"-->
+                    <!--android:textSize="17dp"/>-->
 
-                <Spinner
-                    android:id="@+id/billing_spinner_select_province"
-                    android:layout_width="170dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:background="@drawable/spinner_background_black_baseline"
-                    android:paddingBottom="8dp"
-                    android:spinnerMode="dialog"/>
+                <!--<Spinner-->
+                    <!--android:id="@+id/billing_spinner_select_province"-->
+                    <!--android:layout_width="170dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="20dp"-->
+                    <!--android:background="@drawable/spinner_background_black_baseline"-->
+                    <!--android:paddingBottom="8dp"-->
+                    <!--android:spinnerMode="dialog"/>-->
 
-            </LinearLayout>
+            <!--</LinearLayout>-->
 
 
             <TextView

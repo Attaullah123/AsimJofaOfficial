@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingTop="10dp"
+    android:paddingTop="15dp"
     >
 
     <ScrollView
@@ -14,7 +14,6 @@
         android:id="@+id/sc_v"
         android:fitsSystemWindows="true"
         android:layout_above="@+id/footer"
-
        >
 
         <LinearLayout
@@ -35,7 +34,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="5dp"
                     android:inputType="textCapWords" />
 
             <!-- FIRST Name Label -->
@@ -52,7 +51,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="5dp"
                     android:inputType="textEmailAddress" />
 
 
@@ -68,9 +67,9 @@
                     android:id="@+id/billing_input_Address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textMultiLine"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="5dp" />
+                    android:inputType="text"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp" />
 
 
             <TextView
@@ -161,7 +160,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
                 android:inputType="textPostalAddress" />
 
             <LinearLayout
@@ -201,10 +200,10 @@
                 android:id="@+id/billing_input_city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:inputType="textCapWords"
                 android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"  />
+                android:layout_marginRight="5dp"
+                />
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -233,27 +232,22 @@
             </LinearLayout>
 
             <!-- Signup Button -->
-        </LinearLayout>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/billing_save"
+        android:layout_width="fill_parent"
+        android:layout_height="45sp"
+        android:background="#000000"
+        android:text="SAVE"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="3dp"
+        android:textColor="#ffffff"
+        android:textSize="20sp" />
+
+       </LinearLayout>
+
     </ScrollView>
-
-    <RelativeLayout
-        android:id="@+id/footer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:gravity="center" >
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/billing_save"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="#000000"
-            android:text="SAVE"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="3dp"
-            android:textColor="#ffffff"
-            android:textSize="20sp" />
-        </RelativeLayout>
 
 </RelativeLayout>

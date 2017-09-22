@@ -12,26 +12,36 @@
 
     <Button
         android:id="@+id/shopping_cart_icon"
-        android:layout_width="38sp"
-        android:layout_height="35sp"
-        android:layout_margin="0dp"
+        android:layout_width="31sp"
+        android:layout_height="29sp"
         android:gravity="center"
         android:padding="3dp"
         android:textAlignment="center"
-        android:background="@drawable/ic_cart"/>
+        android:background="@drawable/cart_small1"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_alignLeft="@+id/shopping_cart_notify"
+        android:layout_alignStart="@+id/shopping_cart_notify"
+        />
 
     <TextView
         android:id="@+id/shopping_cart_notify"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textColor="#000"
-        android:textSize="14sp"
+        android:textColor="#252424"
+        android:layout_gravity="center"
+        android:textSize="12sp"
         android:text="1"
         android:layout_centerVertical="true"
         android:layout_alignBaseline="@+id/shopping_cart_icon"
         android:layout_alignBottom="@+id/shopping_cart_icon"
         android:layout_centerHorizontal="true" />
+
+
+
+
 
 
     <!--<TextView-->

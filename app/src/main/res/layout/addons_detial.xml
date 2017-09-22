@@ -19,6 +19,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -31,7 +32,7 @@
                 android:id="@+id/addon_checkbox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5sp"
+                android:layout_marginLeft="10sp"
                 android:button="@drawable/custom_checkbox"
                 android:layout_alignParentLeft="true" />
 
@@ -45,8 +46,6 @@
                 android:layout_toRightOf="@id/addon_checkbox"
                 android:textStyle="bold" />
 
-
-
         </LinearLayout>
 
         <TextView
@@ -56,7 +55,7 @@
             android:layout_below="@id/addons_text"
             android:textColor="#000"
             android:text="12458"
-            android:layout_marginLeft="40sp"
+            android:layout_marginLeft="45sp"
             android:layout_toRightOf="@id/addon_checkbox"
             android:textSize="14sp"
             android:textStyle="italic" />

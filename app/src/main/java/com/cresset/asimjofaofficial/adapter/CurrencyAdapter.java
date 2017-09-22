@@ -119,7 +119,7 @@ public class CurrencyAdapter extends ArrayAdapter<CurrencyListModel> {
         //holder.currencyName.setText(listModel.getId());
         holder.currencyName.setText(listModel.getName());
         //holder.price.setText(listModel.getPrice());
-        holder.selectCurrency.setChecked(currencyListModels.get(position).isSelected);
+        //holder.selectCurrency.setChecked(currencyListModels.get(position).isSelected);
         holder.selectCurrency.setTag(listModel);
 
         return view;

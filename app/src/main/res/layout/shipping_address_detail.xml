@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/sc_v"
         android:fitsSystemWindows="true"
+        android:layout_marginBottom="30dp"
         android:layout_above="@+id/footer"
 
         >
@@ -35,7 +36,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:textColorHint="#2b2a2a"
                 android:inputType="textCapWords" />
 
             <!-- FIRST Name Label -->
@@ -52,7 +54,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:textColorHint="#2b2a2a"
                 android:inputType="textEmailAddress" />
 
 
@@ -62,6 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="12dp"
                 android:layout_marginRight="12dp"
+
                 android:text="Address" />
 
             <EditText
@@ -69,84 +73,38 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
+                android:textColorHint="#2b2a2a"
                 android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp" />
+                android:layout_marginRight="5dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:text="Birthday: "
-                android:textSize="16sp" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="5dp"
-                android:layout_gravity="center"
-                android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/shipping_birthday_day"
-                    android:layout_width="100dp"
-                    android:layout_height="35sp"
-                    android:background="@drawable/ed_border"
-                    android:gravity="center"
-                    android:hint="Day"
-                    android:maxLength="2"
-                    android:inputType="number" />
+            <!--<LinearLayout-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="12dp"-->
+                <!--android:layout_marginRight="12dp"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:orientation="horizontal">-->
 
-                <EditText
-                    android:id="@+id/shipping_birthday_month"
-                    android:layout_width="100dp"
-                    android:layout_height="35sp"
-                    android:background="@drawable/ed_border"
-                    android:gravity="center"
-                    android:hint="Month"
-                    android:maxLength="2"
-                    android:inputType="number" />
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:paddingTop="7dp"-->
+                    <!--android:text="Country:"-->
+                    <!--android:gravity="center"-->
+                    <!--android:textSize="17dp"/>-->
 
-                <EditText
-                    android:id="@+id/shipping_birthday_year"
-                    android:layout_width="100dp"
-                    android:layout_height="35sp"
-                    android:background="@drawable/ed_border"
-                    android:gravity="center"
-                    android:hint="Year"
-                    android:maxLength="4"
-                    android:inputType="number" />
+                <!--<Spinner-->
+                    <!--android:id="@+id/shipping_size_country_select"-->
+                    <!--android:layout_width="170dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="80dp"-->
+                    <!--android:background="@drawable/spinner_background_black_baseline"-->
+                    <!--android:paddingBottom="8dp"-->
+                    <!--android:spinnerMode="dialog"/>-->
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="7dp"
-                    android:text="Country:"
-                    android:gravity="center"
-                    android:textSize="17dp"/>
-
-                <Spinner
-                    android:id="@+id/shipping_size_country_select"
-                    android:layout_width="170dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="80dp"
-                    android:background="@drawable/spinner_background_black_baseline"
-                    android:paddingBottom="8dp"
-                    android:spinnerMode="dialog"/>
-
-            </LinearLayout>
+            <!--</LinearLayout>-->
 
             <TextView
                 android:layout_width="wrap_content"
@@ -161,34 +119,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:textColorHint="#2b2a2a"
                 android:inputType="textPostalAddress" />
 
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:orientation="horizontal">
+            <!--<LinearLayout-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="12dp"-->
+                <!--android:layout_marginRight="12dp"-->
+                <!--android:orientation="horizontal">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="7dp"
-                    android:gravity="center"
-                    android:text="State / Province:"
-                    android:textSize="17dp"/>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:paddingTop="7dp"-->
+                    <!--android:gravity="center"-->
+                    <!--android:text="State / Province:"-->
+                    <!--android:textSize="17dp"/>-->
 
-                <Spinner
-                    android:id="@+id/shipping_spinner_select_province"
-                    android:layout_width="170dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:background="@drawable/spinner_background_black_baseline"
-                    android:paddingBottom="8dp"
-                    android:spinnerMode="dialog"/>
+                <!--<Spinner-->
+                    <!--android:id="@+id/shipping_spinner_select_province"-->
+                    <!--android:layout_width="170dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="20dp"-->
+                    <!--android:background="@drawable/spinner_background_black_baseline"-->
+                    <!--android:paddingBottom="8dp"-->
+                    <!--android:spinnerMode="dialog"/>-->
 
-            </LinearLayout>
+            <!--</LinearLayout>-->
 
 
             <TextView
@@ -203,8 +162,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
+                android:textColorHint="#2b2a2a"
                 android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"  />
+                android:layout_marginRight="5dp"  />
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -225,6 +185,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
+                    android:textColorHint="#2b2a2a"
                     android:inputType="number"
                     android:singleLine="true"
                     android:layout_marginRight="10dp"
@@ -233,27 +194,19 @@
             </LinearLayout>
 
             <!-- Signup Button -->
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/shipping_save"
+                android:layout_width="fill_parent"
+                android:layout_height="45sp"
+                android:background="#000000"
+                android:text="SAVE"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="3dp"
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
         </LinearLayout>
     </ScrollView>
-
-    <RelativeLayout
-        android:id="@+id/footer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:gravity="center" >
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/shipping_save"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="#000000"
-            android:text="SAVE"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="3dp"
-            android:textColor="#ffffff"
-            android:textSize="20sp" />
-    </RelativeLayout>
-
 </RelativeLayout>

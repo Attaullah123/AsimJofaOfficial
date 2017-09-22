@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -43,7 +45,7 @@ public class FinalOrderActivity extends AppCompatActivity {
         String paymentMethod = intent.getStringExtra("paymentMethod");
         oderId.setText(id);
 
-        if(paymentMethod == "BankTransfer"){
+        if(paymentMethod.equals("BankTransfer")){
             order_message.setText("");
             OrderPlace("checkout.banktransferdetail");
         }
@@ -66,7 +68,7 @@ public class FinalOrderActivity extends AppCompatActivity {
         String json = gson.toJson(model);
 
         Log.i("Order Placed",json);
-        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_PlaceOrder, json,
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_BANK_TRANSCTION, json,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -75,8 +77,12 @@ public class FinalOrderActivity extends AppCompatActivity {
                             Gson gson = new Gson();
                             ResourceValueResponse resourceResponse = gson.fromJson(response.toString(), new TypeToken<ResourceValueResponse>(){}.getType());
 
+                            String json = gson.toJson(resourceResponse);
+
+                            Log.i("resourceResponse",json);
+
                             if(!resourceResponse.getResourceValue().equals(null) && !resourceResponse.getResourceValue().equals("")){
-                                order_message.setText(resourceResponse.getResourceValue());
+                                order_message.setText(Html.fromHtml(resourceResponse.getResourceValue()));
                             }
 
                         }catch (Exception e){
@@ -98,5 +104,11 @@ public class FinalOrderActivity extends AppCompatActivity {
 
         AppController.getInstance().addToRequestQueue(objectRequest);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

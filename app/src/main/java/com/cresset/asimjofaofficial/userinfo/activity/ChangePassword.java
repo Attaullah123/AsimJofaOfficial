@@ -38,7 +38,7 @@ import java.util.Map;
 
 public class ChangePassword extends AppCompatActivity {
     private static final String TAG = ChangePassword.class.getSimpleName();
-    private Toolbar toolbar;
+
     private EditText etEmail,etPassword,etNewPassword;
     private Button saveChangePassword;
     private ProgressDialog pDialog;
@@ -47,11 +47,10 @@ public class ChangePassword extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.change_password);
-        toolbar = (Toolbar) findViewById(R.id.toolbar_1);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_1);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("");
-        toolbar.setBackgroundColor(Color.parseColor("#ffffff"));
 
 
         // Progress dialog

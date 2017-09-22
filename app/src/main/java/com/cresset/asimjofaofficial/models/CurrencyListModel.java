@@ -10,7 +10,7 @@ public class CurrencyListModel {
     public String CurrencyCode;
     public Float Rate;
     public int DisplayOrder;
-    public boolean isSelected;
+
 
     public int getId() {
         return Id;
@@ -53,11 +53,4 @@ public class CurrencyListModel {
         DisplayOrder = displayOrder;
     }
 
-    public boolean isSelected() {
-        return isSelected;
-    }
-
-    public void setSelected(boolean selected) {
-        isSelected = selected;
-    }
 }

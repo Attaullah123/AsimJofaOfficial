@@ -3,6 +3,7 @@ package com.cresset.asimjofaofficial.fragments;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.cresset.asimjofaofficial.R;
+import com.cresset.asimjofaofficial.ShippingBillingAddress;
 import com.cresset.asimjofaofficial.adapter.BillingCountrySpinnerAdapter;
 import com.cresset.asimjofaofficial.adapter.BillingStateSpinnerAdapter;
 import com.cresset.asimjofaofficial.adapter.ShippingCountrySpinnerAdapter;
@@ -110,11 +112,7 @@ public class ShippingAddress extends android.support.v4.app.Fragment{
                     shippingAddress();
                     Toast.makeText(getContext(), "Info save successfully! Also Add Billing Address", Toast.LENGTH_LONG).show();
 
-//                    BillingAddress billingAddress=new BillingAddress();
-//                    FragmentTransaction transaction=getFragmentManager().beginTransaction();
-//                    transaction.replace(R.id.frame_content,billingAddress); // give your fragment container id in first parameter
-//                    transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
-//                    transaction.commit();
+                    ((ShippingBillingAddress)getActivity()).navigateFragment(1);
 
 
                 }else {
