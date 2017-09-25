@@ -115,7 +115,7 @@ public class AddonsAdapterRe extends RecyclerView.Adapter<AddonsAdapterRe.ViewHo
                 adonPrice = adonPrice * GlobalClass.currency.getRate();
             }
 
-            addonPrices.setText("+" + Float.toString(adonPrice));
+            addonPrices.setText("+" + String.format("%.0f",adonPrice));
         }
     }
 }

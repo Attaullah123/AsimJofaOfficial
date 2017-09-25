@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,7 @@ import com.cresset.asimjofaofficial.models.ProductModel;
 import com.cresset.asimjofaofficial.models.ShippingMethodModel;
 import com.cresset.asimjofaofficial.models.ShippingmethodList;
 import com.cresset.asimjofaofficial.utilities.Config;
+import com.cresset.asimjofaofficial.utilities.CustomVolleyRequest;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
 import com.cresset.asimjofaofficial.volley.AppController;
 import com.google.gson.Gson;
@@ -50,9 +52,7 @@ public class ShippingMethod extends AppCompatActivity {
     private ShippingMethodAdapter shippingAdapter;
     private List<ShippingMethodModel> shippingModels;
     private ImageView back;
-    private ProgressDialog progressDialog;
-    //private String prodId;
-
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,9 +64,8 @@ public class ShippingMethod extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("");
 
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading.....");
-        progressDialog.setCancelable(false);
+
+        progressBar=(ProgressBar) findViewById(R.id.progressBar);
 
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
@@ -85,7 +84,7 @@ public class ShippingMethod extends AppCompatActivity {
     }
 
     public void getShippingData(){
-        progressDialog.show();
+        progressBar.setVisibility(View.VISIBLE);
         //creating json array list
         Map<String, String> params = new HashMap<String, String>();
         params.put("ProjectId", Config.PROJECTID);
@@ -108,7 +107,7 @@ public class ShippingMethod extends AppCompatActivity {
 
                         shippingAdapter = new ShippingMethodAdapter(getApplicationContext(), shippingLists);
                         recyclerView.setAdapter(shippingAdapter);
-                        progressDialog.dismiss();
+                        progressBar.setVisibility(View.GONE);
 
 
                     }
@@ -117,10 +116,10 @@ public class ShippingMethod extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
                 Log.d("Error", error.toString());
-                progressDialog.dismiss();
+                progressBar.setVisibility(View.GONE);
             }
         });
-        AppController.getInstance().addToRequestQueue(objectRequest);
+        CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
     }
 
 }

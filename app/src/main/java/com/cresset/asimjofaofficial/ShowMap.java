@@ -1,5 +1,7 @@
 package com.cresset.asimjofaofficial;
 
+import android.content.Context;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +31,7 @@ public class ShowMap extends AppCompatActivity {
     static final LatLng ASIMJOFA = new LatLng(24.823110, 67.035186);
     private GoogleMap map;
     private ImageView back;
+    private Context context;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +41,9 @@ public class ShowMap extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_1);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        LocationManager locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,13 +56,19 @@ public class ShowMap extends AppCompatActivity {
 
         float zoomLevel = (float) 18.0;
 
+
+
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(ASIMJOFA, zoomLevel));
         if (map != null) {
             Marker kiel = map.addMarker(new MarkerOptions().position(ASIMJOFA).icon(BitmapDescriptorFactory
                     .fromResource(R.drawable.location_icon1)));
             //kiel.setTitle("ASIM JOFA");
-           // kiel.setSnippet("Block 9, Clifton, Near Do Talwar، Karachi, Pakistan");
+            // kiel.setSnippet("Block 9, Clifton, Near Do Talwar، Karachi, Pakistan");
             kiel.showInfoWindow();
+        } else {
+            Toast.makeText(context, "Please switch on the GPS", Toast.LENGTH_LONG).show();
         }
+
+
     }
 }

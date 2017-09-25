@@ -91,6 +91,7 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setVerticalScrollBarEnabled(false);
+       // recyclerView.setNestedScrollingEnabled(false);
         recyclerView.addItemDecoration(new RecyclerDivider(this, LinearLayoutManager.VERTICAL));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(cartAdapter);
@@ -222,7 +223,7 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
             shippingPrice_currency.setText("USD");
         }
 
-        shippingPrice.setText(Float.toString(shipping));
+        shippingPrice.setText(String.format("%.0f",shipping));
         if (GlobalClass.shippingMethod != null)
             selectShippingMethodName.setText(GlobalClass.shippingMethod.getName());
     }
@@ -317,7 +318,7 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
                             total_product_curruncy_name.setText("USD");
                         }
 
-                        totalProductPrice.setText(Float.toString(total));
+                        totalProductPrice.setText(String.format("%.0f",total));
                         cartItem.setText(Integer.toString(GlobalClass.CartCount) + " " + "items");
                         // renew again
                         total = cartModel.getTotalDetail().getSubTotalAmount();
@@ -332,7 +333,7 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
                             total_curruncy_name.setText("USD");
                         }
 
-                        totalPrice.setText(Float.toString(total));
+                        totalPrice.setText(String.format("%.0f",total));
 
                         //total_curruncy_name
                         ArrayList<CartModelItems> cartItems = new ArrayList<CartModelItems>(cartModel.getCartItems());
@@ -381,7 +382,7 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
                 shippingPrice_currency.setText("USD");
             }
 
-            shippingPrice.setText(Float.toString(shipping));
+            shippingPrice.setText(String.format("%.0f",shipping));
 
             selectShippingMethodName.setText(GlobalClass.shippingMethod.getName());
             getCartDetail();

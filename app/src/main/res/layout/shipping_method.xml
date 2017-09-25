@@ -57,11 +57,27 @@
             android:textSize="17sp"
             android:text="Select Shipping Method"/>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_marginTop="20dp"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="vertical"/>
+            android:paddingTop="5dp"
+            android:layout_weight="1">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:scrollbars="vertical"/>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:theme="@style/CircularProgress"
+                style="@style/Widget.AppCompat.ProgressBar"
+                android:layout_centerInParent="true"
+                />
+        </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

@@ -89,7 +89,7 @@ public class ShippingMethodAdapter  extends RecyclerView.Adapter<ShippingMethodA
         else{
             holder.productCurrencyName.setText("USD");
         }
-        holder.shippingPrice.setText(Float.toString(productPrice));
+        holder.shippingPrice.setText(String.format("%.0f",productPrice));
     }
 
     @Override

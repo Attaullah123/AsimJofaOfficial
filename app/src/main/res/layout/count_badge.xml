@@ -17,10 +17,11 @@
         android:gravity="center"
         android:padding="3dp"
         android:textAlignment="center"
-        android:background="@drawable/cart_small1"
+        android:background="@drawable/cart_small"
         android:layout_marginRight="0dp"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="0dp"
+        android:layout_marginLeft="1.2dp"
         android:layout_alignLeft="@+id/shopping_cart_notify"
         android:layout_alignStart="@+id/shopping_cart_notify"
         />
@@ -40,10 +41,6 @@
         android:layout_centerHorizontal="true" />
 
 
-
-
-
-
     <!--<TextView-->
         <!--android:id="@+id/shopping_cart_notify"-->
         <!--android:layout_width="wrap_content"-->
@@ -51,7 +48,6 @@
         <!--android:layout_alignEnd="@id/shopping_cart_icon"-->
         <!--android:layout_alignRight="@id/shopping_cart_icon"-->
         <!--android:layout_alignTop="@id/shopping_cart_icon"-->
-        <!--android:background="@drawable/badge_oval"-->
         <!--android:text="1"-->
         <!--android:gravity="center"-->
         <!--android:minWidth="17sp"-->

@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -27,6 +28,7 @@ import com.cresset.asimjofaofficial.models.ShippingMethodModel;
 import com.cresset.asimjofaofficial.models.ShippingmethodList;
 import com.cresset.asimjofaofficial.recylerview.RecyclerDivider;
 import com.cresset.asimjofaofficial.utilities.Config;
+import com.cresset.asimjofaofficial.utilities.CustomVolleyRequest;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -41,10 +43,9 @@ import java.util.Map;
 public class PaymentMethod extends AppCompatActivity {
     private Toolbar toolbar;
     private RecyclerView recyclerView;
-    private ProgressDialog progressDialog;
     private PaymentAdapter paymentAdapter;
     private ImageView back;
-
+    private ProgressBar progressBar;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,9 +55,7 @@ public class PaymentMethod extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("");
 
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading.....");
-        progressDialog.setCancelable(false);
+        progressBar=(ProgressBar) findViewById(R.id.progressBar);
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -77,7 +76,7 @@ public class PaymentMethod extends AppCompatActivity {
     }
 
     public void getpaymentMethod(){
-            progressDialog.show();
+            progressBar.setVisibility(View.VISIBLE);
             //creating json array list
             Map<String, String> params = new HashMap<String, String>();
             params.put("ProjectId", Config.PROJECTID);
@@ -102,7 +101,7 @@ public class PaymentMethod extends AppCompatActivity {
 
                             paymentAdapter = new PaymentAdapter(getApplicationContext(), paymentLists);
                             recyclerView.setAdapter(paymentAdapter);
-                            progressDialog.dismiss();
+                            progressBar.setVisibility(View.GONE);
 
 
                         }
@@ -111,10 +110,9 @@ public class PaymentMethod extends AppCompatActivity {
                 public void onErrorResponse(VolleyError error) {
                     Toast.makeText(getApplicationContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
                     Log.d("Error", error.toString());
-                    progressDialog.dismiss();
+                    progressBar.setVisibility(View.GONE);
                 }
             });
-            RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-            requestQueue.add(objectRequest);
+        CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
         }
 }

@@ -115,7 +115,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             holder.proCurrencyName.setText("USD");
         }
 
-        holder.proPrice.setText(Float.toString(productPrice));
+        holder.proPrice.setText(String.format("%.0f",productPrice));
 
         Glide.with(mContext).load(cartListModel.getImageLink()).into(holder.thumbnailImage);
     }

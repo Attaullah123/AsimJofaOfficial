@@ -112,7 +112,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
                 holder.pricecode.setText("USD");
             }
 
-            holder.price.setText(Float.toString(proprice));
+            holder.price.setText(String.format("%.0f",proprice));
         }
 
 

@@ -49,6 +49,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.cresset.asimjofaofficial.CurrencyChange;
+import com.cresset.asimjofaofficial.CurrencySelector;
 import com.cresset.asimjofaofficial.GetCart;
 import com.cresset.asimjofaofficial.HomeActivity;
 import com.cresset.asimjofaofficial.MainActivity;
@@ -92,41 +93,27 @@ import java.util.TimerTask;
 
 
 public class ProductDetail extends AppCompatActivity implements View.OnClickListener{
-    private TextView price, name, sku, fullDiscription, proDetailId,sizePro,proName,cartCountView,currencyNmae,bottomCancel;
+    private TextView price, name, sku, fullDiscription, proDetailId,sizePro,proName,cartCountView,currencyNmae,bottomCancel,addTocart;
     private Spinner productSize,quantitySpinner;
-    private ProductImagePagerAdapter pagerAdapter;
     private static ViewPager mPager;
     private static int currentPage = 0;
     private static int NUM_PAGES = 0;
     private CirclePageIndicator indicator;
     private static final Integer[] IMAGES = {};
-    private ArrayList<ProductListModel> listModelArrayList;
     private SizeSpinnerAdapter sizeSpinnerAdapter;
-    private Context mContext;
     private Button infoButton;
-    private Button sizeCheck;
-    private String id;
-    private String fulldiscrip;
-    private String btmProNames;
-    private String btmSku;
+    private String id,fulldiscrip,btmProNames,btmSku,quantityName;
     private RecyclerView recyclerView;
-    private ArrayList<ProductAddons> productAddonsArrayList;
     private AddonsAdapterRe addonsAdapter;
-    private TextView addTocart;
     private ProductDetailList proDetail;
-    private String atrribute;
     private ProductDetailSize productDetailSize;
-    private List<QuantityModel> quantityModels;
-    private String quantityName;
     JSONArray array = new JSONArray();
-    String mUrl;  //initialized somewhere else
-    ArrayList<String> attribute;  //initialized somewhere else
     private ProgressDialog progressDialog;
     private Menu menu;
     private String tag_json_obj = "json_obj_req";
-    private ValueAnimator mAnimator;
     private LinearLayout headerInStore,headerComp;
     private ExpandableRelativeLayout expandInstore,expandComandCare;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -138,7 +125,6 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         toolbar.setTitle("");
         toolbar.setSubtitle("");
 
-        //toolbar.setBackgroundColor(Color.parseColor("#ffffff"));
         setSupportActionBar(toolbar);
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading.....");
@@ -168,21 +154,19 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
 
         currencyNmae = (TextView) findViewById(R.id.product_currency_name);
 
-
         currencyNmae.setText("USD");
         //quantity spinner
 
         infoButton.setBackgroundColor(Color.WHITE);
+
         final List<String> quantityList = new ArrayList<String>();
         quantityList.add("1");
         quantityList.add("2");
         quantityList.add("3");
         quantityList.add("4");
         quantityList.add("5");
-
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, quantityList);
-
         // Drop down layout style - list view with radio button
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -195,9 +179,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
 
                 quantityName = parent.getItemAtPosition(position).toString();
 
-                //Toast.makeText(parent.getContext(), "quantity selected" + quantityName, Toast.LENGTH_LONG).show();
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -252,6 +234,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         });
 
         getProductDetail();
+
 //AddTo cart post parameters
 
         addTocart.setOnClickListener(new View.OnClickListener() {
@@ -331,6 +314,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                 else{
                     if(proDetail.isCallForPrice()){
                         Toast.makeText(getApplicationContext(),"Call for Price", Toast.LENGTH_SHORT).show();
+                        appointmentBottomSheet();
                     }
                     else{
                         Toast.makeText(getApplicationContext(),"Out of Stock", Toast.LENGTH_SHORT).show();
@@ -350,8 +334,6 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         params.put("ProjectId", Config.PROJECTID);
         params.put("ProductId",id);
 
-        //params.put("application/json","charset=utf-8");
-
         JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_PRODUCT_DETAIL, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -367,7 +349,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                             proDetail = productList.get(0);
 
                         if(proDetail.isCallForPrice()){
-                            addTocart.setText("Call for Price");
+                            addTocart.setText("MAKE AN APPOINTMENT");
                         }
                         else if (proDetail.isOutOfStock()){
                             addTocart.setText("SOLD OUT");
@@ -395,25 +377,21 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                                 currencyNmae.setText("USD");
                             }
 
-                            price.setText(Float.toString(proPrice));
+                            price.setText(String.format("%.0f",proPrice));
                         }
 
                         //price.setText(Float.toString(proPrice));
 
                         System.out.println(list.getStatus());
-
+                        //set image slider
                         ArrayList<String> imageList = new ArrayList<String>(list.getImagesLink());
                         mPager.setAdapter(new ProductImagePagerAdapter(getApplicationContext(), imageList));
                         indicator.setViewPager(mPager);
-
-
-
+                        //set products addons
                         ArrayList<ProductAddons> adonList = new ArrayList<ProductAddons>(list.getAddons());
                         addonsAdapter = new AddonsAdapterRe(getApplicationContext(), adonList,price);
                         recyclerView.setAdapter(addonsAdapter);
-
-
-
+                        //set product size
                         ArrayList<ProductDetailSize> sizeList = new ArrayList<ProductDetailSize>(list.getSize());
 
                         sizeSpinnerAdapter = new SizeSpinnerAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, sizeList);
@@ -438,7 +416,6 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
 
                         });
 
-                        //progressDialog.dismiss();
 
                     }
 
@@ -471,9 +448,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         proName.setText(btmProNames);
         sku.setText(btmSku);
 
-
         TextView sizeGuide = (TextView)view.findViewById( R.id.btm_size_guide);
-
 
         final Dialog dialogBottomInfo = new Dialog(ProductDetail.this, R.style.MaterialDialogSheet);
 
@@ -507,22 +482,26 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()){
 
-//            case  R.id.btm_store_availability:
-//                Toast.makeText(getApplicationContext(),"store click", Toast.LENGTH_LONG).show();
-//                break;
-            case R.id.btm_co_care:
-                Toast.makeText(getApplicationContext(),"composition and care click", Toast.LENGTH_LONG).show();
-                break;
             case R.id.btm_size_guide:
                 android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
                 SizeDialogFragment dialogFragment = new SizeDialogFragment ();
                 dialogFragment.show(fm, "Sample Fragment");
                 break;
-
-
         }
     }
+    //appointment form
 
+    public void appointmentBottomSheet(){
+        View view = getLayoutInflater().inflate(R.layout.appointment_form, null);
+
+        final Dialog dialogBottomInfo = new Dialog(ProductDetail.this, R.style.MaterialDialogSheet);
+
+        dialogBottomInfo.setContentView (view);
+        dialogBottomInfo.setCancelable (true);
+        dialogBottomInfo.getWindow ().setLayout (LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        dialogBottomInfo.getWindow ().setGravity (Gravity.BOTTOM);
+        dialogBottomInfo.show ();
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.top_menu, menu);
@@ -530,7 +509,6 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         GetCartItemsCount();
         return super.onCreateOptionsMenu(menu);
     }
-
     public void UpdateCartCount(){
         MenuItem cartItem = menu.findItem(R.id.cart);
         MenuItemCompat.setActionView(cartItem, R.layout.count_badge);
@@ -554,14 +532,12 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
             }
         });
     }
-
     @Override
     protected void onPostResume() {
         super.onPostResume();
         GetCartItemsCount();
         getProductDetail();
     }
-
     public void GetCartItemsCount() {
         HashMap<String, String> params = new HashMap<>();
         params.put("ProjectId", Config.PROJECTID);
@@ -596,7 +572,6 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         });
         CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -605,7 +580,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                 startActivity(intent);
                 return true;
             case R.id.currency_change:
-                Intent intent1 = new Intent(getApplicationContext(), CurrencyChange.class);
+                Intent intent1 = new Intent(getApplicationContext(), CurrencySelector.class);
                 startActivity(intent1);
                 return true;
             case R.id.info:
@@ -617,6 +592,5 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                 return super.onOptionsItemSelected(item);
         }
     }
-
 
 }

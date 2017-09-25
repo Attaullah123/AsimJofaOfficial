@@ -127,16 +127,6 @@ public class HomeActivity extends Fragment {
                 expandList.setAdapter(indexAdapter);
                 //adapter.setChoiceMode(AnswersAdabter.CHOICE_MODE_SINGLE_PER_GROUP);
 
-//                expandList.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-//                        @Override
-//                        public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-//                            Intent intent = new Intent(getContext(), ProductListActivity.class);
-//                            intent.putExtra("categoryId", categoryLists.get(groupPosition).getId());
-//                            startActivity(intent);
-//                            return true;
-//                        }
-//                    });
-
                 // Handle the click when the user clicks an any child
                 expandList.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
 
@@ -244,8 +234,7 @@ public class HomeActivity extends Fragment {
             }
         });
         //call volley
-        AppController.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
-        //CustomVolleyRequest.getInstance(getContext()).getRequestQueue().add(jsonObjReq);
+        CustomVolleyRequest.getInstance(getContext()).getRequestQueue().add(jsonObjReq);
     }
 
     public void show(String message){

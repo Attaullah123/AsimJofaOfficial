@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center|bottom"
+    android:padding="5dp"
+    android:background="#ddffffff"
+    android:id="@+id/window_popup">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_1"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="30sp"
+
+        app:titleTextColor="@android:color/white"
+        android:background="#fff">
+
+        <TextView
+            android:id="@+id/close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CLOSE"
+            android:textColor="#000"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            />
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ddffffff"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_gravity="center"
+                    android:padding="10dp"
+                    android:text="Make an Appoinment"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edit_product_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:hint="Product Name"
+                    android:padding="10dp"
+                    android:ems="10"
+                    android:textColor="@color/colorBlack"
+                    android:background="@drawable/corner_gray_border"
+                    />
+
+                <EditText
+                    android:id="@+id/edit_full_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:hint="Full Name:"
+                    android:padding="10dp"
+                    android:ems="10"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/colorBlack"
+                    android:background="@drawable/corner_gray_border"
+                     />
+
+                <EditText
+                    android:id="@+id/edit_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:hint="Email:"
+                    android:padding="10dp"
+                    android:ems="10"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/colorBlack"
+                    android:background="@drawable/corner_gray_border"
+                    />
+
+                <EditText
+                    android:id="@+id/edit_telephone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:hint="Telephone:"
+                    android:padding="10dp"
+                    android:ems="10"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/colorBlack"
+                    android:background="@drawable/corner_gray_border"
+                     />
+
+                <EditText
+                    android:id="@+id/edit_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:hint="Address:"
+                    android:padding="10dp"
+                    android:ems="10"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/colorBlack"
+                    android:background="@drawable/corner_gray_border"
+                     />
+
+                <EditText
+                    android:id="@+id/edit_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:hint="City:"
+                    android:padding="10dp"
+                    android:ems="10"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/colorBlack"
+                    android:background="@drawable/corner_gray_border"
+                     />
+
+                <EditText
+                    android:id="@+id/edit_budget"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/corner_gray_border"
+                    android:ems="10"
+                    android:hint="Budget:"
+                    android:inputType="textPersonName"
+                    android:padding="10dp"
+                    android:textColor="@color/colorBlack" />
+
+                <EditText
+                    android:id="@+id/edit_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="80sp"
+                    android:inputType="textPersonName"
+                    android:hint="Message:"
+                    android:padding="7dp"
+                    android:ems="10"
+                    android:maxLines="4"
+                    android:maxLength="2000"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/colorBlack"
+                    android:background="@drawable/corner_gray_border"
+                    />
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btn_signup"
+                    android:layout_width="fill_parent"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#000000"
+                    android:text="CONFIRM APPOINTMENT"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp" />
+
+                </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

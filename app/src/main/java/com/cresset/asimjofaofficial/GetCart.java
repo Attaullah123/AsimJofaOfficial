@@ -140,7 +140,9 @@ public class GetCart extends AppCompatActivity {
     public CartModel getCartDetail() {
         progressBar.setVisibility(View.VISIBLE);
         HashMap<String,String> params = new HashMap<>();
+
         if (GlobalClass.userData != null) {
+
             params.put("ProjectId", Config.PROJECTID);
             params.put("CustomerId", GlobalClass.userData.getUserID());
 
@@ -172,7 +174,7 @@ public class GetCart extends AppCompatActivity {
                                 currencyName.setText("USD");
                             }
 
-                            subTotal.setText(Float.toString(subTo));
+                            subTotal.setText(String.format("%.0f",subTo));
 
                             ArrayList<CartModelItems> cartItems = new ArrayList<>(cartModelData.getCartItems());
 

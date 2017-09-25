@@ -67,9 +67,16 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
             holder.orderCurrencyName.setText("USD");
         }
 
-        holder.orderTotal.setText(Float.toString(productPrice));
+        holder.orderTotal.setText(String.format("%.0f",productPrice));
 
     }
+
+    public void clearCart() {
+        ordersListModel.clear();
+        ordersListModel.clear();
+        notifyDataSetChanged();
+    }
+
 
     @Override
     public int getItemCount() {

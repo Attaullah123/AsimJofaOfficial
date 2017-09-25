@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -28,15 +29,69 @@
             android:layout_gravity="center"/>
 
     </android.support.v7.widget.Toolbar>
+
     <View
         android:paddingTop="5dp"
         android:layout_width="fill_parent"
         android:layout_height="0.2dp"
         android:background="#333030"/>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+
+    <LinearLayout
+        android:id="@+id/cart_empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="10dp"
-        android:scrollbars="vertical"/>
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/Your_cart_is_empty"
+            android:src="@drawable/ic_order"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"/>
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:text="You have not yet place order"/>
+
+        <TextView
+            android:id="@+id/cart_empty_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/base_margin"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="5dp"
+        android:layout_weight="1">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:theme="@style/CircularProgress"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+
 </LinearLayout>

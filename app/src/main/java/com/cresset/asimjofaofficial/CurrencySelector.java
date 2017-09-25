@@ -66,6 +66,7 @@ public class CurrencySelector extends ListActivity {
 
         getCurrency();
 
+        back = (ImageView) findViewById(R.id.img_back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -192,7 +193,7 @@ public class CurrencySelector extends ListActivity {
 
     public void setAdapter(List<String> currencies){
         /** Defining array adapter to store items for the listview **/
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, currencies);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.simple_list_item_multiple_choicee, currencies);
 
         /** Setting the arrayadapter for this listview  **/
         getListView().setAdapter(adapter);

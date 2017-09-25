@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -27,6 +28,7 @@ import com.cresset.asimjofaofficial.models.OrdersListModel;
 import com.cresset.asimjofaofficial.models.ProductListModel;
 import com.cresset.asimjofaofficial.recylerview.RecyclerDivider;
 import com.cresset.asimjofaofficial.utilities.Config;
+import com.cresset.asimjofaofficial.utilities.CustomVolleyRequest;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -46,6 +48,8 @@ public class OrderHistory extends AppCompatActivity {
     private OrderHistoryAdapter adapter;
     private ImageView back;
     private ProgressDialog progressDialog;
+    private View emptyCart;
+    private ProgressBar progressBar;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,10 +68,9 @@ public class OrderHistory extends AppCompatActivity {
                 onBackPressed();
             }
         });
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading.....");
-        progressDialog.setCancelable(false);
+        progressBar=(ProgressBar) findViewById(R.id.progressBar);
 
+        emptyCart = findViewById(R.id.cart_empty);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -80,9 +83,7 @@ public class OrderHistory extends AppCompatActivity {
     }
 
     public void getOderHistory(){
-        progressDialog.show();
-
-        //creating json array list
+        progressBar.setVisibility(View.VISIBLE);
         Map<String, String> params = new HashMap<String, String>();
         params.put("ProjectId", Config.PROJECTID);
         params.put("CustomerId", GlobalClass.userData.getUserID());
@@ -101,9 +102,15 @@ public class OrderHistory extends AppCompatActivity {
 
                         ArrayList<OrdersListModel> orderList = new ArrayList<OrdersListModel>(orderModel.getCustomerOrders());
 
+                        if (orderModel.getCustomerOrders() == null || orderModel.getCustomerOrders().size() == 0) {
+                            setCartVisibility(false);
+                        } else {
+                            setCartVisibility(true);
+                            //cartAdapter.refreshItems(cartDetailModel);
+                        }
                         adapter = new OrderHistoryAdapter(getApplicationContext(), orderList);
                         recyclerView.setAdapter(adapter);
-                        progressDialog.dismiss();
+                        progressBar.setVisibility(View.GONE);
 
 
                     }
@@ -112,11 +119,23 @@ public class OrderHistory extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
                 Log.d("Error", error.toString());
-                progressDialog.dismiss();
+                progressBar.setVisibility(View.VISIBLE);
             }
         });
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.add(objectRequest);
+        CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
+    }
+
+    private void setCartVisibility(boolean visible) {
+        if (visible) {
+            if (emptyCart != null) emptyCart.setVisibility(View.GONE);
+            if (recyclerView != null) recyclerView.setVisibility(View.VISIBLE);
+            //if (cartFooter != null) cartFooter.setVisibility(View.VISIBLE);
+        } else {
+            if (adapter != null) adapter.clearCart();
+            if (emptyCart != null) emptyCart.setVisibility(View.VISIBLE);
+            if (recyclerView != null) recyclerView.setVisibility(View.GONE);
+            if (recyclerView != null) recyclerView.setVisibility(View.GONE);
+        }
     }
 
 }
