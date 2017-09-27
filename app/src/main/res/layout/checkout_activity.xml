@@ -352,7 +352,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
                     >
 
@@ -399,7 +399,7 @@
                     <com.github.aakira.expandablelayout.ExpandableRelativeLayout
                         android:id="@+id/expandable_in_store"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         app:ael_duration="500"
                         app:ael_expanded="true"
                         android:background="#fff"
@@ -409,7 +409,7 @@
                         <android.support.v7.widget.RecyclerView
                             android:id="@+id/recycler_view"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:scrollbars="none"
                             />
                         <ProgressBar
@@ -479,7 +479,7 @@
                 android:layout_marginTop="3dp"
                 android:orientation="horizontal">
 
-                <com.cresset.asimjofaofficial.customfonts.CustomFont
+                <TextView
                     android:id="@+id/total_curruncy_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -489,7 +489,7 @@
                     android:textSize="16sp"
                     android:text="USD"/>
 
-                <com.cresset.asimjofaofficial.customfonts.CustomFont
+                <TextView
                     android:id="@+id/total_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

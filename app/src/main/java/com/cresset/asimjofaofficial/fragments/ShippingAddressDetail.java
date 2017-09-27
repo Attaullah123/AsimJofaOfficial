@@ -42,9 +42,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by attaullahkhizar on 8/29/17.
- */
 
 public class ShippingAddressDetail extends Fragment {
 

@@ -1,9 +1,12 @@
 package com.cresset.asimjofaofficial;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -42,8 +45,13 @@ public class ShowMap extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        LocationManager locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
+        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            Toast.makeText(this, "GPS is Enabled in your devide", Toast.LENGTH_SHORT).show();
+        } else {
+            showGPSDisabledAlertToUser();
+        }
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,11 +59,12 @@ public class ShowMap extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+
         map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
                 .getMap();
 
         float zoomLevel = (float) 18.0;
-
 
 
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(ASIMJOFA, zoomLevel));
@@ -66,9 +75,29 @@ public class ShowMap extends AppCompatActivity {
             // kiel.setSnippet("Block 9, Clifton, Near Do Talwar، Karachi, Pakistan");
             kiel.showInfoWindow();
         } else {
-            Toast.makeText(context, "Please switch on the GPS", Toast.LENGTH_LONG).show();
+
         }
 
-
     }
+        private void showGPSDisabledAlertToUser(){
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setMessage("GPS is disabled in your device. Would you like to enable it?")
+                    .setCancelable(false)
+                    .setPositiveButton("Goto Settings Page To Enable GPS",
+                            new DialogInterface.OnClickListener(){
+                                public void onClick(DialogInterface dialog, int id){
+                                    Intent callGPSSettingIntent = new Intent(
+                                            android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                                    startActivity(callGPSSettingIntent);
+                                }
+                            });
+            alertDialogBuilder.setNegativeButton("Cancel",
+                    new DialogInterface.OnClickListener(){
+                        public void onClick(DialogInterface dialog, int id){
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = alertDialogBuilder.create();
+            alert.show();
+        }
 }

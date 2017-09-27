@@ -33,6 +33,7 @@ import com.cresset.asimjofaofficial.models.StateList;
 import com.cresset.asimjofaofficial.models.StateModel;
 import com.cresset.asimjofaofficial.models.UserDetailModel;
 import com.cresset.asimjofaofficial.utilities.Config;
+import com.cresset.asimjofaofficial.utilities.CustomVolleyRequest;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
 import com.cresset.asimjofaofficial.volley.AppController;
 import com.google.gson.Gson;
@@ -165,8 +166,6 @@ public class BillingAddressDetail extends Fragment {
             }
         });
 
-        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        requestQueue.add(objectRequest);
-
+        CustomVolleyRequest.getInstance(getContext()).getRequestQueue().add(objectRequest);
     }
 }

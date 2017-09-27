@@ -141,6 +141,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#000" />
 
+
                 <com.github.aakira.expandablelayout.ExpandableRelativeLayout
                     android:id="@+id/expandable_cart_item"
                     android:layout_width="match_parent"

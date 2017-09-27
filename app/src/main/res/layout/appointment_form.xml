@@ -20,7 +20,7 @@
         android:background="#fff">
 
         <TextView
-            android:id="@+id/close"
+            android:id="@+id/close_app"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="CLOSE"
@@ -99,7 +99,7 @@
                     android:id="@+id/edit_telephone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
+                    android:inputType="text|number"
                     android:hint="Telephone:"
                     android:padding="10dp"
                     android:ems="10"
@@ -112,10 +112,9 @@
                     android:id="@+id/edit_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
+                    android:inputType="textMultiLine"
                     android:hint="Address:"
                     android:padding="10dp"
-                    android:ems="10"
                     android:layout_marginTop="15dp"
                     android:textColor="@color/colorBlack"
                     android:background="@drawable/corner_gray_border"
@@ -142,7 +141,7 @@
                     android:background="@drawable/corner_gray_border"
                     android:ems="10"
                     android:hint="Budget:"
-                    android:inputType="textPersonName"
+                    android:inputType="text|number"
                     android:padding="10dp"
                     android:textColor="@color/colorBlack" />
 
@@ -150,7 +149,7 @@
                     android:id="@+id/edit_message"
                     android:layout_width="match_parent"
                     android:layout_height="80sp"
-                    android:inputType="textPersonName"
+                    android:inputType="textMultiLine"
                     android:hint="Message:"
                     android:padding="7dp"
                     android:ems="10"
@@ -162,7 +161,7 @@
                     />
 
                 <android.support.v7.widget.AppCompatButton
-                    android:id="@+id/btn_signup"
+                    android:id="@+id/appointment_btn"
                     android:layout_width="fill_parent"
                     android:layout_height="45dp"
                     android:layout_gravity="center"

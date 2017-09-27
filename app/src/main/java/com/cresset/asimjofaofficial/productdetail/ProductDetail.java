@@ -12,6 +12,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
@@ -33,6 +34,7 @@ import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -93,7 +95,8 @@ import java.util.TimerTask;
 
 
 public class ProductDetail extends AppCompatActivity implements View.OnClickListener{
-    private TextView price, name, sku, fullDiscription, proDetailId,sizePro,proName,cartCountView,currencyNmae,bottomCancel,addTocart;
+    private TextView price, name, sku, fullDiscription, proDetailId,sizePro,proName,cartCountView,currencyNmae,bottomCancel,addTocart,
+            appointmentClose;
     private Spinner productSize,quantitySpinner;
     private static ViewPager mPager;
     private static int currentPage = 0;
@@ -101,7 +104,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
     private CirclePageIndicator indicator;
     private static final Integer[] IMAGES = {};
     private SizeSpinnerAdapter sizeSpinnerAdapter;
-    private Button infoButton;
+    private Button infoButton, btmAppointmentButton;
     private String id,fulldiscrip,btmProNames,btmSku,quantityName;
     private RecyclerView recyclerView;
     private AddonsAdapterRe addonsAdapter;
@@ -109,10 +112,13 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
     private ProductDetailSize productDetailSize;
     JSONArray array = new JSONArray();
     private ProgressDialog progressDialog;
+    private View v;
     private Menu menu;
     private String tag_json_obj = "json_obj_req";
     private LinearLayout headerInStore,headerComp;
     private ExpandableRelativeLayout expandInstore,expandComandCare;
+    private EditText etProdName,etFullName,etEmail,etTelephone,etAddress,etCity,etBudgetet,etMessage;
+    private String etBtmProName;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -134,6 +140,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         price = (TextView) findViewById(R.id.product_price1);
         quantitySpinner = (Spinner) findViewById(R.id.product_quantity_spinner);
         SearchView searchView = (SearchView) findViewById(R.id.sv_productList);
+        v = (View) findViewById(R.id.main_layout);
 
         name = (TextView) findViewById(R.id.text_code);
         addTocart = (TextView) findViewById(R.id.addTocart);
@@ -239,7 +246,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
 
         addTocart.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
 
                 if (!proDetail.isOutOfStock() && !proDetail.isCallForPrice()){
                     {
@@ -284,6 +291,16 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
 
                                         Log.d("Response", response.toString());
                                         Toast.makeText(getApplicationContext(), "Item Add to cart", Toast.LENGTH_SHORT).show();
+                                        Snackbar snackbar = Snackbar.make(v, "Item Add to cart", Snackbar.LENGTH_INDEFINITE)
+                                                .setAction("VIEW CART", new View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View view) {
+                                                        Intent intent = new Intent(getApplicationContext(), GetCart.class);
+                                                        startActivity(intent);
+                                                    }
+                                                });
+
+                                        snackbar.show();
 
                                         GetCartItemsCount();
 
@@ -313,7 +330,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                 }
                 else{
                     if(proDetail.isCallForPrice()){
-                        Toast.makeText(getApplicationContext(),"Call for Price", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Fill form for appointment!", Toast.LENGTH_SHORT).show();
                         appointmentBottomSheet();
                     }
                     else{
@@ -441,12 +458,16 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         headerComp = (LinearLayout) view.findViewById(R.id.header_in_com_care);
 
         bottomCancel = (TextView) view.findViewById(R.id.close);
+
         fullDiscription = (TextView) view.findViewById(R.id.btm_prod_detial);
         proName = (TextView) view.findViewById(R.id.btm_prod_code);
         sku = (TextView) view.findViewById(R.id.btm_sku_code);
+
+
         fullDiscription.setText(Html.fromHtml(fulldiscrip));
         proName.setText(btmProNames);
         sku.setText(btmSku);
+
 
         TextView sizeGuide = (TextView)view.findViewById( R.id.btm_size_guide);
 
@@ -495,6 +516,54 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         View view = getLayoutInflater().inflate(R.layout.appointment_form, null);
 
         final Dialog dialogBottomInfo = new Dialog(ProductDetail.this, R.style.MaterialDialogSheet);
+
+        etProdName = (EditText) view.findViewById(R.id.edit_product_name);
+        etFullName = (EditText) view.findViewById(R.id.edit_full_name);
+        etEmail = (EditText) view.findViewById(R.id.edit_email);
+        etTelephone = (EditText) view.findViewById(R.id.edit_telephone);
+        etAddress = (EditText) view.findViewById(R.id.edit_address);
+        etCity = (EditText) view.findViewById(R.id.edit_city);
+        etBudgetet = (EditText) view.findViewById(R.id.edit_budget);
+        etMessage = (EditText) view.findViewById(R.id.edit_message);
+
+        btmAppointmentButton = (Button) view.findViewById(R.id.appointment_btn);
+        appointmentClose = (TextView) view.findViewById(R.id.close_app);
+
+        //set values
+        etProdName.setText(btmProNames);
+
+
+        btmAppointmentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String appAroName = etProdName.getText().toString().trim();
+                String appFullName = etFullName.getText().toString().trim();
+                String appEmail = etEmail.getText().toString().trim();
+                String appTelephone = etTelephone.getText().toString().trim();
+                String appAddress = etAddress.getText().toString().trim();
+                String appCity = etCity.getText().toString().trim();
+                String appBudget = etBudgetet.getText().toString().trim();
+                String appMessage = etMessage.getText().toString().trim();
+
+                if (!appAroName.isEmpty() && !appFullName.isEmpty() && !appEmail.isEmpty() && !appTelephone.isEmpty() && !appAddress.isEmpty()
+                        && !appCity.isEmpty() && !appBudget.isEmpty() && !appMessage.isEmpty()){
+                    //appointmentFormSubmit(appAroName, appFullName, appEmail, appTelephone, appAddress ,appCity, appBudget, appMessage);
+                    Toast.makeText(getApplicationContext(), "Api required for submitting the form!", Toast.LENGTH_LONG).show();
+
+                }else {
+                    Toast.makeText(getApplicationContext(), "Please enter the required fields!", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        appointmentClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogBottomInfo.dismiss();
+            }
+        });
+
 
         dialogBottomInfo.setContentView (view);
         dialogBottomInfo.setCancelable (true);

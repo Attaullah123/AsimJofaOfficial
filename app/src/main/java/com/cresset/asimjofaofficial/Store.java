@@ -73,9 +73,9 @@ public class Store extends Fragment {
     private int manageMarkerIcon(String markerIcon)
     {
         if (markerIcon.equals("icon1"))
-            return R.drawable.icon1;
+            return R.drawable.location_icon;
         else
-            return R.drawable.icondefault;
+            return R.drawable.location_icon;
     }
 
 
