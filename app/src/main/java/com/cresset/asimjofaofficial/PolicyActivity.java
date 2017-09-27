@@ -84,6 +84,14 @@ public class PolicyActivity extends FragmentActivity {
             public void onTabChanged(String tabId) {
                 viewPager.setCurrentItem(tabHost.getCurrentTab());
 
+                for(int i=0;i<tabHost.getTabWidget().getChildCount();i++)
+                {
+                    tabHost.getTabWidget().getChildAt(i).setBackgroundColor(Color.WHITE);
+                    //tabHost.getTabWidget().getChildAt(i)
+                }
+
+                tabHost.getTabWidget().getChildAt(tabHost.getCurrentTab()).setBackgroundColor(getResources().getColor(R.color.tabwigdet_color));
+
                 scrollToCurrentTab();
 
             }
@@ -138,4 +146,6 @@ public class PolicyActivity extends FragmentActivity {
             tabHost.addTab(tabHost.newTabSpec(String.format("%sTab", tabs[i].replace(" ", "")).toLowerCase()).setIndicator(tabs[i]), TermsAndConditions.class, null);
         }
     }
+
+
 }

@@ -1,9 +1,12 @@
 package com.cresset.asimjofaofficial.fragments;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.format.Formatter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.cresset.asimjofaofficial.MyAccount;
 import com.cresset.asimjofaofficial.R;
 import com.cresset.asimjofaofficial.adapter.BillingCountrySpinnerAdapter;
 import com.cresset.asimjofaofficial.adapter.BillingStateSpinnerAdapter;
@@ -29,9 +33,11 @@ import com.cresset.asimjofaofficial.models.CountryList;
 import com.cresset.asimjofaofficial.models.CountryModel;
 import com.cresset.asimjofaofficial.models.CustomerAddressModel;
 import com.cresset.asimjofaofficial.models.CustomerDetailModel;
+import com.cresset.asimjofaofficial.models.GuestOrLoginResponseModel;
 import com.cresset.asimjofaofficial.models.StateList;
 import com.cresset.asimjofaofficial.models.StateModel;
 import com.cresset.asimjofaofficial.models.UserDetailModel;
+import com.cresset.asimjofaofficial.models.UserModel;
 import com.cresset.asimjofaofficial.utilities.Config;
 import com.cresset.asimjofaofficial.utilities.CustomVolleyRequest;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
@@ -39,6 +45,7 @@ import com.cresset.asimjofaofficial.volley.AppController;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -95,23 +102,22 @@ public class BillingAddressDetail extends Fragment {
                 String phone = bPhoneNo.getText().toString().trim();
                 String city = bCity.getText().toString().trim();
                 String postCode = bPostalCode.getText().toString().trim();
-
                 String day = bDay.getText().toString().trim();
                 String month = bMonth.getText().toString().trim();
                 String year = bYear.getText().toString().trim();
                 //String city = bCity.getText().toString().trim();
 
 
-//                if (!fname.isEmpty() && !laddress.isEmpty() && !email.isEmpty() && !phone.isEmpty() && !city.isEmpty()&& !postCode.isEmpty()
-//                        && !day.isEmpty() && !month.isEmpty() && !year.isEmpty()){
-//                    billingAddress();
-//                    Toast.makeText(getContext(), "Your info save successfully!", Toast.LENGTH_LONG).show();
-//                    getActivity().finish();
-//                }else {
-//                    Toast.makeText(getContext(),
-//                            "Please enter the required fields!", Toast.LENGTH_LONG)
-//                            .show();
-//                }
+                if (!fname.isEmpty() && !laddress.isEmpty() && !email.isEmpty() && !phone.isEmpty() && !city.isEmpty()&& !postCode.isEmpty()
+                        && !day.isEmpty() && !month.isEmpty() && !year.isEmpty()){
+                    //billingAddressUpdate();
+                    Toast.makeText(getContext(), "Your info save successfully!", Toast.LENGTH_LONG).show();
+                    getActivity().finish();
+                }else {
+                    Toast.makeText(getContext(),
+                            "Please enter the required fields!", Toast.LENGTH_LONG)
+                            .show();
+                }
 
             }
         });
@@ -168,4 +174,85 @@ public class BillingAddressDetail extends Fragment {
 
         CustomVolleyRequest.getInstance(getContext()).getRequestQueue().add(objectRequest);
     }
+
+//    public void billingAddressUpdate(final String fname, final String lname, final String email, final String password,final String confirmPassword,
+//                             final String day, final String month,final String year){
+//        progressDialog.show();
+//        HashMap<String,String> params = new HashMap<>();
+//        params.put("ProjectId",Config.PROJECTID);
+//        params.put("FirstName", fname);
+//        params.put("LastName", lname);
+//        params.put("Email", email);
+//        params.put("Pasword", password);
+//        params.put("Day", day);
+//        params.put("month", month);
+//        params.put("year", year);
+//
+//        WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
+//        String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
+//
+//        params.put("IpAddress", ip);
+//
+//        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_USER_REGISTER, new JSONObject(params),
+//                new Response.Listener<JSONObject>() {
+//                    @Override
+//                    public void onResponse(JSONObject response) {
+//                        try{
+//
+//                            JSONObject jObj = new JSONObject(response.toString());
+//                            String result = jObj.getString("Status");
+//                            progressDialog.dismiss();
+//
+//                            Gson gson = new Gson();
+//                            GuestOrLoginResponseModel model = gson.fromJson(response.toString(), new TypeToken<GuestOrLoginResponseModel>(){}.getType());
+//
+//                            //show("Customer id:" + model.getCustomerId());
+//
+//                            if (model.getCustomerId() != null && model.getCustomerId() != "") {
+//
+//                                UserModel userData = new UserModel();
+//                                userData.setUserID(model.getCustomerId());
+//                                userData.setUserName(fname);
+//                                userData.setEmail(email);
+//
+//                                userData.setBirthdayDay(day);
+//                                userData.setBirthdayMonth(month);
+//                                userData.setBirthdayYear(year);
+//
+//                                userData.setGuest(false);
+//
+//                                GlobalClass.userData = userData;
+//                                String json = gson.toJson(userData);
+//                                sharedPreferencesEditor.putString(Config.RegisteredPreference,json);
+//                                sharedPreferencesEditor.commit();
+//
+//                                show("Registered successfully!");
+//                            }
+//
+//                            // Launch login activity
+//                            Intent intent = new Intent(getApplicationContext(), MyAccount.class);
+//                            startActivity(intent);
+//                            finish();
+//
+//                        }catch (JSONException e){
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Toast.makeText(getApplicationContext(), "Couldn't register user, please check connection", Toast.LENGTH_SHORT).show();
+//                Log.d("Error", error.toString());
+//                progressDialog.dismiss();
+//            }
+//        });
+//        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+//        requestQueue.add(objectRequest);
+//    }
+//
+//    public void show(String message){
+//        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
+//    }
+
+
 }

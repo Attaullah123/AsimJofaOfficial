@@ -112,9 +112,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     registerUser(fname, lname, email, password, confirmPas ,day, month, year);
 
                 }else {
-                    Toast.makeText(getApplicationContext(),
-                            "Please enter the required fields!", Toast.LENGTH_LONG)
-                            .show();
+                    Toast.makeText(getApplicationContext(), "Please enter the required fields!", Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -132,8 +130,8 @@ public class RegistrationActivity extends AppCompatActivity {
         params.put("Email", email);
         params.put("Pasword", password);
         params.put("Day", day);
-       params.put("month", month);
-       params.put("year", year);
+        params.put("month", month);
+        params.put("year", year);
 
         WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
         String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
