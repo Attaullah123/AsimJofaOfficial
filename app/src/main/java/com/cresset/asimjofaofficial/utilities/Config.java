@@ -39,4 +39,6 @@ public class Config  {
     public static final String URL_BANK_TRANSCTION= "http://preview.cressettech.net/mobileapi/Service1.svc/GetResourceValue";
     public static final String URL_UPDATE_BILLING_DETAIL= "http://preview.cressettech.net/mobileapi/Service1.svc/UpdateBillingAddress";
     public static final String URL_UPDATE_SHIPPING_DETAIL= "http://preview.cressettech.net/mobileapi/Service1.svc/UpdateShippingAddress";
+
+    public static final String URL_APPOINTMENT_FORM= "http://preview.cressettech.net/mobileapi/Service1.svc/InsertAppointment";
 }

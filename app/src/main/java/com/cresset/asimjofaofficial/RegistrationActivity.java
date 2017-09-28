@@ -131,7 +131,7 @@ public class RegistrationActivity extends AppCompatActivity {
         params.put("Pasword", password);
         params.put("Day", day);
         params.put("month", month);
-        params.put("year", year);
+       params.put("year", year);
 
         WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
         String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());

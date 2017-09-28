@@ -1,20 +1,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="#fff"
-    android:paddingTop="10dp"
+    android:paddingTop="15dp"
     android:orientation="vertical">
 
     <View
         android:paddingTop="5dp"
         android:layout_width="fill_parent"
-        android:layout_height="0.2dp"
+        android:layout_height="0.1dp"
         android:background="#393939"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="50dp"
+            android:background="#ffffff"
             android:gravity="center">
 
             <TextView
@@ -38,6 +39,6 @@
     <View
         android:paddingTop="5dp"
         android:layout_width="fill_parent"
-        android:layout_height="0.2dp"
+        android:layout_height="0.1dp"
         android:background="#393939"/>
 </LinearLayout>

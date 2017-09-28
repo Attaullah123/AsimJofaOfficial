@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10sp"
-                android:button="@drawable/custom_checkbox"
+                android:button="@drawable/check_addons_custom"
                 android:layout_alignParentLeft="true" />
 
             <TextView

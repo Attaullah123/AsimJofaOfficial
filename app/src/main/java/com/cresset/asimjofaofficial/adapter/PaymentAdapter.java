@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,11 +62,16 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.MyViewHo
     @Override
     public void onBindViewHolder(final PaymentAdapter.MyViewHolder holder, int position) {
         PaymentMethodModel list = paymentLists.get(position);
-
-        holder.paymentName.setText(list.getName());
+        holder.paymentName.setText(list.getName().replaceAll("\\d+", "").replaceAll("(.)([A-Z])", "$1 $2"));
        // holder.paymentSystemName.setText(list.getSystemName());
         //holder.price.setText(productListModel.getPrice());
 
+//        ImageView i = new ImageView(mContext);
+//        if (list.getSystemName() == "Payments.Easypaisa"){
+//            i.setImageResource(R.drawable.location_icon);
+//        }else {
+//
+//        }
 
     }
 

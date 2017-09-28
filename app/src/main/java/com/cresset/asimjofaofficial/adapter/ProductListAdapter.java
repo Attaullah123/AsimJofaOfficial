@@ -28,6 +28,7 @@ import com.cresset.asimjofaofficial.utilities.CustomVolleyRequest;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
 import com.cresset.asimjofaofficial.utilities.ResizableImageView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -103,6 +104,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             holder.price.setText("Call for Price");
         }
         else{
+
             float proprice = Float.parseFloat(productListModel.getPrice());
             if(GlobalClass.currency != null){
                 proprice = proprice * GlobalClass.currency.getRate();
@@ -112,7 +114,10 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
                 holder.pricecode.setText("USD");
             }
 
+            DecimalFormat formatter = new DecimalFormat("#,###,###");
+
             holder.price.setText(String.format("%.0f",proprice));
+
         }
 
 

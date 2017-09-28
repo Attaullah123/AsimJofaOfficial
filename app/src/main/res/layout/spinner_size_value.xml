@@ -5,15 +5,14 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:padding="2dp"
         android:id="@+id/spinner_size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#000"
         android:layout_marginRight="17dp"
         android:layout_marginLeft="17dp"
-        android:layout_marginTop="2dp"
-        android:textSize="17dp"
+        android:layout_marginTop="5dp"
+        android:textSize="15dp"
         android:text="Size"
         />
 

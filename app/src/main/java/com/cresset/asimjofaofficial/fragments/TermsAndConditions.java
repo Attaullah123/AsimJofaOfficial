@@ -27,6 +27,8 @@ public class  TermsAndConditions extends Fragment {
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
     View rootView;
+    private int lastExpandedPosition = -1;
+
 
     @Nullable
     @Override
@@ -44,6 +46,17 @@ public class  TermsAndConditions extends Fragment {
         // setting list adapter
         expListView.setAdapter(listAdapter);
         expListView.setGroupIndicator(null);
+
+        expListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                if (lastExpandedPosition != -1 && groupPosition != lastExpandedPosition) {
+                    expListView.collapseGroup(lastExpandedPosition);
+                }
+                lastExpandedPosition = groupPosition;
+            }
+        });
         return rootView;
     }
 
@@ -84,14 +97,15 @@ public class  TermsAndConditions extends Fragment {
                 "any responsibility of delayed deliveries, though it does everything in its power to avoid them.");
 
         List<String> OrderPlacement = new ArrayList<String>();
-        OrderPlacement.add("1. International customers can make payment through bank transfer. The order that you place is kept on hold for 36 hours after you receive a confirmation email / call from us about the order and payment details. If you plan to make payment after 36 hours of\n" +
-                "receiving the confirmation, please confirm it with us if the products that you have ordered are still in stock.\\n\n" +
+        OrderPlacement.add("1. International customers can make payment through bank transfer. The order that you place is kept on hold for 36 hours after \n" +
+                "you receive a confirmation email / call from us about the order and payment details. If you plan to make payment after 36 hours of\n" +
+                "receiving the confirmation, please confirm it with us if the products that you have ordered are still in stock.\n" +
                 "2.nThe Asim Jofa Store(s) takes no guarantee of the products availability that you had ordered, if you are making the payment after\n" +
                 "the given timeframe. Though our efforts will be to process your initial order, but if any of the ordered products is out of stock\n" +
                 "you will be offered to choose any other product/design/color\n" +
-                "(within the same price range). We will not be held responsible if there are delays in delivery due to out of stock products.\\n\n" +
-                "3. If we get no confirmation from the customer, the order might be cancelled without any notification.\\n\n" +
-                "4. The International order is processed only after the international customer makes the payment.\\n\n" +
+                "(within the same price range). We will not be held responsible if there are delays in delivery due to out of stock products.\n" +
+                "3. If we get no confirmation from the customer, the order might be cancelled without any notification.\n" +
+                "4. The International order is processed only after the international customer makes the payment.\n" +
                 "5. The customers within Pakistan can place the order online with confirmation for payment upon delivery.");
 
         listDataChild.put(listDataHeader.get(0), Accuracy); // Header, Child data

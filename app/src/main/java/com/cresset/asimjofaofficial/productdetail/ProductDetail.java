@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -23,6 +24,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.text.format.Formatter;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -55,8 +57,10 @@ import com.cresset.asimjofaofficial.CurrencySelector;
 import com.cresset.asimjofaofficial.GetCart;
 import com.cresset.asimjofaofficial.HomeActivity;
 import com.cresset.asimjofaofficial.MainActivity;
+import com.cresset.asimjofaofficial.MyAccount;
 import com.cresset.asimjofaofficial.PolicyActivity;
 import com.cresset.asimjofaofficial.PrivacyPolicyNew;
+import com.cresset.asimjofaofficial.Profile;
 import com.cresset.asimjofaofficial.R;
 import com.cresset.asimjofaofficial.adapter.AddonsAdapter;
 import com.cresset.asimjofaofficial.adapter.AddonsAdapterRe;
@@ -64,14 +68,19 @@ import com.cresset.asimjofaofficial.adapter.ProductImagePagerAdapter;
 import com.cresset.asimjofaofficial.adapter.QuantitySpinner;
 import com.cresset.asimjofaofficial.adapter.SizeSpinnerAdapter;
 import com.cresset.asimjofaofficial.models.AddToCartModel;
+import com.cresset.asimjofaofficial.models.AppointmentModel;
 import com.cresset.asimjofaofficial.models.AttributesItem;
+import com.cresset.asimjofaofficial.models.ChnagePasswordModel;
+import com.cresset.asimjofaofficial.models.GuestOrLoginResponseModel;
 import com.cresset.asimjofaofficial.models.ProductAddons;
 import com.cresset.asimjofaofficial.models.ProductDetailList;
 import com.cresset.asimjofaofficial.models.ProductDetailModel;
 import com.cresset.asimjofaofficial.models.ProductDetailSize;
 import com.cresset.asimjofaofficial.models.ProductListModel;
 import com.cresset.asimjofaofficial.models.QuantityModel;
+import com.cresset.asimjofaofficial.models.UserModel;
 import com.cresset.asimjofaofficial.recylerview.RecyclerDivider;
+import com.cresset.asimjofaofficial.userinfo.activity.ChangePassword;
 import com.cresset.asimjofaofficial.utilities.Config;
 import com.cresset.asimjofaofficial.utilities.CustomVolleyRequest;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
@@ -95,6 +104,8 @@ import java.util.TimerTask;
 
 
 public class ProductDetail extends AppCompatActivity implements View.OnClickListener{
+    private static final String TAG = ProductDetail.class.getSimpleName();
+
     private TextView price, name, sku, fullDiscription, proDetailId,sizePro,proName,cartCountView,currencyNmae,bottomCancel,addTocart,
             appointmentClose;
     private Spinner productSize,quantitySpinner;
@@ -175,7 +186,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, quantityList);
         // Drop down layout style - list view with radio button
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dataAdapter.setDropDownViewResource(R.layout.spinner_quantity_value);
 
         // attaching data adapter to spinner
         quantitySpinner.setAdapter(dataAdapter);
@@ -215,7 +226,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
             public void run() {
                 handler.post(Update);
             }
-        }, 6000, 6000);
+        }, 3000, 3000);
 
         // Pager listener over indicator
         indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -291,7 +302,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
 
                                         Log.d("Response", response.toString());
                                         Toast.makeText(getApplicationContext(), "Item Add to cart", Toast.LENGTH_SHORT).show();
-                                        Snackbar snackbar = Snackbar.make(v, "Item Add to cart", Snackbar.LENGTH_INDEFINITE)
+                                        Snackbar snackbar = Snackbar.make(v, "Item Add to cart", Snackbar.LENGTH_LONG)
                                                 .setAction("VIEW CART", new View.OnClickListener() {
                                                     @Override
                                                     public void onClick(View view) {
@@ -503,7 +514,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()){
 
-            case R.id.btm_size_guide:
+                case R.id.btm_size_guide:
                 android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
                 SizeDialogFragment dialogFragment = new SizeDialogFragment ();
                 dialogFragment.show(fm, "Sample Fragment");
@@ -537,7 +548,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
             @Override
             public void onClick(View v) {
 
-                String appAroName = etProdName.getText().toString().trim();
+                String appProName = etProdName.getText().toString().trim();
                 String appFullName = etFullName.getText().toString().trim();
                 String appEmail = etEmail.getText().toString().trim();
                 String appTelephone = etTelephone.getText().toString().trim();
@@ -546,10 +557,11 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                 String appBudget = etBudgetet.getText().toString().trim();
                 String appMessage = etMessage.getText().toString().trim();
 
-                if (!appAroName.isEmpty() && !appFullName.isEmpty() && !appEmail.isEmpty() && !appTelephone.isEmpty() && !appAddress.isEmpty()
+                if (!appProName.isEmpty() && !appFullName.isEmpty() && !appEmail.isEmpty() && !appTelephone.isEmpty() && !appAddress.isEmpty()
                         && !appCity.isEmpty() && !appBudget.isEmpty() && !appMessage.isEmpty()){
-                    //appointmentFormSubmit(appAroName, appFullName, appEmail, appTelephone, appAddress ,appCity, appBudget, appMessage);
-                    Toast.makeText(getApplicationContext(), "Api required for submitting the form!", Toast.LENGTH_LONG).show();
+                    appointmentFormSubmit(appProName, appFullName, appEmail, appTelephone, appAddress ,appCity, appBudget, appMessage);
+
+                    //Toast.makeText(getApplicationContext(), "Api required for submitting the form!", Toast.LENGTH_LONG).show();
 
                 }else {
                     Toast.makeText(getApplicationContext(), "Please enter the required fields!", Toast.LENGTH_LONG).show();
@@ -564,12 +576,75 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
             }
         });
 
-
         dialogBottomInfo.setContentView (view);
         dialogBottomInfo.setCancelable (true);
         dialogBottomInfo.getWindow ().setLayout (LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         dialogBottomInfo.getWindow ().setGravity (Gravity.BOTTOM);
         dialogBottomInfo.show ();
+    }
+
+    public void appointmentFormSubmit(final String appProName, final String appFullName, final String appEmail, final String appTelephone,final String appAddress,
+                             final String appCity, final String appBudget,final String appMessage){
+        progressDialog.show();
+
+        HashMap<String,String> params = new HashMap<>();
+        params.put("ProjectId",Config.PROJECTID);
+        params.put("CollectionName", appProName);
+        params.put("FullName", appFullName);
+        params.put("Email", appEmail);
+        params.put("Phone", appTelephone);
+        params.put("Address", appAddress);
+        params.put("City", appCity);
+        params.put("Budget", appBudget);
+        params.put("Message", appMessage);
+
+
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_APPOINTMENT_FORM, new JSONObject(params),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        Log.d(TAG, "Form Submit Response: " + response.toString());
+                        Toast.makeText(getApplicationContext(), "your form submit successfully", Toast.LENGTH_LONG);
+
+                        try {
+
+//                            Gson gson = new Gson();
+//                            AppointmentModel model = gson.fromJson(response.toString(), new TypeToken<AppointmentModel>(){}.getType());
+//
+//                            model.setCollectionName(appProName);
+//                            model.setFullName(appFullName);
+//                            model.setEmail(appEmail);
+//
+//                            model.setPhone(appTelephone);
+//                            model.setAddress(appAddress);
+//                            model.setCity(appCity);
+//                            model.setBudget(appBudget);
+//                            model.setMessage(appMessage);
+//
+                           progressDialog.dismiss();
+                           Toast.makeText(getApplicationContext(), "your form submit successfully", Toast.LENGTH_LONG);
+//                                    .show();
+
+                        } catch (Exception e) {
+                            // JSON error
+                            e.printStackTrace();
+                            //Toast.makeText(getApplicationContext(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Login Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(), "please check connection", Toast.LENGTH_LONG).show();
+                progressDialog.dismiss();
+            }
+        });
+        // Adding request to request queue
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        requestQueue.add(objectRequest);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

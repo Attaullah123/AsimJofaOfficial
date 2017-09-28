@@ -26,6 +26,7 @@ public class PrivacyPolicyNew extends Fragment {
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
     View rootView;
+    private int lastExpandedPosition = -1;
 
     @Nullable
     @Override
@@ -44,6 +45,17 @@ public class PrivacyPolicyNew extends Fragment {
         expListView.setAdapter(listAdapter);
 
         expListView.setGroupIndicator(null);
+
+        expListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                if (lastExpandedPosition != -1 && groupPosition != lastExpandedPosition) {
+                    expListView.collapseGroup(lastExpandedPosition);
+                }
+                lastExpandedPosition = groupPosition;
+            }
+        });
         return rootView;
     }
 

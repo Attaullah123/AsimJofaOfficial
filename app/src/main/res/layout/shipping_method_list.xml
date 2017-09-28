@@ -12,7 +12,7 @@
         android:background="#393939"/>
 
     <RelativeLayout
-        android:id="@+id/abc"
+        android:id="@+id/rel_shipping_select"
         android:layout_width="fill_parent"
         android:layout_height="48dp"
         android:background="#fff"

@@ -45,7 +45,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
     private TextView totalPrice,subTotal;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView proName, proPrice, proSkuCode,proSize,proCurrencyName,proQuantity;
+        public TextView proName, proPrice, proSkuCode,proSize,proCurrencyName,proQuantity,proQuantityName;
         public ImageView thumbnailImage;
         //public CardView cardView;
         private Context context;
@@ -58,9 +58,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             proPrice = (TextView) itemView.findViewById(R.id.product_cart_price);
             proSize = (TextView) itemView.findViewById(R.id.product_cart_size);
             proQuantity = (TextView) itemView.findViewById(R.id.cart_product_quantity);
+            proQuantityName = (TextView) itemView.findViewById(R.id.cart_product_quantity_name);
             thumbnailImage = (ImageView) itemView.findViewById(R.id.cart_thumbnail);
 
             proCurrencyName.setText("USD");
+            proQuantityName.setText("Qnty:");
 
         }
     }

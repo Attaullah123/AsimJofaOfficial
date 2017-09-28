@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -66,6 +67,7 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
     private CartModel cartModelData;
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
+    private RelativeLayout relShippingBillingSelection,relShippingSelection,relBillingSelection;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -83,6 +85,10 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
         selectShippingMethodName = (TextView) findViewById(R.id.select_shipping_method);
         shippingPrice = (TextView) findViewById(R.id.country_shipping_price);
         shippingPrice_currency = (TextView) findViewById(R.id.country_shipping_currency);
+
+        relShippingBillingSelection = (RelativeLayout) findViewById(R.id.billing_shipping);
+        relShippingSelection = (RelativeLayout) findViewById(R.id.rel_shipping_select);
+        relBillingSelection = (RelativeLayout) findViewById(R.id.rel_payment_select);
 
         cartItem = (TextView) findViewById(R.id.cart_items);
 
@@ -132,7 +138,7 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
                 accuracyPlus.setVisibility(View.VISIBLE);
             }
         });
-        selectShippingandBillingAdd.setOnClickListener(new View.OnClickListener() {
+        relShippingBillingSelection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -150,7 +156,7 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
 
         //shipping select method call also check credential
 
-        selectShippingMethod.setOnClickListener(new View.OnClickListener() {
+        relShippingSelection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

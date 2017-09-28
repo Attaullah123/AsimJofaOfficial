@@ -98,6 +98,7 @@
             android:layout_height="48dp"
             android:layout_gravity="center"
             android:background="#f5f5f5"
+            android:id="@+id/billing_shipping"
             >
             <TextView
                 android:id="@+id/shipping_method_name"
@@ -135,6 +136,7 @@
                     android:layout_height="48dp"
                     android:layout_gravity="center"
                     android:background="#f5f5f5"
+                    android:id="@+id/rel_shipping_select"
                     >
                     <TextView
                         android:id="@+id/select_shipping_method"
@@ -166,7 +168,6 @@
                     android:layout_height="0.2dp"
                     android:background="#000"/>
         <RelativeLayout
-            android:id="@+id/abc"
             android:layout_width="fill_parent"
             android:layout_height="48dp"
             android:background="#fff"
@@ -288,6 +289,7 @@
             android:background="#000"/>
 
         <RelativeLayout
+            android:id="@+id/rel_payment_select"
             android:layout_width="fill_parent"
             android:layout_height="48dp"
             android:background="#fff"
@@ -334,7 +336,7 @@
                     android:id="@+id/total_product_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="9500"
+                    android:text="0.00"
                     android:textStyle="bold"
                     android:layout_centerVertical="true"
                     android:textColor="#000"
@@ -493,7 +495,7 @@
                     android:id="@+id/total_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="9500"
+                    android:text="0.00"
                     android:textStyle="bold"
                     android:textColor="#000"
                     android:textSize="16sp"/>

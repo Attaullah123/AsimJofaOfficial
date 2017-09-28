@@ -20,6 +20,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/by_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -37,6 +38,7 @@
 
                 
                 <TextView
+                    android:id="@+id/facebook_anchor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -54,6 +56,7 @@
                     android:textColor="#000" />
 
                 <TextView
+                    android:id="@+id/twitter_anchor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -63,6 +66,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -71,6 +75,7 @@
                     android:textColor="#000" />
 
                 <TextView
+                    android:id="@+id/instagram_anchor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"

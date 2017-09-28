@@ -54,6 +54,7 @@ public class PolicyExpandAdapter extends BaseExpandableListAdapter {
         TextView txtListChild = (TextView) convertView.findViewById(R.id.lblListItem);
 
         txtListChild.setText(childText);
+        txtListChild.setLineSpacing(0,1.4f);
         return convertView;
     }
 
@@ -91,14 +92,12 @@ public class PolicyExpandAdapter extends BaseExpandableListAdapter {
         lblListHeader.setText(headerTitle);
 
         if (isExpanded) {
-            lblListHeader.setTypeface(null, Typeface.BOLD);
             lblListHeader.setCompoundDrawablesWithIntrinsicBounds(0, 0,
                     R.drawable.minus_btn1, 0);
         } else {
             // If group is not expanded then change the text back into normal
             // and change the icon
 
-            lblListHeader.setTypeface(null, Typeface.NORMAL);
             lblListHeader.setCompoundDrawablesWithIntrinsicBounds(0, 0,
                     R.drawable.plus_btn2, 0);
         }

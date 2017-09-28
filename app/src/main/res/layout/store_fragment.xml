@@ -23,7 +23,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:text="BY EMAIL"
+                    android:text="STORE LOCATION"
                     android:textColor="#000"
                     android:textStyle="bold" />
 
@@ -32,7 +32,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:paddingTop="5dp"
-                    android:text="Send an email"
+                    android:text="G4/3,Main Clifton Road ,\nBlock 09 Clifton,Karachi"
                     android:textColor="#000" />
 
                 <TextView

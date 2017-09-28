@@ -227,7 +227,7 @@ public class HomeActivity extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                // Toast.makeText(getContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
                 Log.d("Error",error.toString());
                 progressBar.setVisibility(View.GONE);
 

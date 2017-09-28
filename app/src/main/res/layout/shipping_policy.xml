@@ -14,7 +14,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <com.cresset.asimjofaofficial.customfonts.CustomFont
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
@@ -24,17 +24,18 @@
                 android:text="Shipment:"/>
 
 
-            <com.cresset.asimjofaofficial.customfonts.CustomFont
+            <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="10sp"
-                android:textSize="15sp"
+                android:lineSpacingExtra="1.4dp"
+                android:textSize="14sp"
                 android:textColor="#515151"
                 android:text="@string/shipping_text"/>
 
-            <com.cresset.asimjofaofficial.customfonts.CustomFont
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -45,13 +46,14 @@
                 android:text="Delivery Charges:"/>
 
 
-            <com.cresset.asimjofaofficial.customfonts.CustomFont
+            <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="10sp"
-                android:textSize="15sp"
+                android:lineSpacingExtra="1.4dp"
+                android:textSize="14sp"
                 android:textColor="#515151"
                 android:text="@string/delivery_txt"/>
 
