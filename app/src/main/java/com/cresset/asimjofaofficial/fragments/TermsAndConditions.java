@@ -92,15 +92,15 @@ public class  TermsAndConditions extends Fragment {
                 "Our acceptance of your order will take place upon dispatch of the product(s) ordered.");
 
         List<String> Delay = new ArrayList<String>();
-        Delay.add("We shall try our level best to make deliveries in the most reasonable time possible. But order deliveries may\n" +
-                "be delayed in case of certain unexpected situations; we do not assume\n" +
+        Delay.add("We shall try our level best to make deliveries in the most reasonable time possible. But order deliveries\n" +
+                "may be delayed in case of certain unexpected situations; we do not assume\n" +
                 "any responsibility of delayed deliveries, though it does everything in its power to avoid them.");
 
         List<String> OrderPlacement = new ArrayList<String>();
         OrderPlacement.add("1. International customers can make payment through bank transfer. The order that you place is kept on hold for 36 hours after \n" +
                 "you receive a confirmation email / call from us about the order and payment details. If you plan to make payment after 36 hours of\n" +
                 "receiving the confirmation, please confirm it with us if the products that you have ordered are still in stock.\n" +
-                "2.nThe Asim Jofa Store(s) takes no guarantee of the products availability that you had ordered, if you are making the payment after\n" +
+                "2. The Asim Jofa Store(s) takes no guarantee of the products availability that you had ordered, if you are making the payment after\n" +
                 "the given timeframe. Though our efforts will be to process your initial order, but if any of the ordered products is out of stock\n" +
                 "you will be offered to choose any other product/design/color\n" +
                 "(within the same price range). We will not be held responsible if there are delays in delivery due to out of stock products.\n" +

@@ -33,8 +33,10 @@ import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 
 import timber.log.Timber;
 
@@ -171,7 +173,18 @@ public class UpdateCartAdapter extends RecyclerView.Adapter<UpdateCartAdapter.My
                     //notifyItemRemoved(position);
                     //Toast.makeText(mContext, "position", Toast.LENGTH_SHORT).show();
                 } else {
-                    //Toast.makeText(mContext, "unchecked" + position, Toast.LENGTH_SHORT).show();
+                    if(GlobalClass.deleteSelectedCartItems.size() > 0){
+                        int index = 0;
+                        for (int val: GlobalClass.deleteSelectedCartItems
+                                ) {
+
+                            if(val == cartModelItemses.get(position).CartItemId){
+                                GlobalClass.deleteSelectedCartItems.remove(index);
+                            }
+
+                            index++;
+                        }
+                    }
                 }
             }
         });
@@ -197,7 +210,8 @@ public class UpdateCartAdapter extends RecyclerView.Adapter<UpdateCartAdapter.My
             holder.proCurrencyName.setText("USD");
         }
 
-        holder.proPrice.setText(String.format("%.0f",productPrice));
+        //holder.proPrice.setText(String.format("%.0f",productPrice));
+        holder.proPrice.setText(NumberFormat.getNumberInstance(Locale.US).format(productPrice));
         Glide.with(mContext).load(cartListModel.getImageLink()).into(holder.thumbnailImage);
     }
 

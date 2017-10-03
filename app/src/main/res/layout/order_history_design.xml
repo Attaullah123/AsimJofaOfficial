@@ -20,125 +20,120 @@
             android:orientation="horizontal">
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="15dp"
-            android:textColor="#504e4e"
-            android:textSize="17sp"
-            android:text="Order No:"
-            />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:text="Order No:"
+                android:textColor="#504e4e"
+                android:textSize="17sp" />
 
-        <TextView
-            android:id="@+id/order_no"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:textSize="18dp"
-            android:text="12345"
-            android:layout_marginLeft="60sp"
+            <TextView
+                android:id="@+id/order_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="60sp"
+                android:text="12345"
+                android:textSize="17dp"
 
-            />
+                />
 
         </LinearLayout>
-    <View
-        android:paddingTop="5dp"
-        android:layout_width="fill_parent"
-        android:layout_height="0.4dp"
-        android:background="#333030"/>
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="48dp"
-        android:background="#fff"
-        android:orientation="horizontal">
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.4dp"
+            android:background="#333030"
+            android:paddingTop="5dp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:background="#fff"
+            android:orientation="horizontal">
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="15dp"
-            android:textColor="#504e4e"
-            android:textSize="17sp"
-            android:text="Order Status:"
-            />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:text="Order Status:"
+                android:textColor="#504e4e"
+                android:textSize="17sp" />
 
-        <TextView
-            android:id="@+id/order_status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="Processing"
-            android:layout_marginLeft="30sp"
+            <TextView
+                android:id="@+id/order_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="30sp"
+                android:text="Processing"
 
-            />
+                />
         </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="48dp"
-        android:background="#fff"
-        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:background="#fff"
+            android:orientation="horizontal">
 
 
-        <TextView
+            <TextView
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="15dp"
-            android:textColor="#504e4e"
-            android:textSize="17sp"
-            android:text="Order Date:"
-            />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:text="Order Date:"
+                android:textColor="#504e4e"
+                android:textSize="17sp" />
 
-        <TextView
-            android:id="@+id/order_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="7/21/27 8:00 AM"
-            android:layout_marginLeft="30sp"
-            />
+            <TextView
+                android:id="@+id/order_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="30sp"
+                android:text="7/21/27 8:00 AM" />
         </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="48dp"
-        android:background="#fff"
-        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:background="#fff"
+            android:orientation="horizontal">
 
 
-        <TextView
+            <TextView
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="15dp"
-            android:textColor="#504e4e"
-            android:textSize="17sp"
-            android:text="Total Order:"
-            />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:text="Total Order:"
+                android:textColor="#504e4e"
+                android:textSize="17sp" />
 
-        <TextView
-            android:id="@+id/order_currency"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="USA"
-            android:layout_marginLeft="40sp"
-            />
-        <TextView
-            android:id="@+id/order_total"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="15000.00"
-            android:layout_marginLeft="5sp"
-            />
+            <TextView
+                android:id="@+id/order_currency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="40sp"
+                android:text="USA" />
+
+            <TextView
+                android:id="@+id/order_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5sp"
+                android:text="15000.00" />
+        </LinearLayout>
+
     </LinearLayout>
-
-</LinearLayout>
 </LinearLayout>

@@ -12,7 +12,9 @@ import com.cresset.asimjofaofficial.models.CurrencyListModel;
 import com.cresset.asimjofaofficial.models.OrdersListModel;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 
 public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapter.MyViewHolder> {
@@ -67,7 +69,8 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
             holder.orderCurrencyName.setText("USD");
         }
 
-        holder.orderTotal.setText(String.format("%.0f",productPrice));
+        //holder.orderTotal.setText(String.format("%.0f",productPrice));
+        holder.orderTotal.setText(NumberFormat.getNumberInstance(Locale.US).format(productPrice));
 
     }
 

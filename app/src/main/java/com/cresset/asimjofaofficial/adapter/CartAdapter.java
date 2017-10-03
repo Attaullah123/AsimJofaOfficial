@@ -31,8 +31,10 @@ import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONObject;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 
 import timber.log.Timber;
 
@@ -117,8 +119,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             holder.proCurrencyName.setText("USD");
         }
 
-        holder.proPrice.setText(String.format("%.0f",productPrice));
-
+        //holder.proPrice.setText(String.format("%.0f",productPrice));
+        holder.proPrice.setText(NumberFormat.getNumberInstance(Locale.US).format(productPrice));
         Glide.with(mContext).load(cartListModel.getImageLink()).into(holder.thumbnailImage);
     }
 

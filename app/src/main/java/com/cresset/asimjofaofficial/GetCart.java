@@ -51,10 +51,12 @@ import org.json.JSONObject;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 
 public class GetCart extends AppCompatActivity {
@@ -174,7 +176,8 @@ public class GetCart extends AppCompatActivity {
                                 currencyName.setText("USD");
                             }
 
-                            subTotal.setText(String.format("%.0f",subTo));
+                           // subTotal.setText(String.format("%.0f",subTo));
+                            subTotal.setText(NumberFormat.getNumberInstance(Locale.US).format(subTo));
 
                             ArrayList<CartModelItems> cartItems = new ArrayList<>(cartModelData.getCartItems());
 

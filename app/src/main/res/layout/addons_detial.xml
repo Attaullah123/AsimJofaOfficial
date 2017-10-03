@@ -16,16 +16,13 @@
         android:layout_height="0dp"
         />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:orientation="vertical">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="5dp"
             >
 
             <CheckBox
@@ -38,7 +35,7 @@
 
             <TextView
                 android:id="@+id/addons_text"
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#5c5c5c"
                 android:layout_marginLeft="5sp"
@@ -46,23 +43,15 @@
                 android:layout_toRightOf="@id/addon_checkbox"
                 android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/addons_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="#000"
+                android:text="12343"
+                />
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/addons_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/addons_text"
-            android:textColor="#000"
-            android:text="12458"
-            android:layout_marginLeft="45sp"
-            android:layout_toRightOf="@id/addon_checkbox"
-            android:textSize="14sp"
-            android:textStyle="italic" />
-    </LinearLayout>
-
-
-
 
 </LinearLayout>
 <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->

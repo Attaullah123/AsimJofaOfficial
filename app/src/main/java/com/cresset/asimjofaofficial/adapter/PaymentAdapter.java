@@ -26,11 +26,13 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.MyViewHo
 
     public class MyViewHolder extends RecyclerView.ViewHolder  {
         public TextView paymentName, paymentSystemName,productId;
+        public ImageView paymentImage;
         private Context context;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             paymentName = (TextView) itemView.findViewById(R.id.payment_name);
+            //paymentImage = (ImageView) itemView.findViewById(R.id.payment_image);
             //paymentSystemName = (TextView) itemView.findViewById(R.id.payment_system_name);
             //proId = (TextView) itemView.findViewById(R.id.product_list_id);
 
@@ -72,7 +74,12 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.MyViewHo
 //        }else {
 //
 //        }
+        ImageView i = new ImageView(mContext);
+        if(list.getSystemName().equals("Payments.Easypaisa")){
+            //set image here
 
+            i.setImageResource(R.drawable.location_icon);
+        }
     }
 
     @Override

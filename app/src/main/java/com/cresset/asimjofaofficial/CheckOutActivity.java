@@ -50,9 +50,11 @@ import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONObject;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 
 public class CheckOutActivity extends AppCompatActivity implements View.OnClickListener {
@@ -230,6 +232,8 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
         }
 
         shippingPrice.setText(String.format("%.0f",shipping));
+        shippingPrice.setText(NumberFormat.getNumberInstance(Locale.US).format(shipping));
+
         if (GlobalClass.shippingMethod != null)
             selectShippingMethodName.setText(GlobalClass.shippingMethod.getName());
     }
@@ -324,7 +328,9 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
                             total_product_curruncy_name.setText("USD");
                         }
 
-                        totalProductPrice.setText(String.format("%.0f",total));
+                        //totalProductPrice.setText(String.format("%.0f",total));
+                        totalProductPrice.setText(NumberFormat.getNumberInstance(Locale.US).format(total));
+
                         cartItem.setText(Integer.toString(GlobalClass.CartCount) + " " + "items");
                         // renew again
                         total = cartModel.getTotalDetail().getSubTotalAmount();
@@ -339,7 +345,8 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
                             total_curruncy_name.setText("USD");
                         }
 
-                        totalPrice.setText(String.format("%.0f",total));
+                        //totalPrice.setText(String.format("%.0f",total));
+                        totalPrice.setText(NumberFormat.getNumberInstance(Locale.US).format(total));
 
                         //total_curruncy_name
                         ArrayList<CartModelItems> cartItems = new ArrayList<CartModelItems>(cartModel.getCartItems());
@@ -388,7 +395,8 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
                 shippingPrice_currency.setText("USD");
             }
 
-            shippingPrice.setText(String.format("%.0f",shipping));
+            //shippingPrice.setText(String.format("%.0f",shipping));
+            shippingPrice.setText(NumberFormat.getNumberInstance(Locale.US).format(shipping));
 
             selectShippingMethodName.setText(GlobalClass.shippingMethod.getName());
             getCartDetail();

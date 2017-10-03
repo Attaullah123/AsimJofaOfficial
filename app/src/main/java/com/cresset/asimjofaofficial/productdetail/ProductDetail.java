@@ -37,6 +37,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ExpandableListAdapter;
+import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -64,6 +66,8 @@ import com.cresset.asimjofaofficial.Profile;
 import com.cresset.asimjofaofficial.R;
 import com.cresset.asimjofaofficial.adapter.AddonsAdapter;
 import com.cresset.asimjofaofficial.adapter.AddonsAdapterRe;
+import com.cresset.asimjofaofficial.adapter.BottomItemAdapter;
+import com.cresset.asimjofaofficial.adapter.PolicyExpandAdapter;
 import com.cresset.asimjofaofficial.adapter.ProductImagePagerAdapter;
 import com.cresset.asimjofaofficial.adapter.QuantitySpinner;
 import com.cresset.asimjofaofficial.adapter.SizeSpinnerAdapter;
@@ -95,9 +99,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -130,6 +136,12 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
     private ExpandableRelativeLayout expandInstore,expandComandCare;
     private EditText etProdName,etFullName,etEmail,etTelephone,etAddress,etCity,etBudgetet,etMessage;
     private String etBtmProName;
+    ExpandableListAdapter listAdapter;
+    ExpandableListView expListView;
+    List<String> listDataHeader;
+    HashMap<String, List<String>> listDataChild;
+    View rootView;
+    private int lastExpandedPosition = -1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -406,6 +418,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                             }
 
                             price.setText(String.format("%.0f",proPrice));
+                            //price.setText(NumberFormat.getNumberInstance(Locale.US).format(proPrice));
                         }
 
                         //price.setText(Float.toString(proPrice));
@@ -465,20 +478,44 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
     public void openBottomInfo(View v) {
         View view = getLayoutInflater().inflate(R.layout.bottom_info, null);
 
-        headerInStore = (LinearLayout) view.findViewById(R.id.header_in_store);
-        headerComp = (LinearLayout) view.findViewById(R.id.header_in_com_care);
+//        headerInStore = (LinearLayout) view.findViewById(R.id.header_in_store);
+//        headerComp = (LinearLayout) view.findViewById(R.id.header_in_com_care);
 
         bottomCancel = (TextView) view.findViewById(R.id.close);
 
         fullDiscription = (TextView) view.findViewById(R.id.btm_prod_detial);
         proName = (TextView) view.findViewById(R.id.btm_prod_code);
         sku = (TextView) view.findViewById(R.id.btm_sku_code);
+        //expListView = (ExpandableListView) view.findViewById(R.id.lvExp);
 
 
         fullDiscription.setText(Html.fromHtml(fulldiscrip));
         proName.setText(btmProNames);
         sku.setText(btmSku);
+        //set adapter
+        // get the listview
+        expListView = (ExpandableListView) view.findViewById(R.id.lvExp);
 
+        // preparing list data
+        prepareListData();
+
+        listAdapter = new BottomItemAdapter(getApplicationContext(), listDataHeader, listDataChild);
+
+        // setting list adapter
+        expListView.setAdapter(listAdapter);
+
+        expListView.setGroupIndicator(null);
+
+        expListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                if (lastExpandedPosition != -1 && groupPosition != lastExpandedPosition) {
+                    expListView.collapseGroup(lastExpandedPosition);
+                }
+                lastExpandedPosition = groupPosition;
+            }
+        });
 
         TextView sizeGuide = (TextView)view.findViewById( R.id.btm_size_guide);
 
@@ -501,15 +538,39 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         //Add onPreDrawListener
     }
 
-    public void comCare(View view){
-        expandComandCare = (ExpandableRelativeLayout) view.findViewById(R.id.expandable_com_care);
-        expandComandCare.toggle(); // toggle expand and collapse
+    private void prepareListData() {
+        listDataHeader = new ArrayList<String>();
+        listDataChild = new HashMap<String, List<String>>();
+        // Adding child data
+        listDataHeader.add("In-Store availability");
+        listDataHeader.add("Composition and care");
+        // Adding child data
+
+        List<String> Privacy = new ArrayList<String>();
+        Privacy.add("Product is available in-store and autorize retailer.");
+
+        List<String> Password = new ArrayList<String>();
+        Password.add("Pure chiffon thread  (depend on parent category)\n" +
+                "     Care:\n" +
+                "     Hand washes recommended. \n" +
+                "     Do not bleach.\n" +
+                "     Iron with care.\n" +
+                "     Do not Tumble dry.\n");
+
+        listDataChild.put(listDataHeader.get(0), Privacy); // Header, Child data
+        listDataChild.put(listDataHeader.get(1), Password);
     }
 
-    public void inStore(View view) {
-        expandInstore = (ExpandableRelativeLayout) view.findViewById(R.id.expandable_cart_item);
-        expandInstore.toggle(); // toggle expand and collapse
-    }
+
+    //    public void comCare(View view){
+//        expandComandCare = (ExpandableRelativeLayout) view.findViewById(R.id.expandable_com_care);
+//        expandComandCare.toggle(); // toggle expand and collapse
+//    }
+//
+//    public void inStore(View view) {
+//        expandInstore = (ExpandableRelativeLayout) view.findViewById(R.id.expandable_cart_item);
+//        expandInstore.toggle(); // toggle expand and collapse
+//    }
     @Override
     public void onClick(View v) {
         switch (v.getId()){

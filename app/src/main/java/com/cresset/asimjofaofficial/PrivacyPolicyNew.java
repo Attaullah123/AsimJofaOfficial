@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 
 import com.cresset.asimjofaofficial.adapter.PolicyExpandAdapter;
 
@@ -27,6 +28,7 @@ public class PrivacyPolicyNew extends Fragment {
     HashMap<String, List<String>> listDataChild;
     View rootView;
     private int lastExpandedPosition = -1;
+    private TextView privacyText;
 
     @Nullable
     @Override
@@ -35,7 +37,8 @@ public class PrivacyPolicyNew extends Fragment {
 
         // get the listview
         expListView = (ExpandableListView) rootView.findViewById(R.id.lvExp);
-
+        privacyText = (TextView) rootView.findViewById(R.id.privacy_text);
+        privacyText.setLineSpacing(0,1.4f);
         // preparing list data
         prepareListData();
 

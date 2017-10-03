@@ -19,19 +19,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:lineSpacingExtra="1.4dp"
                 android:textSize="20sp"
                 android:textColor="#585858"
                 android:text="Exchange Policy:"/>
 
 
             <TextView
+                android:id="@+id/exchange_text"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="10sp"
-                android:lineSpacingExtra="1.4dp"
                 android:textSize="14sp"
                 android:textColor="#515151"
                 android:text="@string/exchange_policy"/>
@@ -48,12 +47,12 @@
 
 
             <TextView
+                android:id="@+id/return_policy_text"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="10sp"
-                android:lineSpacingExtra="1.4dp"
                 android:textSize="14sp"
                 android:textColor="#515151"
                 android:text="@string/refund_policy"/>
@@ -63,12 +62,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
                 android:textSize="20sp"
                 android:textColor="#585858"
                 android:text="Refund Policy:"/>
 
 
             <TextView
+                android:id="@+id/refund_policy_text"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"

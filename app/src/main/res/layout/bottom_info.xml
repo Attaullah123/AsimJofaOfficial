@@ -123,99 +123,18 @@
                 android:background="#000"
                 android:gravity="center_horizontal" />
 
-            <LinearLayout
-                android:id="@+id/header_in_store"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ExpandableListView
+                android:id="@+id/lvExp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="inStore"
-                android:orientation="vertical">
+                android:layout_height="70dp"
 
-                <TextView
-                    android:id="@+id/btm_store_availability"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawablePadding="15dp"
-                    android:gravity="center_vertical"
-                    android:padding="12dp"
-                    android:text="In-Store availability"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#000" />
-
-
-                <com.github.aakira.expandablelayout.ExpandableRelativeLayout
-                    android:id="@+id/expandable_cart_item"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@+id/expandableButton1"
-                    android:background="#ffffff"
-                    android:padding="10dp"
-                    app:ael_duration="10"
-                    app:ael_expanded="false"
-                    app:ael_interpolator="accelerate"
-                    app:ael_orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Product is available in-store and autorize retailer."
-                        android:textSize="15sp"
-                         />
-                </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
-
+                />
             </LinearLayout>
-
-            <!--line-->
-            <TextView
-                android:id="@+id/line2"
-                android:layout_width="match_parent"
-                android:layout_height="0.3dp"
-                android:layout_below="@+id/connect_help"
-                android:background="#000"
-                android:gravity="center_horizontal" />
-
-            <LinearLayout
-                android:id="@+id/header_in_com_care"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="comCare"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/btm_co_care"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawablePadding="15dp"
-                    android:gravity="center_vertical"
-                    android:padding="12dp"
-                    android:text="Composition and care"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#000" />
-
-                <com.github.aakira.expandablelayout.ExpandableRelativeLayout
-                    android:id="@+id/expandable_com_care"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@+id/expandableButton1"
-                    android:background="#ffffff"
-                    android:padding="10dp"
-                    app:ael_duration="10"
-                    app:ael_expanded="false"
-                    app:ael_interpolator="accelerate"
-                    app:ael_orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:text="@string/com_care_string"
-                        android:textSize="15sp"
-                      />
-                </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
-
-            </LinearLayout>
-
 
             <!--line-->
             <TextView
@@ -245,8 +164,6 @@
                 android:layout_below="@+id/connect_help"
                 android:background="#000"
                 android:gravity="center_horizontal" />
-
-
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

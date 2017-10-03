@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="60dp"
+    android:orientation="horizontal"
+    android:paddingTop="10dp"
+    android:background="#fff">
+
+    <TextView
+        android:id="@+id/lblListHeader"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:drawablePadding="15dp"
+        android:text="ACCURACY OF CONTENT"
+        android:background="#fff"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#000"
+        />
+
+</RelativeLayout>

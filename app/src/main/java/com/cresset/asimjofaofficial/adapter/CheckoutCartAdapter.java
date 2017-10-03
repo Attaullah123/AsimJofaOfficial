@@ -32,9 +32,11 @@ import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONObject;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import timber.log.Timber;
 
@@ -103,11 +105,17 @@ public class CheckoutCartAdapter extends RecyclerView.Adapter<CheckoutCartAdapte
                 }
             }
         }
-
-
         holder.proSize.setText(Html.fromHtml(strAttributes));
-        holder.proPrice.setText(Float.toString(productPrice));
 
+        if(GlobalClass.currency != null){
+            productPrice = productPrice * GlobalClass.currency.getRate();
+            holder.proCurrencyName.setText(GlobalClass.currency.CurrencyCode);
+        }
+        else{
+            holder.proCurrencyName.setText("USD");
+        }
+
+        holder.proPrice.setText(NumberFormat.getNumberInstance(Locale.US).format(productPrice));
         Glide.with(mContext).load(cartListModel.getImageLink()).into(holder.thumbnailImage);
     }
 

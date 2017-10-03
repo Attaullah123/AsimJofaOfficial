@@ -29,6 +29,7 @@ import com.cresset.asimjofaofficial.utilities.GlobalClass;
 import com.cresset.asimjofaofficial.utilities.ResizableImageView;
 
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -116,7 +117,8 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
             DecimalFormat formatter = new DecimalFormat("#,###,###");
 
-            holder.price.setText(String.format("%.0f",proprice));
+            //holder.price.setText(String.format("%.0f",proprice));
+            holder.price.setText(NumberFormat.getNumberInstance(Locale.US).format(proprice));
 
         }
 

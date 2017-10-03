@@ -48,14 +48,23 @@
                 android:background="#393838"/>
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textColor="#000"
-            android:layout_marginTop="10dp"
-            android:textSize="17sp"
-            android:text="Select Shipping Method"/>
+        <!--<LinearLayout-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/shipping_charge_within_country"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="45dp"-->
+                <!--android:gravity="center"-->
+                <!--android:background="#feb832"-->
+                <!--android:textColor="#fff"-->
+                <!--android:textStyle="bold"-->
+                <!--android:textSize="18sp"-->
+                <!--android:text="@string/shipping_charger"/>-->
+
+        <!--</LinearLayout>-->
 
         <RelativeLayout
             android:layout_width="match_parent"

@@ -15,8 +15,10 @@ import com.cresset.asimjofaofficial.R;
 import com.cresset.asimjofaofficial.models.ProductAddons;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 public class AddonsAdapterRe extends RecyclerView.Adapter<AddonsAdapterRe.ViewHolder> {
@@ -116,6 +118,7 @@ public class AddonsAdapterRe extends RecyclerView.Adapter<AddonsAdapterRe.ViewHo
             }
 
             addonPrices.setText("+" + String.format("%.0f",adonPrice));
+           // addonPrices.setText(NumberFormat.getNumberInstance(Locale.US).format("+" + adonPrice));
         }
     }
 }

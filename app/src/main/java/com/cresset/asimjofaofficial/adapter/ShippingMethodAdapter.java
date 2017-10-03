@@ -79,7 +79,6 @@ public class ShippingMethodAdapter  extends RecyclerView.Adapter<ShippingMethodA
 
         holder.shippingName.setText(list.getName());
 
-
         float productPrice = list.getPrice();
         //holder.price.setText(productListModel.getPrice());
         if(GlobalClass.currency != null){
@@ -96,6 +95,5 @@ public class ShippingMethodAdapter  extends RecyclerView.Adapter<ShippingMethodA
     public int getItemCount() {
         return shippingmethodList.size();
     }
-
 
 }
