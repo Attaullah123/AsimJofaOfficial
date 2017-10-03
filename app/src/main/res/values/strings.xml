@@ -78,7 +78,7 @@
 
     <string name="forget_text">If you have forgotten your password, enter your email address and we will send you instructions to retrieve it. </string>
     <string name="copy_code">When you get code successfully copy that code and paste(within 2-3 min) in to your login account and then update your password with the same code</string>
-    <string name="change_password_text">If you want to change your password, enter your email, password and new password. </string>
+    <string name="change_password_text">If you want to change your password, enter password and new password. </string>
     <string name="tab_online">OLINE</string>
     <string name="tab_store">STORE</string>
     <string name="com_care_string">Pure chiffon thread  (depend on parent category)\n\n
@@ -87,7 +87,6 @@
         Do not bleach.\n
         Iron with care.\n
         Do not Tumble dry.\n
-
     </string>
 
 </resources>

@@ -12,37 +12,45 @@
         android:layout_height="0.1dp"
         android:background="#3b3b3b"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="#ffffff"
-            android:orientation="horizontal"
-            >
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:background="#fff"
+        >
 
-            <TextView
-                android:id="@+id/product_list_id"
-                android:layout_width="0dp"
-                android:layout_height="0dp" />
+        <TextView
+            android:id="@+id/product_list_id"
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
 
-            <TextView
-                android:id="@+id/payment_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:gravity="start"
-                android:layout_gravity="center"
-                android:textStyle="bold"
-                android:text="Cash On Delivery"
-                android:textColor="@color/album_title"
-                android:textSize="18sp" />
-            <!--<ImageView-->
-                <!--android:id="@+id/payment_image"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:gravity="end"-->
-                <!--android:layout_gravity="end"/>-->
+        <TextView
+            android:id="@+id/payment_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/album_title"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="Cash On Delivery"
 
-        </LinearLayout>
+            android:layout_marginLeft="8dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <ImageView
+            android:id="@+id/payment_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15sp"
+            android:layout_centerVertical="true"
+           
+            />
+
+        </RelativeLayout>
 
     <View
         android:paddingTop="5dp"

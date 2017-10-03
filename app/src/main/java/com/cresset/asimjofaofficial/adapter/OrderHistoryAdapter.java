@@ -13,6 +13,7 @@ import com.cresset.asimjofaofficial.models.OrdersListModel;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
 
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -57,9 +58,12 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
 
         holder.orderNo.setText(String.valueOf(orderList.getId()));
         holder.orderStatus.setText(orderList.getOrderStatus());
+
+        //SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM dd yyyy");
+
         holder.orderDate.setText(orderList.getOrderDate());
 
-        float productPrice = orderList.getOrderTotal();
+        float productPrice = Float.parseFloat(orderList.getOrderTotal());
         //change currency
 
         if(GlobalClass.currency != null){

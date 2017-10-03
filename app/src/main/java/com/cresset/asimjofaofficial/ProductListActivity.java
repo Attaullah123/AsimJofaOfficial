@@ -63,8 +63,6 @@ public class ProductListActivity extends AppCompatActivity {
     private Menu menu;
     private String tag_json_obj = "json_obj_req";
 
-    //    public static final String TAG_FIRST_APPEARANCE = "firstAppearance";
-    //    public static final String TAG_POWERS = "powers";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

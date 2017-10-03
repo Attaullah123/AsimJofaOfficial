@@ -57,7 +57,7 @@ public class ChangePassword extends AppCompatActivity {
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         //userData = GlobalClass.userData;
-        etEmail = (EditText) findViewById(R.id.email_change_password);
+        //etEmail = (EditText) findViewById(R.id.email_change_password);
         etPassword = (EditText) findViewById(R.id.password);
         etNewPassword = (EditText) findViewById(R.id.new_password);
         saveChangePassword = (Button) findViewById(R.id.password_save);
@@ -78,13 +78,13 @@ public class ChangePassword extends AppCompatActivity {
     }
 
     public void cahngePassword() {
-        String email = etEmail.getText().toString().trim();
+       // String email = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
         String newPassword = etNewPassword.getText().toString().trim();
         // Check for empty data in the form
-        if (!email.isEmpty() && !password.isEmpty() && !newPassword.isEmpty()) {
+        if (!password.isEmpty() && !newPassword.isEmpty()) {
             // login user
-            checkChangePassword(email, password, newPassword);
+            checkChangePassword(password, newPassword);
         } else {
             // Prompt user to enter credentials
             Toast.makeText(getApplicationContext(),
@@ -93,10 +93,10 @@ public class ChangePassword extends AppCompatActivity {
         }
     }
 
-    public void checkChangePassword(final String email, final String password,final String newPassword){
+    public void checkChangePassword(final String password,final String newPassword){
         Map<String, String> params = new HashMap<String, String>();
         params.put("ProjectId", Config.PROJECTID);
-        params.put("Email", email);
+        params.put("Email", GlobalClass.userData.getEmail());
         params.put("OldPassword", password);
         params.put("NewPassword", newPassword);
 
@@ -115,7 +115,7 @@ public class ChangePassword extends AppCompatActivity {
                             Gson gson = new Gson();
                             ChnagePasswordModel model = gson.fromJson(response.toString(), new TypeToken<ChnagePasswordModel>(){}.getType());
 
-                            model.setEmail(email);
+                            //model.setEmail(email);
                             model.setOldPassword(password);
                             model.setNewPassword(newPassword);
                             Toast.makeText(getApplicationContext(), "your password change successfully", Toast.LENGTH_LONG)

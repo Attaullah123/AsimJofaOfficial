@@ -44,7 +44,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 //    private ImageLoader imageLoader;
 
     public class MyViewHolder extends RecyclerView.ViewHolder  {
-        public TextView title, price,pricecode,proId,outOfStock;
+        public TextView title, price,pricecode,proId,outOfStock,newProduct;
         public ImageView thumbnail;
         public CardView cardView;
         private Context context;
@@ -53,6 +53,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.product_title);
             outOfStock = (TextView) itemView.findViewById(R.id.txt_outOfStock);
+            newProduct = (TextView) itemView.findViewById(R.id.product_new);
 
 
             price = (TextView) itemView.findViewById(R.id.product_list_price);
@@ -122,6 +123,10 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
         }
 
+        if (productListModel.isNewProduct()){
+            holder.newProduct.setBackgroundColor(Color.BLACK);
+            holder.newProduct.setText("NEW");
+        }
 
         if(productListModel.isOutOfStock()){
             holder.outOfStock.setBackgroundColor(Color.BLACK);

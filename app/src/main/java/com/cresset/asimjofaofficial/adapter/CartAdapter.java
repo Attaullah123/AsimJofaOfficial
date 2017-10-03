@@ -99,6 +99,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 
         String strAttributes = "";
         float productPrice = cartListModel.getProductPrice();
+
         if(!cartListModel.getAttributes().isEmpty())
         {
             for (CartAttributes attribute: cartListModel.getAttributes())
