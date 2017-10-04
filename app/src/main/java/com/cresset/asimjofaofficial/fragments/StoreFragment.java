@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cresset.asimjofaofficial.R;
@@ -16,13 +17,13 @@ import com.cresset.asimjofaofficial.R;
  */
 
 public class StoreFragment extends Fragment {
-    private TextView callOnclick;
+    private LinearLayout callOnclick;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup viewGroup, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.store_fragment, viewGroup, false);
         //output= (TextView)view.findViewById(R.id.textView);
         //output.setText("Fragment Two");
-        callOnclick = (TextView) view.findViewById(R.id.call_onclick);
+        callOnclick = (LinearLayout) view.findViewById(R.id.call_onclick);
 
         callOnclick.setOnClickListener(new View.OnClickListener() {
             @Override

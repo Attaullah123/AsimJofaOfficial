@@ -69,18 +69,18 @@
         android:textColorHint="#2b2a2a"
         android:inputType="textCapWords" />
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/change_user_info"
-        android:layout_width="fill_parent"
-        android:layout_height="45dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="24dp"
-        android:layout_marginTop="10dp"
-        android:background="#000000"
-        android:text="SAVE"
-        android:textColor="#ffffff"
-        android:textSize="20sp" />
+    <!--<android.support.v7.widget.AppCompatButton-->
+        <!--android:id="@+id/change_user_info"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="45dp"-->
+        <!--android:layout_marginRight="10dp"-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_marginBottom="24dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:background="#000000"-->
+        <!--android:text="SAVE"-->
+        <!--android:textColor="#ffffff"-->
+        <!--android:textSize="20sp" />-->
 
 </LinearLayout>

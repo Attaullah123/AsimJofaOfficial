@@ -32,26 +32,36 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:paddingTop="5dp"
-                    android:text="G4/3,Main Clifton Road ,\nBlock 09 Clifton,Karachi"
+                    android:text="G 4/3, Main Clifton Road ,\nBlock 09 Clifton, Karachi"
                     android:textColor="#000" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="25dp"
-                    android:text="By Phone"
-                    android:textColor="#000"
-                    android:textStyle="bold" />
-
-                <TextView
+                <LinearLayout
                     android:id="@+id/call_onclick"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:paddingTop="5dp"
-                    android:text="Call: +92-321-1244440"
-                    android:textColor="#000" />
+                    android:layout_marginTop="25dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="By Phone"
+                        android:textColor="#000"
+                        android:textStyle="bold" />
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:paddingTop="5dp"
+                        android:text="Call: +92-321-1244440"
+                        android:textColor="#000" />
+
+                </LinearLayout>
+
+
 
                 <TextView
                     android:layout_width="wrap_content"

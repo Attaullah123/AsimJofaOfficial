@@ -57,7 +57,7 @@ import java.util.Map;
 public class BillingAddressDetail extends Fragment {
     private EditText bfullname,bEmail,bAdress,bPhoneNo,bCity,bPostalCode,bDay,bMonth,bYear;
     private Spinner bCountry,bProvince;
-    private Button btnBillingAddress;
+    //private Button btnBillingAddress;
     private BillingModel billingModel;
     private BillingCountrySpinnerAdapter billingCountrySpinnerAdapter;
     private BillingStateSpinnerAdapter billingStateSpinnerAdapter;
@@ -84,7 +84,7 @@ public class BillingAddressDetail extends Fragment {
         //spinner view
         bCountry = (Spinner) view.findViewById(R.id.billing_country_select);
         bProvince = (Spinner) view.findViewById(R.id.billing_spinner_select_province);
-        btnBillingAddress = (Button)view.findViewById(R.id.billing_save);
+        //btnBillingAddress = (Button)view.findViewById(R.id.billing_save);
 
         getUserInfo();
 //        progressDialog = new ProgressDialog(getContext());
@@ -92,35 +92,35 @@ public class BillingAddressDetail extends Fragment {
 //        progressDialog.setTitle("please wait...");
         //loadData();
 
-        btnBillingAddress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String fname = bfullname.getText().toString().trim();
-                String laddress = bAdress.getText().toString().trim();
-                String email = bEmail.getText().toString().trim();
-                String phone = bPhoneNo.getText().toString().trim();
-                String city = bCity.getText().toString().trim();
-                String postCode = bPostalCode.getText().toString().trim();
-                String day = bDay.getText().toString().trim();
-                String month = bMonth.getText().toString().trim();
-                String year = bYear.getText().toString().trim();
-                //String city = bCity.getText().toString().trim();
-
-
-                if (!fname.isEmpty() && !laddress.isEmpty() && !email.isEmpty() && !phone.isEmpty() && !city.isEmpty()&& !postCode.isEmpty()
-                        && !day.isEmpty() && !month.isEmpty() && !year.isEmpty()){
-                    //billingAddressUpdate();
-                    Toast.makeText(getContext(), "Your info save successfully!", Toast.LENGTH_LONG).show();
-                    getActivity().finish();
-                }else {
-                    Toast.makeText(getContext(),
-                            "Please enter the required fields!", Toast.LENGTH_LONG)
-                            .show();
-                }
-
-            }
-        });
+//        btnBillingAddress.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                String fname = bfullname.getText().toString().trim();
+//                String laddress = bAdress.getText().toString().trim();
+//                String email = bEmail.getText().toString().trim();
+//                String phone = bPhoneNo.getText().toString().trim();
+//                String city = bCity.getText().toString().trim();
+//                String postCode = bPostalCode.getText().toString().trim();
+//                String day = bDay.getText().toString().trim();
+//                String month = bMonth.getText().toString().trim();
+//                String year = bYear.getText().toString().trim();
+//                //String city = bCity.getText().toString().trim();
+//
+//
+//                if (!fname.isEmpty() && !laddress.isEmpty() && !email.isEmpty() && !phone.isEmpty() && !city.isEmpty()&& !postCode.isEmpty()
+//                        && !day.isEmpty() && !month.isEmpty() && !year.isEmpty()){
+//                    //billingAddressUpdate();
+//                    Toast.makeText(getContext(), "Your info save successfully!", Toast.LENGTH_LONG).show();
+//                    getActivity().finish();
+//                }else {
+//                    Toast.makeText(getContext(),
+//                            "Please enter the required fields!", Toast.LENGTH_LONG)
+//                            .show();
+//                }
+//
+//            }
+//        });
         return view;
     }
 

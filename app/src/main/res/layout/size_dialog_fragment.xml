@@ -20,8 +20,8 @@
 
     <Button
         android:id="@+id/close_button"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:background="@drawable/bt_dialog_close"

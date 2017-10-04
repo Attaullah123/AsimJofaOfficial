@@ -79,8 +79,9 @@
                     android:layout_width="20dp"
                     android:layout_height="23dp"
                     android:layout_gravity="center"
-                    android:layout_marginRight="15dp"
-                    android:background="@drawable/decre_ic"
+                    android:layout_marginBottom="0.5sp"
+                    android:layout_marginRight="12dp"
+                    android:background="@drawable/arrows_sprite1"
                     android:gravity="center"/>
 
                 <TextView
@@ -88,6 +89,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#5f5f5f"
+                    android:layout_marginTop="1.5dp"
                     android:layout_gravity="center"
                     android:textSize="16sp"
                     tools:text="1" />
@@ -97,8 +99,8 @@
                     android:layout_width="20dp"
                     android:layout_height="23dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="15dp"
-                    android:background="@drawable/incre_icon"
+                    android:layout_marginLeft="12dp"
+                    android:background="@drawable/arrows_sprite2"
                     android:gravity="center"/>
             </LinearLayout>
 

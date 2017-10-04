@@ -2,6 +2,7 @@ package com.cresset.asimjofaofficial;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
@@ -30,6 +31,7 @@ public class FinalOrderActivity extends AppCompatActivity {
 
     private TextView oderId,order_message;
     private Button backButton;
+    private static boolean userPressedBackAgain = false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,16 +109,7 @@ public class FinalOrderActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-            if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-            finish();
-        }
-            return super.onKeyDown(keyCode, event);
+    public void onBackPressed() {
+        moveTaskToBack(true);
     }
-
-//    @Override
-//    public void onBackPressed() {
-//        super.onBackPressed();
-//        FinalOrderActivity.this.finish();
-//    }
 }

@@ -209,6 +209,7 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
                 if (GlobalClass.shippingModel != null && GlobalClass.billingModel != null) {
                     if (GlobalClass.paymentModel != null && GlobalClass.shippingMethod != null) {
                         OrderPlace();
+
                     } else {
                         Show("Please select payement and shipping method first");
                     }

@@ -5,10 +5,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -35,6 +37,7 @@ public class ShowMap extends AppCompatActivity {
     private GoogleMap map;
     private ImageView back;
     private Context context;
+    private static long back_pressed;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,4 +103,5 @@ public class ShowMap extends AppCompatActivity {
             AlertDialog alert = alertDialogBuilder.create();
             alert.show();
         }
+
 }

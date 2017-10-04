@@ -36,6 +36,7 @@ import com.cresset.asimjofaofficial.models.CategoryModel;
 import com.cresset.asimjofaofficial.models.ChildCategoryList;
 import com.cresset.asimjofaofficial.models.IndexImage;
 import com.cresset.asimjofaofficial.models.ProductModel;
+import com.cresset.asimjofaofficial.utilities.AnimatedExpandableListView;
 import com.cresset.asimjofaofficial.utilities.Config;
 import com.cresset.asimjofaofficial.utilities.CustomVolleyRequest;
 import com.cresset.asimjofaofficial.volley.AppController;

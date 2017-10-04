@@ -55,7 +55,7 @@ public class UserInfoActivity extends AppCompatActivity {
     private EditText etuserName,etuserEmail;
     private ProgressDialog progressDialog;
     ImageView back;
-    private Button saveUserInfo;
+    //private Button saveUserInfo;
     private UserSessionManager userSession;
     private UserDataStore userDB;
     private UserModel globalUserData;
@@ -68,7 +68,7 @@ public class UserInfoActivity extends AppCompatActivity {
 
         etuserName = (EditText) findViewById(R.id.user_name);
         etuserEmail = (EditText) findViewById(R.id.user_email);
-        saveUserInfo = (Button) findViewById(R.id.change_user_info);
+       // saveUserInfo = (Button) findViewById(R.id.change_user_info);
 
         back = (ImageView) findViewById(R.id.img_cross);
         progressDialog = new ProgressDialog(this);

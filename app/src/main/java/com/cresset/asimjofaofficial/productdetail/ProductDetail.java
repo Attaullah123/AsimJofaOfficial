@@ -137,7 +137,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
     private EditText etProdName,etFullName,etEmail,etTelephone,etAddress,etCity,etBudgetet,etMessage;
     private String etBtmProName;
     ExpandableListAdapter listAdapter;
-    ExpandableListView expListView;
+    //ExpandableListView expListView;
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
     View rootView;
@@ -156,7 +156,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
 
         setSupportActionBar(toolbar);
         progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading.....");
+        progressDialog.setMessage("Please Wait.....");
         progressDialog.setCancelable(false);
         GlobalClass.selectedProductAddons = new ArrayList<ProductAddons>();
 
@@ -478,8 +478,8 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
     public void openBottomInfo(View v) {
         View view = getLayoutInflater().inflate(R.layout.bottom_info, null);
 
-//        headerInStore = (LinearLayout) view.findViewById(R.id.header_in_store);
-//        headerComp = (LinearLayout) view.findViewById(R.id.header_in_com_care);
+        headerInStore = (LinearLayout) view.findViewById(R.id.header_in_store);
+        headerComp = (LinearLayout) view.findViewById(R.id.header_in_com_care);
 
         bottomCancel = (TextView) view.findViewById(R.id.close);
 
@@ -494,28 +494,28 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         sku.setText(btmSku);
         //set adapter
         // get the listview
-        expListView = (ExpandableListView) view.findViewById(R.id.lvExp);
+        //expListView = (ExpandableListView) view.findViewById(R.id.lvExp);
 
         // preparing list data
-        prepareListData();
+        //prepareListData();
 
         listAdapter = new BottomItemAdapter(getApplicationContext(), listDataHeader, listDataChild);
 
         // setting list adapter
-        expListView.setAdapter(listAdapter);
+        //e/xpListView.setAdapter(listAdapter);
 
-        expListView.setGroupIndicator(null);
-
-        expListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
-
-            @Override
-            public void onGroupExpand(int groupPosition) {
-                if (lastExpandedPosition != -1 && groupPosition != lastExpandedPosition) {
-                    expListView.collapseGroup(lastExpandedPosition);
-                }
-                lastExpandedPosition = groupPosition;
-            }
-        });
+//        expListView.setGroupIndicator(null);
+//
+//        expListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+//
+//            @Override
+//            public void onGroupExpand(int groupPosition) {
+//                if (lastExpandedPosition != -1 && groupPosition != lastExpandedPosition) {
+//                    expListView.collapseGroup(lastExpandedPosition);
+//                }
+//                lastExpandedPosition = groupPosition;
+//            }
+//        });
 
         TextView sizeGuide = (TextView)view.findViewById( R.id.btm_size_guide);
 
@@ -538,39 +538,39 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         //Add onPreDrawListener
     }
 
-    private void prepareListData() {
-        listDataHeader = new ArrayList<String>();
-        listDataChild = new HashMap<String, List<String>>();
-        // Adding child data
-        listDataHeader.add("In-Store availability");
-        listDataHeader.add("Composition and care");
-        // Adding child data
+//    private void prepareListData() {
+//        listDataHeader = new ArrayList<String>();
+//        listDataChild = new HashMap<String, List<String>>();
+//        // Adding child data
+//        listDataHeader.add("In-Store availability");
+//        listDataHeader.add("Composition and care");
+//        // Adding child data
+//
+//        List<String> Privacy = new ArrayList<String>();
+//        Privacy.add("Product is available in-store and autorize retailer.");
+//
+//        List<String> Password = new ArrayList<String>();
+//        Password.add("Pure chiffon thread  (depend on parent category)\n" +
+//                "     Care:\n" +
+//                "     Hand washes recommended. \n" +
+//                "     Do not bleach.\n" +
+//                "     Iron with care.\n" +
+//                "     Do not Tumble dry.\n");
+//
+//        listDataChild.put(listDataHeader.get(0), Privacy); // Header, Child data
+//        listDataChild.put(listDataHeader.get(1), Password);
+//    }
 
-        List<String> Privacy = new ArrayList<String>();
-        Privacy.add("Product is available in-store and autorize retailer.");
 
-        List<String> Password = new ArrayList<String>();
-        Password.add("Pure chiffon thread  (depend on parent category)\n" +
-                "     Care:\n" +
-                "     Hand washes recommended. \n" +
-                "     Do not bleach.\n" +
-                "     Iron with care.\n" +
-                "     Do not Tumble dry.\n");
-
-        listDataChild.put(listDataHeader.get(0), Privacy); // Header, Child data
-        listDataChild.put(listDataHeader.get(1), Password);
+        public void comCare(View view){
+        expandComandCare = (ExpandableRelativeLayout) view.findViewById(R.id.expandable_com_care);
+        expandComandCare.toggle(); // toggle expand and collapse
     }
 
-
-    //    public void comCare(View view){
-//        expandComandCare = (ExpandableRelativeLayout) view.findViewById(R.id.expandable_com_care);
-//        expandComandCare.toggle(); // toggle expand and collapse
-//    }
-//
-//    public void inStore(View view) {
-//        expandInstore = (ExpandableRelativeLayout) view.findViewById(R.id.expandable_cart_item);
-//        expandInstore.toggle(); // toggle expand and collapse
-//    }
+    public void inStore(View view) {
+        expandInstore = (ExpandableRelativeLayout) view.findViewById(R.id.expandable_cart_item);
+        expandInstore.toggle(); // toggle expand and collapse
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -621,7 +621,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                 if (!appProName.isEmpty() && !appFullName.isEmpty() && !appEmail.isEmpty() && !appTelephone.isEmpty() && !appAddress.isEmpty()
                         && !appCity.isEmpty() && !appBudget.isEmpty() && !appMessage.isEmpty()){
                     appointmentFormSubmit(appProName, appFullName, appEmail, appTelephone, appAddress ,appCity, appBudget, appMessage);
-
+                    dialogBottomInfo.dismiss();
                     //Toast.makeText(getApplicationContext(), "Api required for submitting the form!", Toast.LENGTH_LONG).show();
 
                 }else {
@@ -670,19 +670,6 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
 
                         try {
 
-//                            Gson gson = new Gson();
-//                            AppointmentModel model = gson.fromJson(response.toString(), new TypeToken<AppointmentModel>(){}.getType());
-//
-//                            model.setCollectionName(appProName);
-//                            model.setFullName(appFullName);
-//                            model.setEmail(appEmail);
-//
-//                            model.setPhone(appTelephone);
-//                            model.setAddress(appAddress);
-//                            model.setCity(appCity);
-//                            model.setBudget(appBudget);
-//                            model.setMessage(appMessage);
-//
                            progressDialog.dismiss();
                            Toast.makeText(getApplicationContext(), "your form submit successfully", Toast.LENGTH_LONG);
 //                                    .show();

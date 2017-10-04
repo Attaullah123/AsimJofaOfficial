@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
-        android:text="STORE LOCATION"
+        android:text="STORE ADDRESS"
         android:textColor="#000"
         android:textStyle="bold" />
 
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:paddingTop="5dp"
-        android:text="G4/3,Main Clifton Road ,\nBlock 09 Clifton,Karachi"
+        android:text="G-4/3, Main Clifton Road ,\nBlock 09 Clifton, Karachi"
         android:textColor="#000"
         android:layout_marginBottom="5dp"/>
     <fragment

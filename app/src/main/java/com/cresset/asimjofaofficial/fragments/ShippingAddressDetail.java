@@ -47,7 +47,7 @@ public class ShippingAddressDetail extends Fragment {
 
     private EditText sfullname,sEmail,sAdress,sPhoneNo,sCity,sPostalCode,sDay,sMonth,sYear;
     private Spinner sCountry,sProvince;
-    private Button btnShippingAddress;
+    //private Button btnShippingAddress;
     private ShippingModel shippingModel;
     private CountryList countryListItem;
     private StateList stateListItem;
@@ -69,7 +69,7 @@ public class ShippingAddressDetail extends Fragment {
         //spinner view
         sCountry = (Spinner) view.findViewById(R.id.shipping_size_country_select);
         sProvince = (Spinner) view.findViewById(R.id.shipping_spinner_select_province);
-        btnShippingAddress = (Button)view.findViewById(R.id.shipping_save);
+        //btnShippingAddress = (Button)view.findViewById(R.id.shipping_save);
 
         sDay = (EditText) view.findViewById(R.id.shipping_birthday_day);
         sMonth = (EditText) view.findViewById(R.id.shipping_birthday_month);

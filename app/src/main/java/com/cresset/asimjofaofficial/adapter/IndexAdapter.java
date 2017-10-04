@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -61,10 +63,12 @@ public class IndexAdapter extends BaseExpandableListAdapter {
 
         TextView tv = (TextView) convertView.findViewById(R.id.category_child_name);
         //NetworkImageView iv = (NetworkImageView) convertView.findViewById(R.id.flag);
+        //Animation anim = AnimationUtils.loadAnimation(context, R.anim.list_anim);
 
         tv.setText(child.getName().toString());
         //iv.setImageUrl(child.getImage(), imageLoader);
 
+        //convertView.setAnimation(anim);
         return convertView;
     }
 

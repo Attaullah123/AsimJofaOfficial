@@ -19,14 +19,21 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <TextView
+                <LinearLayout
                     android:id="@+id/by_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="BY EMAIL"
-                    android:textColor="#000"
-                    android:textStyle="bold" />
+                    android:orientation="vertical">
+
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="BY EMAIL"
+                        android:textColor="#000"
+                        android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -36,13 +43,21 @@
                     android:text="Send an email"
                     android:textColor="#000" />
 
-                
-                <TextView
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/facebook_anchor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="25dp"
+                    android:orientation="vertical">
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+
                     android:text="Facebook"
                     android:textColor="#000"
                     android:textStyle="bold" />
@@ -55,12 +70,20 @@
                     android:text="Asimjofaofficial"
                     android:textColor="#000" />
 
-                <TextView
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/twitter_anchor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="25dp"
+                    android:orientation="vertical">
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+
                     android:text="Twitter"
                     android:textColor="#000"
                     android:textStyle="bold" />
@@ -73,13 +96,21 @@
                     android:paddingTop="5dp"
                     android:text="Asimjofa"
                     android:textColor="#000" />
+                    </LinearLayout>
 
-                <TextView
+                <LinearLayout
                     android:id="@+id/instagram_anchor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="25dp"
+                    android:orientation="vertical">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+
                     android:text="Instagram"
                     android:textColor="#000"
                     android:textStyle="bold" />
@@ -92,6 +123,7 @@
                     android:text="Asimjofa"
                     android:textColor="#000" />
 
+                    </LinearLayout>
 
             </LinearLayout>
         </LinearLayout>

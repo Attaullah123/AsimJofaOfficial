@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cresset.asimjofaofficial.R;
@@ -18,16 +19,16 @@ import com.cresset.asimjofaofficial.volley.SizeDialogFragment;
  */
 
 public class OnlineFragment extends Fragment {
-    private TextView byEmai,facebook,twitter,instagram;
+    private LinearLayout byEmai,facebook,twitter,instagram;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup viewGroup, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.online_fragment, viewGroup, false);
 
-        byEmai = (TextView) view.findViewById(R.id.by_email);
-        facebook = (TextView) view.findViewById(R.id.facebook_anchor);
-        twitter = (TextView) view.findViewById(R.id.twitter_anchor);
-        instagram = (TextView) view.findViewById(R.id.instagram_anchor);
+        byEmai = (LinearLayout) view.findViewById(R.id.by_email);
+        facebook = (LinearLayout) view.findViewById(R.id.facebook_anchor);
+        twitter = (LinearLayout) view.findViewById(R.id.twitter_anchor);
+        instagram = (LinearLayout) view.findViewById(R.id.instagram_anchor);
         //output= (TextView)view.findViewById(R.id.textView);
         //output.setText("Fragment Two");
 

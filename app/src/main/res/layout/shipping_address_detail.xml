@@ -193,18 +193,18 @@
 
             <!-- Signup Button -->
 
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/shipping_save"
-                android:layout_width="fill_parent"
-                android:layout_height="45sp"
-                android:background="#000000"
-                android:text="SAVE"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="3dp"
-                android:textColor="#ffffff"
-                android:textSize="20sp" />
+            <!--<android.support.v7.widget.AppCompatButton-->
+                <!--android:id="@+id/shipping_save"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="45sp"-->
+                <!--android:background="#000000"-->
+                <!--android:text="SAVE"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:layout_marginBottom="3dp"-->
+                <!--android:textColor="#ffffff"-->
+                <!--android:textSize="20sp" />-->
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

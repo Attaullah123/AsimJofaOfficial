@@ -79,13 +79,13 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.MyViewHo
         if(list.getSystemName().equals("Payments.Easypaisa")){
             //set image here
 
-            paymentImage.setImageResource(R.drawable.easypaisa_logo_new);
+            paymentImage.setImageResource(R.drawable.easypaisalogo_up);
         }
 
-        if(list.getSystemName().equals("Payments.BankTransfer")){
-            //set image here
-            paymentImage.setImageResource(R.drawable.bank_ic);
-        }
+//        if(list.getSystemName().equals("Payments.BankTransfer")){
+//            //set image here
+//            paymentImage.setImageResource(R.drawable.bank_new11);
+//        }
     }
 
     @Override
