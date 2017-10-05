@@ -14,7 +14,7 @@ public class BillingModel {
     public String birthdayDay;
     public String birthdayMonth;
     public String birthdayYear;
-
+    public String DOB;
 
     public String getFullName() {
         return FullName;
@@ -102,5 +102,13 @@ public class BillingModel {
 
     public void setBirthdayYear(String birthdayYear) {
         this.birthdayYear = birthdayYear;
+    }
+
+    public String getDOB() {
+        return DOB;
+    }
+
+    public void setDOB(String DOB) {
+        this.DOB = DOB;
     }
 }

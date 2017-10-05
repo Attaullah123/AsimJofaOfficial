@@ -8,7 +8,8 @@
         android:normalScreens="true"
         android:resizeable="true"
         android:smallScreens="true"
-        android:xlargeScreens="true" />
+        android:xlargeScreens="true"
+        android:compatibleWidthLimitDp="320"/>
 
     <uses-feature
         android:glEsVersion="0x00020000"

@@ -44,7 +44,7 @@ public class SendMailDialog extends DialogFragment {
 
 
                 Intent emailIntent = new Intent(Intent.ACTION_SEND);
-                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"recipient@example.com"});
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, emailTo);
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT, emailSubject);
                 emailIntent.putExtra(Intent.EXTRA_TEXT, emailContent);
                 /// use below 2 commented lines if need to use BCC an CC feature in email
@@ -56,10 +56,10 @@ public class SendMailDialog extends DialogFragment {
 //                emailIntent .putExtra(Intent.EXTRA_STREAM, Uri.parse("file://sdcard/captureimage.png"));
 
                 //need this to prompts email client only
-                emailIntent.setType("message/rfc822");
-                //toEmail.setText("abc@gmail.com");
+                emailIntent.setType("text/plain");
+                toEmail.setText("abc@gmail.com");
 
-                startActivity(Intent.createChooser(emailIntent, "Select an Email Client:"));
+                startActivity(Intent.createChooser(emailIntent, "Send Email"));
             }
         });
 

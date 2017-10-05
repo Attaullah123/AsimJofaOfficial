@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -28,14 +29,17 @@ import com.cresset.asimjofaofficial.R;
 import com.cresset.asimjofaofficial.adapter.BillingCountrySpinnerAdapter;
 import com.cresset.asimjofaofficial.adapter.BillingStateSpinnerAdapter;
 import com.cresset.asimjofaofficial.models.BillingModel;
+import com.cresset.asimjofaofficial.models.BillingShippingDetailModel;
 import com.cresset.asimjofaofficial.models.BillingShippingModel;
 import com.cresset.asimjofaofficial.models.CountryList;
 import com.cresset.asimjofaofficial.models.CountryModel;
 import com.cresset.asimjofaofficial.models.CustomerAddressModel;
 import com.cresset.asimjofaofficial.models.CustomerDetailModel;
 import com.cresset.asimjofaofficial.models.GuestOrLoginResponseModel;
+import com.cresset.asimjofaofficial.models.ShippingModel;
 import com.cresset.asimjofaofficial.models.StateList;
 import com.cresset.asimjofaofficial.models.StateModel;
+import com.cresset.asimjofaofficial.models.UpdateBillingAndShippingModel;
 import com.cresset.asimjofaofficial.models.UserDetailModel;
 import com.cresset.asimjofaofficial.models.UserModel;
 import com.cresset.asimjofaofficial.utilities.Config;
@@ -57,7 +61,7 @@ import java.util.Map;
 public class BillingAddressDetail extends Fragment {
     private EditText bfullname,bEmail,bAdress,bPhoneNo,bCity,bPostalCode,bDay,bMonth,bYear;
     private Spinner bCountry,bProvince;
-    //private Button btnBillingAddress;
+    private Button btnBillingAddress;
     private BillingModel billingModel;
     private BillingCountrySpinnerAdapter billingCountrySpinnerAdapter;
     private BillingStateSpinnerAdapter billingStateSpinnerAdapter;
@@ -65,6 +69,7 @@ public class BillingAddressDetail extends Fragment {
     private ProgressDialog progressDialog;
     private CountryList countryListItem;
     private StateList stateListItem;
+    private TextView billingId;
     View view;
     @Nullable
     @Override
@@ -72,61 +77,69 @@ public class BillingAddressDetail extends Fragment {
         view = inflater.inflate(R.layout.billing_address_detail, container, false);
         //edittext view
         bfullname = (EditText) view.findViewById(R.id.billing_input_full_name);
+        billingId = (TextView) view.findViewById(R.id.billing_input_id);
         bEmail = (EditText) view.findViewById(R.id.billing_input_email);
         bAdress = (EditText) view.findViewById(R.id.billing_input_Address);
         bPhoneNo = (EditText) view.findViewById(R.id.billing_input_phone);
         bCity = (EditText) view.findViewById(R.id.billing_input_city);
         bPostalCode = (EditText) view.findViewById(R.id.billing_input_zipcode);
 
-        bDay = (EditText) view.findViewById(R.id.billing_birthday_day);
-        bMonth = (EditText) view.findViewById(R.id.billing_birthday_month);
-        bYear = (EditText) view.findViewById(R.id.billing_birthday_year);
+//        bDay = (EditText) view.findViewById(R.id.billing_birthday_day);
+//        bMonth = (EditText) view.findViewById(R.id.billing_birthday_month);
+//        bYear = (EditText) view.findViewById(R.id.billing_birthday_year);
         //spinner view
         bCountry = (Spinner) view.findViewById(R.id.billing_country_select);
         bProvince = (Spinner) view.findViewById(R.id.billing_spinner_select_province);
-        //btnBillingAddress = (Button)view.findViewById(R.id.billing_save);
+        btnBillingAddress = (Button)view.findViewById(R.id.billing_save);
 
         getUserInfo();
-//        progressDialog = new ProgressDialog(getContext());
-//        progressDialog.setCancelable(false);
-//        progressDialog.setTitle("please wait...");
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setCancelable(false);
+        progressDialog.setTitle("please wait...");
         //loadData();
 
-//        btnBillingAddress.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                String fname = bfullname.getText().toString().trim();
-//                String laddress = bAdress.getText().toString().trim();
-//                String email = bEmail.getText().toString().trim();
-//                String phone = bPhoneNo.getText().toString().trim();
-//                String city = bCity.getText().toString().trim();
-//                String postCode = bPostalCode.getText().toString().trim();
+        btnBillingAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String fname = bfullname.getText().toString().trim();
+                String laddress = bAdress.getText().toString().trim();
+                String email = bEmail.getText().toString().trim();
+                String phone = bPhoneNo.getText().toString().trim();
+                String city = bCity.getText().toString().trim();
+                String postCode = bPostalCode.getText().toString().trim();
 //                String day = bDay.getText().toString().trim();
 //                String month = bMonth.getText().toString().trim();
 //                String year = bYear.getText().toString().trim();
-//                //String city = bCity.getText().toString().trim();
-//
-//
-//                if (!fname.isEmpty() && !laddress.isEmpty() && !email.isEmpty() && !phone.isEmpty() && !city.isEmpty()&& !postCode.isEmpty()
-//                        && !day.isEmpty() && !month.isEmpty() && !year.isEmpty()){
-//                    //billingAddressUpdate();
-//                    Toast.makeText(getContext(), "Your info save successfully!", Toast.LENGTH_LONG).show();
-//                    getActivity().finish();
-//                }else {
-//                    Toast.makeText(getContext(),
-//                            "Please enter the required fields!", Toast.LENGTH_LONG)
-//                            .show();
-//                }
-//
-//            }
-//        });
+                //String city = bCity.getText().toString().trim();
+
+
+                if (!fname.isEmpty() && !laddress.isEmpty() && !email.isEmpty() && !phone.isEmpty() && !city.isEmpty()&& !postCode.isEmpty()){
+                    //billingAddressUpdate();
+                    BillingShippingDetailModel model = new BillingShippingDetailModel();
+                    model.setId(Integer.parseInt(billingId.getText().toString()));
+                    model.setFullName(fname);
+                    model.setEmail(email);
+                    model.setCity(city);
+                    model.setAddress1(laddress);
+                    model.setZipPostalCode(postCode);
+                    model.setPhoneNumber(phone);
+                    model.setCountryId(GlobalClass.billingModel.getCountryId());
+                    model.setStateProvinceId(GlobalClass.billingModel.getStateProvinceId());
+
+                    updateBillingAddress(model);
+                }else {
+                    Toast.makeText(getContext(), "Please enter the required fields!", Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
         return view;
     }
 
     public void getUserInfo() {
         //progressBar.setVisibility(View.VISIBLE);
-//        progressDialog.show();
+        //progressDialog.show();
         //creating json array list
         Map<String, String> params = new HashMap<String, String>();
         params.put("ProjectId", Config.PROJECTID);
@@ -141,7 +154,7 @@ public class BillingAddressDetail extends Fragment {
 
                         Log.d("Response11", response.toString());
                         //Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
-                        //progressDialog.dismiss();
+                       // progressDialog.dismiss();
 
                         Gson gson = new Gson();
                         BillingShippingModel userDetailModel = gson.fromJson(response.toString(), new TypeToken<BillingShippingModel>(){}.getType());
@@ -153,11 +166,28 @@ public class BillingAddressDetail extends Fragment {
                         String userEmail =customerDetailModel.getEmail();
                         String userPhone=customerDetailModel.getPhoneNumber();
                         String userCity =customerDetailModel.getCity();
+                        String userPostalCode = customerDetailModel.getZipPostalCode();
+
                         bfullname.setText(userName);
                         bEmail.setText(userEmail);
                         bAdress.setText(userAddress);
                         bPhoneNo.setText(userPhone);
                         bCity.setText(userCity);
+                        bPostalCode.setText(userPostalCode);
+
+                        BillingModel model = new BillingModel();
+                        model.setFullName(customerDetailModel.getFirstName());
+                        model.setEmail(customerDetailModel.getEmail());
+                        model.setCity(customerDetailModel.getCity());
+                        model.setAddress1(customerDetailModel.getAddress1());
+                        model.setZipPostalCode(customerDetailModel.getZipPostalCode());
+                        model.setPhoneNumber(customerDetailModel.getPhoneNumber());
+                        model.setCountryId(customerDetailModel.getCountryId());
+                        model.setStateProvinceId(customerDetailModel.getStateProvinceId());
+                        billingId.setText(customerDetailModel.getId());
+
+                        GlobalClass.billingModel = model;
+
 
 
                     }
@@ -166,7 +196,7 @@ public class BillingAddressDetail extends Fragment {
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
                 Log.d("Error", error.toString());
-              //  progressDialog.dismiss();
+                //progressDialog.dismiss();
                 //progressBar.setVisibility(View.GONE);
                 //progressDialog.dismiss();
             }
@@ -175,84 +205,60 @@ public class BillingAddressDetail extends Fragment {
         CustomVolleyRequest.getInstance(getContext()).getRequestQueue().add(objectRequest);
     }
 
-//    public void billingAddressUpdate(final String fname, final String lname, final String email, final String password,final String confirmPassword,
-//                             final String day, final String month,final String year){
-//        progressDialog.show();
-//        HashMap<String,String> params = new HashMap<>();
-//        params.put("ProjectId",Config.PROJECTID);
-//        params.put("FirstName", fname);
-//        params.put("LastName", lname);
-//        params.put("Email", email);
-//        params.put("Pasword", password);
-//        params.put("Day", day);
-//        params.put("month", month);
-//        params.put("year", year);
-//
-//        WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
-//        String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
-//
-//        params.put("IpAddress", ip);
-//
-//        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_USER_REGISTER, new JSONObject(params),
-//                new Response.Listener<JSONObject>() {
-//                    @Override
-//                    public void onResponse(JSONObject response) {
-//                        try{
-//
-//                            JSONObject jObj = new JSONObject(response.toString());
-//                            String result = jObj.getString("Status");
-//                            progressDialog.dismiss();
-//
-//                            Gson gson = new Gson();
-//                            GuestOrLoginResponseModel model = gson.fromJson(response.toString(), new TypeToken<GuestOrLoginResponseModel>(){}.getType());
-//
-//                            //show("Customer id:" + model.getCustomerId());
-//
-//                            if (model.getCustomerId() != null && model.getCustomerId() != "") {
-//
-//                                UserModel userData = new UserModel();
-//                                userData.setUserID(model.getCustomerId());
-//                                userData.setUserName(fname);
-//                                userData.setEmail(email);
-//
-//                                userData.setBirthdayDay(day);
-//                                userData.setBirthdayMonth(month);
-//                                userData.setBirthdayYear(year);
-//
-//                                userData.setGuest(false);
-//
-//                                GlobalClass.userData = userData;
-//                                String json = gson.toJson(userData);
-//                                sharedPreferencesEditor.putString(Config.RegisteredPreference,json);
-//                                sharedPreferencesEditor.commit();
-//
-//                                show("Registered successfully!");
-//                            }
-//
-//                            // Launch login activity
-//                            Intent intent = new Intent(getApplicationContext(), MyAccount.class);
-//                            startActivity(intent);
-//                            finish();
-//
-//                        }catch (JSONException e){
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Toast.makeText(getApplicationContext(), "Couldn't register user, please check connection", Toast.LENGTH_SHORT).show();
-//                Log.d("Error", error.toString());
-//                progressDialog.dismiss();
-//            }
-//        });
-//        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-//        requestQueue.add(objectRequest);
-//    }
-//
-//    public void show(String message){
-//        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
-//    }
+    public void updateBillingAddress(final BillingShippingDetailModel billingAddress) {
+        //progressBar.setVisibility(View.VISIBLE);
+        progressDialog.show();
+        //creating json array list
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("ProjectId", Config.PROJECTID);
 
+        UpdateBillingAndShippingModel model = new UpdateBillingAndShippingModel();
+        model.setProjectID(Config.PROJECTID);
+        model.setBillingAddress(billingAddress);
+
+        Gson gson = new Gson();
+        String json = gson.toJson(model);
+
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_UPDATE_BILLING_DETAIL, json,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        //CategoryModel categoryModel = new CategoryModel();
+
+                        Log.d("Response", response.toString());
+                        //Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+
+                        Gson gson = new Gson();
+                        //BillingShippingModel userDetailModel = gson.fromJson(response.toString(), new TypeToken<BillingShippingModel>(){}.getType());
+
+                        BillingModel model = new BillingModel();
+                        model.setFullName(billingAddress.getFullName());
+                        model.setEmail(billingAddress.getEmail());
+                        model.setCity(billingAddress.getCity());
+                        model.setAddress1(billingAddress.getAddress1());
+                        model.setZipPostalCode(billingAddress.getZipPostalCode());
+                        model.setPhoneNumber(billingAddress.getPhoneNumber());
+                        model.setCountryId(GlobalClass.shippingModel.getCountryId());
+                        model.setStateProvinceId(GlobalClass.shippingModel.getStateProvinceId());
+
+                        GlobalClass.billingModel = model;
+                        Toast.makeText(getContext(), "Info save successfully!", Toast.LENGTH_LONG).show();
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
+                Log.d("Error", error.toString());
+                //  progressDialog.dismiss();
+                //progressBar.setVisibility(View.GONE);
+                progressDialog.dismiss();
+            }
+        });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        requestQueue.add(objectRequest);
+    }
 
 }

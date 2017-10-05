@@ -65,6 +65,7 @@ public class HomeActivity extends Fragment {
     //private EditText searchView;
     ArrayList<ChildCategoryList> parentList;
     private TextView searchProduct;
+    private Context mContext;
     private int lastExpandedPosition = -1;
 
     @Nullable
@@ -228,7 +229,8 @@ public class HomeActivity extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                //Toast.makeText(getActivity(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(mContext, "Couldn't get countries, check connection", Toast.LENGTH_SHORT).show();
+                //show("Couldn't feed refresh, check connection");
                 Log.d("Error",error.toString());
                 progressBar.setVisibility(View.GONE);
 
@@ -238,12 +240,12 @@ public class HomeActivity extends Fragment {
         CustomVolleyRequest.getInstance(getContext()).getRequestQueue().add(jsonObjReq);
     }
 
-    public void show(String message){
-//        Snackbar snackbar = Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_LONG);
-//        snackbar.show();
-
-        Toast.makeText(getContext(),message,Toast.LENGTH_LONG).show();
-    }
+//    public void show(String message){
+////        Snackbar snackbar = Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_LONG);
+////        snackbar.show();
+//
+//        Toast.makeText(getActivity(),message,Toast.LENGTH_LONG).show();
+//    }
     @Override
     public void onResume() {
         super.onResume();

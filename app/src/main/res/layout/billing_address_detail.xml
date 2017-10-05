@@ -73,31 +73,31 @@
 
 
 
-            <!--<LinearLayout-->
-                <!--android:layout_width="fill_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginLeft="12dp"-->
-                <!--android:layout_marginRight="12dp"-->
-                <!--android:layout_marginTop="12dp"-->
-                <!--android:orientation="horizontal">-->
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
 
-                <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:paddingTop="7dp"-->
-                    <!--android:text="Country:"-->
-                    <!--android:textSize="17dp"/>-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="7dp"
+                    android:text="Country:"
+                    android:textSize="17dp"/>
 
-                <!--<Spinner-->
-                    <!--android:id="@+id/billing_country_select"-->
-                    <!--android:layout_width="170dp"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginLeft="80dp"-->
-                    <!--android:background="@drawable/spinner_background_black_baseline"-->
-                    <!--android:paddingBottom="8dp"-->
-                    <!--android:spinnerMode="dialog"/>-->
+                <Spinner
+                    android:id="@+id/billing_country_select"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="80dp"
+                    android:background="@drawable/spinner_background_black_baseline"
+                    android:paddingBottom="8dp"
+                    android:spinnerMode="dialog"/>
 
-            <!--</LinearLayout>-->
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -115,30 +115,30 @@
                 android:layout_marginTop="5dp"
                 android:inputType="textPostalAddress" />
 
-            <!--<LinearLayout-->
-                <!--android:layout_width="fill_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginLeft="12dp"-->
-                <!--android:layout_marginRight="12dp"-->
-                <!--android:orientation="horizontal">-->
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:orientation="horizontal">
 
-                <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:paddingTop="7dp"-->
-                    <!--android:text="State / Province:"-->
-                    <!--android:textSize="17dp"/>-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="7dp"
+                    android:text="State / Province:"
+                    android:textSize="17dp"/>
 
-                <!--<Spinner-->
-                    <!--android:id="@+id/billing_spinner_select_province"-->
-                    <!--android:layout_width="170dp"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginLeft="20dp"-->
-                    <!--android:background="@drawable/spinner_background_black_baseline"-->
-                    <!--android:paddingBottom="8dp"-->
-                    <!--android:spinnerMode="dialog"/>-->
+                <Spinner
+                    android:id="@+id/billing_spinner_select_province"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/spinner_background_black_baseline"
+                    android:paddingBottom="8dp"
+                    android:spinnerMode="dialog"/>
 
-            <!--</LinearLayout>-->
+            </LinearLayout>
 
 
             <TextView
@@ -181,30 +181,28 @@
                     android:layout_marginRight="10dp"
                     />
 
+
+                <TextView
+                    android:id="@+id/billing_input_id"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp" />
             </LinearLayout>
 
             <!-- Signup Button -->
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/billing_save"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#000000"
+                android:text="SAVE"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="3dp"
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
         </LinearLayout>
     </ScrollView>
-
-    <!--<RelativeLayout-->
-        <!--android:id="@+id/footer"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:gravity="center" >-->
-
-        <!--<android.support.v7.widget.AppCompatButton-->
-            <!--android:id="@+id/billing_save"-->
-            <!--android:layout_width="fill_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="#000000"-->
-            <!--android:text="SAVE"-->
-            <!--android:layout_marginLeft="10dp"-->
-            <!--android:layout_marginRight="10dp"-->
-            <!--android:layout_marginBottom="3dp"-->
-            <!--android:textColor="#ffffff"-->
-            <!--android:textSize="20sp" />-->
-    <!--</RelativeLayout>-->
 
 </RelativeLayout>

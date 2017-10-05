@@ -299,6 +299,8 @@ public class ShippingAddress extends android.support.v4.app.Fragment{
         shippingModel.setBirthdayMonth(sMonth.getText().toString());
         shippingModel.setBirthdayYear(sYear.getText().toString());
 
+        String birthday = sYear.getText().toString() + "-" + sMonth.getText().toString() + "-" + sDay.getText().toString();
+        shippingModel.setDOB(birthday);
         GlobalClass.shippingModel = shippingModel;
     }
 

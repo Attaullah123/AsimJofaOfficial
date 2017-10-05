@@ -281,7 +281,8 @@ public class BillingAddress extends android.support.v4.app.Fragment{
         billingModel.setBirthdayDay(bDay.getText().toString());
         billingModel.setBirthdayMonth(bMonth.getText().toString());
         billingModel.setBirthdayYear(bYear.getText().toString());
-
+        String birthday = bYear.getText().toString() + "-" + bMonth.getText().toString() + "-" + bDay.getText().toString();
+        billingModel.setDOB(birthday);
         GlobalClass.billingModel = billingModel;
     }
 
