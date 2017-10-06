@@ -33,24 +33,60 @@
             android:layout_gravity="center"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="Cash On Delivery"
-
-            android:layout_marginLeft="8dp"
+            android:text=""
+            android:layout_marginLeft="12dp"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
+        <!--<TextView-->
+            <!--android:id="@+id/easypaisa_name"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textColor="@color/album_title"-->
+            <!--android:gravity="center"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:textSize="18sp"-->
+            <!--android:textStyle="bold"-->
+            <!--android:text=""-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:layout_alignParentStart="true"-->
+            <!--android:visibility="visible"/>-->
 
-        <ImageView
-            android:id="@+id/payment_image"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="15sp"
+            android:layout_marginTop="3dp"
+            android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-           
-            />
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            android:layout_marginRight="12sp"
+            android:gravity="right"
+            android:orientation="horizontal"
+            android:id="@+id/linearLayout">
 
-        </RelativeLayout>
+            <ImageView
+                android:id="@+id/credit_master_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="-6sp"
+                />
+
+            <ImageView
+                android:id="@+id/credit_visa_img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginRight="5dp"
+                />
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
     <View
         android:paddingTop="5dp"

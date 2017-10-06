@@ -205,7 +205,7 @@ public class GetCart extends AppCompatActivity {
                 }
             });
 
-            AppController.getInstance().addToRequestQueue(objectRequest);
+            CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
         }else {
             Toast.makeText(getApplicationContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
             progressBar.setVisibility(View.VISIBLE);

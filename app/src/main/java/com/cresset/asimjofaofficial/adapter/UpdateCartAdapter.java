@@ -28,6 +28,7 @@ import com.cresset.asimjofaofficial.models.CartDetailModel;
 import com.cresset.asimjofaofficial.models.CartModelItems;
 import com.cresset.asimjofaofficial.models.UpdateProductQuantity;
 import com.cresset.asimjofaofficial.utilities.Config;
+import com.cresset.asimjofaofficial.utilities.CustomVolleyRequest;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
 import com.google.gson.Gson;
 
@@ -36,6 +37,7 @@ import org.json.JSONObject;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Locale;
 
 import timber.log.Timber;
@@ -175,14 +177,15 @@ public class UpdateCartAdapter extends RecyclerView.Adapter<UpdateCartAdapter.My
                 } else {
                     if(GlobalClass.deleteSelectedCartItems.size() > 0){
                         int index = 0;
-                        for (int val: GlobalClass.deleteSelectedCartItems
-                                ) {
 
-                            if(val == cartModelItemses.get(position).CartItemId){
-                                GlobalClass.deleteSelectedCartItems.remove(index);
+                        Iterator<Integer> val = GlobalClass.deleteSelectedCartItems.iterator();
+                       // for (int val = GlobalClass.deleteSelectedCartItems.size() - 1; val >= 0; val--) {
+                            while (val.hasNext()){
+                                int i = val.next();
+                            if(i  == cartModelItemses.get(position).CartItemId){
+                                val.remove();
                             }
 
-                            index++;
                         }
                     }
                 }
@@ -264,8 +267,7 @@ public class UpdateCartAdapter extends RecyclerView.Adapter<UpdateCartAdapter.My
                 Log.d("Error", error.toString());
             }
         });
-        RequestQueue requestQueue = Volley.newRequestQueue(mContext.getApplicationContext());
-        requestQueue.add(objectRequest);
+        CustomVolleyRequest.getInstance(mContext.getApplicationContext()).getRequestQueue().add(objectRequest);
     }
 
     public void refreshItems(CartDetailModel cartDetailModel) {

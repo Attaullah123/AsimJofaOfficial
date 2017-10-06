@@ -58,6 +58,9 @@ public class AddonsAdapterRe extends RecyclerView.Adapter<AddonsAdapterRe.ViewHo
                 ProductAddons checkAddons = productAddons.get(position);
 
                 float addonPrice = Float.parseFloat(checkAddons.getAddonsPrice().toString());
+                if(GlobalClass.currency != null){
+                    addonPrice = addonPrice * GlobalClass.currency.getRate();
+                }
 
                 if (buttonView.isChecked()) {
                     selectedProductAddons.add(checkAddons);
@@ -118,7 +121,7 @@ public class AddonsAdapterRe extends RecyclerView.Adapter<AddonsAdapterRe.ViewHo
             }
 
             addonPrices.setText("+" + String.format("%.0f",adonPrice));
-           // addonPrices.setText(NumberFormat.getNumberInstance(Locale.US).format("+" + adonPrice));
+//            addonPrices.setText(NumberFormat.getNumberInstance(Locale.US).format("+" + adonPrice));
         }
     }
 }

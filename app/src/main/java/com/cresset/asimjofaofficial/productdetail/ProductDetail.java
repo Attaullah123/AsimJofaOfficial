@@ -339,7 +339,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                                 },  new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(getApplicationContext(),"Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(),"Internet connection slow, Please try again", Toast.LENGTH_SHORT).show();
                                 Log.d("Error", error.toString());
                                 // progressDialog.dismiss();
                             }
@@ -691,8 +691,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
             }
         });
         // Adding request to request queue
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.add(objectRequest);
+        CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -758,7 +757,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
                 Log.d("Error", error.toString());
             }
         });

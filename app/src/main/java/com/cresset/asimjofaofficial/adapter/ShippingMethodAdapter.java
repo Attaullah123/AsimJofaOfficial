@@ -21,7 +21,9 @@ import com.cresset.asimjofaofficial.productdetail.ProductDetail;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
 import com.google.gson.Gson;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -88,7 +90,8 @@ public class ShippingMethodAdapter  extends RecyclerView.Adapter<ShippingMethodA
         else{
             holder.productCurrencyName.setText("USD");
         }
-        holder.shippingPrice.setText(String.format("%.0f",productPrice));
+        //holder.shippingPrice.setText(String.format("%.0f",productPrice));
+        holder.shippingPrice.setText(NumberFormat.getNumberInstance(Locale.US).format(productPrice));
     }
 
     @Override

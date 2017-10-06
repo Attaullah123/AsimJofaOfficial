@@ -21,19 +21,24 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.MyViewHo
 
     private Context mContext;
     private ArrayList<PaymentMethodModel> paymentLists;
-    public ImageView paymentImage;
+
+    public TextView easypaisaName;
+    //public static TextView paymentName;
 //    public String productName;
 //    private ImageLoader imageLoader;
 
     public class MyViewHolder extends RecyclerView.ViewHolder  {
-        public TextView paymentName, paymentSystemName,productId;
+        public TextView paymentName,paymentSystemName,productId;
+        public ImageView masterImage,visaImage;
 
         private Context context;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             paymentName = (TextView) itemView.findViewById(R.id.payment_name);
-            paymentImage = (ImageView) itemView.findViewById(R.id.payment_image);
+            //easypaisaName = (TextView) itemView.findViewById(R.id.easypaisa_name);
+            masterImage = (ImageView) itemView.findViewById(R.id.credit_master_img);
+            visaImage = (ImageView) itemView.findViewById(R.id.credit_visa_img);
             //paymentSystemName = (TextView) itemView.findViewById(R.id.payment_system_name);
             //proId = (TextView) itemView.findViewById(R.id.product_list_id);
 
@@ -69,17 +74,12 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.MyViewHo
        // holder.paymentSystemName.setText(list.getSystemName());
         //holder.price.setText(productListModel.getPrice());
 
-//        ImageView i = new ImageView(mContext);
-//        if (list.getSystemName() == "Payments.Easypaisa"){
-//            i.setImageResource(R.drawable.location_icon);
-//        }else {
-//
-//        }
-        //ImageView i = new ImageView(mContext);
         if(list.getSystemName().equals("Payments.Easypaisa")){
             //set image here
 
-            paymentImage.setImageResource(R.drawable.easypaisalogo_up);
+            holder.masterImage.setImageResource(R.drawable.credit_cart);
+            holder.visaImage.setImageResource(R.drawable.visa_card1);
+            holder.paymentName.setText("Credit Card");
         }
 
 //        if(list.getSystemName().equals("Payments.BankTransfer")){

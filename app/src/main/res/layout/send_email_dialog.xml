@@ -11,25 +11,26 @@
     android:padding="@dimen/activity_horizontal_margin">
 
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:text="To:" />
+    <!--<TextView-->
+        <!--android:id="@+id/textView11"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:text="To:" />-->
 
-    <EditText
-        android:id="@+id/email_to"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:layout_below="@+id/textView11"
-        android:textColor="#000"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+    <!--<EditText-->
+        <!--android:id="@+id/email_to"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:ems="10"-->
+        <!--android:inputType="textPersonName"-->
+        <!--android:layout_below="@+id/textView11"-->
+        <!--android:textColor="#000"-->
+        <!--android:textColorHint="#000"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true" />-->
 
     <TextView
         android:id="@+id/textView12"
@@ -37,7 +38,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/email_to"
         android:layout_marginTop="5dp"
         android:text="Subject:" />
 

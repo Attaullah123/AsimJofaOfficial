@@ -41,6 +41,7 @@ import com.cresset.asimjofaofficial.models.ProductDetailSize;
 import com.cresset.asimjofaofficial.models.ProductHeader;
 import com.cresset.asimjofaofficial.recylerview.RecyclerDivider;
 import com.cresset.asimjofaofficial.utilities.Config;
+import com.cresset.asimjofaofficial.utilities.CustomVolleyRequest;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
 import com.cresset.asimjofaofficial.volley.AppController;
 import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
@@ -298,7 +299,7 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
 
         });
 
-        AppController.getInstance().addToRequestQueue(objectRequest);
+        CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
 
     }
 
@@ -369,7 +370,7 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
                 progressBar.setVisibility(View.GONE);
             }
         });
-        AppController.getInstance().addToRequestQueue(objectRequest);
+        CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
     }
 
     public void EmptyStaticObjects() {

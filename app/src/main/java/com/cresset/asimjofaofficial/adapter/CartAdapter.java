@@ -25,6 +25,7 @@ import com.cresset.asimjofaofficial.models.CartDetailModel;
 import com.cresset.asimjofaofficial.models.CartModel;
 import com.cresset.asimjofaofficial.models.CartModelItems;
 import com.cresset.asimjofaofficial.utilities.Config;
+import com.cresset.asimjofaofficial.utilities.CustomVolleyRequest;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -212,8 +213,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                 Log.d("Error", error.toString());
             }
         });
-        RequestQueue requestQueue = Volley.newRequestQueue(mContext.getApplicationContext());
-        requestQueue.add(objectRequest);
+        CustomVolleyRequest.getInstance(mContext.getApplicationContext()).getRequestQueue().add(objectRequest);
     }
 
 

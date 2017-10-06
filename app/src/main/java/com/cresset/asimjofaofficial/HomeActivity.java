@@ -78,6 +78,8 @@ public class HomeActivity extends Fragment {
         searchView  = (android.support.v7.widget.SearchView) view.findViewById(R.id.sv_productList);
         searchProduct = (TextView) view.findViewById(R.id.search_product);
         expandList.setGroupIndicator(null);
+        expandList.setChildIndicator(null);
+        expandList.setChildDivider(getResources().getDrawable(R.color.white));
 
         progressBar=(ProgressBar) view.findViewById(R.id.progressBar);
 //        PD = new ProgressDialog(getContext());

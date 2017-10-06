@@ -27,7 +27,7 @@ public class SendMailDialog extends DialogFragment {
 
         View view = inflater.inflate(R.layout.send_email_dialog,container,false);
 
-        toEmail = (EditText) view.findViewById(R.id.email_to);
+        //toEmail = (EditText) view.findViewById(R.id.email_to);
         subject = (EditText) view.findViewById(R.id.email_subject);
         message = (EditText) view.findViewById(R.id.email_message);
         sendEmail = (Button) view.findViewById(R.id.send_email);
@@ -38,13 +38,13 @@ public class SendMailDialog extends DialogFragment {
             public void onClick(View v) {
 
 
-                String emailTo = toEmail.getText().toString();
+                //String emailTo = toEmail.getText().toString();
                 String emailSubject = subject.getText().toString();
                 String emailContent = message.getText().toString();
 
 
                 Intent emailIntent = new Intent(Intent.ACTION_SEND);
-                emailIntent.putExtra(Intent.EXTRA_EMAIL, emailTo);
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"attaa.779@gmail.com"});
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT, emailSubject);
                 emailIntent.putExtra(Intent.EXTRA_TEXT, emailContent);
                 /// use below 2 commented lines if need to use BCC an CC feature in email
@@ -56,8 +56,8 @@ public class SendMailDialog extends DialogFragment {
 //                emailIntent .putExtra(Intent.EXTRA_STREAM, Uri.parse("file://sdcard/captureimage.png"));
 
                 //need this to prompts email client only
-                emailIntent.setType("text/plain");
-                toEmail.setText("abc@gmail.com");
+                 emailIntent.setType("text/plain");
+                //toEmail.setText("abc@gmail.com");
 
                 startActivity(Intent.createChooser(emailIntent, "Send Email"));
             }
