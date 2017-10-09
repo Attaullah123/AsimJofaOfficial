@@ -1,9 +1,14 @@
 package com.cresset.asimjofaofficial;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,9 +37,11 @@ import static com.cresset.asimjofaofficial.R.id.map;
 
 public class Store extends Fragment {
 
-    private GoogleMap mMap;
-    private ArrayList<MyMarker> mMyMarkersArray = new ArrayList<MyMarker>();
-    private HashMap<Marker, MyMarker> mMarkersHashMap;
+    static final LatLng ASIMJOFA = new LatLng(24.823110, 67.035186);
+    private GoogleMap map;
+    private ImageView back;
+    private Context context;
+    private static long back_pressed;
     private View view;
 
     @Nullable
@@ -42,103 +49,73 @@ public class Store extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_store, container, false);
 
-        mMarkersHashMap = new HashMap<Marker, MyMarker>();
+        LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
-        mMyMarkersArray.add(new MyMarker("", "", Double.parseDouble("-28.5971788"), Double.parseDouble("-52.7309824")));
+        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            Toast.makeText(getContext(), "GPS is Enabled in your devide", Toast.LENGTH_SHORT).show();
+        } else {
+            showGPSDisabledAlertToUser();
 
-        setUpMap();
-
-        plotMarkers(mMyMarkersArray);
-        return view;
-    }
-    private void plotMarkers(ArrayList<MyMarker> markers)
-    {
-        if(markers.size() > 0)
-        {
-            for (MyMarker myMarker : markers)
-            {
-
-                // Create user marker with custom icon and other options
-                MarkerOptions markerOption = new MarkerOptions().position(new LatLng(myMarker.getmLatitude(), myMarker.getmLongitude()));
-                markerOption.icon(BitmapDescriptorFactory.fromResource(R.drawable.location_icon));
-
-                Marker currentMarker = mMap.addMarker(markerOption);
-                mMarkersHashMap.put(currentMarker, myMarker);
-
-                mMap.setInfoWindowAdapter(new MarkerInfoWindowAdapter());
-            }
         }
+
+        ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map)).getMapAsync(new OnMapReadyCallback() {
+            float zoomLevel = (float) 18.0;
+            @Override
+            public void onMapReady(GoogleMap googleMap) {
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(ASIMJOFA, zoomLevel));
+                map = googleMap;
+                if (map != null) {
+                    Marker kiel = map.addMarker(new MarkerOptions().position(ASIMJOFA).icon(BitmapDescriptorFactory
+                            .fromResource(R.drawable.location_icon1)));
+                    //kiel.setTitle("ASIM JOFA");
+                    // kiel.setSnippet("Block 9, Clifton, Near Do Talwar، Karachi, Pakistan");
+                    kiel.showInfoWindow();
+                    // Rest of the stuff you need to do with the map
+                }
+            }
+        });
+
+
+//        map = ((MapFragment) getActivity().getFragmentManager().findFragmentById(R.id.map))
+//                .getMap();
+//
+//        float zoomLevel = (float) 18.0;
+//
+//
+//        map.moveCamera(CameraUpdateFactory.newLatLngZoom(ASIMJOFA, zoomLevel));
+//        if (map != null) {
+//            Marker kiel = map.addMarker(new MarkerOptions().position(ASIMJOFA).icon(BitmapDescriptorFactory
+//                    .fromResource(R.drawable.location_icon1)));
+//            //kiel.setTitle("ASIM JOFA");
+//            // kiel.setSnippet("Block 9, Clifton, Near Do Talwar، Karachi, Pakistan");
+//            kiel.showInfoWindow();
+//        } else {
+//
+//        }
+        return view;
+
     }
 
-    private int manageMarkerIcon(String markerIcon)
-    {
-        if (markerIcon.equals("icon1"))
-            return R.drawable.location_icon;
-        else
-            return R.drawable.location_icon;
-    }
 
-
-    private void setUpMap()
-    {
-        // Do a null check to confirm that we have not already instantiated the map.
-        if (mMap == null)
-        {
-            // Try to obtain the map from the SupportMapFragment.
-                mMap = ((SupportMapFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
-
-            // Check if we were successful in obtaining the map.
-
-            if (mMap != null)
-            {
-                mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener()
-                {
-                    @Override
-                    public boolean onMarkerClick(com.google.android.gms.maps.model.Marker marker)
-                    {
-                        marker.showInfoWindow();
-                        return true;
+    private void showGPSDisabledAlertToUser() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+        alertDialogBuilder.setMessage("GPS is disabled in your device. Would you like to enable it?")
+                .setCancelable(false)
+                .setPositiveButton("Goto Settings Page To Enable GPS",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent callGPSSettingIntent = new Intent(
+                                        android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                                startActivity(callGPSSettingIntent);
+                            }
+                        });
+        alertDialogBuilder.setNegativeButton("Cancel",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
                     }
                 });
-            }
-            else
-                Toast.makeText(getContext(), "Unable to create Maps", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public class MarkerInfoWindowAdapter implements GoogleMap.InfoWindowAdapter
-    {
-        public MarkerInfoWindowAdapter()
-        {
-        }
-
-        @Override
-        public View getInfoWindow(Marker marker)
-        {
-            return null;
-        }
-
-        @Override
-        public View getInfoContents(Marker marker)
-        {
-            view = getActivity().getLayoutInflater().inflate(R.layout.infowindow_layout, null);
-
-            MyMarker myMarker = mMarkersHashMap.get(marker);
-
-            ImageView markerIcon = (ImageView) view.findViewById(R.id.marker_icon);
-
-//            TextView markerLabel = (TextView)view.findViewById(R.id.marker_label);
-//
-//            TextView anotherLabel = (TextView)view.findViewById(R.id.another_label);
-
-            markerIcon.setImageResource(manageMarkerIcon(myMarker.getmIcon()));
-
-//            markerLabel.setText(myMarker.getmLabel());
-//            anotherLabel.setText("A custom text");
-
-            return view;
-        }
-
-
+        AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
     }
 }

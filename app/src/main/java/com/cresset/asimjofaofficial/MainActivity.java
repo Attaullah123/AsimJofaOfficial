@@ -383,19 +383,19 @@ public class MainActivity extends AppCompatActivity {
 //                        //toolbar.setVisibility(View.GONE);
                 //Intent intent = new Intent(MainActivity.this, MyAccount.class);
                // startActivity(intent);
-                Fragment storeFragment = new Profile11();
+                Fragment profileFragment = new Profile11();
                 FragmentManager fragmentManager1 = getSupportFragmentManager();
-                fragmentManager1.beginTransaction().replace(R.id.frame_content, storeFragment).commit();
+                fragmentManager1.beginTransaction().replace(R.id.frame_content, profileFragment).commit();
 
                 break;
             case R.id.navigation_store:
                 // Action to perform when Account Menu item is selected.
 
-                Intent intent1 = new Intent(MainActivity.this, ShowMap.class);
-                startActivity(intent1);
-//                Fragment storeFragment = new Store();
-//                FragmentManager fragmentManager1 = getSupportFragmentManager();
-//                fragmentManager1.beginTransaction().replace(R.id.frame_content, storeFragment).commit();
+//                Intent intent1 = new Intent(MainActivity.this, ShowMap.class);
+//                startActivity(intent1);
+                Fragment storeFragment = new Store();
+                FragmentManager fragmentManager11 = getSupportFragmentManager();
+                fragmentManager11.beginTransaction().replace(R.id.frame_content, storeFragment).commit();
                 break;
         }
         //fm.beginTransaction().replace(R.id.frame_content, detail).addToBackStack("tag").commit();
@@ -410,5 +410,36 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
     }
 
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder BackAlertDialog = new AlertDialog.Builder(MainActivity.this);
+
+        BackAlertDialog.setMessage("Are you sure want to exit ?");
+
+
+        BackAlertDialog.setPositiveButton("NO",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        //Cancel alert dialog box .
+                        dialog.cancel();
+                    }
+                });
+
+        BackAlertDialog.setNegativeButton("YES",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+
+
+                        //Exit from activity.
+                        finish();
+                    }
+                });
+
+        BackAlertDialog.show();
+
+        return;
+    }
 
 }

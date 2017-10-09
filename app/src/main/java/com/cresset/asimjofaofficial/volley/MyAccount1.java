@@ -46,16 +46,13 @@ import java.util.Map;
 
 import static android.content.Context.MODE_PRIVATE;
 
-/**
- * Created by attaullahkhizar on 10/9/17.
- */
 
 public class MyAccount1 extends Fragment {
     private TextView txName,txEmail,userOrderInfo,userAccInfo,contactUs,logout;
     private LinearLayout lyOrderHistory,lyUserInfo,lyAddressBook,lyContactUs,lyChnagePassword;
 
     private UserModel globalUserData;
-    private ImageView back;
+    //private ImageView back;
     private SharedPreferences.Editor sharedPreferencesEditor;
     private static final String TAG = MyAccount.class.getSimpleName();
     View view;
@@ -74,14 +71,14 @@ public class MyAccount1 extends Fragment {
         lyChnagePassword = (LinearLayout) view.findViewById(R.id.ly_change_password);
 
         logout = (TextView) view.findViewById(R.id.log_out);
-        back = (ImageView) view.findViewById(R.id.img_back);
+        //back = (ImageView) view.findViewById(R.id.img_back);
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().onBackPressed();
-            }
-        });
+//        back.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                getActivity().onBackPressed();
+//            }
+//        });
 
         sharedPreferencesEditor = getActivity().getSharedPreferences(Config.PREFS_NAME, MODE_PRIVATE).edit();
 

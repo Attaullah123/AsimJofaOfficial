@@ -21,6 +21,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -63,23 +64,39 @@ public class ShowMap extends AppCompatActivity {
             }
         });
 
+        //float zoomLevel = (float) 18.0;
+        ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map)).getMapAsync(new OnMapReadyCallback() {
 
-        map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
-                .getMap();
+            @Override
+            public void onMapReady(GoogleMap googleMap) {
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(ASIMJOFA, 15));
+                if (map != null) {
+                    Marker kiel = map.addMarker(new MarkerOptions().position(ASIMJOFA).icon(BitmapDescriptorFactory
+                            .fromResource(R.drawable.location_icon1)));
+                    //kiel.setTitle("ASIM JOFA");
+                    // kiel.setSnippet("Block 9, Clifton, Near Do Talwar، Karachi, Pakistan");
+                    kiel.showInfoWindow();
+                }
+                // Rest of the stuff you need to do with the map
+            }
+        });
 
-        float zoomLevel = (float) 18.0;
-
-
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(ASIMJOFA, zoomLevel));
-        if (map != null) {
-            Marker kiel = map.addMarker(new MarkerOptions().position(ASIMJOFA).icon(BitmapDescriptorFactory
-                    .fromResource(R.drawable.location_icon1)));
-            //kiel.setTitle("ASIM JOFA");
-            // kiel.setSnippet("Block 9, Clifton, Near Do Talwar، Karachi, Pakistan");
-            kiel.showInfoWindow();
-        } else {
-
-        }
+//        map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
+//                .getMap();
+//
+//        float zoomLevel = (float) 18.0;
+//
+//
+//        map.moveCamera(CameraUpdateFactory.newLatLngZoom(ASIMJOFA, zoomLevel));
+//        if (map != null) {
+//            Marker kiel = map.addMarker(new MarkerOptions().position(ASIMJOFA).icon(BitmapDescriptorFactory
+//                    .fromResource(R.drawable.location_icon1)));
+//            //kiel.setTitle("ASIM JOFA");
+//            // kiel.setSnippet("Block 9, Clifton, Near Do Talwar، Karachi, Pakistan");
+//            kiel.showInfoWindow();
+//        } else {
+//
+//        }
 
     }
         private void showGPSDisabledAlertToUser(){

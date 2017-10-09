@@ -19,12 +19,12 @@
             app:titleTextColor="@android:color/white"
             android:background="@color/toolbar_color">
 
-            <ImageView
-                android:contentDescription="@string/logo"
-                android:id="@+id/img_cross"
-                android:layout_height="20dp"
-                android:layout_width="20dp"
-                android:src="@drawable/ic_close2"/>
+            <!--<ImageView-->
+                <!--android:contentDescription="@string/logo"-->
+                <!--android:id="@+id/img_cross"-->
+                <!--android:layout_height="20dp"-->
+                <!--android:layout_width="20dp"-->
+                <!--android:src="@drawable/ic_close2"/>-->
             <TextView
                 android:id="@+id/toolbar_title"
                 android:layout_width="wrap_content"
@@ -62,7 +62,7 @@
         android:layout_marginBottom="5dp"/>
     <fragment
         android:id="@+id/map"
-        android:name="com.google.android.gms.maps.MapFragment"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
