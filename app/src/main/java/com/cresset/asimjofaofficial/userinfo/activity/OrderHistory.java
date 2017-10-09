@@ -102,7 +102,7 @@ public class OrderHistory extends AppCompatActivity {
 
                         ArrayList<OrdersListModel> orderList = new ArrayList<OrdersListModel>(orderModel.getCustomerOrders());
 
-                        if (orderModel.getCustomerOrders() == null || orderModel.getCustomerOrders().size() == 0) {
+                            if (orderModel.getCustomerOrders() == null || orderModel.getCustomerOrders().size() == 0) {
                             setCartVisibility(false);
                         } else {
                             setCartVisibility(true);

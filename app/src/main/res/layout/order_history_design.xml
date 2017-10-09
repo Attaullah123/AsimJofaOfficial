@@ -36,10 +36,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="60sp"
                 android:text="12345"
-                android:textSize="17dp"
-
+                android:textSize="15dp"
                 />
-
         </LinearLayout>
 
         <View
@@ -81,9 +79,7 @@
             android:background="#fff"
             android:orientation="horizontal">
 
-
             <TextView
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -97,8 +93,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="30sp"
-                android:text="7/21/27 8:00 AM" />
+                android:layout_marginLeft="44sp"
+                android:text="Oct  5 2017  3:42PM" />
         </LinearLayout>
 
         <LinearLayout
@@ -107,9 +103,7 @@
             android:background="#fff"
             android:orientation="horizontal">
 
-
             <TextView
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -123,7 +117,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="40sp"
+                android:layout_marginLeft="42sp"
                 android:text="USA" />
 
             <TextView

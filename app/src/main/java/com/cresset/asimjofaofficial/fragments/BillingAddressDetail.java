@@ -63,8 +63,8 @@ public class BillingAddressDetail extends Fragment {
     private Spinner bCountry,bProvince;
     private Button btnBillingAddress;
     private BillingModel billingModel;
-    private BillingCountrySpinnerAdapter billingCountrySpinnerAdapter;
-    private BillingStateSpinnerAdapter billingStateSpinnerAdapter;
+    //private BillingCountrySpinnerAdapter billingCountrySpinnerAdapter;
+   // private BillingStateSpinnerAdapter billingStateSpinnerAdapter;
     private int CountryId,StateId;
     private ProgressDialog progressDialog;
     private CountryList countryListItem;

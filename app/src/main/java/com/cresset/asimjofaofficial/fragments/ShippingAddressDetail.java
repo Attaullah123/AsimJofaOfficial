@@ -57,9 +57,11 @@ public class ShippingAddressDetail extends Fragment {
     private StateList stateListItem;
     private TextView shippingId;
     private ProgressDialog progressDialog;
+    private BillingShippingModel userDetailModel;
     View view;
-    private ShippingCountrySpinnerAdapter shippingCountrySpinnerAdapter;
-    private ShippingStateSpinnerAdapter shippingStateSpinnerAdapter;
+    //private ShippingCountrySpinnerAdapter shippingCountrySpinnerAdapter;
+   // private ShippingStateSpinnerAdapter shippingStateSpinnerAdapter;
+    private View emptyCart;
 
     @Nullable
     @Override
@@ -165,9 +167,11 @@ public class ShippingAddressDetail extends Fragment {
                         progressDialog.dismiss();
 
                         Gson gson = new Gson();
-                        BillingShippingModel userDetailModel = gson.fromJson(response.toString(), new TypeToken<BillingShippingModel>(){}.getType());
+                        userDetailModel = gson.fromJson(response.toString(), new TypeToken<BillingShippingModel>(){}.getType());
 
                         final CustomerAddressModel customerDetailModel = userDetailModel.getCustomerAddress();
+
+
                         String userAddress =customerDetailModel.getAddress1();
                         String userCity =customerDetailModel.getCity();
                         String userName =customerDetailModel.getFirstName();
@@ -269,4 +273,6 @@ public class ShippingAddressDetail extends Fragment {
         requestQueue.add(objectRequest);
 
     }
+
+
 }

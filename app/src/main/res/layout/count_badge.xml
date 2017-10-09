@@ -10,34 +10,36 @@
     android:gravity="center"
     android:id="@+id/relative_layout1">
 
-    <Button
-        android:id="@+id/shopping_cart_icon"
-        android:layout_width="31sp"
-        android:layout_height="29sp"
-        android:gravity="center"
-        android:padding="3dp"
-        android:textAlignment="center"
-        android:background="@drawable/cart_small"
-        android:layout_marginRight="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="0dp"
-        android:layout_marginLeft="1.2dp"
-        android:layout_alignLeft="@+id/shopping_cart_notify"
-        android:layout_alignStart="@+id/shopping_cart_notify"
-        />
+    <!--<ImageView-->
+        <!--android:id="@+id/shopping_cart_icon"-->
+        <!--android:layout_width="31sp"-->
+        <!--android:layout_height="29sp"-->
+        <!--android:gravity="center"-->
+        <!--android:textAlignment="center"-->
+        <!--android:src="@drawable/cart_small"-->
+        <!--android:layout_marginRight="0dp"-->
+        <!--android:layout_marginTop="0dp"-->
+        <!--android:layout_marginBottom="0dp"-->
+        <!--android:layout_marginLeft="1.2dp"-->
+        <!--android:layout_alignLeft="@+id/shopping_cart_notify"-->
+        <!--android:layout_alignStart="@+id/shopping_cart_notify"-->
+
+
+        <!--/>-->
 
     <TextView
         android:id="@+id/shopping_cart_notify"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="31sp"
+        android:layout_height="29sp"
         android:gravity="center"
         android:textColor="#252424"
         android:layout_gravity="center"
         android:textSize="12sp"
+        android:background="@drawable/cart_small"
         android:text="1"
+        android:textAlignment="center"
         android:layout_centerVertical="true"
-        android:layout_alignBaseline="@+id/shopping_cart_icon"
-        android:layout_alignBottom="@+id/shopping_cart_icon"
+        android:layout_centerInParent="true"
         android:layout_centerHorizontal="true" />
 
 

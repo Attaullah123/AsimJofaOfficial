@@ -48,7 +48,7 @@ public class Profile extends AppCompatActivity {
     private Button btn_login,btn_create_account;
     private EditText et_email,et_password;
     private ProgressDialog pDialog;
-    private ImageView back;
+    //private ImageView back;
     //private ImageView img_cross;
     private UserModel userData;
     private TextView forgetPassword;
@@ -73,7 +73,7 @@ public class Profile extends AppCompatActivity {
 
         btn_login = (Button) findViewById(R.id.btn_login);
         btn_create_account = (Button) findViewById(R.id.create_account);
-        back = (ImageView) findViewById(R.id.img_cross);
+        //back = (ImageView) findViewById(R.id.img_cross);
         et_email = (EditText) findViewById(R.id.login_email);
         et_password = (EditText) findViewById(R.id.login_password);
         forgetPassword = (TextView) findViewById(R.id.forget_password);
@@ -121,12 +121,12 @@ public class Profile extends AppCompatActivity {
         });
 
 
-       back.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               onBackPressed();
-           }
-       });
+//       back.setOnClickListener(new View.OnClickListener() {
+//           @Override
+//           public void onClick(View view) {
+//               onBackPressed();
+//           }
+//       });
     }
 
     public void userLogin(){

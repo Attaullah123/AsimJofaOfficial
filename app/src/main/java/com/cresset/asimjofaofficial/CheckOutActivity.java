@@ -233,7 +233,7 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
             shippingPrice_currency.setText("USD");
         }
 
-        shippingPrice.setText(String.format("%.0f",shipping));
+        //shippingPrice.setText(String.format("%.0f",shipping));
         shippingPrice.setText(NumberFormat.getNumberInstance(Locale.US).format(shipping));
 
         if (GlobalClass.shippingMethod != null)

@@ -1,7 +1,6 @@
 package com.cresset.asimjofaofficial;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,11 +8,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.widget.EditText;
+import android.support.v7.widget.SearchView;
 import android.widget.ProgressBar;
-import android.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,27 +21,19 @@ import android.widget.Toast;
 
 
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.cresset.asimjofaofficial.adapter.IndexAdapter;
-import com.cresset.asimjofaofficial.models.CategoryIndexImageModel;
 import com.cresset.asimjofaofficial.models.CategoryList;
 import com.cresset.asimjofaofficial.models.CategoryModel;
 import com.cresset.asimjofaofficial.models.ChildCategoryList;
-import com.cresset.asimjofaofficial.models.IndexImage;
-import com.cresset.asimjofaofficial.models.ProductModel;
-import com.cresset.asimjofaofficial.utilities.AnimatedExpandableListView;
 import com.cresset.asimjofaofficial.utilities.Config;
 import com.cresset.asimjofaofficial.utilities.CustomVolleyRequest;
-import com.cresset.asimjofaofficial.volley.AppController;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.nhaarman.listviewanimations.appearance.simple.AlphaInAnimationAdapter;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -68,6 +57,7 @@ public class HomeActivity extends Fragment {
     private Context mContext;
     private int lastExpandedPosition = -1;
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -87,8 +77,33 @@ public class HomeActivity extends Fragment {
 //        PD.setCancelable(false);
         //progressBar.setVisibility();
 
+        //AlphaInAnimationAdapter alphaInAnimationAdapter = new AlphaInAnimationAdapter(expandList)
+
         getCategoryList();
         runTask ();
+
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                String searchWord = searchView.getQuery().toString().trim();
+//                if (!searchWord.isEmpty()){
+//                    Intent intent = new Intent(getContext(), SearchProductActivity.class);
+//                    intent.putExtra("keyword", searchWord);
+//                    startActivity(intent);
+//                }else{
+//
+//                    Toast.makeText(getContext(), "enter product name", Toast.LENGTH_SHORT).show();
+//                }
+//                return false;
+//            }
+//        });
+
+
 
         searchProduct.setOnClickListener(new View.OnClickListener() {
             @Override

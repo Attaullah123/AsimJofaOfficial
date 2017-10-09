@@ -101,6 +101,7 @@ import org.json.JSONObject;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -185,7 +186,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         currencyNmae = (TextView) findViewById(R.id.product_currency_name);
 
         currencyNmae.setText("USD");
-        //quantity spinner
+        //quantity spinnerPro
 
         infoButton.setBackgroundColor(Color.WHITE);
 
@@ -434,6 +435,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                         recyclerView.setAdapter(addonsAdapter);
                         //set product size
                         ArrayList<ProductDetailSize> sizeList = new ArrayList<ProductDetailSize>(list.getSize());
+                        Collections.reverse(sizeList);
 
                         sizeSpinnerAdapter = new SizeSpinnerAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, sizeList);
                         productSize.setAdapter(sizeSpinnerAdapter);
@@ -666,13 +668,13 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                     public void onResponse(JSONObject response) {
 
                         Log.d(TAG, "Form Submit Response: " + response.toString());
-                        Toast.makeText(getApplicationContext(), "your form submit successfully", Toast.LENGTH_LONG);
+                        //Toast.makeText(getApplicationContext(), "your form submit successfully", Toast.LENGTH_LONG);
 
                         try {
 
                            progressDialog.dismiss();
-                           Toast.makeText(getApplicationContext(), "your form submit successfully", Toast.LENGTH_LONG);
-//                                    .show();
+                           Toast.makeText(getApplicationContext(), "your form submit successfully", Toast.LENGTH_LONG).show();
+
 
                         } catch (Exception e) {
                             // JSON error
@@ -714,8 +716,8 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
             }
         });
 
-        Button imageView = (Button) findViewById(R.id.shopping_cart_icon);
-        imageView.setOnClickListener(new View.OnClickListener() {
+        //Button imageView = (Button) findViewById(R.id.shopping_cart_icon);
+        cartCountView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), GetCart.class);

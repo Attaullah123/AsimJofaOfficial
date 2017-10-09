@@ -210,8 +210,8 @@ public class ProductListActivity extends AppCompatActivity {
             }
         });
 
-        Button imageView = (Button) findViewById(R.id.shopping_cart_icon);
-        imageView.setOnClickListener(new View.OnClickListener() {
+        //Button imageView = (Button) findViewById(R.id.shopping_cart_icon);
+        cartCountView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), GetCart.class);

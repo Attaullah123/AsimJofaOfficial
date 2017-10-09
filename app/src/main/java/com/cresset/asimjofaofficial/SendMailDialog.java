@@ -11,9 +11,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-/**
- * Created by attaullahkhizar on 9/28/17.
- */
 
 public class SendMailDialog extends DialogFragment {
 
@@ -44,7 +41,7 @@ public class SendMailDialog extends DialogFragment {
 
 
                 Intent emailIntent = new Intent(Intent.ACTION_SEND);
-                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"attaa.779@gmail.com"});
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"sales@asimjofa.com"});
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT, emailSubject);
                 emailIntent.putExtra(Intent.EXTRA_TEXT, emailContent);
                 /// use below 2 commented lines if need to use BCC an CC feature in email

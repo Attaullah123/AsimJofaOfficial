@@ -154,8 +154,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button imageView = (Button) findViewById(R.id.shopping_cart_icon);
-        imageView.setOnClickListener(new View.OnClickListener() {
+        //Button imageView = (Button) findViewById(R.id.shopping_cart_icon);
+        cartCountView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, GetCart.class);
@@ -381,12 +381,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.navigation_profile:
                 // detail = new Profile();
 //                        //toolbar.setVisibility(View.GONE);
-                Intent intent = new Intent(MainActivity.this, MyAccount.class);
-                startActivity(intent);
-                       /* Bundle arg = new Bundle();
-                        arg.putString("title", "Dialog with Action Bar");
-                        detail = new LoginDialogFragment();
-                        detail.setArguments(arg);*/
+                //Intent intent = new Intent(MainActivity.this, MyAccount.class);
+               // startActivity(intent);
+                Fragment storeFragment = new Profile11();
+                FragmentManager fragmentManager1 = getSupportFragmentManager();
+                fragmentManager1.beginTransaction().replace(R.id.frame_content, storeFragment).commit();
 
                 break;
             case R.id.navigation_store:

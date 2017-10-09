@@ -97,7 +97,7 @@ public class AnimatedExpandableListView extends ExpandableListView {
     /**
      * The duration of the expand/collapse animations
      */
-    private static final int ANIMATION_DURATION = 300;
+    private static final int ANIMATION_DURATION = 500;
 
     private AnimatedExpandableListAdapter adapter;
 

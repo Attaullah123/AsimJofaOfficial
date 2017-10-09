@@ -37,9 +37,7 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
             orderTotal = (TextView) itemView.findViewById(R.id.order_total);
             orderCurrencyName = (TextView) itemView.findViewById(R.id.order_currency);
             //overflow = (ImageView) view.findViewById(R.id.overflow);
-
         }
-
     }
     public OrderHistoryAdapter(Context mContext, ArrayList<OrdersListModel> orderList) {
         this.mContext = mContext;
@@ -72,12 +70,9 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
         }else{
             holder.orderCurrencyName.setText("USD");
         }
-
         //holder.orderTotal.setText(String.format("%.0f",productPrice));
         holder.orderTotal.setText(NumberFormat.getNumberInstance(Locale.US).format(productPrice));
-
     }
-
     public void clearCart() {
         ordersListModel.clear();
         ordersListModel.clear();

@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:text="Search Products"
-            android:textSize="23sp"
+            android:textSize="19sp"
             android:textColor="#000"
             android:layout_gravity="center"
             />
