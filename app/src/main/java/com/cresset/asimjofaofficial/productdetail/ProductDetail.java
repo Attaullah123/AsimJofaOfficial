@@ -195,7 +195,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         quantityList.add("4");
         quantityList.add("5");
         // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, quantityList);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.spinner_main_quantity_value, quantityList);
         // Drop down layout style - list view with radio button
         dataAdapter.setDropDownViewResource(R.layout.spinner_quantity_value);
 
@@ -456,7 +456,6 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                             }
 
                         });
-
 
                     }
 

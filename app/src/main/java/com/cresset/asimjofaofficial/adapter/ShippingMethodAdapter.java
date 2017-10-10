@@ -36,6 +36,7 @@ public class ShippingMethodAdapter  extends RecyclerView.Adapter<ShippingMethodA
 
     public class MyViewHolder extends RecyclerView.ViewHolder  {
         public TextView shippingName, shippingPrice,productId,productCurrencyName;
+        //private TextView freeShipping;
         private Context context;
 
         public MyViewHolder(View itemView) {
@@ -43,6 +44,7 @@ public class ShippingMethodAdapter  extends RecyclerView.Adapter<ShippingMethodA
             shippingName = (TextView) itemView.findViewById(R.id.shipping_method_name);
             shippingPrice = (TextView) itemView.findViewById(R.id.shipping_price);
             productCurrencyName = (TextView) itemView.findViewById(R.id.shipping_currency_name);
+            //freeShipping = (TextView) itemView.findViewById(R.id.shipping_charge_within_country);
             //proId = (TextView) itemView.findViewById(R.id.product_list_id);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +83,10 @@ public class ShippingMethodAdapter  extends RecyclerView.Adapter<ShippingMethodA
 
         holder.shippingName.setText(list.getName());
 
+//        if (list.getShippingRateComputationMethodSystemName().equals("0")){
+//            holder.freeShipping.setText("Free Shipping Within Pakistan");
+//        }
+
         float productPrice = list.getPrice();
         //holder.price.setText(productListModel.getPrice());
         if(GlobalClass.currency != null){
@@ -93,6 +99,8 @@ public class ShippingMethodAdapter  extends RecyclerView.Adapter<ShippingMethodA
         //holder.shippingPrice.setText(String.format("%.0f",productPrice));
         holder.shippingPrice.setText(NumberFormat.getNumberInstance(Locale.US).format(productPrice));
     }
+
+
 
     @Override
     public int getItemCount() {

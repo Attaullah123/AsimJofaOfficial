@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="oval">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <gradient android:startColor="#666666" android:endColor="#666666" android:angle="270"/>
-    <stroke android:width="1px" android:color="#dedede" />
-    <size android:height="22dp" android:width="22dp"/>
-</shape>
+    <item android:drawable="@drawable/ic_check" />
+</layer-list>

@@ -39,6 +39,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -52,6 +53,7 @@ public class ShippingMethod extends AppCompatActivity {
     private ShippingMethodAdapter shippingAdapter;
     private List<ShippingMethodModel> shippingModels;
     private ImageView back;
+
     private ProgressBar progressBar;
 
     @Override
@@ -102,8 +104,11 @@ public class ShippingMethod extends AppCompatActivity {
                         Gson gson = new Gson();
                         ShippingMethodModel shippingMethod = gson.fromJson(response.toString(), new TypeToken<ShippingMethodModel>(){}.getType());
 
+                        //ShippingmethodList shippingmethodList;
                         ArrayList<ShippingmethodList> shippingLists = new ArrayList<ShippingmethodList>();
                         shippingLists.add(shippingMethod.getShippingmethod());
+
+
 
                         shippingAdapter = new ShippingMethodAdapter(getApplicationContext(), shippingLists);
                         recyclerView.setAdapter(shippingAdapter);
