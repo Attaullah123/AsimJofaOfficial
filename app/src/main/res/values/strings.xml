@@ -32,6 +32,7 @@
     <string name="google_api_key">AIzaSyAerYTzd3jWccNT3nDhxPXC3XDBSREpSlM</string>
 
     <string name="currency_change">Currency Change</string>
+    <string name="contact_us">Contact Us</string>
     <string name="infoText"><br/> + <font color="blue"> Info </font></string>
 
     //contact screen text

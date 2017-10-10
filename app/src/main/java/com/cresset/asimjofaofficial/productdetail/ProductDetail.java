@@ -54,12 +54,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.cresset.asimjofaofficial.ContactUs;
 import com.cresset.asimjofaofficial.CurrencyChange;
 import com.cresset.asimjofaofficial.CurrencySelector;
 import com.cresset.asimjofaofficial.GetCart;
-import com.cresset.asimjofaofficial.HomeActivity;
-import com.cresset.asimjofaofficial.MainActivity;
-import com.cresset.asimjofaofficial.MyAccount;
 import com.cresset.asimjofaofficial.PolicyActivity;
 import com.cresset.asimjofaofficial.PrivacyPolicyNew;
 import com.cresset.asimjofaofficial.Profile;
@@ -779,6 +777,10 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
             case R.id.info:
                 Intent intent2 = new Intent(getApplicationContext(), PolicyActivity.class);
                 startActivity(intent2);
+                return true;
+            case R.id.contact_us:
+                Intent intent3 = new Intent(getApplicationContext(), ContactUs.class);
+                startActivity(intent3);
                 return true;
             default:
 

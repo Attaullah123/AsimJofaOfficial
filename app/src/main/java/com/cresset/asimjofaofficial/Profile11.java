@@ -46,7 +46,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class Profile11 extends Fragment {
 
-    private static final String TAG = Profile.class.getSimpleName();
+    private static final String TAG = Profile11.class.getSimpleName();
     private Toolbar toolbar;
     private Button btn_login,btn_create_account;
     private EditText et_email,et_password;

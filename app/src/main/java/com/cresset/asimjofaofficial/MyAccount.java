@@ -41,7 +41,7 @@ public class MyAccount extends AppCompatActivity {
     private LinearLayout lyOrderHistory,lyUserInfo,lyAddressBook,lyContactUs,lyChnagePassword;
 
     private UserModel globalUserData;
-    private ImageView back;
+    //private ImageView back;
     private SharedPreferences.Editor sharedPreferencesEditor;
     private static final String TAG = MyAccount.class.getSimpleName();
 
@@ -60,14 +60,14 @@ public class MyAccount extends AppCompatActivity {
         lyChnagePassword = (LinearLayout) findViewById(R.id.ly_change_password);
 
         logout = (TextView) findViewById(R.id.log_out);
-        back = (ImageView) findViewById(R.id.img_back);
+       // back = (ImageView) findViewById(R.id.img_back);
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+//        back.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onBackPressed();
+//            }
+//        });
 
         sharedPreferencesEditor = getSharedPreferences(Config.PREFS_NAME, MODE_PRIVATE).edit();
 
@@ -113,7 +113,7 @@ public class MyAccount extends AppCompatActivity {
         globalUserData = GlobalClass.userData;
         if(globalUserData.isGuest())
         {
-            Intent intent = new Intent(getApplicationContext(), Profile.class);
+            Intent intent = new Intent(getApplicationContext(), Profile11.class);
             startActivity(intent);
             finish();
         }

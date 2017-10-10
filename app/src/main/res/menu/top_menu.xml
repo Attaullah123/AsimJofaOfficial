@@ -16,6 +16,13 @@
         android:title="@string/currency_change">
 
     </item>
+
+    <item
+        android:id="@+id/contact_us"
+        app:showAsAction="never"
+        android:title="@string/contact_us">
+
+    </item>
     <item
         android:id="@+id/cart"
         android:icon="@drawable/cart_small1"

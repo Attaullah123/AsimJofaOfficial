@@ -26,7 +26,7 @@ import com.android.volley.toolbox.Volley;
 import com.cresset.asimjofaofficial.ContactUs;
 import com.cresset.asimjofaofficial.MainActivity;
 import com.cresset.asimjofaofficial.MyAccount;
-import com.cresset.asimjofaofficial.Profile;
+import com.cresset.asimjofaofficial.Profile11;
 import com.cresset.asimjofaofficial.R;
 import com.cresset.asimjofaofficial.models.CustomerDetailResponse;
 import com.cresset.asimjofaofficial.models.UserModel;
@@ -54,7 +54,7 @@ public class MyAccount1 extends Fragment {
     private UserModel globalUserData;
     //private ImageView back;
     private SharedPreferences.Editor sharedPreferencesEditor;
-    private static final String TAG = MyAccount.class.getSimpleName();
+    private static final String TAG = MyAccount1.class.getSimpleName();
     View view;
     @Nullable
     @Override
@@ -123,7 +123,7 @@ public class MyAccount1 extends Fragment {
         });
         globalUserData = GlobalClass.userData;
         if (globalUserData.isGuest()) {
-            Intent intent = new Intent(getContext(), Profile.class);
+            Intent intent = new Intent(getContext(), Profile11.class);
             startActivity(intent);
             getActivity().finish();
         } else {

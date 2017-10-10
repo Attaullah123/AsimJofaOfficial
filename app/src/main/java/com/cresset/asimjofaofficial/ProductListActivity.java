@@ -269,6 +269,11 @@ public class ProductListActivity extends AppCompatActivity {
                 Intent intent2 = new Intent(getApplicationContext(), PolicyActivity.class);
                 startActivity(intent2);
                 return true;
+
+            case R.id.contact_us:
+                Intent intent3 = new Intent(getApplicationContext(), ContactUs.class);
+                startActivity(intent3);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

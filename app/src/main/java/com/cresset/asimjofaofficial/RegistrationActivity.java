@@ -28,6 +28,7 @@ import com.cresset.asimjofaofficial.models.UserModel;
 import com.cresset.asimjofaofficial.utilities.Config;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
 import com.cresset.asimjofaofficial.utilities.UserSessionManager;
+import com.cresset.asimjofaofficial.volley.MyAccount1;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -89,7 +90,7 @@ public class RegistrationActivity extends AppCompatActivity {
 */
         if(!globalUserData.isGuest() && globalUserData.getUserName() != null && globalUserData.getUserName() != "")
         {
-            Intent intent = new Intent(getApplicationContext(), MyAccount.class);
+            Intent intent = new Intent(getApplicationContext(), MyAccount1.class);
             startActivity(intent);
             finish();
         }
@@ -175,7 +176,7 @@ public class RegistrationActivity extends AppCompatActivity {
                             }
 
                             // Launch login activity
-                            Intent intent = new Intent(getApplicationContext(), MyAccount.class);
+                            Intent intent = new Intent(getApplicationContext(), MyAccount1.class);
                             startActivity(intent);
                             finish();
 

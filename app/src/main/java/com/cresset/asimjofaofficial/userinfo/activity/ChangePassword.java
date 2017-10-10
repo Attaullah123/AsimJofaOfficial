@@ -20,8 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.cresset.asimjofaofficial.MyAccount;
-import com.cresset.asimjofaofficial.Profile;
+import com.cresset.asimjofaofficial.Profile11;
 import com.cresset.asimjofaofficial.R;
 import com.cresset.asimjofaofficial.models.ChnagePasswordModel;
 import com.cresset.asimjofaofficial.models.GuestOrLoginResponseModel;
@@ -120,7 +119,7 @@ public class ChangePassword extends AppCompatActivity {
                             model.setNewPassword(newPassword);
                             Toast.makeText(getApplicationContext(), "your password change successfully", Toast.LENGTH_LONG)
                                     .show();
-                            Intent intent = new Intent(getApplicationContext(), Profile.class);
+                            Intent intent = new Intent(getApplicationContext(), Profile11.class);
                             startActivity(intent);
                             finish();
 //                            if (model.getCustomerId() != null && model.getCustomerId() != "") {
