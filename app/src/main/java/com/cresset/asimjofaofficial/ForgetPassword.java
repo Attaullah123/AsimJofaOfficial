@@ -96,7 +96,7 @@ public class ForgetPassword extends AppCompatActivity {
     public void getPassword(final String email){
         Map<String, String> params = new HashMap<String, String>();
         params.put("ProjectId", Config.PROJECTID);
-        params.put("Email", "test1@gmail.com");
+        params.put("Email", email);
         String tag_string_req = "req_login";
 
         pDialog.setMessage("Please wait ...");
@@ -107,7 +107,7 @@ public class ForgetPassword extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
 
-                        Log.d(TAG, "Login Response: " + response.toString());
+                        Log.d(TAG, "Forget Response: " + response.toString());
                         hideDialog();
 
                         try {
@@ -133,7 +133,7 @@ public class ForgetPassword extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "Login Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(), "please check connection", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "please check connection, try again", Toast.LENGTH_LONG).show();
                 hideDialog();
             }
         });

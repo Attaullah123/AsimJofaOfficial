@@ -27,6 +27,7 @@ import com.cresset.asimjofaofficial.models.GuestOrLoginResponseModel;
 import com.cresset.asimjofaofficial.models.UserModel;
 import com.cresset.asimjofaofficial.utilities.Config;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
+import com.cresset.asimjofaofficial.volley.MyAccount1;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -119,7 +120,7 @@ public class ChangePassword extends AppCompatActivity {
                             model.setNewPassword(newPassword);
                             Toast.makeText(getApplicationContext(), "your password change successfully", Toast.LENGTH_LONG)
                                     .show();
-                            Intent intent = new Intent(getApplicationContext(), Profile11.class);
+                            Intent intent = new Intent(getApplicationContext(), MyAccount1.class);
                             startActivity(intent);
                             finish();
 //                            if (model.getCustomerId() != null && model.getCustomerId() != "") {

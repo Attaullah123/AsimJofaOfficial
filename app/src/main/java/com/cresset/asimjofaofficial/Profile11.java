@@ -205,7 +205,7 @@ public class Profile11 extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "Login Error: " + error.getMessage());
-                Toast.makeText(getContext(), "please check connection", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "please check connection, try again", Toast.LENGTH_LONG).show();
                 hideDialog();
             }
         });

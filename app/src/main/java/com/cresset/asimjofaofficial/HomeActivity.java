@@ -72,6 +72,7 @@ public class HomeActivity extends Fragment {
         expandList.setChildDivider(getResources().getDrawable(R.color.white));
 
         progressBar=(ProgressBar) view.findViewById(R.id.progressBar);
+       // searchView.setOnQueryTextListener((SearchView.OnQueryTextListener) getContext());
 //        PD = new ProgressDialog(getContext());
 //        PD.setMessage("Loading.....");
 //        PD.setCancelable(false);
@@ -82,27 +83,28 @@ public class HomeActivity extends Fragment {
         getCategoryList();
         runTask ();
 
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                String searchWord = searchView.getQuery().toString().trim();
-//                if (!searchWord.isEmpty()){
-//                    Intent intent = new Intent(getContext(), SearchProductActivity.class);
-//                    intent.putExtra("keyword", searchWord);
-//                    startActivity(intent);
-//                }else{
-//
-//                    Toast.makeText(getContext(), "enter product name", Toast.LENGTH_SHORT).show();
-//                }
-//                return false;
-//            }
-//        });
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
 
+                String searchWord = searchView.getQuery().toString().trim();
+                if (!searchWord.isEmpty()){
+                    Intent intent = new Intent(getContext(), SearchProductActivity.class);
+                    intent.putExtra("keyword", searchWord);
+                    startActivity(intent);
+                }else{
+
+                    Toast.makeText(getContext(), "enter product name", Toast.LENGTH_SHORT).show();
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                return false;
+            }
+        });
 
 
         searchProduct.setOnClickListener(new View.OnClickListener() {

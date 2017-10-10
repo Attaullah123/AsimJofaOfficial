@@ -24,7 +24,7 @@
             android:id="@+id/toolbar"
             android:minHeight="?attr/actionBarSize"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40sp"
             android:background="@color/toolbar_color">
 
             <!--<ImageView-->
@@ -53,12 +53,13 @@
             android:background="@color/toolbar_color"
             android:textColor="#000"
             android:textSize="16dp"
+            android:text=""
             android:gravity="center"/>
 
         <View
             android:paddingTop="5dp"
             android:layout_width="fill_parent"
-            android:layout_height="0.3dp"
+            android:layout_height="0.2dp"
             android:background="#2e2b2b"/>
 
         <LinearLayout
@@ -96,7 +97,7 @@
         <View
             android:paddingTop="5dp"
             android:layout_width="fill_parent"
-            android:layout_height="0.3dp"
+            android:layout_height="0.2dp"
             android:background="#2e2b2b"/>
 
         <LinearLayout
@@ -131,7 +132,7 @@
         <View
             android:paddingTop="5dp"
             android:layout_width="fill_parent"
-            android:layout_height="0.3dp"
+            android:layout_height="0.2dp"
             android:background="#2e2b2b"/>
 
         <LinearLayout
@@ -166,7 +167,7 @@
         <View
             android:paddingTop="5dp"
             android:layout_width="fill_parent"
-            android:layout_height="0.3dp"
+            android:layout_height="0.2dp"
             android:background="#2e2b2b"/>
 
         <LinearLayout
@@ -202,7 +203,7 @@
         <View
             android:paddingTop="5dp"
             android:layout_width="fill_parent"
-            android:layout_height="0.3dp"
+            android:layout_height="0.2dp"
             android:background="#2e2b2b"/>
         <LinearLayout
             android:id="@+id/ly_change_password"
@@ -236,21 +237,21 @@
         <View
             android:paddingTop="5dp"
             android:layout_width="fill_parent"
-            android:layout_height="0.3dp"
+            android:layout_height="0.2dp"
             android:background="#2e2b2b"/>
 
 
 </LinearLayout>
 
-    <com.cresset.asimjofaofficial.customfonts.MyTextView
+    <TextView
         android:id="@+id/log_out"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#eaeaea"
+        android:background="#f2f2f2"
         android:text="Log Out"
         android:textSize="20dp"
         android:textColor="#000"
-        android:padding="16dp"
+        android:padding="12dp"
         style="@style/Base.TextAppearance.AppCompat.Large"
         android:gravity="center"
         android:layout_alignParentBottom="true"

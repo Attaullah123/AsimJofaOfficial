@@ -54,7 +54,7 @@ public class ProductListActivity extends AppCompatActivity {
     private ProductListAdapter adapter;
     private List<ProductModel> productModels;
     private List<ProductListModel> productList;
-    private SearchView searchView;
+    private android.support.v7.widget.SearchView searchView;
     private ImageView back;
     //private ProgressDialog progressDialog;
     private ProgressBar progressBar;
@@ -80,7 +80,7 @@ public class ProductListActivity extends AppCompatActivity {
         //childId = getIntent().getStringExtra("categoryChildId");
 
         progressBar=(ProgressBar) findViewById(R.id.progressBar);
-        searchView = (SearchView) findViewById(R.id.sv_productList);
+        searchView  = (android.support.v7.widget.SearchView) findViewById(R.id.sv_productList);
         searchProduct = (TextView) findViewById(R.id.search_product);
         categoryTitle = (TextView) findViewById(R.id.category_title);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
@@ -120,6 +120,43 @@ public class ProductListActivity extends AppCompatActivity {
             }
         });
 
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                Toast.makeText(getBaseContext(), "hello", Toast.LENGTH_LONG).show();
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                Toast.makeText(getBaseContext(), "hi", Toast.LENGTH_LONG).show();
+//                return false;
+//            }
+//        });
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                String searchWord = searchView.getQuery().toString().trim();
+                if (!searchWord.isEmpty()){
+                    Intent intent = new Intent(getBaseContext(), SearchProductActivity.class);
+                    intent.putExtra("keyword", searchWord);
+                    startActivity(intent);
+                }else{
+
+                    Toast.makeText(getBaseContext(), "enter product name", Toast.LENGTH_SHORT).show();
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                return false;
+            }
+        });
+
     }
 
     public void getProductData() {
@@ -144,7 +181,6 @@ public class ProductListActivity extends AppCompatActivity {
 
                         ArrayList<ProductListModel> detailLists = new ArrayList<ProductListModel>(productModel.getProductList());
 
-                        searchKeyword();
                         adapter = new ProductListAdapter(getApplicationContext(), detailLists);
                         recyclerView.setAdapter(adapter);
                         progressBar.setVisibility(View.GONE);
@@ -166,21 +202,23 @@ public class ProductListActivity extends AppCompatActivity {
         CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
     }
 
-    public void searchKeyword(){
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
 
-                return false;
-            }
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                adapter.getFilter().filter(newText);
-                return true;
-            }
-        });
-    }
+//    public void searchKeyword(){
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                adapter.getFilter().filter(newText);
+//                return true;
+//            }
+//        });
+//    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.top_menu, menu);
