@@ -42,8 +42,6 @@ public class ProductImagePagerAdapter extends android.support.v4.view.PagerAdapt
        this.imagesList = imagesList;
         //this.productDetailLists = detailLists;
         inflater = LayoutInflater.from(context);
-
-
     }
 
     @Override

@@ -234,6 +234,12 @@ public class ProductListActivity extends AppCompatActivity {
         getProductData();
     }
 
+//    @Override
+//    protected void onRestart() {
+//        super.onRestart();
+//        getProductData();
+//    }
+
     public void UpdateCartCount(){
         MenuItem cartItem = menu.findItem(R.id.cart);
         MenuItemCompat.setActionView(cartItem, R.layout.count_badge);

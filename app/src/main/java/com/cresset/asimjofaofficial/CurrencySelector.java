@@ -71,6 +71,7 @@ public class CurrencySelector extends ListActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+               // startActivity(getIntent());
             }
         });
 

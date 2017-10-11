@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.SearchView;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ProgressBar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -79,6 +81,9 @@ public class HomeActivity extends Fragment {
         //progressBar.setVisibility();
 
         //AlphaInAnimationAdapter alphaInAnimationAdapter = new AlphaInAnimationAdapter(expandList)
+        //expandList.expandGroup()
+
+
 
         getCategoryList();
         runTask ();
@@ -158,8 +163,6 @@ public class HomeActivity extends Fragment {
 
                         //show(Integer.toString(childPosition));
                         //show(Integer.toString(categoryLists.get(groupPosition).getChild().get(childPosition).getId()));
-
-
                         Intent intent = new Intent(getContext(), ProductListActivity.class);
                         intent.putExtra("categoryId", Integer.toString(categoryLists.get(groupPosition).getChild().get(childPosition).getId()));
                         intent.putExtra("categoryName",categoryLists.get(groupPosition).getChild().get(childPosition).getName());
@@ -174,6 +177,7 @@ public class HomeActivity extends Fragment {
                     public void onGroupExpand(int groupPosition) {
                         //if (lastExpandedPosition != -1 && groupPosition != lastExpandedPosition) {
                         if (!categoryLists.get(groupPosition).getChild().isEmpty()) {
+
                             expandList.collapseGroup(0);
 
                         }
@@ -312,6 +316,7 @@ public class HomeActivity extends Fragment {
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null;
     }
+
 
 
 }

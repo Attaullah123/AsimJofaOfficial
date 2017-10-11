@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AbsListView;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -63,12 +64,12 @@ public class IndexAdapter extends BaseExpandableListAdapter {
 
         TextView tv = (TextView) convertView.findViewById(R.id.category_child_name);
         //NetworkImageView iv = (NetworkImageView) convertView.findViewById(R.id.flag);
-        //Animation anim = AnimationUtils.loadAnimation(context, R.anim.list_anim);
+
 
         tv.setText(child.getName().toString());
         //iv.setImageUrl(child.getImage(), imageLoader);
-
-        //convertView.setAnimation(anim);
+//        Animation anim = AnimationUtils.loadAnimation(context, R.anim.list_anim);
+//        convertView.setAnimation(anim);
         return convertView;
     }
 
@@ -105,7 +106,10 @@ public class IndexAdapter extends BaseExpandableListAdapter {
         TextView tv = (TextView) convertView.findViewById(R.id.category_name);
         ImageView img = (ImageView) convertView.findViewById(R.id.image_display);
         tv.setText(group.getName());
-       Glide.with(context).load(group.getPictureURL()).into(img);
+        Glide.with(context).load(group.getPictureURL()).into(img);
+
+
+
         //Picasso.with(context).load(group.getPictureURL()).into(img);
 //        ImageLoader imageLoader = ImageLoader.getInstance();
 //        String imgUri = group.getPictureURL();
@@ -125,6 +129,7 @@ public class IndexAdapter extends BaseExpandableListAdapter {
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
     }
+
 
 
 }

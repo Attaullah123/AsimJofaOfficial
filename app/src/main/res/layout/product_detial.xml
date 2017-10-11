@@ -53,7 +53,7 @@
             android:orientation="vertical">
 
             <RelativeLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="#fff">
 
@@ -65,7 +65,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
-                    android:background="#eae7e7"
+                    android:background="#f7f6f6"
                      />
 
                 <com.viewpagerindicator.CirclePageIndicator
@@ -91,7 +91,7 @@
                     android:onClick="openBottomInfo"
                     android:text="@string/infoText"
                     android:textAllCaps="true"
-                    android:textSize="18sp"
+                    android:textSize="17sp"
                     android:layout_below="@+id/indicator"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true" />
