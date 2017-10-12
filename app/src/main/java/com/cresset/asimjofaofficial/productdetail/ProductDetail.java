@@ -313,12 +313,10 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
 
                                         Log.d("Response", response.toString());
                                         Toast.makeText(getApplicationContext(), "Item Add to cart", Toast.LENGTH_SHORT).show();
-                                        Snackbar snackbar = Snackbar.make(v, "Item Add to cart", Snackbar.LENGTH_LONG)
+                                        Snackbar snackbar = Snackbar.make(v, "Item Add to cart", Snackbar.LENGTH_LONG).setDuration(5000)
                                                 .setAction("VIEW CART", new View.OnClickListener() {
                                                     @Override
-                                                    public void onClick(View view) {
-                                                        Intent intent = new Intent(getApplicationContext(), GetCart.class);
-                                                        startActivity(intent);
+                                                    public void onClick(View view) {Intent intent = new Intent(getApplicationContext(), GetCart.class);startActivity(intent);
                                                     }
                                                 });
 
@@ -438,6 +436,7 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                         sizeSpinnerAdapter = new SizeSpinnerAdapter(getApplicationContext(), R.layout.spinner_size_value, sizeList);
                         productSize.setAdapter(sizeSpinnerAdapter);
                         //productSize.setPrompt("Select Size");
+                        //sizeSpinnerAdapter.setDropDownViewResource(R.layout.spinner_child_size_value);
 
                         productSize.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 

@@ -5,8 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#fff"
     android:orientation="vertical">
-
-
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -106,7 +105,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="#747474"
                 android:gravity="center"
-                android:textSize="17sp"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 android:text="Select Shipping and Billing Address "
                 android:layout_alignBottom="@+id/shipping_edit_method"
                 android:layout_marginLeft="8dp"
@@ -147,7 +147,8 @@
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="8dp"
                         android:textColor="#747474"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
                         android:text="Select shipping method"
                         />
                     <TextView
@@ -268,7 +269,8 @@
                 android:layout_marginLeft="8dp"
                 android:text="Select a payment method "
                 android:textColor="#747474"
-                android:textSize="18sp" />
+                android:textStyle="bold"
+                android:textSize="16sp" />
             <TextView
                 android:id="@+id/payment_edit"
                 android:layout_width="21dp"
@@ -370,8 +372,9 @@
                             android:layout_centerVertical="true"
                             android:layout_marginLeft="8dp"
                             android:text="Items"
+                            android:textStyle="bold"
                             android:textColor="#747474"
-                            android:textSize="18sp" />
+                            android:textSize="17sp" />
 
                         <ImageView
                             android:id="@+id/img_minus_accuracy"

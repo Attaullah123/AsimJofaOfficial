@@ -61,12 +61,10 @@
                     android:id="@+id/pager"
                     android:layout_width="355sp"
                     android:layout_height="550sp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
                     android:layout_gravity="center"
-                    android:layout_marginTop="5dp"
                     android:background="#f7f6f6"
-                     />
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true" />
 
                 <com.viewpagerindicator.CirclePageIndicator
                     android:id="@+id/indicator"
@@ -186,7 +184,7 @@
                     <Spinner
                         android:id="@+id/size_Spinner"
                         android:layout_width="0dp"
-                        android:layout_height="35dp"
+                        android:layout_height="38dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
                         android:background="@drawable/spinner_border"
@@ -197,7 +195,7 @@
                     <Spinner
                         android:id="@+id/product_quantity_spinner"
                         android:layout_width="0dp"
-                        android:layout_height="35dp"
+                        android:layout_height="38dp"
                         android:layout_weight="1"
                         android:background="@drawable/spinner_border"
                         android:gravity="start"
@@ -225,7 +223,7 @@
         android:elevation="30dp"
         android:background="#fff"
         android:orientation="horizontal"
-        android:layout_gravity="end"
+
         android:weightSum="1">
 
     <com.cresset.asimjofaofficial.customfonts.MyTextView

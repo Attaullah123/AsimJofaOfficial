@@ -184,7 +184,7 @@
                     <Spinner
                         android:id="@+id/size_Spinner"
                         android:layout_width="0dp"
-                        android:layout_height="35dp"
+                        android:layout_height="45dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
                         android:background="@drawable/spinner_border"
@@ -195,12 +195,12 @@
                     <Spinner
                         android:id="@+id/product_quantity_spinner"
                         android:layout_width="0dp"
-                        android:layout_height="35dp"
+                        android:layout_height="45dp"
                         android:layout_weight="1"
                         android:background="@drawable/spinner_border"
                         android:gravity="start"
                         android:paddingBottom="8dp"
-                        android:spinnerMode="dropdown"/>
+                        android:spinnerMode="dropdown" />
 
                 </LinearLayout>
             </LinearLayout>

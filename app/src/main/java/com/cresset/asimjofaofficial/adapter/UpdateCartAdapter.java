@@ -52,7 +52,7 @@ public class UpdateCartAdapter extends RecyclerView.Adapter<UpdateCartAdapter.My
     private TextView totalPrice, subTotal;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView proName, proPrice, proSkuCode, proSize, proQuantity,proCurrencyName;
+        public TextView proName, proPrice, proSkuCode,productSkuName, proSize, proQuantity,proCurrencyName;
         public Button btnIncrement, btnDecrement;
         public ImageView thumbnailImage;
         public CheckBox listSelected;
@@ -63,6 +63,7 @@ public class UpdateCartAdapter extends RecyclerView.Adapter<UpdateCartAdapter.My
             super(itemView);
             proName = (TextView) itemView.findViewById(R.id.product_name);
             proSkuCode = (TextView) itemView.findViewById(R.id.product_sku_code);
+            productSkuName = (TextView) itemView.findViewById(R.id.product_sku_name);
             proCurrencyName = (TextView) itemView.findViewById(R.id.product_cart_price_name);
             proPrice = (TextView) itemView.findViewById(R.id.product_cart_price);
             proSize = (TextView) itemView.findViewById(R.id.product_cart_size);
@@ -73,6 +74,7 @@ public class UpdateCartAdapter extends RecyclerView.Adapter<UpdateCartAdapter.My
             listSelected = (CheckBox) itemView.findViewById(R.id.select_cart_list);
 
             proCurrencyName.setText("USD");
+            productSkuName.setText("SKU:");
 //            deleteItem.setOnClickListener((View.OnClickListener) this);
             //cardView = (CardView) itemView.findViewById(R.id.card_view);
 
