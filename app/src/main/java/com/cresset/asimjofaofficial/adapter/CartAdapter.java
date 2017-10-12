@@ -48,7 +48,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
     private TextView totalPrice,subTotal;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView proName, proPrice, proSkuCode,proSize,proCurrencyName,proQuantity,proQuantityName;
+        public TextView proName, proPrice, proSkuCode,productSkuName,proSizeName,proSize,proCurrencyName,proQuantity,proQuantityName,
+                proAddonsName,proAddon;
         public ImageView thumbnailImage;
         //public CardView cardView;
         private Context context;
@@ -57,15 +58,22 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             super(itemView);
             proName = (TextView) itemView.findViewById(R.id.product_name);
             proSkuCode = (TextView) itemView.findViewById(R.id.product_sku_code);
+            productSkuName = (TextView) itemView.findViewById(R.id.product_sku_name);
             proCurrencyName = (TextView) itemView.findViewById(R.id.product_cart_price_name);
             proPrice = (TextView) itemView.findViewById(R.id.product_cart_price);
             proSize = (TextView) itemView.findViewById(R.id.product_cart_size);
+           //proSizeName = (TextView) itemView.findViewById(R.id.cart_product_size_name);
             proQuantity = (TextView) itemView.findViewById(R.id.cart_product_quantity);
             proQuantityName = (TextView) itemView.findViewById(R.id.cart_product_quantity_name);
+            //proAddon = (TextView) itemView.findViewById(R.id.product_cart_addons);
+            //proAddonsName = (TextView) itemView.findViewById(R.id.cart_product_addons_name);
             thumbnailImage = (ImageView) itemView.findViewById(R.id.cart_thumbnail);
 
             proCurrencyName.setText("USD");
-            proQuantityName.setText("Qnty:");
+            proQuantityName.setText("QTY:");
+            productSkuName.setText("SKU:");
+//            proSizeName.setText("Size:");
+//            proAddonsName.setText("Addon:");
 
         }
     }
@@ -99,18 +107,21 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         holder.proQuantity.setText(String.valueOf(cartListModel.getQuantity()));
 
         String strAttributes = "";
+
         float productPrice = cartListModel.getProductPrice();
 
         if(!cartListModel.getAttributes().isEmpty())
         {
             for (CartAttributes attribute: cartListModel.getAttributes())
             {
-                strAttributes += attribute.getAttributeValue() + " <br />";
+                strAttributes += attribute.getAttributeValue()+"<br />";
                 if(attribute.getAttributeprice() > 0){
                     productPrice += attribute.getAttributeprice();
+
                 }
             }
         }
+
         holder.proSize.setText(Html.fromHtml(strAttributes));
 
         if(GlobalClass.currency != null){

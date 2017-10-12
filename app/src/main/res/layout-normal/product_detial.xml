@@ -22,16 +22,16 @@
             android:layout_width="20dp"
             android:src="@drawable/ic_close2"/>
 
-            <TextView
-                android:id="@+id/text_code"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="#000"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:textSize="15sp"
-                />
+        <TextView
+            android:id="@+id/text_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="15sp"
+            />
 
     </android.support.v7.widget.Toolbar>
 
@@ -53,7 +53,7 @@
             android:orientation="vertical">
 
             <RelativeLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="#fff">
 
@@ -65,8 +65,8 @@
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
-                    android:background="#eae7e7"
-                     />
+                    android:background="#f7f6f6"
+                    />
 
                 <com.viewpagerindicator.CirclePageIndicator
                     android:id="@+id/indicator"
@@ -91,7 +91,7 @@
                     android:onClick="openBottomInfo"
                     android:text="@string/infoText"
                     android:textAllCaps="true"
-                    android:textSize="18sp"
+                    android:textSize="17sp"
                     android:layout_below="@+id/indicator"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true" />
@@ -111,11 +111,13 @@
                 android:weightSum="1">
 
 
-                <RelativeLayout
+                <LinearLayout
                     android:id="@+id/product_price_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp">
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginTop="2dp">
 
                     <TextView
                         android:id="@+id/product_detail_id"
@@ -130,7 +132,7 @@
                         android:layout_toStartOf="@+id/product_price1"
                         android:gravity="center"
                         android:layout_marginLeft="2dp"
-                        android:padding="6dp"
+                        android:padding="2dp"
                         android:textColor="#000"
                         android:layout_gravity="center"
                         android:textSize="15sp"
@@ -141,8 +143,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
-                        android:padding="6dp"
-                        android:textColor="@color/colorAccent"
+                        android:padding="3dp"
+                        android:textColor="#000"
                         android:textSize="16sp"
                         android:layout_marginRight="2dp"
                         android:layout_gravity="center"
@@ -163,7 +165,7 @@
                      android:textColor="#f14e4e"
                      android:textSize="15sp"
                      tools:text="-50%"/>-->
-                </RelativeLayout>
+                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
@@ -226,20 +228,20 @@
         android:layout_gravity="end"
         android:weightSum="1">
 
-    <com.cresset.asimjofaofficial.customfonts.MyTextView
-        android:id="@+id/addTocart"
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="3dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="#000000"
-        android:gravity="center"
-        android:layout_gravity="end"
-        android:text="ADD TO CART"
-        android:textColor="#fff"
-        android:textSize="18dp"
-        android:textStyle="bold" />
+        <com.cresset.asimjofaofficial.customfonts.MyTextView
+            android:id="@+id/addTocart"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="#000000"
+            android:gravity="center"
+            android:layout_gravity="end"
+            android:text="ADD TO CART"
+            android:textColor="#fff"
+            android:textSize="18dp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 </LinearLayout>

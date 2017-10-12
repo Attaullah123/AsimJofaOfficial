@@ -172,8 +172,6 @@
             android:layout_height="48dp"
             android:background="#fff"
             >
-
-
             <TextView
                 android:id="@+id/shopping"
                 android:layout_width="wrap_content"
@@ -443,12 +441,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#88b84a"
             android:baselineAligned="false"
             android:clickable="false"
             android:focusable="false"
             android:gravity="center"
             android:orientation="horizontal"
-            android:background="#88b84a"
             android:paddingBottom="4dp"
             android:paddingLeft="@dimen/base_margin_horizontal_half"
             android:paddingRight="@dimen/base_margin_horizontal_half">
@@ -458,10 +456,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-
                 android:weightSum="1">
 
-                <com.cresset.asimjofaofficial.customfonts.CustomFont
+                <TextView
                     android:id="@+id/total_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -486,19 +483,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5sp"
+                    android:text="USD"
                     android:textColor="#000"
-                    android:textStyle="bold"
                     android:textSize="16sp"
-                    android:text="USD"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/total_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="0.00"
-                    android:textStyle="bold"
                     android:textColor="#000"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
 
