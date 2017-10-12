@@ -37,11 +37,11 @@
                 android:id="@+id/addons_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#5c5c5c"
+                android:textColor="#000"
                 android:layout_marginLeft="6sp"
                 android:text="select addoons"
                 android:layout_toRightOf="@id/addon_checkbox"
-                android:textStyle="bold" />
+                 />
 
             <TextView
                 android:id="@+id/addons_price"

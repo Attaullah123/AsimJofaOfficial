@@ -435,9 +435,9 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                         ArrayList<ProductDetailSize> sizeList = new ArrayList<ProductDetailSize>(list.getSize());
                         Collections.reverse(sizeList);
 
-                        sizeSpinnerAdapter = new SizeSpinnerAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, sizeList);
+                        sizeSpinnerAdapter = new SizeSpinnerAdapter(getApplicationContext(), R.layout.spinner_size_value, sizeList);
                         productSize.setAdapter(sizeSpinnerAdapter);
-                        productSize.setPrompt("Select Size");
+                        //productSize.setPrompt("Select Size");
 
                         productSize.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
