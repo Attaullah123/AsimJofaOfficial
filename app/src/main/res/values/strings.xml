@@ -25,7 +25,7 @@
     <string name="Your_cart_is_empty">Your cart is Empty</string>
     <string name="prouct_not_found">Related product not found</string>
 
-    <string name="shipping_charger">Free Shipping within Pakistan</string>
+    <string name="shipping_charger">FREE Shipping within Pakistan</string>
     <string name="payment_name">Select Payment Method</string>
 
     <string name="spinner_prompt_name">Select Size</string>
@@ -38,6 +38,7 @@
     //contact screen text
     <string name="monday_timing">Monday To Saturday from 9:00 Am to 9:00 Pm PST</string>
     <string name="sunday_timing">Sunday from 11:00 Am to 6:00Pm</string>
+    <string name="select_country">Select Country</string>
     
     //privacy policy content
     <string name="accuracy_text">&#160;We have taken every care in the preparation of the content of this website, in particular to ensure that prices quoted

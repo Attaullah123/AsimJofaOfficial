@@ -17,9 +17,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * Created by attaullahkhizar on 9/13/17.
- */
 
 public class  TermsAndConditions extends Fragment {
     ExpandableListAdapter listAdapter;

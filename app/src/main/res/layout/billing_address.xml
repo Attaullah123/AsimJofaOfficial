@@ -143,6 +143,7 @@
                     android:layout_marginLeft="80dp"
                     android:background="@drawable/spinner_background_black_baseline"
                     android:paddingBottom="8dp"
+                    android:gravity="center"
                     android:spinnerMode="dialog"/>
 
             </LinearLayout>

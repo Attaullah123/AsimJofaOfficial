@@ -29,8 +29,8 @@
 
     <TextView
         android:id="@+id/shopping_cart_notify"
-        android:layout_width="31sp"
-        android:layout_height="29sp"
+        android:layout_width="25sp"
+        android:layout_height="24sp"
         android:gravity="center"
         android:textColor="#252424"
         android:layout_gravity="center"

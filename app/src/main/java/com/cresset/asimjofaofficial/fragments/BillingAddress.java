@@ -151,6 +151,7 @@ public class BillingAddress extends android.support.v4.app.Fragment{
         billingCountrySpinnerAdapter = new BillingCountrySpinnerAdapter(getContext(), android.R.layout.simple_spinner_item, contList );
         bCountry.setAdapter(billingCountrySpinnerAdapter);
         bCountry.setPrompt("Select Country");
+        
 
         if (GlobalClass.shippingModel!= null){
             if (!GlobalClass.shippingModel.getCountryId().equals(null))

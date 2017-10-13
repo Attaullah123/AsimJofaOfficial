@@ -1,12 +1,17 @@
 package com.cresset.asimjofaofficial.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.cresset.asimjofaofficial.GetCart;
+import com.cresset.asimjofaofficial.InvoiceActivity;
+import com.cresset.asimjofaofficial.MainActivity;
 import com.cresset.asimjofaofficial.R;
 import com.cresset.asimjofaofficial.models.CurrencyListModel;
 import com.cresset.asimjofaofficial.models.OrdersListModel;
@@ -28,6 +33,7 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
 
     public class MyViewHolder extends RecyclerView.ViewHolder  {
         public TextView orderNo,orderStatus,orderDate,orderTotal,orderCurrencyName;
+        public Button invoiceDetail;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -36,7 +42,16 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
             orderDate = (TextView) itemView.findViewById(R.id.order_date);
             orderTotal = (TextView) itemView.findViewById(R.id.order_total);
             orderCurrencyName = (TextView) itemView.findViewById(R.id.order_currency);
+            invoiceDetail = (Button) itemView.findViewById(R.id.invoice_detail);
             //overflow = (ImageView) view.findViewById(R.id.overflow);
+
+            invoiceDetail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, InvoiceActivity.class);
+                    mContext.startActivity(intent);
+                }
+            });
         }
     }
     public OrderHistoryAdapter(Context mContext, ArrayList<OrdersListModel> orderList) {

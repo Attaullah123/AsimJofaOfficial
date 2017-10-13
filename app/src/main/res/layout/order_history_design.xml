@@ -38,6 +38,17 @@
                 android:text="12345"
                 android:textSize="15dp"
                 />
+            <Button
+                android:id="@+id/invoice_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="detail"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:layout_marginLeft="110sp"
+                android:textColor="#fff"
+                android:background="#5b5656"
+                />
         </LinearLayout>
 
         <View

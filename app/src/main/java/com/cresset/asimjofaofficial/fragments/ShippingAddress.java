@@ -162,6 +162,7 @@ public class ShippingAddress extends android.support.v4.app.Fragment{
         sCountry.setAdapter(shippingCountrySpinnerAdapter);
         sCountry.setPrompt("Select Country");
 
+
         if (GlobalClass.shippingModel!= null){
             if (!GlobalClass.shippingModel.getCountryId().equals(null))
             {

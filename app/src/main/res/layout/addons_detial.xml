@@ -20,7 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginLeft="5dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="5dp"
             >
@@ -29,7 +28,7 @@
                 android:id="@+id/addon_checkbox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10sp"
+                android:layout_marginLeft="2sp"
                 android:button="@drawable/check_addons_custom"
                 android:layout_alignParentLeft="true" />
 
@@ -37,8 +36,10 @@
                 android:id="@+id/addons_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#000"
+                android:textColor="#858585"
                 android:layout_marginLeft="6sp"
+                android:textStyle="bold"
+                android:textSize="16sp"
                 android:text="select addoons"
                 android:layout_toRightOf="@id/addon_checkbox"
                  />

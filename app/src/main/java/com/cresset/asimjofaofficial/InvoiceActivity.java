@@ -2,13 +2,9 @@ package com.cresset.asimjofaofficial;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
@@ -17,15 +13,16 @@ import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 
-import com.cresset.asimjofaofficial.adapter.ContactAdapter;
+import com.cresset.asimjofaofficial.adapter.OrderInvoiceAdapter;
 import com.cresset.asimjofaofficial.adapter.PolicyAdapter;
 import com.cresset.asimjofaofficial.fragments.TermsAndConditions;
 
 
-public class PolicyActivity extends FragmentActivity {
+public class InvoiceActivity extends FragmentActivity {
+
     private String[] tabs;
     FragmentTabHost tabHost;
-    PolicyAdapter pagerAdapter;
+    OrderInvoiceAdapter pagerAdapter;
     ViewPager viewPager;
     private TabWidget tabWidget;
     private ImageView back;
@@ -35,7 +32,7 @@ public class PolicyActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(getWindow().FEATURE_NO_TITLE);
-        setContentView(R.layout.invoice_activity);
+        setContentView(R.layout.policy_activity);
 
         viewPager = (ViewPager) findViewById(R.id.pager);
         tabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
@@ -53,7 +50,7 @@ public class PolicyActivity extends FragmentActivity {
         initializeTabs();
         setupTabHost();
 
-        pagerAdapter = new PolicyAdapter(getSupportFragmentManager(), tabs);
+        pagerAdapter = new OrderInvoiceAdapter(getSupportFragmentManager(), tabs);
         viewPager.setAdapter(pagerAdapter);
 
 
@@ -136,7 +133,7 @@ public class PolicyActivity extends FragmentActivity {
     }
 
     private void initializeTabs() {
-        tabs = new String[]{"TERMS & CONDITIONS", "PRIVACY POLICY","SHIPPING POLICY","ORDERING & TRACKING","RETURN & EXCHANGE"};
+        tabs = new String[]{"BILLING", "SHIPPING","CART ITEMS"};
     }
 
     private void setupTabHost() {
@@ -146,6 +143,4 @@ public class PolicyActivity extends FragmentActivity {
             tabHost.addTab(tabHost.newTabSpec(String.format("%sTab", tabs[i].replace(" ", "")).toLowerCase()).setIndicator(tabs[i]), TermsAndConditions.class, null);
         }
     }
-
-
 }

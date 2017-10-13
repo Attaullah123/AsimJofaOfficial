@@ -3,7 +3,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="4dp"
+    android:padding="3dp"
     >
 
     <TextView
@@ -11,11 +11,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#000"
-        android:layout_marginRight="14dp"
-        android:layout_marginLeft="14dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginLeft="12dp"
         android:textSize="16dp"
         android:text="Size"
-        android:background="@drawable/spinner_item_divider"
+
         />
 
     <TextView
