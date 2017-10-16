@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -34,6 +35,7 @@ import com.cresset.asimjofaofficial.models.InvoiceBillingAddress;
 import com.cresset.asimjofaofficial.models.InvoiceCartItem;
 import com.cresset.asimjofaofficial.models.InvoiceModel;
 import com.cresset.asimjofaofficial.models.InvoiceOrderDetailModel;
+import com.cresset.asimjofaofficial.models.InvoiceShippingAddress;
 import com.cresset.asimjofaofficial.models.OrdersListModel;
 import com.cresset.asimjofaofficial.models.ProductListModel;
 import com.cresset.asimjofaofficial.models.ProductModel;
@@ -52,16 +54,32 @@ import java.util.Map;
 
 public class InvoiceActivity extends AppCompatActivity {
     private ImageView back;
+    private TextView orderNo, orderStatus, orderTotal,orderDate;
     private TextView billingName,billingEmail,billingAdress,billingPhone,billingCity, billingCountry,billingState;
     private TextView shippingName,shippingEmail,shippingAdress,shippingPhone,shippingCity,shippingCountry,shippingState;
     private ProgressBar progressBar;
     private RecyclerView recyclerView;
     private InvoiceAdapter invoiceAdapter;
+    private String orderId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.invoice_activity_new);
         back = (ImageView) findViewById(R.id.img_cross);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        //toolbar.setNavigationIcon(R.drawable.ic_toolbar);
+        toolbar.setTitle("");
+        toolbar.setSubtitle("");
+
+        //orderId = getIntent().getStringExtra("orderId");
+
+        orderNo = (TextView) findViewById(R.id.in_order_id);
+        orderStatus = (TextView) findViewById(R.id.in_order_status);
+        orderTotal = (TextView) findViewById(R.id.in_order_total);
+        orderDate = (TextView) findViewById(R.id.in_order_date);
 
         billingName = (TextView) findViewById(R.id.billing_name);
         billingEmail = (TextView) findViewById(R.id.billing_email);
@@ -104,7 +122,7 @@ public class InvoiceActivity extends AppCompatActivity {
         //creating json array list
         Map<String, String> params = new HashMap<String, String>();
         params.put("ProjectId", Config.PROJECTID);
-        params.put("OrderId","27356");
+        params.put("OrderId","27309");
 
         JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_GETORDER_BYID, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
@@ -119,14 +137,26 @@ public class InvoiceActivity extends AppCompatActivity {
                         //get billing address
                         InvoiceModel invoiceModel = gson.fromJson(response.toString(), new TypeToken<InvoiceModel>(){}.getType());
 
-                        //InvoiceOrderDetailModel invoiceModel = gson.fromJson(response.toString(), new TypeToken<InvoiceModel>(){}.getType());
 
                         final InvoiceOrderDetailModel invoiceOrderDetailModel = invoiceModel.getOrderDetail();
 
+                        String orderId=invoiceOrderDetailModel.getId();
+                        String orderStatus1 =invoiceOrderDetailModel.getOrderStatus();
+                        String orderDate1 =invoiceOrderDetailModel.getOrderDate();
+                        String orderTotal1 =invoiceOrderDetailModel.getOrderTotal();
+
+                        orderNo.setText(orderId);
+                        orderStatus.setText(orderStatus1);
+                        orderDate.setText(orderDate1);
+                        orderTotal.setText(orderTotal1);
+
+
                         final InvoiceBillingAddress invoiceBillingAddress = invoiceOrderDetailModel.getBillingAddress();
+                        final InvoiceShippingAddress invoiceShippingAddress = invoiceOrderDetailModel.getShippingAddress();
 
                         ArrayList<InvoiceCartItem> invoiceCartItems = new ArrayList<InvoiceCartItem>(invoiceOrderDetailModel.getOrderItems());
 
+                        //invoice billing address
                         String userAddress =invoiceBillingAddress.getAddress1();
                         String userCity =invoiceBillingAddress.getCity();
                         String userName =invoiceBillingAddress.getFirstName();
@@ -144,23 +174,24 @@ public class InvoiceActivity extends AppCompatActivity {
                         billingCountry.setText(userCountry);
                         billingState.setText(userState);
 
+                        //invoice shipping address
 
-//                        String userAddress =invoiceBillingAddress.getAddress1();
-//                        String userCity =invoiceBillingAddress.getCity();
-//                        String userName =invoiceBillingAddress.getFirstName();
-//                        String userEmail =invoiceBillingAddress.getEmail();
-//                        String userPhone=invoiceBillingAddress.getPhoneNumber();
-//                        String userCountry=invoiceBillingAddress.getCountry();
-//                        String userState=invoiceBillingAddress.getStateProvince();
-//
-//
-//                        billingName.setText(userName);
-//                        billingEmail.setText(userEmail);
-//                        billingAdress.setText(userAddress);
-//                        billingPhone.setText(userPhone);
-//                        billingCity.setText(userCity);
-//                        billingCountry.setText(userCountry);
-//                        billingState.setText(userState);
+                        String userName1 =invoiceShippingAddress.getFirstName();
+                        String userEmail1 =invoiceShippingAddress.getEmail();
+                        String userAddress1 =invoiceShippingAddress.getAddress1();
+                        String userCity1 =invoiceShippingAddress.getCity();
+                        String userPhone1 =invoiceShippingAddress.getPhoneNumber();
+                        String userCountry1 =invoiceShippingAddress.getCountry();
+                        String userState1 =invoiceShippingAddress.getStateProvince();
+
+
+                        shippingName.setText(userName1);
+                        shippingEmail.setText(userEmail1);
+                        shippingAdress.setText(userAddress1);
+                        shippingPhone.setText(userPhone1);
+                        shippingCity.setText(userCity1);
+                        shippingCountry.setText(userCountry1);
+                        shippingState.setText(userState1);
 
                         invoiceAdapter = new InvoiceAdapter(getApplicationContext(), invoiceCartItems);
                         recyclerView.setAdapter(invoiceAdapter);

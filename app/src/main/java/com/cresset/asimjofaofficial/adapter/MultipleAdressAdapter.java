@@ -82,14 +82,6 @@ public class MultipleAdressAdapter  extends RecyclerView.Adapter<MultipleAdressA
                 }
             });
 
-//            delete.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//
-//                }
-//            });
-
-
         }
 
     }

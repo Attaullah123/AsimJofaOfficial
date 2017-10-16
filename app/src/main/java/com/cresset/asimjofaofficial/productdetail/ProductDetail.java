@@ -490,30 +490,9 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         fullDiscription.setText(Html.fromHtml(fulldiscrip));
         proName.setText(btmProNames);
         sku.setText(btmSku);
-        //set adapter
-        // get the listview
-        //expListView = (ExpandableListView) view.findViewById(R.id.lvExp);
-
-        // preparing list data
-        //prepareListData();
 
         listAdapter = new BottomItemAdapter(getApplicationContext(), listDataHeader, listDataChild);
 
-        // setting list adapter
-        //e/xpListView.setAdapter(listAdapter);
-
-//        expListView.setGroupIndicator(null);
-//
-//        expListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
-//
-//            @Override
-//            public void onGroupExpand(int groupPosition) {
-//                if (lastExpandedPosition != -1 && groupPosition != lastExpandedPosition) {
-//                    expListView.collapseGroup(lastExpandedPosition);
-//                }
-//                lastExpandedPosition = groupPosition;
-//            }
-//        });
 
         TextView sizeGuide = (TextView)view.findViewById( R.id.btm_size_guide);
 
@@ -536,28 +515,6 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         //Add onPreDrawListener
     }
 
-//    private void prepareListData() {
-//        listDataHeader = new ArrayList<String>();
-//        listDataChild = new HashMap<String, List<String>>();
-//        // Adding child data
-//        listDataHeader.add("In-Store availability");
-//        listDataHeader.add("Composition and care");
-//        // Adding child data
-//
-//        List<String> Privacy = new ArrayList<String>();
-//        Privacy.add("Product is available in-store and autorize retailer.");
-//
-//        List<String> Password = new ArrayList<String>();
-//        Password.add("Pure chiffon thread  (depend on parent category)\n" +
-//                "     Care:\n" +
-//                "     Hand washes recommended. \n" +
-//                "     Do not bleach.\n" +
-//                "     Iron with care.\n" +
-//                "     Do not Tumble dry.\n");
-//
-//        listDataChild.put(listDataHeader.get(0), Privacy); // Header, Child data
-//        listDataChild.put(listDataHeader.get(1), Password);
-//    }
 
 
         public void comCare(View view){

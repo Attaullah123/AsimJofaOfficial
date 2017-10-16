@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -41,6 +42,7 @@ public class MultipleAdressBook extends AppCompatActivity {
     private RecyclerView recyclerView;
     private MultipleAdressAdapter multipleAdressAdapter;
     private ProgressBar progressBar;
+    private ImageView back;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +54,7 @@ public class MultipleAdressBook extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setSubtitle("");
 
+
         progressBar=(ProgressBar) findViewById(R.id.progressBar);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -60,6 +63,14 @@ public class MultipleAdressBook extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(multipleAdressAdapter);
+
+        back = (ImageView) findViewById(R.id.img_cross);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         getUserAddress();
 

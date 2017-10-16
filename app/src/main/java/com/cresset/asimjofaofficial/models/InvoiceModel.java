@@ -6,6 +6,8 @@ import java.util.List;
 public class InvoiceModel {
     public String Message;
     public String Status;
+
+
     public InvoiceOrderDetailModel OrderDetail;
 
 
@@ -32,4 +34,6 @@ public class InvoiceModel {
     public void setOrderDetail(InvoiceOrderDetailModel orderDetail) {
         OrderDetail = orderDetail;
     }
+
+
 }

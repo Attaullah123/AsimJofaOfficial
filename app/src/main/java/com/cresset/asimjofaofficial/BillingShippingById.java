@@ -5,10 +5,12 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,10 +54,17 @@ public class BillingShippingById extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private BillingShippingModel userDetailModel;
     private String addressId;
+    private ImageView back;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.billing_shipping_byid);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_2);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar.setTitle("");
+        toolbar.setSubtitle("");
 
         sfullname = (EditText) findViewById(R.id.shipping_input_full_name);
         shippingId = (TextView) findViewById(R.id.shipping_input_id);
@@ -72,6 +81,14 @@ public class BillingShippingById extends AppCompatActivity {
         sDay = (EditText) findViewById(R.id.shipping_birthday_day);
         sMonth = (EditText) findViewById(R.id.shipping_birthday_month);
         sYear = (EditText) findViewById(R.id.shipping_birthday_year);
+
+        back = (ImageView) findViewById(R.id.img_cross);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
@@ -91,17 +108,7 @@ public class BillingShippingById extends AppCompatActivity {
                 String phone = sPhoneNo.getText().toString().trim();
                 String city = sCity.getText().toString().trim();
                 String postCode = sPostalCode.getText().toString().trim();
-                //String city = bCity.getText().toString().trim();
-//                String day = sDay.getText().toString().trim();
-//                String month = sMonth.getText().toString().trim();
-//                String year = sYear.getText().toString().trim();
 
-//                Log.d("fname ", fname);
-//                Log.d("laddress ", laddress);
-//                Log.d("email ", email);
-//                Log.d("phone ", phone);
-//                Log.d("city ", city);
-//                Log.d("postCode ", postCode);
 
                 if (!fname.isEmpty() && !laddress.isEmpty() && !email.isEmpty() && !phone.isEmpty() && !city.isEmpty()&& !postCode.isEmpty()
                     //&& !day.isEmpty() && !month.isEmpty() && !year.isEmpty()

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.cresset.asimjofaofficial.BillingShippingById;
 import com.cresset.asimjofaofficial.GetCart;
 import com.cresset.asimjofaofficial.InvoiceActivity;
 import com.cresset.asimjofaofficial.MainActivity;
@@ -33,7 +34,7 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
 
     public class MyViewHolder extends RecyclerView.ViewHolder  {
         public TextView orderNo,orderStatus,orderDate,orderTotal,orderCurrencyName;
-        public Button invoiceDetail;
+        public TextView invoiceDetail;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -42,14 +43,20 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
             orderDate = (TextView) itemView.findViewById(R.id.order_date);
             orderTotal = (TextView) itemView.findViewById(R.id.order_total);
             orderCurrencyName = (TextView) itemView.findViewById(R.id.order_currency);
-            invoiceDetail = (Button) itemView.findViewById(R.id.invoice_detail);
+            invoiceDetail = (TextView) itemView.findViewById(R.id.invoice_detail);
             //overflow = (ImageView) view.findViewById(R.id.overflow);
 
             invoiceDetail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(mContext, InvoiceActivity.class);
-                    mContext.startActivity(intent);
+                    int position = getAdapterPosition();
+
+                    Context context = v.getContext();
+
+                    Intent intent = new Intent(v.getContext(), InvoiceActivity.class);
+
+                    intent.putExtra("orderId", ordersListModel.get(position).getId());
+                    context.startActivity(intent);
                 }
             });
         }

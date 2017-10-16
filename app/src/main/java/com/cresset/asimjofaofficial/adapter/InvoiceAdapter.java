@@ -43,9 +43,6 @@ import java.util.Locale;
 
 import timber.log.Timber;
 
-/**
- * Created by attaullahkhizar on 10/14/17.
- */
 
 public class InvoiceAdapter  extends RecyclerView.Adapter<InvoiceAdapter.MyViewHolder>  {
 
@@ -96,7 +93,7 @@ public class InvoiceAdapter  extends RecyclerView.Adapter<InvoiceAdapter.MyViewH
         //holder.proEmail.setText(cartItems.getEmail());
         holder.proPrice.setText(cartItems.getProductPrice());
         holder.proQty.setText(cartItems.getQuantity());
-        holder.proSize.setText(cartItems.getAttributeDescription());
+        holder.proSize.setText(Html.fromHtml(cartItems.getAttributeDescription()));
         //holder.proTotal.setText(cartItems.get());
     }
 

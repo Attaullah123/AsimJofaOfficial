@@ -7,8 +7,11 @@ import java.util.List;
  */
 
 public class InvoiceOrderDetailModel {
-    public String OrderTotal;
     public String Id;
+    public String OrderStatus;
+    public String OrderTotal;
+    public String OrderDate;
+
     public InvoiceBillingAddress BillingAddress;
     public InvoiceShippingAddress ShippingAddress;
     private List<InvoiceCartItem> OrderItems;
@@ -51,5 +54,21 @@ public class InvoiceOrderDetailModel {
 
     public void setOrderItems(List<InvoiceCartItem> orderItems) {
         OrderItems = orderItems;
+    }
+
+    public String getOrderStatus() {
+        return OrderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        OrderStatus = orderStatus;
+    }
+
+    public String getOrderDate() {
+        return OrderDate;
+    }
+
+    public void setOrderDate(String orderDate) {
+        OrderDate = orderDate;
     }
 }

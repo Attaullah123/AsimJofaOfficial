@@ -1,12 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingTop="10dp"
     >
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_2"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleTextColor="@android:color/white"
+        android:background="@color/toolbar_color">
+
+        <ImageView
+            android:contentDescription="@string/logo"
+            android:id="@+id/img_cross"
+            android:layout_height="20dp"
+            android:layout_width="20dp"
+            android:src="@drawable/ic_close2"/>
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="Address"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            />
+    </android.support.v7.widget.Toolbar>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.2dp"
+        android:layout_below="@+id/toolbar_2"
+        android:background="#393838"/>
 
     <LinearLayout
         android:id="@+id/cart_empty"
@@ -14,6 +45,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
+
         android:visibility="gone"
         tools:visibility="gone">
 
@@ -51,6 +83,7 @@
         android:id="@+id/sc_v"
         android:fitsSystemWindows="true"
         android:layout_marginBottom="30dp"
+        android:layout_below="@id/toolbar_2"
         android:layout_above="@+id/footer"
 
         >
@@ -58,6 +91,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:orientation="vertical">
 
             <!-- FIRST Name Label -->
