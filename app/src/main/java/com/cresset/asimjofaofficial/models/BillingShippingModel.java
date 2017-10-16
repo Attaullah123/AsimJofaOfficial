@@ -1,5 +1,7 @@
 package com.cresset.asimjofaofficial.models;
 
+import java.util.List;
+
 /**
  * Created by attaullahkhizar on 9/21/17.
  */
@@ -8,7 +10,7 @@ public class BillingShippingModel {
 
     private String Message;
     private String Status;
-    private CustomerAddressModel CustomerAddress;
+    private List<CustomerAddressModel> CustomerAddress;
 
     public String getMessage() {
         return Message;
@@ -26,11 +28,11 @@ public class BillingShippingModel {
         Status = status;
     }
 
-    public CustomerAddressModel getCustomerAddress() {
+    public List<CustomerAddressModel> getCustomerAddress() {
         return CustomerAddress;
     }
 
-    public void setCustomerAddress(CustomerAddressModel customerAddress) {
+    public void setCustomerAddress(List<CustomerAddressModel> customerAddress) {
         CustomerAddress = customerAddress;
     }
 }

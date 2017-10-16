@@ -156,37 +156,37 @@ public class BillingAddressDetail extends Fragment {
                         //Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
                        // progressDialog.dismiss();
 
-                        Gson gson = new Gson();
-                        BillingShippingModel userDetailModel = gson.fromJson(response.toString(), new TypeToken<BillingShippingModel>(){}.getType());
-
-                        final CustomerAddressModel customerDetailModel = userDetailModel.getCustomerAddress();
-                        String userAddress =customerDetailModel.getAddress1();
-                        //String userCity =customerDetailModel.getEmail();
-                        String userName =customerDetailModel.getFirstName();
-                        String userEmail =customerDetailModel.getEmail();
-                        String userPhone=customerDetailModel.getPhoneNumber();
-                        String userCity =customerDetailModel.getCity();
-                        String userPostalCode = customerDetailModel.getZipPostalCode();
-
-                        bfullname.setText(userName);
-                        bEmail.setText(userEmail);
-                        bAdress.setText(userAddress);
-                        bPhoneNo.setText(userPhone);
-                        bCity.setText(userCity);
-                        bPostalCode.setText(userPostalCode);
-
-                        BillingModel model = new BillingModel();
-                        model.setFullName(customerDetailModel.getFirstName());
-                        model.setEmail(customerDetailModel.getEmail());
-                        model.setCity(customerDetailModel.getCity());
-                        model.setAddress1(customerDetailModel.getAddress1());
-                        model.setZipPostalCode(customerDetailModel.getZipPostalCode());
-                        model.setPhoneNumber(customerDetailModel.getPhoneNumber());
-                        model.setCountryId(customerDetailModel.getCountryId());
-                        model.setStateProvinceId(customerDetailModel.getStateProvinceId());
-                        billingId.setText(customerDetailModel.getId());
-
-                        GlobalClass.billingModel = model;
+//                        Gson gson = new Gson();
+//                        BillingShippingModel userDetailModel = gson.fromJson(response.toString(), new TypeToken<BillingShippingModel>(){}.getType());
+//
+//                        final CustomerAddressModel customerDetailModel = userDetailModel.getCustomerAddress();
+//                        String userAddress =customerDetailModel.getAddress1();
+//                        //String userCity =customerDetailModel.getEmail();
+//                        String userName =customerDetailModel.getFirstName();
+//                        String userEmail =customerDetailModel.getEmail();
+//                        String userPhone=customerDetailModel.getPhoneNumber();
+//                        String userCity =customerDetailModel.getCity();
+//                        String userPostalCode = customerDetailModel.getZipPostalCode();
+//
+//                        bfullname.setText(userName);
+//                        bEmail.setText(userEmail);
+//                        bAdress.setText(userAddress);
+//                        bPhoneNo.setText(userPhone);
+//                        bCity.setText(userCity);
+//                        bPostalCode.setText(userPostalCode);
+//
+//                        BillingModel model = new BillingModel();
+//                        model.setFullName(customerDetailModel.getFirstName());
+//                        model.setEmail(customerDetailModel.getEmail());
+//                        model.setCity(customerDetailModel.getCity());
+//                        model.setAddress1(customerDetailModel.getAddress1());
+//                        model.setZipPostalCode(customerDetailModel.getZipPostalCode());
+//                        model.setPhoneNumber(customerDetailModel.getPhoneNumber());
+//                        model.setCountryId(customerDetailModel.getCountryId());
+//                        model.setStateProvinceId(customerDetailModel.getStateProvinceId());
+//                        billingId.setText(customerDetailModel.getId());
+//
+//                        GlobalClass.billingModel = model;
 
 
 

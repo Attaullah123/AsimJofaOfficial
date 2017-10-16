@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -27,6 +29,7 @@ import com.cresset.asimjofaofficial.adapter.BillingCountrySpinnerAdapter;
 import com.cresset.asimjofaofficial.adapter.BillingStateSpinnerAdapter;
 import com.cresset.asimjofaofficial.adapter.ShippingCountrySpinnerAdapter;
 import com.cresset.asimjofaofficial.adapter.ShippingStateSpinnerAdapter;
+import com.cresset.asimjofaofficial.models.BillingModel;
 import com.cresset.asimjofaofficial.models.CountryList;
 import com.cresset.asimjofaofficial.models.CountryModel;
 import com.cresset.asimjofaofficial.models.ShippingModel;
@@ -56,10 +59,11 @@ public class ShippingAddress extends android.support.v4.app.Fragment{
     private ProgressDialog progressDialog;
     private ShippingCountrySpinnerAdapter shippingCountrySpinnerAdapter;
     private ShippingStateSpinnerAdapter shippingStateSpinnerAdapter;
+    private CheckBox isBillingAddressSame;
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.shipping_adress, container, false);
         //edittext view
         sfullname = (EditText) view.findViewById(R.id.shipping_input_full_name);
@@ -77,12 +81,31 @@ public class ShippingAddress extends android.support.v4.app.Fragment{
         sMonth = (EditText) view.findViewById(R.id.shipping_birthday_month);
         sYear = (EditText) view.findViewById(R.id.shipping_birthday_year);
 
+        isBillingAddressSame = (CheckBox) view.findViewById(R.id.same_billing);
+
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setCancelable(false);
         progressDialog.setTitle("please wait...");
         CountryList();
 
         loadData();
+
+        isBillingAddressSame.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (buttonView.isChecked()){
+                    //countryListItem.isAllowsBilling();
+                    if (countryListItem.isAllowsBilling()){
+                        Toast.makeText(getContext(), "you select same billing address", Toast.LENGTH_LONG).show();
+                        //countryListItem.setSelected(true);
+                    }else {
+                        Toast.makeText(getContext(), "you Un-select same billing address", Toast.LENGTH_LONG).show();
+                        //countryListItem.setSelected(false);
+                    }
+
+                }
+            }
+        });
         
         btnShippingAddress.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,10 +132,17 @@ public class ShippingAddress extends android.support.v4.app.Fragment{
                 if (!fname.isEmpty() && !laddress.isEmpty() && !email.isEmpty() && !phone.isEmpty() && !city.isEmpty()&& !postCode.isEmpty()
                         && !day.isEmpty() && !month.isEmpty() && !year.isEmpty()){
 
+
                     shippingAddress();
                     Toast.makeText(getContext(), "Info save successfully! Also Add Billing Address", Toast.LENGTH_LONG).show();
 
-                    ((ShippingBillingAddress)getActivity()).navigateFragment(1);
+                    if(isBillingAddressSame.isChecked()){
+                        ShippingBillingSame();
+                        getActivity().finish();
+                    }
+                    else{
+                        ((ShippingBillingAddress)getActivity()).navigateFragment(1);
+                    }
 
 
                 }else {
@@ -304,6 +334,29 @@ public class ShippingAddress extends android.support.v4.app.Fragment{
         shippingModel.setDOB(birthday);
         GlobalClass.shippingModel = shippingModel;
     }
+
+    public void ShippingBillingSame(){
+        BillingModel model = new BillingModel();
+        model.setFullName(sfullname.getText().toString());
+        model.setEmail(sEmail.getText().toString());
+
+        model.setCountryId(countryListItem.getId().toString());
+        model.setStateProvinceId(String.valueOf(stateListItem.getId()));
+
+        model.setCity(sCity.getText().toString());
+        model.setAddress1(sAdress.getText().toString());
+        model.setZipPostalCode(sPostalCode.getText().toString());
+        model.setPhoneNumber(sPhoneNo.getText().toString());
+
+        model.setBirthdayDay(sDay.getText().toString());
+        model.setBirthdayMonth(sMonth.getText().toString());
+        model.setBirthdayYear(sYear.getText().toString());
+
+        String birthday = sYear.getText().toString() + "-" + sMonth.getText().toString() + "-" + sDay.getText().toString();
+        model.setDOB(birthday);
+        GlobalClass.billingModel = model;
+    }
+
 
     public void show(String message){
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();

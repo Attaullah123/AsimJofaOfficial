@@ -75,6 +75,8 @@
         <activity android:name=".userinfo.activity.ChangePassword"/>
         <activity android:name=".CurrencySelector"/>
         <activity android:name=".InvoiceActivity"/>
+        <activity android:name=".userinfo.activity.MultipleAdressBook"/>
+        <activity android:name=".BillingShippingById"/>
 
         <meta-data
             android:name="com.google.android.gms.version"

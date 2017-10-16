@@ -38,7 +38,11 @@ public class Config  {
     public static final String URL_BILLING_SHIPPING_GET= "http://preview.cressettech.net/mobileapi/Service1.svc/GetShippingAndBillingAddress";
     public static final String URL_BANK_TRANSCTION= "http://preview.cressettech.net/mobileapi/Service1.svc/GetResourceValue";
     public static final String URL_UPDATE_BILLING_DETAIL= "http://preview.cressettech.net/mobileapi/Service1.svc/UpdateBillingAddress";
-    public static final String URL_UPDATE_SHIPPING_DETAIL= "http://preview.cressettech.net/mobileapi/Service1.svc/UpdateShippingAddress";
+    public static final String URL_UPDATE_SHIPPING_DETAIL= "http://preview.cressettech.net/mobileapi/Service1.svc/UpdateBillingOrShippingAddress";
 
     public static final String URL_APPOINTMENT_FORM= "http://preview.cressettech.net/mobileapi/Service1.svc/InsertAppointment";
+    public static final String URL_MULTI_ADDRESS= "http://preview.cressettech.net/mobileapi/Service1.svc/GetCustomerAddress";
+
+    public static final String URL_BILLING_SHIPPING_BYID= "http://preview.cressettech.net/mobileapi/Service1.svc/GetAddressById";
+    public static final String URL_GETORDER_BYID= "http://preview.cressettech.net/mobileapi/Service1.svc/GetOrderById";
 }

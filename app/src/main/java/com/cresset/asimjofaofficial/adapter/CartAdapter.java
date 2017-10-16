@@ -134,6 +134,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 
         //holder.proPrice.setText(String.format("%.0f",productPrice));
         holder.proPrice.setText(NumberFormat.getNumberInstance(Locale.US).format(productPrice));
+
         Glide.with(mContext).load(cartListModel.getImageLink()).into(holder.thumbnailImage);
     }
 

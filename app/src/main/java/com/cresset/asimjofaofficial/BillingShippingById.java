@@ -1,14 +1,12 @@
-package com.cresset.asimjofaofficial.fragments;
+package com.cresset.asimjofaofficial;
 
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -21,21 +19,17 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.cresset.asimjofaofficial.R;
-import com.cresset.asimjofaofficial.adapter.ShippingCountrySpinnerAdapter;
-import com.cresset.asimjofaofficial.adapter.ShippingStateSpinnerAdapter;
+import com.cresset.asimjofaofficial.fragments.BillingAddress;
 import com.cresset.asimjofaofficial.models.BillingShippingDetailModel;
 import com.cresset.asimjofaofficial.models.BillingShippingModel;
 import com.cresset.asimjofaofficial.models.CountryList;
-import com.cresset.asimjofaofficial.models.CountryModel;
 import com.cresset.asimjofaofficial.models.CustomerAddressModel;
+import com.cresset.asimjofaofficial.models.ProductListModel;
 import com.cresset.asimjofaofficial.models.ShippingModel;
 import com.cresset.asimjofaofficial.models.StateList;
-import com.cresset.asimjofaofficial.models.StateModel;
 import com.cresset.asimjofaofficial.models.UpdateBillingAndShippingModel;
 import com.cresset.asimjofaofficial.utilities.Config;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
-import com.cresset.asimjofaofficial.volley.AppController;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -43,11 +37,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
-public class ShippingAddressDetail extends Fragment {
+public class BillingShippingById extends AppCompatActivity {
 
     private EditText sfullname,sEmail,sAdress,sPhoneNo,sCity,sPostalCode,sDay,sMonth,sYear;
     private Spinner sCountry,sProvince;
@@ -58,37 +51,34 @@ public class ShippingAddressDetail extends Fragment {
     private TextView shippingId;
     private ProgressDialog progressDialog;
     private BillingShippingModel userDetailModel;
-    View view;
-    //private ShippingCountrySpinnerAdapter shippingCountrySpinnerAdapter;
-   // private ShippingStateSpinnerAdapter shippingStateSpinnerAdapter;
-    private View emptyCart;
-
-    @Nullable
+    private String addressId;
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.shipping_address_detail, container, false);
-        //edittext view
-        sfullname = (EditText) view.findViewById(R.id.shipping_input_full_name);
-        shippingId = (TextView) view.findViewById(R.id.shipping_input_id);
-        sEmail = (EditText) view.findViewById(R.id.shipping_input_email);
-        sAdress = (EditText) view.findViewById(R.id.shipping_input_Address);
-        sPhoneNo = (EditText) view.findViewById(R.id.shipping_input_phone);
-        sCity = (EditText) view.findViewById(R.id.shipping_input_city);
-        sPostalCode = (EditText) view.findViewById(R.id.shipping_input_zipcode);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.billing_shipping_byid);
+
+        sfullname = (EditText) findViewById(R.id.shipping_input_full_name);
+        shippingId = (TextView) findViewById(R.id.shipping_input_id);
+        sEmail = (EditText) findViewById(R.id.shipping_input_email);
+        sAdress = (EditText) findViewById(R.id.shipping_input_Address);
+        sPhoneNo = (EditText) findViewById(R.id.shipping_input_phone);
+        sCity = (EditText) findViewById(R.id.shipping_input_city);
+        sPostalCode = (EditText) findViewById(R.id.shipping_input_zipcode);
         //spinner view
-        sCountry = (Spinner) view.findViewById(R.id.shipping_size_country_select);
-        sProvince = (Spinner) view.findViewById(R.id.shipping_spinner_select_province);
-        btnShippingAddress = (Button)view.findViewById(R.id.shipping_save);
+        sCountry = (Spinner) findViewById(R.id.shipping_size_country_select);
+        sProvince = (Spinner) findViewById(R.id.shipping_spinner_select_province);
+        btnShippingAddress = (Button)findViewById(R.id.shipping_save);
 
-        sDay = (EditText) view.findViewById(R.id.shipping_birthday_day);
-        sMonth = (EditText) view.findViewById(R.id.shipping_birthday_month);
-        sYear = (EditText) view.findViewById(R.id.shipping_birthday_year);
+        sDay = (EditText) findViewById(R.id.shipping_birthday_day);
+        sMonth = (EditText) findViewById(R.id.shipping_birthday_month);
+        sYear = (EditText) findViewById(R.id.shipping_birthday_year);
 
-        progressDialog = new ProgressDialog(getContext());
+        progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
         progressDialog.setTitle("please wait...");
         //CountryList();
 
+        addressId = getIntent().getStringExtra("addressId");
         getShippingDetail();
 
         btnShippingAddress.setOnClickListener(new View.OnClickListener() {
@@ -138,13 +128,13 @@ public class ShippingAddressDetail extends Fragment {
 
 
                 }else {
-                    Toast.makeText(getContext(), "Please enter the required fields!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Please enter the required fields!", Toast.LENGTH_LONG).show();
                 }
 
 
             }
         });
-        return view;
+
     }
 
     public void getShippingDetail() {
@@ -154,9 +144,9 @@ public class ShippingAddressDetail extends Fragment {
         Map<String, String> params = new HashMap<String, String>();
         params.put("ProjectId", Config.PROJECTID);
         params.put("CustomerId", GlobalClass.userData.getUserID());
-        params.put("IsBilling", "false");
+        params.put("AddressId", addressId);
 
-        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_BILLING_SHIPPING_GET, new JSONObject(params),
+        JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_BILLING_SHIPPING_BYID, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -166,55 +156,53 @@ public class ShippingAddressDetail extends Fragment {
                         //Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
 
-//                        Gson gson = new Gson();
-//                        userDetailModel = gson.fromJson(response.toString(), new TypeToken<BillingShippingModel>(){}.getType());
-//
-//
-//
-//                        final CustomerAddressModel customerDetailModel = userDetailModel.getCustomerAddress();
-//
-//
-//                        String userAddress =customerDetailModel.getAddress1();
-//                        String userCity =customerDetailModel.getCity();
-//                        String userName =customerDetailModel.getFirstName();
-//                        String userEmail =customerDetailModel.getEmail();
-//                        String userPhone=customerDetailModel.getPhoneNumber();
-//                        String postCode=customerDetailModel.getZipPostalCode();
-//
-//
-//                        sfullname.setText(userName);
-//                        sEmail.setText(userEmail);
-//                        sAdress.setText(userAddress);
-//                        sPhoneNo.setText(userPhone);
-//                        sCity.setText(userCity);
-//                        sPostalCode.setText(postCode);
-//
-//                        ShippingModel model = new ShippingModel();
-//                        model.setFullName(customerDetailModel.getFirstName());
-//                        model.setEmail(customerDetailModel.getEmail());
-//                        model.setCity(customerDetailModel.getCity());
-//                        model.setAddress1(customerDetailModel.getAddress1());
-//                        model.setZipPostalCode(customerDetailModel.getZipPostalCode());
-//                        model.setPhoneNumber(customerDetailModel.getPhoneNumber());
-//                        model.setCountryId(customerDetailModel.getCountryId());
-//                        model.setStateProvinceId(customerDetailModel.getStateProvinceId());
-//                        shippingId.setText(customerDetailModel.getId());
-//
-//                        GlobalClass.shippingModel = model;
+                        Gson gson = new Gson();
+                        userDetailModel = gson.fromJson(response.toString(), new TypeToken<BillingShippingModel>(){}.getType());
+
+                        //final CustomerAddressModel customerDetailModel = userDetailModel.getCustomerAddress();
+                        ArrayList<CustomerAddressModel> customerDetailModel = new ArrayList<CustomerAddressModel>(userDetailModel.getCustomerAddress());
+
+                        String userAddress =customerDetailModel.get(0).getAddress1();
+                        String userCity =customerDetailModel.get(0).getCity();
+                        String userName =customerDetailModel.get(0).getFirstName();
+                        String userEmail =customerDetailModel.get(0).getEmail();
+                        String userPhone=customerDetailModel.get(0).getPhoneNumber();
+                        String postCode=customerDetailModel.get(0).getZipPostalCode();
+
+
+                        sfullname.setText(userName);
+                        sEmail.setText(userEmail);
+                        sAdress.setText(userAddress);
+                        sPhoneNo.setText(userPhone);
+                        sCity.setText(userCity);
+                        sPostalCode.setText(postCode);
+
+                        ShippingModel model = new ShippingModel();
+                        model.setFullName(customerDetailModel.get(0).getFirstName());
+                        model.setEmail(customerDetailModel.get(0).getEmail());
+                        model.setCity(customerDetailModel.get(0).getCity());
+                        model.setAddress1(customerDetailModel.get(0).getAddress1());
+                        model.setZipPostalCode(customerDetailModel.get(0).getZipPostalCode());
+                        model.setPhoneNumber(customerDetailModel.get(0).getPhoneNumber());
+                        model.setCountryId(customerDetailModel.get(0).getCountryId());
+                        model.setStateProvinceId(customerDetailModel.get(0).getStateProvinceId());
+                        shippingId.setText(customerDetailModel.get(0).getId());
+
+                        GlobalClass.shippingModel = model;
 
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
                 Log.d("Error", error.toString());
-                 progressDialog.dismiss();
+                progressDialog.dismiss();
                 //progressBar.setVisibility(View.GONE);
                 //progressDialog.dismiss();
             }
         });
 
-        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         requestQueue.add(objectRequest);
 
     }
@@ -227,6 +215,7 @@ public class ShippingAddressDetail extends Fragment {
         params.put("ProjectId", Config.PROJECTID);
 
         UpdateBillingAndShippingModel model = new UpdateBillingAndShippingModel();
+
         model.setProjectID(Config.PROJECTID);
         model.setShippingAddress(shippingAddress);
 
@@ -257,24 +246,23 @@ public class ShippingAddressDetail extends Fragment {
                         model.setStateProvinceId(GlobalClass.shippingModel.getStateProvinceId());
 
                         GlobalClass.shippingModel = model;
-                        Toast.makeText(getContext(), "Info save successfully! Also edit Billing Address", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Info save successfully! Also edit Billing Address", Toast.LENGTH_LONG).show();
 
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                 Toast.makeText(getContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
-                 Log.d("Error", error.toString());
-                 progressDialog.dismiss();
+                Toast.makeText(getApplicationContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
+                Log.d("Error", error.toString());
+                progressDialog.dismiss();
                 //progressBar.setVisibility(View.GONE);
                 //progressDialog.dismiss();
             }
         });
 
-        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         requestQueue.add(objectRequest);
 
     }
-
 
 }

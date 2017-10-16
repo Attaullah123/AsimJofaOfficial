@@ -22,6 +22,7 @@ import com.cresset.asimjofaofficial.models.CustomerDetailResponse;
 import com.cresset.asimjofaofficial.models.UserModel;
 import com.cresset.asimjofaofficial.userinfo.activity.AddressBookActivity;
 import com.cresset.asimjofaofficial.userinfo.activity.ChangePassword;
+import com.cresset.asimjofaofficial.userinfo.activity.MultipleAdressBook;
 import com.cresset.asimjofaofficial.userinfo.activity.OrderHistory;
 import com.cresset.asimjofaofficial.userinfo.activity.UserInfoActivity;
 import com.cresset.asimjofaofficial.utilities.Config;
@@ -90,7 +91,7 @@ public class MyAccount extends AppCompatActivity {
         lyAddressBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), AddressBookActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MultipleAdressBook.class);
                 startActivity(intent);
             }
         });

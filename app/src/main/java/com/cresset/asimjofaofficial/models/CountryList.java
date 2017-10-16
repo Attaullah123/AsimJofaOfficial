@@ -12,6 +12,7 @@ public class CountryList {
     public int DisplayOrder;
     public boolean AllowsBilling;
     public boolean AllowsShipping;
+    boolean selected = false;
 
     public String getId() {
         return Id;
@@ -51,5 +52,13 @@ public class CountryList {
 
     public void setAllowsShipping(boolean allowsShipping) {
         AllowsShipping = allowsShipping;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 }
