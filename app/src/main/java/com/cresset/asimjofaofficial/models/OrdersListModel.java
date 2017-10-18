@@ -5,18 +5,18 @@ package com.cresset.asimjofaofficial.models;
  */
 
 public class OrdersListModel {
-    public int Id;
+    public String Id;
     public String OrderStatus;
     public String PaymentStatus;
     public String ShippingStatus;
     public String OrderTotal;
     public String OrderDate;
 
-    public int getId() {
+    public String getId() {
         return Id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.Id = id;
     }
 

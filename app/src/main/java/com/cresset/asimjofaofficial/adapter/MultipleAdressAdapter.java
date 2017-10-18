@@ -103,23 +103,24 @@ public class MultipleAdressAdapter  extends RecyclerView.Adapter<MultipleAdressA
          MultpleAddressList  multipleAddress = multpleAddressLists.get(position);
 
         holder.userId.setText(multipleAddress.getId());
+        holder.headingName.setText(multipleAddress.getFirstName());
 
-        holder.userName.setText("Full Name:");
+        //holder.userName.setText("Name:");
         holder.userName1.setText(multipleAddress.getFirstName());
 
-        holder.userEmail.setText("Email:");
+        //holder.userEmail.setText("Email:");
         holder.userEmail1.setText(multipleAddress.getEmail());
 
-        holder.userAddress.setText("Address:");
+        //holder.userAddress.setText("Address:");
         holder.userAddress1.setText(multipleAddress.getAddress1());
 
-        holder.userPhone.setText("Phone:");
+        //holder.userPhone.setText("Phone:");
         holder.userPhone1.setText(multipleAddress.getPhoneNumber());
 
-        holder.userCountry.setText("Country:");
+        //holder.userCountry.setText("Country:");
         holder.userCountry1.setText(multipleAddress.getCountry());
 
-        holder.userState.setText("State:");
+        //holder.userState.setText("State:");
         holder.userState1.setText(multipleAddress.getStateProvince());
     }
 

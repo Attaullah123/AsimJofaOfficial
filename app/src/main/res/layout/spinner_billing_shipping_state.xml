@@ -17,4 +17,5 @@
         android:text="State"
         android:background="@drawable/spinner_item_divider"
         />
+
 </LinearLayout>

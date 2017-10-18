@@ -42,7 +42,7 @@
                 android:text="EDIT"
                 android:textSize="18sp"
                 android:textColor="#000"
-                android:layout_marginRight="5dp"
+                android:layout_marginRight="7dp"
                 android:layout_gravity="end"/>
 
         </android.support.v7.widget.Toolbar>

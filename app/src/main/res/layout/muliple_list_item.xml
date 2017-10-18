@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="#fff">
 
     <TextView
         android:id="@+id/address_id"
@@ -20,7 +21,6 @@
             android:id="@+id/rel_payment_select"
             android:layout_width="fill_parent"
             android:layout_height="40dp"
-            android:background="#fff"
             >
         <TextView
             android:id="@+id/adress_customer_name"
@@ -52,7 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="edit"
-                android:textStyle="bold"
+                android:drawableLeft="@drawable/edit_draw"
                 android:layout_centerVertical="true"
                 android:textColor="#000"
                 android:textSize="16sp"/>
@@ -83,7 +83,7 @@
                 android:id="@+id/adress_customer_name_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="25dp"
                 android:text=""
                 android:textColor="#252424"
                 android:textSize="16sp" />
@@ -107,7 +107,7 @@
                 android:id="@+id/adress_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="29dp"
                 android:text=""
                 android:textColor="#252424"
                 android:textSize="16sp" />
@@ -131,7 +131,7 @@
                 android:id="@+id/adress_cus_address"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="10dp"
                 android:text=""
                 android:textColor="#252424"
                 android:textSize="16sp" />
@@ -155,7 +155,7 @@
                 android:id="@+id/adress_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="24dp"
                 android:text=""
                 android:textColor="#252424"
                 android:textSize="16sp" />
@@ -172,14 +172,14 @@
                 android:id="@+id/adress_country_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
+                android:text="Country:"
                 android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/adress_country"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="14dp"
                 android:text=""
                 android:textColor="#252424"
                 android:textSize="16sp" />
@@ -197,14 +197,14 @@
                 android:id="@+id/adress_state_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
+                android:text="State:"
                 android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/adress_state"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="32dp"
                 android:text=""
                 android:textColor="#252424"
                 android:textSize="16sp" />

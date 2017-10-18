@@ -107,8 +107,7 @@ public class UserInfoActivity extends AppCompatActivity {
     }
     public void getUserInfo() {
         //progressBar.setVisibility(View.VISIBLE);
-
-        //creating json array list
+        progressDialog.show();
         Map<String, String> params = new HashMap<String, String>();
         params.put("ProjectId", Config.PROJECTID);
         params.put("CustomerId", GlobalClass.userData.getUserID());
@@ -130,6 +129,7 @@ public class UserInfoActivity extends AppCompatActivity {
                         String userEmail =customerDetailModel.getEmail();
                         etuserName.setText(userName);
                         etuserEmail.setText(userEmail);
+                        progressDialog.dismiss();
 
 
 
@@ -140,7 +140,7 @@ public class UserInfoActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
                 Log.d("Error", error.toString());
                 //progressBar.setVisibility(View.GONE);
-                //progressDialog.dismiss();
+                progressDialog.dismiss();
             }
         });
 //        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());

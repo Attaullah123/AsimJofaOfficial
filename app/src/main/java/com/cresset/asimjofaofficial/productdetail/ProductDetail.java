@@ -189,11 +189,11 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
         infoButton.setBackgroundColor(Color.WHITE);
 
         final List<String> quantityList = new ArrayList<String>();
-        quantityList.add("1");
-        quantityList.add("2");
-        quantityList.add("3");
-        quantityList.add("4");
-        quantityList.add("5");
+        quantityList.add("01");
+        quantityList.add("02");
+        quantityList.add("03");
+        quantityList.add("04");
+        quantityList.add("05");
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.spinner_main_quantity_value, quantityList);
         // Drop down layout style - list view with radio button
@@ -319,6 +319,8 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                                                     public void onClick(View view) {Intent intent = new Intent(getApplicationContext(), GetCart.class);startActivity(intent);
                                                     }
                                                 });
+
+                                        snackbar.setActionTextColor(Color.GREEN);
 
                                         snackbar.show();
 

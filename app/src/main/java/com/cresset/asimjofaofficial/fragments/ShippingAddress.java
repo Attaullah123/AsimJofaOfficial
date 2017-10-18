@@ -15,6 +15,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -40,6 +41,7 @@ import com.cresset.asimjofaofficial.utilities.GlobalClass;
 import com.cresset.asimjofaofficial.volley.AppController;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import org.json.JSONObject;
 
@@ -189,6 +191,7 @@ public class ShippingAddress extends android.support.v4.app.Fragment{
     public void CountrySpinner(final List<CountryList> countryList){
         ArrayList<CountryList> contList = new ArrayList<CountryList>(countryList);
         shippingCountrySpinnerAdapter = new ShippingCountrySpinnerAdapter(getContext(), android.R.layout.simple_spinner_item, contList );
+       // shippingCountrySpinnerAdapter.setDropDownViewResource(R.layout.spinner_billing_shipping_country);
         sCountry.setAdapter(shippingCountrySpinnerAdapter);
         sCountry.setPrompt("Select Country");
 

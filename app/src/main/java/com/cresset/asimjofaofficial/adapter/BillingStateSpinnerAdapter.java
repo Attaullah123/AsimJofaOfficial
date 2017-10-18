@@ -1,6 +1,7 @@
 package com.cresset.asimjofaofficial.adapter;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,16 +44,18 @@ public class BillingStateSpinnerAdapter extends ArrayAdapter<StateList> {
 
     @Override
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
-        return getCustomView(position, convertView, parent);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View row=inflater.inflate(R.layout.spinner_billing_shipping_state, parent, false);
+
+        state = (TextView) row.findViewById(R.id.spinner_state);
+        StateList stateList = billingStateModels.get(position);
+        state.setText(stateList.getName());
+        return row;
     }
 
+    @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return getCustomView(position, convertView, parent);
-    }
-
-    public View getCustomView(int position, View convertView, ViewGroup parent) {
-
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View row=inflater.inflate(R.layout.spinner_billing_shipping_state, parent, false);
 
@@ -62,4 +65,16 @@ public class BillingStateSpinnerAdapter extends ArrayAdapter<StateList> {
         return row;
 
     }
+
+//    public View getCustomView(int position, View convertView, ViewGroup parent) {
+//
+//        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        View row=inflater.inflate(R.layout.spinner_billing_shipping_state, parent, false);
+//
+//        state = (TextView) row.findViewById(R.id.spinner_state);
+//        StateList stateList = billingStateModels.get(position);
+//        state.setText(stateList.getName());
+//        return row;
+//
+//    }
 }

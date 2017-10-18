@@ -91,10 +91,18 @@ public class InvoiceAdapter  extends RecyclerView.Adapter<InvoiceAdapter.MyViewH
         //holder.userId.setText(multipleAddress.getId());
         holder.proName.setText(cartItems.getProductName());
         //holder.proEmail.setText(cartItems.getEmail());
-        holder.proPrice.setText(cartItems.getProductPrice());
+        //holder.proPrice.setText(cartItems.getProductPrice());
         holder.proQty.setText(cartItems.getQuantity());
         holder.proSize.setText(Html.fromHtml(cartItems.getAttributeDescription()));
         //holder.proTotal.setText(cartItems.get());
+
+        float totalPrice = Float.parseFloat(cartItems.getProductPrice());
+        if(GlobalClass.currency != null){
+            totalPrice = totalPrice * GlobalClass.currency.getRate();
+            holder.proPrice.setText(GlobalClass.currency.CurrencyCode);
+        }
+
+        holder.proPrice.setText(NumberFormat.getNumberInstance(Locale.US).format(totalPrice));
     }
 
     @Override

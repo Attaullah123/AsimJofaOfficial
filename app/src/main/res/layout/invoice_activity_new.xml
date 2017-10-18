@@ -59,7 +59,7 @@
             android:id="@+id/in_order_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="26963"
+            android:text=""
             android:textColor="#000"
             />
 
@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
             android:textColor="#000"
-            android:text="Pending"
+            android:text=""
             />
 
         </LinearLayout>
@@ -111,7 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
             android:textColor="#000"
-            android:text="Oct 13 2017 10:43AM"
+            android:text=""
             />
     </LinearLayout>
 
@@ -135,7 +135,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
             android:textColor="#000"
-            android:text="PKR"
+            android:textStyle="bold"
+            android:text="USD"
             />
 
         <TextView
@@ -143,7 +144,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
-            android:text="26963"
+            android:text=""
             android:textColor="#000"
             />
 
@@ -271,7 +272,7 @@
                     android:textSize="16sp"
                     android:layout_marginLeft="10dp"
                     android:textColor="#252424"
-                    android:text=""/>
+                    android:text="as"/>
 
             </LinearLayout>
 
@@ -293,9 +294,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
-                    android:layout_marginLeft="42dp"
+                    android:layout_marginLeft="40dp"
                     android:textColor="#252424"
-                    android:text=""/>
+                    android:text="as"/>
 
             </LinearLayout>
 
@@ -478,7 +479,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
-                    android:layout_marginLeft="42dp"
+                    android:layout_marginLeft="40dp"
                     android:textColor="#252424"
                     android:text=""/>
 

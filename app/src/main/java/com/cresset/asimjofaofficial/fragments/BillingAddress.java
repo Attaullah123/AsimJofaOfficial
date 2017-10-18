@@ -38,6 +38,7 @@ import com.cresset.asimjofaofficial.volley.AppController;
 import com.google.gson.Gson;
 import com.google.gson.internal.Streams;
 import com.google.gson.reflect.TypeToken;
+import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import org.json.JSONObject;
 
@@ -48,7 +49,8 @@ import java.util.List;
 public class BillingAddress extends android.support.v4.app.Fragment{
 
     private EditText bfullname,bEmail,bAdress,bPhoneNo,bCity,bPostalCode,bDay,bMonth,bYear;
-    private Spinner bCountry,bProvince;
+    private Spinner bCountry;
+    private SearchableSpinner bProvince;
     private Button btnBillingAddress;
     private BillingModel billingModel;
     private BillingCountrySpinnerAdapter billingCountrySpinnerAdapter;
@@ -75,7 +77,7 @@ public class BillingAddress extends android.support.v4.app.Fragment{
         bYear = (EditText) view.findViewById(R.id.billing_birthday_year);
         //spinner view
         bCountry = (Spinner) view.findViewById(R.id.billing_country_select);
-        bProvince = (Spinner) view.findViewById(R.id.billing_spinner_select_province);
+        bProvince = (SearchableSpinner) view.findViewById(R.id.billing_spinner_select_province);
         btnBillingAddress = (Button)view.findViewById(R.id.billing_save);
 
         progressDialog = new ProgressDialog(getContext());
@@ -220,6 +222,7 @@ public class BillingAddress extends android.support.v4.app.Fragment{
     public void StateSpinner(List<StateList> stateList,String countryId){
         ArrayList<StateList> statList = new ArrayList<StateList>(stateList);
         billingStateSpinnerAdapter = new BillingStateSpinnerAdapter(getContext(), android.R.layout.simple_spinner_item, statList);
+       // billingCountrySpinnerAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         bProvince.setAdapter(billingStateSpinnerAdapter);
         bProvince.setPrompt("Select State");
 
@@ -237,11 +240,10 @@ public class BillingAddress extends android.support.v4.app.Fragment{
         }
 
         bProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
             @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long arg3) {
 
-                stateListItem = (StateList) bProvince.getSelectedItem();
+                stateListItem = (StateList) bProvince.getSelectedItem() ;
                 Log.i("Selected item : ", stateListItem.getName().toString());
             }
 

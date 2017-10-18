@@ -76,7 +76,8 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
     public void onBindViewHolder(final OrderHistoryAdapter.MyViewHolder holder, int position) {
         OrdersListModel orderList = ordersListModel.get(position);
 
-        holder.orderNo.setText(String.valueOf(orderList.getId()));
+        //holder.orderNo.setText(String.valueOf(orderList.getId()));
+        holder.orderNo.setText(orderList.getId());
         holder.orderStatus.setText(orderList.getOrderStatus());
 
         //SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM dd yyyy");

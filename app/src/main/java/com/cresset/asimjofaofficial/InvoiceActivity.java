@@ -1,5 +1,6 @@
 package com.cresset.asimjofaofficial;
 
+import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -42,24 +43,28 @@ import com.cresset.asimjofaofficial.models.ProductModel;
 import com.cresset.asimjofaofficial.recylerview.RecyclerDivider;
 import com.cresset.asimjofaofficial.utilities.Config;
 import com.cresset.asimjofaofficial.utilities.CustomVolleyRequest;
+import com.cresset.asimjofaofficial.utilities.GlobalClass;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONObject;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 
 public class InvoiceActivity extends AppCompatActivity {
     private ImageView back;
-    private TextView orderNo, orderStatus, orderTotal,orderDate;
+    private TextView orderNo, orderStatus, orderTotal,orderDate,currencyName;
     private TextView billingName,billingEmail,billingAdress,billingPhone,billingCity, billingCountry,billingState;
     private TextView shippingName,shippingEmail,shippingAdress,shippingPhone,shippingCity,shippingCountry,shippingState;
     private ProgressBar progressBar;
     private RecyclerView recyclerView;
     private InvoiceAdapter invoiceAdapter;
+    private ProgressDialog progressDialog;
     private String orderId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +79,9 @@ public class InvoiceActivity extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setSubtitle("");
 
-        //orderId = getIntent().getStringExtra("orderId");
+        orderId = getIntent().getStringExtra("orderId");
+
+        currencyName = (TextView) findViewById(R.id.in_order_total_name);
 
         orderNo = (TextView) findViewById(R.id.in_order_id);
         orderStatus = (TextView) findViewById(R.id.in_order_status);
@@ -105,6 +112,11 @@ public class InvoiceActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(invoiceAdapter);
 
+        // Progress dialog
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
+        progressDialog.setTitle("please wait...");
+
         getInvoiceDetail();
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -116,13 +128,11 @@ public class InvoiceActivity extends AppCompatActivity {
     }
 
     public void getInvoiceDetail(){
-
         //progressBar.setVisibility(View.VISIBLE);
-
-        //creating json array list
+        progressDialog.show();
         Map<String, String> params = new HashMap<String, String>();
         params.put("ProjectId", Config.PROJECTID);
-        params.put("OrderId","27309");
+        params.put("OrderId",orderId);
 
         JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.POST, Config.URL_GETORDER_BYID, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
@@ -143,13 +153,22 @@ public class InvoiceActivity extends AppCompatActivity {
                         String orderId=invoiceOrderDetailModel.getId();
                         String orderStatus1 =invoiceOrderDetailModel.getOrderStatus();
                         String orderDate1 =invoiceOrderDetailModel.getOrderDate();
-                        String orderTotal1 =invoiceOrderDetailModel.getOrderTotal();
+                        //String orderTotal1 =invoiceOrderDetailModel.getOrderTotal();
+                        float totalPrice = Float.parseFloat(invoiceOrderDetailModel.getOrderTotal());
 
                         orderNo.setText(orderId);
                         orderStatus.setText(orderStatus1);
                         orderDate.setText(orderDate1);
-                        orderTotal.setText(orderTotal1);
+                        //orderTotal.setText(orderTotal1);
 
+                        if(GlobalClass.currency != null){
+                            totalPrice = totalPrice * GlobalClass.currency.getRate();
+                            currencyName.setText(GlobalClass.currency.CurrencyCode);
+                        }else {
+                            currencyName.setText("USD");
+                        }
+
+                        orderTotal.setText(NumberFormat.getNumberInstance(Locale.US).format(totalPrice));
 
                         final InvoiceBillingAddress invoiceBillingAddress = invoiceOrderDetailModel.getBillingAddress();
                         final InvoiceShippingAddress invoiceShippingAddress = invoiceOrderDetailModel.getShippingAddress();
@@ -196,7 +215,7 @@ public class InvoiceActivity extends AppCompatActivity {
                         invoiceAdapter = new InvoiceAdapter(getApplicationContext(), invoiceCartItems);
                         recyclerView.setAdapter(invoiceAdapter);
                         //progressBar.setVisibility(View.GONE);
-                        //progressDialog.dismiss();
+                        progressDialog.dismiss();
 
 
                     }
@@ -205,8 +224,8 @@ public class InvoiceActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(), "Couldn't feed refresh, internet connection slow", Toast.LENGTH_SHORT).show();
                 Log.d("Error", error.toString());
-                progressBar.setVisibility(View.GONE);
-                //progressDialog.dismiss();
+                //progressBar.setVisibility(View.GONE);
+                progressDialog.dismiss();
             }
         });
 //        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());

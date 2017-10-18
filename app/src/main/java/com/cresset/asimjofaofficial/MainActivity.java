@@ -213,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Please wait, internet connection slow", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Please wait, check internet connection", Toast.LENGTH_SHORT).show();
                 Log.d("Error", error.toString());
             }
         });
@@ -418,7 +418,7 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         AlertDialog.Builder BackAlertDialog = new AlertDialog.Builder(MainActivity.this);
 
-        BackAlertDialog.setMessage("Are you sure want to exit ?");
+        BackAlertDialog.setMessage("Are you sure want to close ?");
 
 
         BackAlertDialog.setPositiveButton("NO",

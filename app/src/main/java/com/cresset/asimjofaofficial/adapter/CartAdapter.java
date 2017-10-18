@@ -62,7 +62,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             proCurrencyName = (TextView) itemView.findViewById(R.id.product_cart_price_name);
             proPrice = (TextView) itemView.findViewById(R.id.product_cart_price);
             proSize = (TextView) itemView.findViewById(R.id.product_cart_size);
-           //proSizeName = (TextView) itemView.findViewById(R.id.cart_product_size_name);
+           proSizeName = (TextView) itemView.findViewById(R.id.cart_product_size_name);
             proQuantity = (TextView) itemView.findViewById(R.id.cart_product_quantity);
             proQuantityName = (TextView) itemView.findViewById(R.id.cart_product_quantity_name);
             //proAddon = (TextView) itemView.findViewById(R.id.product_cart_addons);
@@ -72,7 +72,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             proCurrencyName.setText("USD");
             proQuantityName.setText("QTY:");
             productSkuName.setText("SKU:");
-//            proSizeName.setText("Size:");
+            proSizeName.setText("Size:");
 //            proAddonsName.setText("Addon:");
 
         }

@@ -52,4 +52,6 @@ dependencies {
     compile files('libs/listviewanimations_core-slh_3.1.0.jar')
     compile files('libs/listviewanimations_core_3.1.0.jar')
     compile files('libs/listviewanimations_manipulation_3.1.0.jar')
+
+    compile 'com.toptoche.searchablespinner:searchablespinnerlibrary:1.3.1'
 }

@@ -74,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:layout_marginRight="5dp"
+                android:layout_marginRight="7dp"
                 android:text="Done"
                 android:textColor="#000" />
 
@@ -126,7 +126,7 @@
         <com.cresset.asimjofaofficial.customfonts.MyTextView
             android:id="@+id/btn_delete"
             android:layout_width="fill_parent"
-            android:layout_height="55dp"
+            android:layout_height="50dp"
             android:background="#dcdcdc"
             android:text="Delete"
             android:textSize="20dp"

@@ -10,7 +10,7 @@
         <ImageView
             android:id="@+id/message"
             android:layout_width="375sp"
-            android:layout_height="384sp"
+            android:layout_height="394sp"
             android:layout_gravity="center"
             android:layout_margin="20dp"
             android:scaleType="fitXY"
@@ -18,13 +18,16 @@
 
         <!-- OK ボタン -->
 
-    <ImageView
+    <Button
         android:id="@+id/close_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="26sp"
+        android:layout_height="26sp"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:background="@drawable/size_cross1"
+        android:background="@drawable/bt_dialog_close"
+        android:text="x"
+        android:textSize="16sp"
+        android:textStyle="bold"
         />
 
 </RelativeLayout>
