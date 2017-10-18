@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "446795177380",
+    "firebase_url": "https://asim-jofa-929ea.firebaseio.com",
+    "project_id": "asim-jofa-929ea",
+    "storage_bucket": "asim-jofa-929ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:446795177380:android:253dcbe9f2e4a600",
+        "android_client_info": {
+          "package_name": "com.cresset.asimjofaofficial"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "446795177380-bmctvnvrdbg8pnh3r39ons5bcqau3cp9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaG4JQKHGvRH2Xe4rt4gnW0kmA_x4KsO4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
