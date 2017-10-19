@@ -129,6 +129,11 @@ public class MultipleAdressAdapter  extends RecyclerView.Adapter<MultipleAdressA
         return multpleAddressLists.size();
     }
 
+    public void clearCart() {
+        multpleAddressLists.clear();
+        multpleAddressLists.clear();
+        notifyDataSetChanged();
+    }
 
 }
 

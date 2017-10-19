@@ -43,6 +43,7 @@ public class MultipleAdressBook extends AppCompatActivity {
     private MultipleAdressAdapter multipleAdressAdapter;
     private ProgressBar progressBar;
     private ImageView back;
+    private View emptyCart;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +55,7 @@ public class MultipleAdressBook extends AppCompatActivity {
         toolbar.setTitle("");
         toolbar.setSubtitle("");
 
-
+        emptyCart = findViewById(R.id.cart_empty);
         progressBar=(ProgressBar) findViewById(R.id.progressBar);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -99,6 +100,13 @@ public class MultipleAdressBook extends AppCompatActivity {
 
                         ArrayList<MultpleAddressList> detailLists = new ArrayList<MultpleAddressList>(addressModel.getCustomerAddress());
 
+                        if (addressModel.getCustomerAddress() == null || addressModel.getCustomerAddress().size() == 0) {
+                            setCartVisibility(false);
+                        } else {
+                            setCartVisibility(true);
+                            //cartAdapter.refreshItems(cartDetailModel);
+                        }
+
                         multipleAdressAdapter = new MultipleAdressAdapter(getApplicationContext(), detailLists);
                         recyclerView.setAdapter(multipleAdressAdapter);
                         progressBar.setVisibility(View.GONE);
@@ -119,4 +127,17 @@ public class MultipleAdressBook extends AppCompatActivity {
 //        requestQueue.add(objectRequest);
         CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
     }
+    private void setCartVisibility(boolean visible) {
+        if (visible) {
+            if (emptyCart != null) emptyCart.setVisibility(View.GONE);
+            if (recyclerView != null) recyclerView.setVisibility(View.VISIBLE);
+            //if (cartFooter != null) cartFooter.setVisibility(View.VISIBLE);
+        } else {
+            if (multipleAdressAdapter != null) multipleAdressAdapter.clearCart();
+            if (emptyCart != null) emptyCart.setVisibility(View.VISIBLE);
+            if (recyclerView != null) recyclerView.setVisibility(View.GONE);
+            if (recyclerView != null) recyclerView.setVisibility(View.GONE);
+        }
+    }
+
 }

@@ -3,9 +3,6 @@ package com.cresset.asimjofaofficial;
 import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTabHost;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,13 +10,10 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.HorizontalScrollView;
+
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.TabHost;
-import android.widget.TabWidget;
+
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,18 +22,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.cresset.asimjofaofficial.adapter.InvoiceAdapter;
-import com.cresset.asimjofaofficial.adapter.OrderInvoiceAdapter;
-import com.cresset.asimjofaofficial.adapter.PolicyAdapter;
-import com.cresset.asimjofaofficial.adapter.ProductListAdapter;
-import com.cresset.asimjofaofficial.fragments.TermsAndConditions;
+
 import com.cresset.asimjofaofficial.models.InvoiceBillingAddress;
 import com.cresset.asimjofaofficial.models.InvoiceCartItem;
 import com.cresset.asimjofaofficial.models.InvoiceModel;
 import com.cresset.asimjofaofficial.models.InvoiceOrderDetailModel;
 import com.cresset.asimjofaofficial.models.InvoiceShippingAddress;
-import com.cresset.asimjofaofficial.models.OrdersListModel;
-import com.cresset.asimjofaofficial.models.ProductListModel;
-import com.cresset.asimjofaofficial.models.ProductModel;
 import com.cresset.asimjofaofficial.recylerview.RecyclerDivider;
 import com.cresset.asimjofaofficial.utilities.Config;
 import com.cresset.asimjofaofficial.utilities.CustomVolleyRequest;

@@ -67,7 +67,7 @@ public class UpdateCartAdapter extends RecyclerView.Adapter<UpdateCartAdapter.My
             proCurrencyName = (TextView) itemView.findViewById(R.id.product_cart_price_name);
             proPrice = (TextView) itemView.findViewById(R.id.product_cart_price);
             proSize = (TextView) itemView.findViewById(R.id.product_cart_size);
-            proSizeName = (TextView) itemView.findViewById(R.id.cart_product_size_name);
+            //proSizeName = (TextView) itemView.findViewById(R.id.cart_product_size_name);
             proQuantity = (TextView) itemView.findViewById(R.id.cart_product_quantity);
             thumbnailImage = (ImageView) itemView.findViewById(R.id.cart_thumbnail);
             btnDecrement = (Button) itemView.findViewById(R.id.quantity_decrement);
@@ -76,7 +76,7 @@ public class UpdateCartAdapter extends RecyclerView.Adapter<UpdateCartAdapter.My
 
             proCurrencyName.setText("USD");
             productSkuName.setText("SKU:");
-            proSizeName.setText("Size:");
+           // proSizeName.setText("Size:");
 //            deleteItem.setOnClickListener((View.OnClickListener) this);
             //cardView = (CardView) itemView.findViewById(R.id.card_view);
 

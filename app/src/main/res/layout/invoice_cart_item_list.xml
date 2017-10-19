@@ -24,7 +24,7 @@
             android:textSize="16sp"
             android:layout_marginLeft="25dp"
             android:textColor="#252424"
-            android:text="ABC"/>
+            android:text=""/>
 
     </LinearLayout>
 
@@ -48,7 +48,7 @@
             android:textSize="16sp"
             android:layout_marginLeft="32dp"
             android:textColor="#252424"
-            android:text="ABC"/>
+            android:text=""/>
 
     </LinearLayout>
 
@@ -72,7 +72,7 @@
             android:textSize="16sp"
             android:layout_marginLeft="40dp"
             android:textColor="#252424"
-            android:text="ABC"/>
+            android:text=""/>
 
     </LinearLayout>
 
@@ -95,7 +95,7 @@
             android:textSize="16sp"
             android:layout_marginLeft="40dp"
             android:textColor="#252424"
-            android:text="ABC"/>
+            android:text=""/>
 
     </LinearLayout>
 
