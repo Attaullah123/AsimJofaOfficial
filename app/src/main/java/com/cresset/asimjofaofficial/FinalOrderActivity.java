@@ -1,5 +1,6 @@
 package com.cresset.asimjofaofficial;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -32,6 +33,7 @@ public class FinalOrderActivity extends AppCompatActivity {
     private TextView oderId,order_message;
     private Button backButton;
     private static boolean userPressedBackAgain = false;
+    private ProgressDialog progressDialog;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +44,10 @@ public class FinalOrderActivity extends AppCompatActivity {
         backButton = (Button) findViewById(R.id.back_shop);
 
         Intent intent = getIntent();
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
+        progressDialog.setTitle("please wait progressing...");
 
         String id = intent.getStringExtra("orderId");
         String paymentMethod = intent.getStringExtra("paymentMethod");
@@ -62,6 +68,7 @@ public class FinalOrderActivity extends AppCompatActivity {
     }
 
     public void OrderPlace(String paymentMethod){
+        progressDialog.show();
         ResourceValueModel model = new ResourceValueModel();
         model.setProjectId(Config.PROJECTID);
         model.setResourceName(paymentMethod);
@@ -80,6 +87,7 @@ public class FinalOrderActivity extends AppCompatActivity {
                             ResourceValueResponse resourceResponse = gson.fromJson(response.toString(), new TypeToken<ResourceValueResponse>(){}.getType());
 
                             String json = gson.toJson(resourceResponse);
+                            progressDialog.dismiss();
 
                             Log.i("resourceResponse",json);
 
@@ -98,7 +106,7 @@ public class FinalOrderActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(),"Couldn't place order, check connection", Toast.LENGTH_SHORT).show();
                 Log.d("Error", error.toString());
-                // progressDialog.dismiss();
+                 progressDialog.dismiss();
             }
 
 
@@ -112,4 +120,5 @@ public class FinalOrderActivity extends AppCompatActivity {
     public void onBackPressed() {
         moveTaskToBack(true);
     }
+
 }

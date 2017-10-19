@@ -1,27 +1,35 @@
 {
   "project_info": {
-    "project_number": "446795177380",
-    "firebase_url": "https://asim-jofa-929ea.firebaseio.com",
-    "project_id": "asim-jofa-929ea",
-    "storage_bucket": "asim-jofa-929ea.appspot.com"
+    "project_number": "201489364573",
+    "firebase_url": "https://asim-jofa-11259.firebaseio.com",
+    "project_id": "asim-jofa-11259",
+    "storage_bucket": "asim-jofa-11259.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:446795177380:android:253dcbe9f2e4a600",
+        "mobilesdk_app_id": "1:201489364573:android:253dcbe9f2e4a600",
         "android_client_info": {
           "package_name": "com.cresset.asimjofaofficial"
         }
       },
       "oauth_client": [
         {
-          "client_id": "446795177380-bmctvnvrdbg8pnh3r39ons5bcqau3cp9.apps.googleusercontent.com",
+          "client_id": "201489364573-7di03a01jmfa125ero104ogv4qu0du42.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cresset.asimjofaofficial",
+            "certificate_hash": "7f9455f71d0664af3c7ef3c94db05a7d6f32042b"
+          }
+        },
+        {
+          "client_id": "201489364573-cjlvf4l0k78simiambq4ftupat7fqo3l.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCaG4JQKHGvRH2Xe4rt4gnW0kmA_x4KsO4"
+          "current_key": "AIzaSyBDoDjF4eeap-fKZQchv5co2J9bgPfVvps"
         }
       ],
       "services": {
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "201489364573-cjlvf4l0k78simiambq4ftupat7fqo3l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

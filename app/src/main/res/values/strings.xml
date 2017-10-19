@@ -4,7 +4,7 @@
     <string name="title_home">PRODUCTS</string>
     <string name="title_dashboard">PROFILE</string>
     <string name="title_notifications">STORES</string>
-    <string name="title_cart">Cart</string>
+    <string name="title_cart"></string>
     <string name="logo">logo</string>
     <string name="activity_title_cart">Cart</string>
     <string name="title_info">Privacy Policy</string>
@@ -29,7 +29,7 @@
     <string name="payment_name">Select Payment Method</string>
 
     <string name="spinner_prompt_name">Select Size</string>
-    <string name="google_api_key">AIzaSyAerYTzd3jWccNT3nDhxPXC3XDBSREpSlM</string>
+    <string name="google_api_keyy">AIzaSyAerYTzd3jWccNT3nDhxPXC3XDBSREpSlM</string>
 
     <string name="currency_change">Currency Change</string>
     <string name="contact_us">Contact Us</string>

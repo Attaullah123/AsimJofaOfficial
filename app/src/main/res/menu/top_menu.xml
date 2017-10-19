@@ -26,7 +26,6 @@
     <item
         android:id="@+id/cart"
         android:icon="@drawable/cart_small_11"
-        android:actionLayout="@layout/count_badge"
         android:title="@string/title_cart"
         app:showAsAction="ifRoom"/>
 

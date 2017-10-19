@@ -50,7 +50,7 @@ public class BillingAddress extends android.support.v4.app.Fragment{
 
     private EditText bfullname,bEmail,bAdress,bPhoneNo,bCity,bPostalCode,bDay,bMonth,bYear;
     private Spinner bCountry;
-    private SearchableSpinner bProvince;
+    private Spinner bProvince;
     private Button btnBillingAddress;
     private BillingModel billingModel;
     private BillingCountrySpinnerAdapter billingCountrySpinnerAdapter;
@@ -77,7 +77,7 @@ public class BillingAddress extends android.support.v4.app.Fragment{
         bYear = (EditText) view.findViewById(R.id.billing_birthday_year);
         //spinner view
         bCountry = (Spinner) view.findViewById(R.id.billing_country_select);
-        bProvince = (SearchableSpinner) view.findViewById(R.id.billing_spinner_select_province);
+        bProvince = (Spinner) view.findViewById(R.id.billing_spinner_select_province);
         btnBillingAddress = (Button)view.findViewById(R.id.billing_save);
 
         progressDialog = new ProgressDialog(getContext());

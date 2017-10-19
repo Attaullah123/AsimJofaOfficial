@@ -50,6 +50,7 @@ import com.cresset.asimjofaofficial.utilities.Config;
 import com.cresset.asimjofaofficial.utilities.CustomVolleyRequest;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
 import com.cresset.asimjofaofficial.volley.AppController;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.roughike.bottombar.BottomBar;
@@ -73,9 +74,7 @@ public class MainActivity extends AppCompatActivity {
     CoordinatorLayout coordinatorLayout;
     Gson gson;
     private Menu menu;
-    Button retrybtn;
-    private int cartCountNotificationValue = GlobalClass.DEFAULT_EMPTY_ID;
-    private String tag_json_obj = "json_obj_req";
+    private FirebaseAnalytics firebaseAnalytics;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,6 +87,8 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(Config.PREFS_NAME, MODE_PRIVATE);
 
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
+
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         if (getSupportActionBar()!=null) {
             getSupportActionBar().setDisplayShowHomeEnabled(true);

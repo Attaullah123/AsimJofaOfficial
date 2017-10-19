@@ -32,7 +32,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static com.cresset.asimjofaofficial.R.id.map;
+
 
 
 public class Store extends Fragment {

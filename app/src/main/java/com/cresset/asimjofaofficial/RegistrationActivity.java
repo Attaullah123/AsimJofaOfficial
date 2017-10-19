@@ -1,5 +1,6 @@
 package com.cresset.asimjofaofficial;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -134,7 +135,7 @@ public class RegistrationActivity extends AppCompatActivity {
         params.put("month", month);
        params.put("year", year);
 
-        WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
+        @SuppressLint("WifiManagerLeak") WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
         String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
 
         params.put("IpAddress", ip);
@@ -187,7 +188,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Couldn't register user, please check connection", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Couldn't register  , please check connection", Toast.LENGTH_SHORT).show();
                 Log.d("Error", error.toString());
                 progressDialog.dismiss();
             }
