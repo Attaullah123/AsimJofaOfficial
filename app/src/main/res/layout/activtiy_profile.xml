@@ -28,7 +28,7 @@
         android:textStyle="bold"
         android:text="@string/profile_toolbar_title"
         android:textColor="#000"
-        android:textSize="22sp"
+        android:textSize="20sp"
         android:layout_gravity="center"
         />
 </android.support.v7.widget.Toolbar>

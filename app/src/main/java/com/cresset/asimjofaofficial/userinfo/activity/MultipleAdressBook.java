@@ -127,6 +127,13 @@ public class MultipleAdressBook extends AppCompatActivity {
 //        requestQueue.add(objectRequest);
         CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
     }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        getUserAddress();
+    }
+
     private void setCartVisibility(boolean visible) {
         if (visible) {
             if (emptyCart != null) emptyCart.setVisibility(View.GONE);

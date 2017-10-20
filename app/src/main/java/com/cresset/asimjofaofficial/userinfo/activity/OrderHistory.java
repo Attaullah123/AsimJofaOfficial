@@ -125,11 +125,7 @@ public class OrderHistory extends AppCompatActivity {
         CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
     }
 
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        getOderHistory();
-    }
+
     private void setCartVisibility(boolean visible) {
         if (visible) {
             if (emptyCart != null) emptyCart.setVisibility(View.GONE);

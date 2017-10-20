@@ -38,7 +38,7 @@
                     android:text="Shipping"
                     android:textStyle="bold"
                     android:textColor="#000"
-                    style="@style/Base.TextAppearance.AppCompat.Large"
+                    android:textSize="19sp"
                     android:layout_gravity="center"/>
             </android.support.v7.widget.Toolbar>
 

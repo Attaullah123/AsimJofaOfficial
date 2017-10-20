@@ -26,7 +26,7 @@
             android:textStyle="bold"
             android:text="Contact Us"
             android:textColor="#000"
-            android:textSize="22sp"
+            android:textSize="18sp"
             android:layout_gravity="center"
             />
     </android.support.v7.widget.Toolbar>

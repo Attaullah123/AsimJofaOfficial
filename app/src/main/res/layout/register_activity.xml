@@ -23,7 +23,7 @@
             android:layout_gravity="center"
             android:text="Registration"
             android:textColor="#000"
-            android:textSize="20dp"
+            android:textSize="19dp"
             android:textStyle="bold" />
 
     </android.support.v7.widget.Toolbar>
