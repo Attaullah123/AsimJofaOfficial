@@ -32,6 +32,7 @@ import com.cresset.asimjofaofficial.models.StateList;
 import com.cresset.asimjofaofficial.models.UpdateBillingAndShippingModel;
 import com.cresset.asimjofaofficial.utilities.Config;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
+import com.cresset.asimjofaofficial.volley.AppController;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -209,8 +210,9 @@ public class BillingShippingById extends AppCompatActivity {
             }
         });
 
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.add(objectRequest);
+        objectRequest.setRetryPolicy(AppController.getDefaultRetryPolice());
+        objectRequest.setShouldCache(false);
+        AppController.getInstance().addToRequestQueue(objectRequest, Config.tag_json_obj);
 
     }
 
@@ -267,9 +269,9 @@ public class BillingShippingById extends AppCompatActivity {
             }
         });
 
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.add(objectRequest);
-
+        objectRequest.setRetryPolicy(AppController.getDefaultRetryPolice());
+        objectRequest.setShouldCache(false);
+        AppController.getInstance().addToRequestQueue(objectRequest, Config.tag_json_obj);
     }
 
 }

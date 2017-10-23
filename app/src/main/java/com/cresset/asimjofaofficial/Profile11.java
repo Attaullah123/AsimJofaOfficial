@@ -32,6 +32,7 @@ import com.cresset.asimjofaofficial.models.GuestOrLoginResponseModel;
 import com.cresset.asimjofaofficial.models.UserModel;
 import com.cresset.asimjofaofficial.utilities.Config;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
+import com.cresset.asimjofaofficial.volley.AppController;
 import com.cresset.asimjofaofficial.volley.MyAccount1;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -210,8 +211,9 @@ public class Profile11 extends Fragment {
             }
         });
         // Adding request to request queue
-        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        requestQueue.add(objectRequest);
+        objectRequest.setRetryPolicy(AppController.getDefaultRetryPolice());
+        objectRequest.setShouldCache(false);
+        AppController.getInstance().addToRequestQueue(objectRequest, Config.tag_json_obj);
     }
 
     public void GuestUserchangeToLogin(UserModel guest, final UserModel registered){
@@ -264,8 +266,9 @@ public class Profile11 extends Fragment {
             }
         });
         // Adding request to request queue
-        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        requestQueue.add(objectRequest);
+        objectRequest.setRetryPolicy(AppController.getDefaultRetryPolice());
+        objectRequest.setShouldCache(false);
+        AppController.getInstance().addToRequestQueue(objectRequest, Config.tag_json_obj);
     }
 
     private void showDialog() {

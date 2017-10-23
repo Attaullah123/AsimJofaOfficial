@@ -185,7 +185,9 @@ public class ShippingAddress extends android.support.v4.app.Fragment{
                 progressDialog.dismiss();
             }
         });
-        AppController.getInstance().addToRequestQueue(objectRequest);
+        objectRequest.setRetryPolicy(AppController.getDefaultRetryPolice());
+        objectRequest.setShouldCache(false);
+        AppController.getInstance().addToRequestQueue(objectRequest, Config.tag_json_obj);
     }
 
     public void CountrySpinner(final List<CountryList> countryList){
@@ -262,7 +264,9 @@ public class ShippingAddress extends android.support.v4.app.Fragment{
                 Log.d("Error", error.toString());
             }
         });
-        AppController.getInstance().addToRequestQueue(objectRequest);
+        objectRequest.setRetryPolicy(AppController.getDefaultRetryPolice());
+        objectRequest.setShouldCache(false);
+        AppController.getInstance().addToRequestQueue(objectRequest, Config.tag_json_obj);
     }
 
     public void StateSpinner(List<StateList> stateList,String countryId){

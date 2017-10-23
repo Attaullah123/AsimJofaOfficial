@@ -25,6 +25,8 @@ import com.cresset.asimjofaofficial.R;
 
 import com.cresset.asimjofaofficial.models.ProductDetailList;
 import com.cresset.asimjofaofficial.productdetail.ProductDetail;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -65,19 +67,36 @@ public class ProductImagePagerAdapter extends android.support.v4.view.PagerAdapt
         final ProgressBar progressBar = (ProgressBar) imageLayout.findViewById(R.id.progressBar);
 
         //imageView.setImageResource(imageLink.get(position));
-        Glide.with(mContext).load(image).listener(new RequestListener<String, GlideDrawable>() {
-            @Override
-            public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
-                progressBar.setVisibility(View.GONE);
-                return false;
-            }
+//        Glide.with(mContext).load(image).listener(new RequestListener<String, GlideDrawable>() {
+//            @Override
+//            public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+//                progressBar.setVisibility(View.GONE);
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+//                progressBar.setVisibility(View.GONE);
+//                return false;
+//            }
+//        }).into(imageViewer);
 
-            @Override
-            public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                progressBar.setVisibility(View.GONE);
-                return false;
-            }
-        }).into(imageViewer);
+        Picasso.with(mContext).load(image)
+                .placeholder(R.drawable.placeholder_loading)
+                .fit().centerInside()
+                .into(imageViewer, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        progressBar.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onError() {
+                        progressBar.setVisibility(View.GONE);
+
+                    }
+                });
+
         view.addView(imageLayout, 0);
 
 //        imageLayout.setOnClickListener(new View.OnClickListener() {

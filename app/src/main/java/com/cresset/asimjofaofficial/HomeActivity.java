@@ -32,6 +32,7 @@ import com.cresset.asimjofaofficial.models.CategoryModel;
 import com.cresset.asimjofaofficial.models.ChildCategoryList;
 import com.cresset.asimjofaofficial.utilities.Config;
 import com.cresset.asimjofaofficial.utilities.CustomVolleyRequest;
+import com.cresset.asimjofaofficial.volley.AppController;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.nhaarman.listviewanimations.appearance.simple.AlphaInAnimationAdapter;
@@ -260,7 +261,9 @@ public class HomeActivity extends Fragment {
             }
         });
         //call volley
-        CustomVolleyRequest.getInstance(getContext()).getRequestQueue().add(jsonObjReq);
+        jsonObjReq.setRetryPolicy(AppController.getDefaultRetryPolice());
+        jsonObjReq.setShouldCache(false);
+        AppController.getInstance().addToRequestQueue(jsonObjReq, Config.tag_json_obj);
     }
 
 //    public void show(String message){

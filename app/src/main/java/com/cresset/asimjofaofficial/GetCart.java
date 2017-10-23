@@ -205,7 +205,9 @@ public class GetCart extends AppCompatActivity {
                 }
             });
 
-            CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
+            objectRequest.setRetryPolicy(AppController.getDefaultRetryPolice());
+            objectRequest.setShouldCache(false);
+            AppController.getInstance().addToRequestQueue(objectRequest, Config.tag_json_obj);
         }else {
             Toast.makeText(getApplicationContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_SHORT).show();
             progressBar.setVisibility(View.VISIBLE);
@@ -246,7 +248,9 @@ public class GetCart extends AppCompatActivity {
                 Log.d("Error", error.toString());
             }
         });
-        CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
+        objectRequest.setRetryPolicy(AppController.getDefaultRetryPolice());
+        objectRequest.setShouldCache(false);
+        AppController.getInstance().addToRequestQueue(objectRequest, Config.tag_json_obj);
     }
 
     private void setCartVisibility(boolean visible) {

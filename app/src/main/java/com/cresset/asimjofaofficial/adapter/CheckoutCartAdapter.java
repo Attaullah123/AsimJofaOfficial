@@ -27,8 +27,10 @@ import com.cresset.asimjofaofficial.models.CartModel;
 import com.cresset.asimjofaofficial.models.CartModelItems;
 import com.cresset.asimjofaofficial.utilities.Config;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
+import com.cresset.asimjofaofficial.volley.AppController;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
@@ -116,7 +118,12 @@ public class CheckoutCartAdapter extends RecyclerView.Adapter<CheckoutCartAdapte
         }
 
         holder.proPrice.setText(NumberFormat.getNumberInstance(Locale.US).format(productPrice));
-        Glide.with(mContext).load(cartListModel.getImageLink()).into(holder.thumbnailImage);
+        //Glide.with(mContext).load(cartListModel.getImageLink()).into(holder.thumbnailImage);
+
+        Picasso.with(mContext).load(cartListModel.getImageLink())
+                .placeholder(R.drawable.placeholder_loading)
+                .fit().centerInside()
+                .into(holder.thumbnailImage);
     }
 
     public void refreshItems(CartDetailModel cartDetailModel) {
@@ -172,8 +179,9 @@ public class CheckoutCartAdapter extends RecyclerView.Adapter<CheckoutCartAdapte
                 Log.d("Error", error.toString());
             }
         });
-        RequestQueue requestQueue = Volley.newRequestQueue(mContext.getApplicationContext());
-        requestQueue.add(objectRequest);
+        objectRequest.setRetryPolicy(AppController.getDefaultRetryPolice());
+        objectRequest.setShouldCache(false);
+        AppController.getInstance().addToRequestQueue(objectRequest, Config.tag_json_obj);
     }
 
     public void getUpdatedCartDetail(TextView tPrice,TextView sTotal) {
@@ -206,8 +214,9 @@ public class CheckoutCartAdapter extends RecyclerView.Adapter<CheckoutCartAdapte
                 Log.d("Error", error.toString());
             }
         });
-        RequestQueue requestQueue = Volley.newRequestQueue(mContext.getApplicationContext());
-        requestQueue.add(objectRequest);
+        objectRequest.setRetryPolicy(AppController.getDefaultRetryPolice());
+        objectRequest.setShouldCache(false);
+        AppController.getInstance().addToRequestQueue(objectRequest, Config.tag_json_obj);
     }
 
 }

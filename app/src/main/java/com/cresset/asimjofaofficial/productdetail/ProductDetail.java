@@ -346,7 +346,9 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
 
                         });
 
-                        AppController.getInstance().addToRequestQueue(objectRequest, tag_json_obj);
+                        objectRequest.setRetryPolicy(AppController.getDefaultRetryPolice());
+                        objectRequest.setShouldCache(false);
+                        AppController.getInstance().addToRequestQueue(objectRequest, Config.tag_json_obj);
 
                     }
                 }
@@ -471,7 +473,9 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
 
         });
 
-        CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
+        objectRequest.setRetryPolicy(AppController.getDefaultRetryPolice());
+        objectRequest.setShouldCache(false);
+        AppController.getInstance().addToRequestQueue(objectRequest, Config.tag_json_obj);
     }
 
     //bottom sheet info
@@ -648,7 +652,9 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
             }
         });
         // Adding request to request queue
-        CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
+        objectRequest.setRetryPolicy(AppController.getDefaultRetryPolice());
+        objectRequest.setShouldCache(false);
+        AppController.getInstance().addToRequestQueue(objectRequest, Config.tag_json_obj);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -718,7 +724,9 @@ public class ProductDetail extends AppCompatActivity implements View.OnClickList
                 Log.d("Error", error.toString());
             }
         });
-        CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
+        objectRequest.setRetryPolicy(AppController.getDefaultRetryPolice());
+        objectRequest.setShouldCache(false);
+        AppController.getInstance().addToRequestQueue(objectRequest, Config.tag_json_obj);
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

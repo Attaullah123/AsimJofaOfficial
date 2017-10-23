@@ -150,7 +150,9 @@ public class UpdateCart extends AppCompatActivity{
                 progressBar.setVisibility(View.GONE);
             }
         });
-        AppController.getInstance().addToRequestQueue(objectRequest);
+        objectRequest.setRetryPolicy(AppController.getDefaultRetryPolice());
+        objectRequest.setShouldCache(false);
+        AppController.getInstance().addToRequestQueue(objectRequest, Config.tag_json_obj);
 
         return cartModelData;
     }
@@ -185,7 +187,9 @@ public class UpdateCart extends AppCompatActivity{
                 progressBar.setVisibility(View.GONE);
             }
         });
-        AppController.getInstance().addToRequestQueue(objectRequest);
+        objectRequest.setRetryPolicy(AppController.getDefaultRetryPolice());
+        objectRequest.setShouldCache(false);
+        AppController.getInstance().addToRequestQueue(objectRequest, Config.tag_json_obj);
     }
 
     public void CartDetailList(String response){

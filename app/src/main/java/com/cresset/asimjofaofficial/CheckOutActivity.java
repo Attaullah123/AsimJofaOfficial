@@ -370,7 +370,9 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
                 progressBar.setVisibility(View.GONE);
             }
         });
-        CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
+        objectRequest.setRetryPolicy(AppController.getDefaultRetryPolice());
+        objectRequest.setShouldCache(false);
+        AppController.getInstance().addToRequestQueue(objectRequest, Config.tag_json_obj);
     }
 
     public void EmptyStaticObjects() {

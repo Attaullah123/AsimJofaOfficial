@@ -27,6 +27,7 @@ import com.cresset.asimjofaofficial.userinfo.activity.OrderHistory;
 import com.cresset.asimjofaofficial.userinfo.activity.UserInfoActivity;
 import com.cresset.asimjofaofficial.utilities.Config;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
+import com.cresset.asimjofaofficial.volley.AppController;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -195,8 +196,9 @@ public class MyAccount extends AppCompatActivity {
                 }
             });
             // Adding request to request queue
-            RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-            requestQueue.add(objectRequest);
+            objectRequest.setRetryPolicy(AppController.getDefaultRetryPolice());
+            objectRequest.setShouldCache(false);
+            AppController.getInstance().addToRequestQueue(objectRequest, Config.tag_json_obj);
         }
 
 }

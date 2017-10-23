@@ -10,6 +10,8 @@ public class Config  {
     public static final String CurrencyPreference = "GlobalClass.selectedCurrency";
     public static final String RegisteredPreference = "GlobalClass.userDataRegistered";
 
+    public static final String tag_json_obj = "json_obj_req";
+
     public static final String URL_CATEGORY_LIST = "http://preview.cressettech.net/mobileapi/Service1.svc/CategoryList";
     public static final String URL_IMAGE_INDEX= "http://preview.cressettech.net/mobileapi/Service1.svc/IndexImagesList";
     public static final String URL_PRODUCT_LIST = "http://preview.cressettech.net/mobileapi/Service1.svc/ProductListByCategory";

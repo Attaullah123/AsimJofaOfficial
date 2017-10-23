@@ -199,7 +199,9 @@ public class ProductListActivity extends AppCompatActivity {
         });
 //        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
 //        requestQueue.add(objectRequest);
-        CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
+        objectRequest.setRetryPolicy(AppController.getDefaultRetryPolice());
+        objectRequest.setShouldCache(false);
+        AppController.getInstance().addToRequestQueue(objectRequest, Config.tag_json_obj);
     }
 
 
@@ -293,7 +295,9 @@ public class ProductListActivity extends AppCompatActivity {
                 Log.d("Error", error.toString());
             }
         });
-        CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
+        objectRequest.setRetryPolicy(AppController.getDefaultRetryPolice());
+        objectRequest.setShouldCache(false);
+        AppController.getInstance().addToRequestQueue(objectRequest, Config.tag_json_obj);
     }
 
 

@@ -106,7 +106,12 @@ public class IndexAdapter extends BaseExpandableListAdapter {
         TextView tv = (TextView) convertView.findViewById(R.id.category_name);
         ImageView img = (ImageView) convertView.findViewById(R.id.image_display);
         tv.setText(group.getName());
-        Glide.with(context).load(group.getPictureURL()).into(img);
+        //Glide.with(context).load(group.getPictureURL()).into(img);
+
+        Picasso.with(context).load(group.getPictureURL())
+                .placeholder(R.drawable.placeholder_loading)
+                .fit().centerInside()
+                .into(img);
 
 
 

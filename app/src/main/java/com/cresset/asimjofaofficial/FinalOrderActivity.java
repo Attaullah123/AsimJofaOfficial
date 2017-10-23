@@ -112,7 +112,9 @@ public class FinalOrderActivity extends AppCompatActivity {
 
         });
 
-        AppController.getInstance().addToRequestQueue(objectRequest);
+        objectRequest.setRetryPolicy(AppController.getDefaultRetryPolice());
+        objectRequest.setShouldCache(false);
+        AppController.getInstance().addToRequestQueue(objectRequest, Config.tag_json_obj);
 
     }
 

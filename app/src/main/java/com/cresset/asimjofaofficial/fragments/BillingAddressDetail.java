@@ -202,7 +202,9 @@ public class BillingAddressDetail extends Fragment {
             }
         });
 
-        CustomVolleyRequest.getInstance(getContext()).getRequestQueue().add(objectRequest);
+        objectRequest.setRetryPolicy(AppController.getDefaultRetryPolice());
+        objectRequest.setShouldCache(false);
+        AppController.getInstance().addToRequestQueue(objectRequest, Config.tag_json_obj);
     }
 
     public void updateBillingAddress(final BillingShippingDetailModel billingAddress) {
@@ -257,8 +259,9 @@ public class BillingAddressDetail extends Fragment {
             }
         });
 
-        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        requestQueue.add(objectRequest);
+        objectRequest.setRetryPolicy(AppController.getDefaultRetryPolice());
+        objectRequest.setShouldCache(false);
+        AppController.getInstance().addToRequestQueue(objectRequest, Config.tag_json_obj);
     }
 
 }

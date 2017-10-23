@@ -76,8 +76,8 @@
 
             <ImageView
                 android:id="@+id/shipping_method_name"
-                android:layout_width="25sp"
-                android:layout_height="25sp"
+                android:layout_width="24sp"
+                android:layout_height="24sp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="8dp"
                 android:background="@drawable/ic_order"
@@ -92,7 +92,7 @@
                 android:layout_marginLeft="30sp"
                 android:textStyle="bold"
                 android:textColor="#282626"
-                android:textSize="18dp"
+                android:textSize="17dp"
                 android:text="Order History"
                 />
 
@@ -116,8 +116,8 @@
 
 
             <ImageView
-                android:layout_width="25sp"
-                android:layout_height="25sp"
+                android:layout_width="24sp"
+                android:layout_height="24sp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="8dp"
                 android:background="@drawable/ic_user_info"
@@ -132,7 +132,7 @@
                 android:layout_marginLeft="30sp"
                 android:text="Personal Details"
                 android:textColor="#282626"
-                android:textSize="18dp"
+                android:textSize="17dp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -155,8 +155,8 @@
 
 
             <ImageView
-                android:layout_width="25sp"
-                android:layout_height="25sp"
+                android:layout_width="24sp"
+                android:layout_height="24sp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="8dp"
                 android:background="@drawable/ic_user_info"
@@ -171,7 +171,7 @@
                 android:layout_marginLeft="30sp"
                 android:text="Address Book"
                 android:textColor="#282626"
-                android:textSize="18dp"
+                android:textSize="17dp"
 
                 android:textStyle="bold" />
 
@@ -195,8 +195,8 @@
 
 
             <ImageView
-                android:layout_width="25sp"
-                android:layout_height="25sp"
+                android:layout_width="24sp"
+                android:layout_height="24sp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="8dp"
                 android:background="@drawable/ic_contact"
@@ -212,7 +212,7 @@
                 android:layout_marginLeft="30sp"
                 android:text="Contact Us"
                 android:textColor="#282626"
-                android:textSize="18dp"
+                android:textSize="17dp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -234,8 +234,8 @@
 
 
             <ImageView
-                android:layout_width="25sp"
-                android:layout_height="25sp"
+                android:layout_width="24sp"
+                android:layout_height="24sp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="8dp"
                 android:background="@drawable/ic_user_info"
@@ -250,7 +250,7 @@
                 android:layout_marginLeft="30sp"
                 android:text="Change Password"
                 android:textColor="#282626"
-                android:textSize="18dp"
+                android:textSize="17dp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -268,13 +268,14 @@
     <TextView
         android:id="@+id/log_out"
         android:layout_width="match_parent"
-        android:layout_height="40sp"
+        android:layout_height="42sp"
         android:background="#f2f2f2"
         android:text="Log Out"
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:textColor="#000"
         style="@style/Base.TextAppearance.AppCompat.Large"
         android:gravity="center"
         android:layout_alignParentBottom="true"
-        />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

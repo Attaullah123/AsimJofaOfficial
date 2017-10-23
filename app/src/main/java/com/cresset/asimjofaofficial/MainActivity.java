@@ -219,7 +219,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //AppController.getInstance().addToRequestQueue(objectRequest, tag_json_obj);
-        CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
+        objectRequest.setRetryPolicy(AppController.getDefaultRetryPolice());
+        objectRequest.setShouldCache(false);
+        AppController.getInstance().addToRequestQueue(objectRequest, Config.tag_json_obj);
     }
 
     @Override
@@ -309,7 +311,9 @@ public class MainActivity extends AppCompatActivity {
         });
         // AppController.getInstance().addToRequestQueue(objectRequest, tag_json_obj);
 
-        CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
+        objectRequest.setRetryPolicy(AppController.getDefaultRetryPolice());
+        objectRequest.setShouldCache(false);
+        AppController.getInstance().addToRequestQueue(objectRequest, Config.tag_json_obj);
     }
 
     public void SelectByDefaultCurrency(){
@@ -344,7 +348,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //AppController.getInstance().addToRequestQueue(objectRequest, tag_json_obj);
-        CustomVolleyRequest.getInstance(getApplicationContext()).getRequestQueue().add(objectRequest);
+        objectRequest.setRetryPolicy(AppController.getDefaultRetryPolice());
+        objectRequest.setShouldCache(false);
+        AppController.getInstance().addToRequestQueue(objectRequest, Config.tag_json_obj);
     }
 
     public void setupBottomNavigation(){

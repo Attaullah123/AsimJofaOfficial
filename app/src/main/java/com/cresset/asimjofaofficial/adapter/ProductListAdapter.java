@@ -18,6 +18,7 @@ import com.cresset.asimjofaofficial.R;
 import com.cresset.asimjofaofficial.models.ProductListModel;
 import com.cresset.asimjofaofficial.productdetail.ProductDetail;
 import com.cresset.asimjofaofficial.utilities.GlobalClass;
+import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -129,8 +130,11 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 //        holder.imageView.setImageUrl(superHero.getImageUrl(), imageLoader);
 
         // loading album cover using Glide library
-        Glide.with(mContext).load(productListModel.getImageLink()).into(holder.thumbnail);
-
+        //Glide.with(mContext).load(productListModel.getImageLink()).into(holder.thumbnail);
+        Picasso.with(mContext).load(productListModel.getImageLink())
+                .placeholder(R.drawable.placeholder_loading)
+                .fit().centerInside()
+                .into(holder.thumbnail);
     }
 
     @Override
