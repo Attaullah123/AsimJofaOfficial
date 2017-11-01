@@ -9,26 +9,23 @@ import android.util.Size;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.BaseAdapter;
-import android.widget.Button;
+
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
+import com.bogdwellers.pinchtozoom.ImageMatrixTouchHandler;
 import com.cresset.asimjofaofficial.R;
 
 import com.cresset.asimjofaofficial.models.ProductDetailList;
-import com.cresset.asimjofaofficial.productdetail.ProductDetail;
+
+
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
 
 
 public class ProductImagePagerAdapter extends android.support.v4.view.PagerAdapter {
@@ -63,28 +60,15 @@ public class ProductImagePagerAdapter extends android.support.v4.view.PagerAdapt
         View imageLayout = inflater.inflate(R.layout.product_image_viewer, view, false);
 
         assert imageLayout != null;
-        final ImageView imageViewer = (ImageView) imageLayout.findViewById(R.id.product_image_viewer);
+        final ImageView imageView = (ImageView) imageLayout.findViewById(R.id.product_image_viewer);
         final ProgressBar progressBar = (ProgressBar) imageLayout.findViewById(R.id.progressBar);
 
-        //imageView.setImageResource(imageLink.get(position));
-//        Glide.with(mContext).load(image).listener(new RequestListener<String, GlideDrawable>() {
-//            @Override
-//            public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
-//                progressBar.setVisibility(View.GONE);
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-//                progressBar.setVisibility(View.GONE);
-//                return false;
-//            }
-//        }).into(imageViewer);
+        //imageView.setOnTouchListener(new ImageMatrixTouchHandler(view.getContext()));
 
         Picasso.with(mContext).load(image)
                 .placeholder(R.drawable.placeholder_loading)
                 .fit().centerInside()
-                .into(imageViewer, new Callback() {
+                .into(imageView, new Callback() {
                     @Override
                     public void onSuccess() {
                         progressBar.setVisibility(View.GONE);
@@ -99,15 +83,6 @@ public class ProductImagePagerAdapter extends android.support.v4.view.PagerAdapt
 
         view.addView(imageLayout, 0);
 
-//        imageLayout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(mContext,"click", Toast.LENGTH_LONG).show();
-//                Intent intent = new Intent(v.getContext(), ShowFullImage.class);
-//                intent.putExtra("picture", image);
-//                mContext.startActivity(intent);
-//            }
-//        });
         return imageLayout;
     }
 

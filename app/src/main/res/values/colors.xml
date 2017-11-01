@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#dededf</color>
     <color name="colorPrimaryDark">#dfdfdf</color>
-    <color name="colorAccent">#797979</color>
+    <color name="colorAccent">#767676</color>
 
     <color name="tab_background_selected">#606060</color>
     <color name="tab_background_unselected">#ffffff</color>
@@ -25,7 +25,7 @@
 
     <color name="colorPrimaryLight">#b4b4b4</color>
 
-    <color name="progress_color">#28B463</color>
+    <color name="progress_color">#797979</color>
 
     <color name="toolbar_color">#f9f9f9</color>
     <color name="color_transparent">#FFFFFFFF</color>

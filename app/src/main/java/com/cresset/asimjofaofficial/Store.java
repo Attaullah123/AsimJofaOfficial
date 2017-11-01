@@ -33,8 +33,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-
-
 public class Store extends Fragment {
 
     static final LatLng ASIMJOFA = new LatLng(24.823110, 67.035186);
@@ -52,14 +50,14 @@ public class Store extends Fragment {
         LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
         if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            Toast.makeText(getContext(), "GPS is Enabled in your devide", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(), "GPS is Enabled in your devide", Toast.LENGTH_SHORT).show();
         } else {
             showGPSDisabledAlertToUser();
 
         }
 
         ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map)).getMapAsync(new OnMapReadyCallback() {
-            float zoomLevel = (float) 18.0;
+            float zoomLevel = (float) 19.0;
             @Override
             public void onMapReady(GoogleMap googleMap) {
                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(ASIMJOFA, zoomLevel));

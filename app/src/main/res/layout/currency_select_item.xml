@@ -4,42 +4,40 @@
     android:layout_height="wrap_content"
     android:paddingTop="40dp">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/currency_id"
-                android:layout_width="0dp"
-                android:layout_height="0dp" />
+        <TextView
+            android:id="@+id/currency_id"
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
 
-            <TextView
-                android:id="@+id/currency_price"
-                android:layout_width="0dp"
-                android:layout_height="0dp" />
+        <TextView
+            android:id="@+id/currency_price"
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
 
 
-            <TextView
-                android:id="@+id/curruncy_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="10sp"
-                android:text="PKR"
-                android:textColor="@color/album_title"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/curruncy_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10sp"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="PKR"
+            android:textColor="@color/album_title"
+            android:textSize="18dp"
+            android:textStyle="bold" />
 
-            <CheckBox
-                android:id="@+id/select_currency"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                />
+        <CheckBox
+            android:id="@+id/select_currency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true" />
 
-    </RelativeLayout>
+</RelativeLayout>
 
 
 </LinearLayout>

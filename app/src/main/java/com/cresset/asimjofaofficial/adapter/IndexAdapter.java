@@ -54,8 +54,7 @@ public class IndexAdapter extends BaseExpandableListAdapter {
 
         ChildCategoryList child = (ChildCategoryList) getChild(groupPosition, childPosition);
         if (convertView == null) {
-            LayoutInflater infalInflater = (LayoutInflater) context
-                    .getSystemService(context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater infalInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.expand_menu_list, null);
         }
 
@@ -108,10 +107,7 @@ public class IndexAdapter extends BaseExpandableListAdapter {
         tv.setText(group.getName());
         //Glide.with(context).load(group.getPictureURL()).into(img);
 
-        Picasso.with(context).load(group.getPictureURL())
-                .placeholder(R.drawable.placeholder_loading)
-                .fit().centerInside()
-                .into(img);
+        Picasso.with(context).load(group.getPictureURL()).fit().centerInside().into(img);
 
 
 

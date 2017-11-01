@@ -202,12 +202,13 @@ public class MyAccount1 extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "User Detail Error: " + error.getMessage());
-                Toast.makeText(getContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity().getApplicationContext(), "Couldn't feed refresh, check connection", Toast.LENGTH_LONG).show();
             }
         });
         // Adding request to request queue
-        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        requestQueue.add(objectRequest);
+        objectRequest.setRetryPolicy(AppController.getDefaultRetryPolice());
+        objectRequest.setShouldCache(false);
+        AppController.getInstance().addToRequestQueue(objectRequest, Config.tag_json_obj);
     }
 
 }

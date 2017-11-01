@@ -42,6 +42,7 @@
                 android:text="EDIT"
                 android:textSize="18sp"
                 android:textColor="#000"
+
                 android:layout_marginRight="7dp"
                 android:layout_gravity="end"/>
 
@@ -103,8 +104,8 @@
 
      <ProgressBar
          android:id="@+id/progressBar"
-         android:layout_width="45dp"
-         android:layout_height="45dp"
+         android:layout_width="35dp"
+         android:layout_height="35dp"
          android:theme="@style/CircularProgress"
          style="@style/Widget.AppCompat.ProgressBar"
          android:layout_centerInParent="true"

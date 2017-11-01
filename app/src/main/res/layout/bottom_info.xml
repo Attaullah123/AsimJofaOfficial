@@ -137,7 +137,7 @@
                     android:padding="12dp"
                     android:textStyle="bold"
                     android:textSize="18sp"
-                    android:text="In-Store availability"
+                    android:text="In-Store Availability"
                     android:textColor="#000" />
 
 
@@ -191,7 +191,7 @@
                     android:padding="12dp"
                     android:textStyle="bold"
                     android:textSize="18sp"
-                    android:text="Composition and care"
+                    android:text="Composition and Care"
                     android:textColor="#000" />
 
                 <com.github.aakira.expandablelayout.ExpandableRelativeLayout

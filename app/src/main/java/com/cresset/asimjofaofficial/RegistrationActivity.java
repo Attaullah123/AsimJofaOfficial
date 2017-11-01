@@ -77,6 +77,7 @@ public class RegistrationActivity extends AppCompatActivity {
         progressDialog.setCancelable(false);
         progressDialog.setTitle("please wait...");
 
+
 /*
         // Session manager
         userSession = new UserSessionManager(getApplicationContext());
