@@ -52,7 +52,7 @@ import java.util.List;
 
 public class ShippingAddress extends android.support.v4.app.Fragment{
     private EditText sfullname,sEmail,sAdress,sPhoneNo,sCity,sPostalCode,sDay,sMonth,sYear;
-    private Spinner sCountry,sProvince;
+    private SearchableSpinner sCountry,sProvince;
     private Button btnShippingAddress;
     private ShippingModel shippingModel;
     private CountryList countryListItem;
@@ -75,8 +75,8 @@ public class ShippingAddress extends android.support.v4.app.Fragment{
         sCity = (EditText) view.findViewById(R.id.shipping_input_city);
         sPostalCode = (EditText) view.findViewById(R.id.shipping_input_zipcode);
         //spinner view
-        sCountry = (Spinner) view.findViewById(R.id.shipping_size_country_select);
-        sProvince = (Spinner) view.findViewById(R.id.shipping_spinner_select_province);
+        sCountry = (SearchableSpinner) view.findViewById(R.id.shipping_size_country_select);
+        sProvince = (SearchableSpinner) view.findViewById(R.id.shipping_spinner_select_province);
         btnShippingAddress = (Button)view.findViewById(R.id.shipping_save);
 
         sDay = (EditText) view.findViewById(R.id.shipping_birthday_day);

@@ -19,9 +19,7 @@ import com.cresset.asimjofaofficial.models.UserModel;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Mahboob khan on 6/17/2017.
- */
+
 
 public class GlobalClass {
     public static ShippingmethodList shippingMethod = null;

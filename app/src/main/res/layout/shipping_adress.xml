@@ -173,7 +173,7 @@
                     android:gravity="center"
                     android:textSize="17dp"/>
 
-                <Spinner
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                     android:id="@+id/shipping_size_country_select"
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
@@ -215,7 +215,7 @@
                     android:text="State / Province:"
                     android:textSize="17dp"/>
 
-                <Spinner
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                     android:id="@+id/shipping_spinner_select_province"
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
