@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -51,8 +53,9 @@ import java.util.List;
 
 
 public class ShippingAddress extends android.support.v4.app.Fragment{
-    private EditText sfullname,sEmail,sAdress,sPhoneNo,sCity,sPostalCode,sDay,sMonth,sYear;
-    private SearchableSpinner sCountry,sProvince;
+    private EditText sfullname,sEmail,sAdress,sPhoneNo,sPostalCode,sDay,sMonth,sYear;
+    private EditText sCity;
+    private Spinner sCountry,sProvince;
     private Button btnShippingAddress;
     private ShippingModel shippingModel;
     private CountryList countryListItem;
@@ -75,8 +78,8 @@ public class ShippingAddress extends android.support.v4.app.Fragment{
         sCity = (EditText) view.findViewById(R.id.shipping_input_city);
         sPostalCode = (EditText) view.findViewById(R.id.shipping_input_zipcode);
         //spinner view
-        sCountry = (SearchableSpinner) view.findViewById(R.id.shipping_size_country_select);
-        sProvince = (SearchableSpinner) view.findViewById(R.id.shipping_spinner_select_province);
+        sCountry = (Spinner) view.findViewById(R.id.shipping_size_country_select);
+        sProvince = (Spinner) view.findViewById(R.id.shipping_spinner_select_province);
         btnShippingAddress = (Button)view.findViewById(R.id.shipping_save);
 
         sDay = (EditText) view.findViewById(R.id.shipping_birthday_day);
@@ -90,6 +93,13 @@ public class ShippingAddress extends android.support.v4.app.Fragment{
         progressDialog.setTitle("please wait...");
         CountryList();
 
+//        String[] cityName = {"Lahore", "Karachi", "Faisalabad", "Rawalpindi", "Multan", "Hyderābād",
+//                "Gujranwala", "Peshawar", "Rahim Yar Khan", "Quetta", "Sargodha", "Sialkot","Bahawalpur","Sukkur","Kandhkot","Shekhupura","Mardan","Gujrat",
+//        "Larkana","Kasur",""};
+//        ArrayAdapter<String> cityNameAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_dropdown_item_1line, cityName);
+//
+//        sCity.setThreshold(1);
+//        sCity.setAdapter(cityNameAdapter);
         loadData();
 
         isBillingAddressSame.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

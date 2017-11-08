@@ -23,7 +23,7 @@
                 android:layout_height="260sp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:scaleType="fitXY"
-                android:src="@drawable/pic3" />
+                 />
 
             <TextView
                 android:id="@+id/product_list_id"

@@ -65,7 +65,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
-                    android:background="#eae7e7"
+                    android:background="#faf9f9"
                      />
 
                 <com.viewpagerindicator.CirclePageIndicator

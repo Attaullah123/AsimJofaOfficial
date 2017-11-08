@@ -40,7 +40,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Finalise Order"
+                android:text="Finalize Order"
                 android:textStyle="bold"
                 android:textColor="#000"
                 style="@style/Base.TextAppearance.AppCompat.Large"

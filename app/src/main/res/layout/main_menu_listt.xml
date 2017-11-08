@@ -24,7 +24,6 @@
 
         <ImageView
             android:id="@+id/image_display"
-            android:src="@drawable/pic5"
             android:layout_width="match_parent"
             android:layout_height="540sp"
             android:layout_marginTop="2dp"
