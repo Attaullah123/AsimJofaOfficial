@@ -59,7 +59,7 @@ public class BillingCountrySpinnerAdapter extends ArrayAdapter<CountryList> {
 
         country = (TextView) row.findViewById(R.id.spinner_country);
         CountryList countryList = billingCountryModels.get(position);
-        country.setText(countryList.getName());
+        country.setText(countryList.toString());
         return row;
 
     }

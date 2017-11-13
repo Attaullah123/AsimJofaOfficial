@@ -55,7 +55,7 @@ import java.util.List;
 public class ShippingAddress extends android.support.v4.app.Fragment{
     private EditText sfullname,sEmail,sAdress,sPhoneNo,sPostalCode,sDay,sMonth,sYear;
     private EditText sCity;
-    private Spinner sCountry,sProvince;
+    private SearchableSpinner sCountry,sProvince;
     private Button btnShippingAddress;
     private ShippingModel shippingModel;
     private CountryList countryListItem;
@@ -78,8 +78,8 @@ public class ShippingAddress extends android.support.v4.app.Fragment{
         sCity = (EditText) view.findViewById(R.id.shipping_input_city);
         sPostalCode = (EditText) view.findViewById(R.id.shipping_input_zipcode);
         //spinner view
-        sCountry = (Spinner) view.findViewById(R.id.shipping_size_country_select);
-        sProvince = (Spinner) view.findViewById(R.id.shipping_spinner_select_province);
+        sCountry = (SearchableSpinner) view.findViewById(R.id.shipping_size_country_select);
+        sProvince = (SearchableSpinner) view.findViewById(R.id.shipping_spinner_select_province);
         btnShippingAddress = (Button)view.findViewById(R.id.shipping_save);
 
         sDay = (EditText) view.findViewById(R.id.shipping_birthday_day);
@@ -146,7 +146,7 @@ public class ShippingAddress extends android.support.v4.app.Fragment{
 
 
                     shippingAddress();
-                    Toast.makeText(getContext(), "Info save successfully! Also Add Billing Address", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "your address save successfully", Toast.LENGTH_LONG).show();
 
                     if(isBillingAddressSame.isChecked()){
                         ShippingBillingSame();
@@ -205,7 +205,7 @@ public class ShippingAddress extends android.support.v4.app.Fragment{
         shippingCountrySpinnerAdapter = new ShippingCountrySpinnerAdapter(getContext(), android.R.layout.simple_spinner_item, contList );
        // shippingCountrySpinnerAdapter.setDropDownViewResource(R.layout.spinner_billing_shipping_country);
         sCountry.setAdapter(shippingCountrySpinnerAdapter);
-        sCountry.setPrompt("Select Country");
+        sCountry.setTitle("Select Country");
 
 
         if (GlobalClass.shippingModel!= null){
@@ -283,7 +283,7 @@ public class ShippingAddress extends android.support.v4.app.Fragment{
         ArrayList<StateList> statList = new ArrayList<StateList>(stateList);
         shippingStateSpinnerAdapter = new ShippingStateSpinnerAdapter(getContext(), android.R.layout.simple_spinner_item, statList);
         sProvince.setAdapter(shippingStateSpinnerAdapter);
-        sProvince.setPrompt("Select State");
+        sProvince.setTitle("Select State");
 
         if (GlobalClass.shippingModel!= null){
             if (!GlobalClass.shippingModel.getCountryId().equals(null))

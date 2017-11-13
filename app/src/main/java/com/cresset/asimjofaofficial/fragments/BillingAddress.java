@@ -49,8 +49,8 @@ import java.util.List;
 public class BillingAddress extends android.support.v4.app.Fragment{
 
     private EditText bfullname,bEmail,bAdress,bPhoneNo,bCity,bPostalCode,bDay,bMonth,bYear;
-    private Spinner bCountry;
-    private Spinner bProvince;
+    private SearchableSpinner bCountry;
+    private SearchableSpinner bProvince;
     private Button btnBillingAddress;
     private BillingModel billingModel;
     private BillingCountrySpinnerAdapter billingCountrySpinnerAdapter;
@@ -76,8 +76,8 @@ public class BillingAddress extends android.support.v4.app.Fragment{
         bMonth = (EditText) view.findViewById(R.id.billing_birthday_month);
         bYear = (EditText) view.findViewById(R.id.billing_birthday_year);
         //spinner view
-        bCountry = (Spinner) view.findViewById(R.id.billing_country_select);
-        bProvince = (Spinner) view.findViewById(R.id.billing_spinner_select_province);
+        bCountry = (SearchableSpinner) view.findViewById(R.id.billing_country_select);
+        bProvince = (SearchableSpinner) view.findViewById(R.id.billing_spinner_select_province);
         btnBillingAddress = (Button)view.findViewById(R.id.billing_save);
 
         progressDialog = new ProgressDialog(getContext());
@@ -107,7 +107,7 @@ public class BillingAddress extends android.support.v4.app.Fragment{
                 if (!fname.isEmpty() && !laddress.isEmpty() && !email.isEmpty() && !phone.isEmpty() && !city.isEmpty()&& !postCode.isEmpty()
                         && !day.isEmpty() && !month.isEmpty() && !year.isEmpty()){
                     billingAddress();
-                    Toast.makeText(getContext(), "Your info save successfully!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Your address save successfully!", Toast.LENGTH_LONG).show();
                     getActivity().finish();
                 }else {
                     Toast.makeText(getContext(),
@@ -154,8 +154,7 @@ public class BillingAddress extends android.support.v4.app.Fragment{
 
         billingCountrySpinnerAdapter = new BillingCountrySpinnerAdapter(getContext(), android.R.layout.simple_spinner_item, contList );
         bCountry.setAdapter(billingCountrySpinnerAdapter);
-        bCountry.setPrompt("Select Country");
-        
+        bCountry.setTitle("Select Country");
 
         if (GlobalClass.shippingModel!= null){
             if (!GlobalClass.shippingModel.getCountryId().equals(null))
@@ -228,7 +227,7 @@ public class BillingAddress extends android.support.v4.app.Fragment{
         billingStateSpinnerAdapter = new BillingStateSpinnerAdapter(getContext(), android.R.layout.simple_spinner_item, statList);
        // billingCountrySpinnerAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         bProvince.setAdapter(billingStateSpinnerAdapter);
-        bProvince.setPrompt("Select State");
+        bProvince.setTitle("Select State");
 
         if (GlobalClass.shippingModel!= null){
             if (!GlobalClass.shippingModel.getCountryId().equals(null))

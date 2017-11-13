@@ -127,6 +127,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Order Total:"
+            android:textColor="#b72f2f"
             />
 
         <TextView
@@ -136,7 +137,7 @@
             android:layout_marginLeft="3dp"
             android:textColor="#000"
             android:textStyle="bold"
-            android:text="USD"
+            android:text=""
             />
 
         <TextView
@@ -272,7 +273,7 @@
                     android:textSize="16sp"
                     android:layout_marginLeft="10dp"
                     android:textColor="#252424"
-                    android:text="as"/>
+                    android:text=""/>
 
             </LinearLayout>
 
@@ -296,7 +297,7 @@
                     android:textSize="16sp"
                     android:layout_marginLeft="40dp"
                     android:textColor="#252424"
-                    android:text="as"/>
+                    android:text=""/>
 
             </LinearLayout>
 

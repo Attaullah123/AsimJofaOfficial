@@ -58,10 +58,7 @@ public class ShippingStateSpinnerAdapter extends ArrayAdapter<StateList> {
 
         state = (TextView) row.findViewById(R.id.spinner_state);
         StateList stateList = shippingStateModels.get(position);
-        state.setText(stateList.getName());
-
+        state.setText(stateList.toString());
         return row;
-
     }
-
 }

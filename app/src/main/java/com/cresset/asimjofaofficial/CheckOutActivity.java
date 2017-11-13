@@ -9,36 +9,22 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-import com.cresset.asimjofaofficial.adapter.CartAdapter;
-import com.cresset.asimjofaofficial.adapter.CartSpinnerAdapter;
 import com.cresset.asimjofaofficial.adapter.CheckoutCartAdapter;
-import com.cresset.asimjofaofficial.adapter.CheckoutProductAdapter;
-import com.cresset.asimjofaofficial.adapter.IndexAdapter;
-import com.cresset.asimjofaofficial.adapter.SizeSpinnerAdapter;
-import com.cresset.asimjofaofficial.easypasiapayment.EasyPaisaActivity;
+import com.cresset.asimjofaofficial.easypasiapayment.CCAvenueActivity;
 import com.cresset.asimjofaofficial.models.CartModel;
 import com.cresset.asimjofaofficial.models.CartModelItems;
-import com.cresset.asimjofaofficial.models.IndexImage;
 import com.cresset.asimjofaofficial.models.OrderPlaceModel;
 import com.cresset.asimjofaofficial.models.OrderPlaceResponse;
-import com.cresset.asimjofaofficial.models.ProductDetailSize;
-import com.cresset.asimjofaofficial.models.ProductHeader;
 import com.cresset.asimjofaofficial.recylerview.RecyclerDivider;
 import com.cresset.asimjofaofficial.utilities.Config;
 import com.cresset.asimjofaofficial.utilities.CustomVolleyRequest;
@@ -54,7 +40,6 @@ import org.json.JSONObject;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 
 
@@ -263,16 +248,22 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
 
                         try {
                             Gson gson = new Gson();
-                            OrderPlaceResponse ordResponse = gson.fromJson(response.toString(), new TypeToken<OrderPlaceResponse>() {
-                            }.getType());
+                            OrderPlaceResponse ordResponse = gson.fromJson(response.toString(), new TypeToken<OrderPlaceResponse>() {}.getType());
 
                             if (!ordResponse.getOrderId().equals(null)) {
-                                Show("Order placed: " + ordResponse.getOrderId());
+                               // Show("Order placed: " + ordResponse.getOrderId());
 
-                                if (GlobalClass.paymentModel.getSystemName().trim().toLowerCase().equals("payments.easypaisa")) {
-                                    Intent intent = new Intent(getApplicationContext(), EasyPaisaActivity.class);
+                                if (GlobalClass.paymentModel.getSystemName().equals("Payments.CCAvenue")) {
+                                    Intent intent = new Intent(getApplicationContext(), CCAvenueActivity.class);
                                     intent.putExtra("orderId", ordResponse.getOrderId());
                                     intent.putExtra("orderAmount", ordResponse.getOrderTotal());
+                                    //cc avenue add value
+//                                    intent.putExtra("accessCode", AvenuesParams.ACCESS_CODE);
+//                                    intent.putExtra("merchantId", AvenuesParams.ACCESS_CODE);
+//                                    intent.putExtra("currency", AvenuesParams.ACCESS_CODE);
+//                                    intent.putExtra("redirect_url", AvenuesParams.ACCESS_CODE);
+//                                    intent.putExtra("cancel_url", AvenuesParams.ACCESS_CODE);
+//                                    intent.putExtra("rsa_url", AvenuesParams.ACCESS_CODE);
                                     startActivity(intent);
                                 } else {
                                     Intent intent = new Intent(getApplicationContext(), FinalOrderActivity.class);

@@ -14,6 +14,11 @@ public class CountryList {
     public boolean AllowsShipping;
     boolean selected = false;
 
+    //set constructor here as a string
+
+    public String toString(){
+        return getName();
+    }
     public String getId() {
         return Id;
     }

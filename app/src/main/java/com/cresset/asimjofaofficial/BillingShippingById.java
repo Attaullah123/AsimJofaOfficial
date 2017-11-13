@@ -138,8 +138,6 @@ public class BillingShippingById extends AppCompatActivity {
                 }else {
                     Toast.makeText(getApplicationContext(), "Please enter the required fields!", Toast.LENGTH_LONG).show();
                 }
-
-
             }
         });
 
@@ -255,7 +253,7 @@ public class BillingShippingById extends AppCompatActivity {
                         model.setStateProvinceId(GlobalClass.shippingModel.getStateProvinceId());
 
                         GlobalClass.shippingModel = model;
-                        Toast.makeText(getApplicationContext(), "Info save successfully! Also edit Billing Address", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Info save successfully!", Toast.LENGTH_LONG).show();
 
                     }
                 }, new Response.ErrorListener() {

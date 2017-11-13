@@ -136,13 +136,13 @@
                     android:text="Country:"
                     android:textSize="17dp"/>
 
-                <Spinner
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                     android:id="@+id/billing_country_select"
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="80dp"
                     android:background="@drawable/spinner_background_black_baseline"
-                    android:paddingBottom="8dp"
+                    android:paddingBottom="7dp"
                     android:gravity="center"
                     android:spinnerMode="dialog"/>
 
@@ -178,13 +178,13 @@
                     android:text="State / Province:"
                     android:textSize="17dp"/>
 
-                <Spinner
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                     android:id="@+id/billing_spinner_select_province"
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:background="@drawable/spinner_background_black_baseline"
-                    android:paddingBottom="8dp"
+                    android:paddingBottom="7dp"
                     android:spinnerMode="dialog"/>
 
             </LinearLayout>

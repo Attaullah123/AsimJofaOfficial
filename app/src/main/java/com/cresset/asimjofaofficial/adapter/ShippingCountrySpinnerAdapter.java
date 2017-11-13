@@ -60,7 +60,7 @@ public class ShippingCountrySpinnerAdapter extends ArrayAdapter<CountryList> {
 
         country = (TextView) row.findViewById(R.id.spinner_country);
         CountryList countryList = shippingStateModels.get(position);
-        country.setText(countryList.getName());
+        country.setText(countryList.toString());
         return row;
 
     }

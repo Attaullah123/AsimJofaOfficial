@@ -74,7 +74,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.MyViewHo
        // holder.paymentSystemName.setText(list.getSystemName());
         //holder.price.setText(productListModel.getPrice());
 
-        if(list.getSystemName().equals("Payments.Easypaisa")){
+        if(list.getSystemName().equals("Payments.CCAvenue")){
             //set image here
 
             holder.masterImage.setImageResource(R.drawable.credit_cart);

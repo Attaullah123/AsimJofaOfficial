@@ -171,7 +171,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5sp"
-                    android:text="USD"
+                    android:text=""
                     android:textColor="#000"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -180,7 +180,7 @@
                     android:id="@+id/sub_total"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="9500"
+                    android:text=""
                     android:textColor="#000"
                     android:textSize="16sp"
                     android:textIsSelectable="true"

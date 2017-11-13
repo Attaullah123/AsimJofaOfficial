@@ -8,6 +8,10 @@ public class StateList {
     public String Name;
     public int DisplayOrder;
 
+    //set constructor here as a string
+    public String toString(){
+        return getName();
+    }
     public int getId() {
         return Id;
     }

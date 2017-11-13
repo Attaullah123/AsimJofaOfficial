@@ -1,12 +1,14 @@
 package com.cresset.asimjofaofficial.easypasiapayment;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
@@ -27,11 +29,12 @@ import java.util.Collection;
 import java.util.Map;
 
 
-public class EasyPaisaActivity  extends AppCompatActivity{
+public class CCAvenueActivity extends AppCompatActivity{
     private WebView webView;
     private ProgressBar progressBar;
     private LinearLayout layoutProgress;
     String orderId,orderAmount;
+    //private String url = "https://www.asimjofa.com/Plugins/PaymentCCAvenue/MobileRequest/28211";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,7 +66,6 @@ public class EasyPaisaActivity  extends AppCompatActivity{
                 view.loadUrl(url);
                 return true;
             }
-
             @Override
             public void onPageFinished(WebView view, String url) {
                 webView.setVisibility(View.VISIBLE);
@@ -81,7 +83,8 @@ public class EasyPaisaActivity  extends AppCompatActivity{
             }
         });
         if(isOnline()) {
-            webView.loadUrl("https://www.asimjofa.com/CustomeCode/EsseyPassMobileCompleted/" + orderId);
+            //webView.loadUrl("https://www.asimjofa.com/CustomeCode/EsseyPassMobileCompleted/" + orderId);
+            webView.loadUrl("https://www.asimjofa.com/Plugins/PaymentCCAvenue/MobileRequest/"+ orderId);
         } else {
             String summary = "<center><html><body><font color='black'>No Internet Connection</font></body></center></html>";
             webView.loadData(summary, "text/html", null);
@@ -97,7 +100,32 @@ public class EasyPaisaActivity  extends AppCompatActivity{
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
         return (netInfo != null && netInfo.isConnected());
     }
-//    @Override
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        AlertDialog.Builder backDialog = new AlertDialog.Builder(CCAvenueActivity.this);
+        backDialog.setMessage("Are you sure want to close ?");
+        backDialog.setPositiveButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        backDialog.setNegativeButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+
+        backDialog.show();
+        return;
+    }
+
+    //    @Override
 //    public boolean onKeyDown(int keyCode, KeyEvent event) {
 //        // Check if the key event was the Back button and if there's history
 //        if ((keyCode == KeyEvent.KEYCODE_BACK) && webView.canGoBack()) {

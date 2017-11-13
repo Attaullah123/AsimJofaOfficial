@@ -88,6 +88,7 @@
                     android:layout_below="@+id/order_name"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
                     android:background="#000"
                     android:textStyle="bold"
                     android:text="back to store"

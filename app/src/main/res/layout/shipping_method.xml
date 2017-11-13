@@ -48,14 +48,14 @@
                 android:background="#393838"/>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="fill_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-
-        </LinearLayout>
+            android:layout_gravity="center"
+            android:textColor="#000"
+            android:layout_marginTop="10dp"
+            android:textSize="17sp"
+            android:text="Select Shipping Method"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -72,8 +72,8 @@
 
             <ProgressBar
                 android:id="@+id/progressBar"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:theme="@style/CircularProgress"
                 style="@style/Widget.AppCompat.ProgressBar"
                 android:layout_centerInParent="true"
