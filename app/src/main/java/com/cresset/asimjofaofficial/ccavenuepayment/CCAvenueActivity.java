@@ -95,42 +95,6 @@ public class CCAvenueActivity extends AppCompatActivity{
         moveTaskToBack(true);
     }
 
-//    @Override
-//    public void onBackPressed() {
-//        super.onBackPressed();
-//
-//        AlertDialog.Builder backDialog = new AlertDialog.Builder(CCAvenueActivity.this);
-//        backDialog.setMessage("Are you sure want to close ?");
-//        backDialog.setPositiveButton("NO", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                dialog.cancel();
-//            }
-//        });
-//
-//        backDialog.setNegativeButton("YES", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                finish();
-//            }
-//        });
-//
-//        backDialog.show();
-//        return;
-//    }
-
-    //    @Override
-//    public boolean onKeyDown(int keyCode, KeyEvent event) {
-//        // Check if the key event was the Back button and if there's history
-//        if ((keyCode == KeyEvent.KEYCODE_BACK) && webView.canGoBack()) {
-//            webView.goBack();
-//            return true;
-//
-//        }
-//        // If it wasn't the Back key or there's no web page history, bubble up to the default
-//        // system behavior (probably exit the activity)
-//        return super.onKeyDown(keyCode, event);
-//    }
 }
 
 
