@@ -65,7 +65,7 @@
         <activity android:name=".MyAccount"/>
         <activity android:name=".CurrencyChange"/>
         <activity android:name=".EasyPaisaWebView"/>
-        <activity android:name=".easypasiapayment.CCAvenueActivity"/>
+        <activity android:name=".ccavenuepayment.CCAvenueActivity"/>
         <activity android:name=".SearchProductActivity"/>
         <activity android:name=".ShowFullImage"/>
         <activity android:name=".ShowMap"/>

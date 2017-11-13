@@ -20,7 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.cresset.asimjofaofficial.adapter.CheckoutCartAdapter;
-import com.cresset.asimjofaofficial.easypasiapayment.CCAvenueActivity;
+import com.cresset.asimjofaofficial.ccavenuepayment.CCAvenueActivity;
 import com.cresset.asimjofaofficial.models.CartModel;
 import com.cresset.asimjofaofficial.models.CartModelItems;
 import com.cresset.asimjofaofficial.models.OrderPlaceModel;
@@ -257,19 +257,15 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
                                     Intent intent = new Intent(getApplicationContext(), CCAvenueActivity.class);
                                     intent.putExtra("orderId", ordResponse.getOrderId());
                                     intent.putExtra("orderAmount", ordResponse.getOrderTotal());
-                                    //cc avenue add value
-//                                    intent.putExtra("accessCode", AvenuesParams.ACCESS_CODE);
-//                                    intent.putExtra("merchantId", AvenuesParams.ACCESS_CODE);
-//                                    intent.putExtra("currency", AvenuesParams.ACCESS_CODE);
-//                                    intent.putExtra("redirect_url", AvenuesParams.ACCESS_CODE);
-//                                    intent.putExtra("cancel_url", AvenuesParams.ACCESS_CODE);
-//                                    intent.putExtra("rsa_url", AvenuesParams.ACCESS_CODE);
                                     startActivity(intent);
+                                    finish();
+
                                 } else {
                                     Intent intent = new Intent(getApplicationContext(), FinalOrderActivity.class);
                                     intent.putExtra("orderId", ordResponse.getOrderId());
                                     intent.putExtra("paymentMethod", GlobalClass.paymentModel.getName());
                                     startActivity(intent);
+                                    finish();
                                 }
                             }
 
@@ -282,7 +278,7 @@ public class CheckOutActivity extends AppCompatActivity implements View.OnClickL
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Couldn't place order, check connection", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "check connection, try again", Toast.LENGTH_SHORT).show();
                 Log.d("Error", error.toString());
                 // progressDialog.dismiss();
             }

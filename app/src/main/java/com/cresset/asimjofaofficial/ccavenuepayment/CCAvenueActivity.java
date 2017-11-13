@@ -1,33 +1,22 @@
-package com.cresset.asimjofaofficial.easypasiapayment;
+package com.cresset.asimjofaofficial.ccavenuepayment;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cresset.asimjofaofficial.R;
-
-import java.util.Collection;
-import java.util.Map;
-
 
 public class CCAvenueActivity extends AppCompatActivity{
     private WebView webView;
@@ -103,27 +92,32 @@ public class CCAvenueActivity extends AppCompatActivity{
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-
-        AlertDialog.Builder backDialog = new AlertDialog.Builder(CCAvenueActivity.this);
-        backDialog.setMessage("Are you sure want to close ?");
-        backDialog.setPositiveButton("NO", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-
-        backDialog.setNegativeButton("YES", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
-            }
-        });
-
-        backDialog.show();
-        return;
+        moveTaskToBack(true);
     }
+
+//    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//
+//        AlertDialog.Builder backDialog = new AlertDialog.Builder(CCAvenueActivity.this);
+//        backDialog.setMessage("Are you sure want to close ?");
+//        backDialog.setPositiveButton("NO", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                dialog.cancel();
+//            }
+//        });
+//
+//        backDialog.setNegativeButton("YES", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                finish();
+//            }
+//        });
+//
+//        backDialog.show();
+//        return;
+//    }
 
     //    @Override
 //    public boolean onKeyDown(int keyCode, KeyEvent event) {

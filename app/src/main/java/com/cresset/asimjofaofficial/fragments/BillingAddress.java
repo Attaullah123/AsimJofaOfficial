@@ -82,7 +82,7 @@ public class BillingAddress extends android.support.v4.app.Fragment{
 
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setCancelable(false);
-        progressDialog.setTitle("please wait...");
+        progressDialog.setMessage("please wait...");
         CountryList();
 
         loadData();

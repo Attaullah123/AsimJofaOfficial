@@ -1,4 +1,4 @@
-package com.cresset.asimjofaofficial.easypasiapayment;
+package com.cresset.asimjofaofficial.ccavenuepayment;
 
 import android.net.Uri;
 import android.webkit.WebView;
