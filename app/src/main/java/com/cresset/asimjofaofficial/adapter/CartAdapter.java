@@ -139,6 +139,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 
         //Glide.with(mContext).load(cartListModel.getImageLink()).into(holder.thumbnailImage);
 
+        if (cartListModel.getImageLink().isEmpty()) {
+            holder.thumbnailImage.setImageResource(R.drawable.placeholder_loading);
+        }
         Picasso.with(mContext).load(cartListModel.getImageLink())
                 .placeholder(R.drawable.placeholder_loading)
                 .fit().centerInside()

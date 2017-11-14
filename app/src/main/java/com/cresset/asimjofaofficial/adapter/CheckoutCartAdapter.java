@@ -120,10 +120,12 @@ public class CheckoutCartAdapter extends RecyclerView.Adapter<CheckoutCartAdapte
         holder.proPrice.setText(NumberFormat.getNumberInstance(Locale.US).format(productPrice));
         //Glide.with(mContext).load(cartListModel.getImageLink()).into(holder.thumbnailImage);
 
-        Picasso.with(mContext).load(cartListModel.getImageLink())
-                .placeholder(R.drawable.placeholder_loading)
-                .fit().centerInside()
-                .into(holder.thumbnailImage);
+        if (cartListModel.getImageLink().isEmpty()){
+            holder.thumbnailImage.setImageResource(R.drawable.placeholder_loading);
+        }else {
+            Picasso.with(mContext).load(cartListModel.getImageLink()).placeholder(R.drawable.placeholder_loading).fit().centerInside()
+                    .into(holder.thumbnailImage);
+        }
     }
 
     public void refreshItems(CartDetailModel cartDetailModel) {

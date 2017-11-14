@@ -124,17 +124,12 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             holder.outOfStock.setText("SOLD OUT");
         }
 
-//        imageLoader = CustomVolleyRequest.getInstance(mContext).getImageLoader();
-//        imageLoader.get(productModelList.get(), ImageLoader.getImageListener(holder.thumbnail, R.mipmap.ic_launcher, android.R.drawable.ic_dialog_alert));
-//
-//        holder.imageView.setImageUrl(superHero.getImageUrl(), imageLoader);
+        if (productListModel.getImageLink().isEmpty()) {
+            holder.thumbnail.setImageResource(R.drawable.placeholder_loading);
+        }else {
+            Picasso.with(mContext).load(productListModel.getImageLink()).placeholder(R.drawable.placeholder_loading).fit().centerInside().into(holder.thumbnail);
+        }
 
-        // loading album cover using Glide library
-        //Glide.with(mContext).load(productListModel.getImageLink()).into(holder.thumbnail);
-        Picasso.with(mContext).load(productListModel.getImageLink())
-                .placeholder(R.drawable.placeholder_loading)
-                .fit().centerInside()
-                .into(holder.thumbnail);
     }
 
     @Override

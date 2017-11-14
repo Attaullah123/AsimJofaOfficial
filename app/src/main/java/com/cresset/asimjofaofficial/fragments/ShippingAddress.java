@@ -190,7 +190,7 @@ public class ShippingAddress extends android.support.v4.app.Fragment{
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getContext(), "Couldn't get countries, check connection", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "Couldn't get countries, check connection", Toast.LENGTH_SHORT).show();
                 Log.d("Error", error.toString());
                 progressDialog.dismiss();
             }
@@ -270,7 +270,7 @@ public class ShippingAddress extends android.support.v4.app.Fragment{
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getContext(), "Couldn't get states, check connection", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "Couldn't get states, check connection", Toast.LENGTH_SHORT).show();
                 Log.d("Error", error.toString());
             }
         });

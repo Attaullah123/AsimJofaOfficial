@@ -65,23 +65,29 @@ public class ProductImagePagerAdapter extends android.support.v4.view.PagerAdapt
 
         //imageView.setOnTouchListener(new ImageMatrixTouchHandler(view.getContext()));
 
-        Picasso.with(mContext).load(image)
-                .placeholder(R.drawable.placeholder_loading)
-                .fit().centerInside()
-                .into(imageView, new Callback() {
-                    @Override
-                    public void onSuccess() {
-                        progressBar.setVisibility(View.GONE);
-                    }
+        if (image.isEmpty()){
+            imageView.setImageResource(R.drawable.placeholder_loading);
+        }else {
+            Picasso.with(mContext).load(image)
+                    .placeholder(R.drawable.placeholder_loading)
+                    .fit().centerInside()
+                    .into(imageView, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                            progressBar.setVisibility(View.GONE);
+                        }
 
-                    @Override
-                    public void onError() {
-                        progressBar.setVisibility(View.GONE);
+                        @Override
+                        public void onError() {
+                            progressBar.setVisibility(View.GONE);
 
-                    }
-                });
+                        }
+                    });
 
-        view.addView(imageLayout, 0);
+            view.addView(imageLayout, 0);
+        }
+
+
 
         return imageLayout;
     }

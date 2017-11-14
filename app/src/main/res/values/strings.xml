@@ -34,6 +34,8 @@
     <string name="Your_cart_is_empty">Your cart is Empty</string>
     <string name="prouct_not_found">Related product not found</string>
 
+    <string name="notification_error_ssl_cert_invalid">Security error</string>
+
     <string name="shipping_charger">FREE Shipping within Pakistan</string>
     <string name="payment_name">Select Payment Method</string>
 

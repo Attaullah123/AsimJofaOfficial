@@ -107,7 +107,15 @@ public class IndexAdapter extends BaseExpandableListAdapter {
         tv.setText(group.getName());
         //Glide.with(context).load(group.getPictureURL()).into(img);
 
-        Picasso.with(context).load(group.getPictureURL()).fit().centerInside().into(img);
+        if (group.getPictureURL().isEmpty()){
+            img.setImageResource(R.drawable.placeholder_loading);
+        }else {
+
+            Picasso.with(context).load(group.getPictureURL()).fit().centerInside().into(img);
+        }
+
+
+
 
 
 

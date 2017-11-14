@@ -222,7 +222,9 @@ public class UpdateCartAdapter extends RecyclerView.Adapter<UpdateCartAdapter.My
         //holder.proPrice.setText(String.format("%.0f",productPrice));
         holder.proPrice.setText(NumberFormat.getNumberInstance(Locale.US).format(productPrice));
         //Glide.with(mContext).load(cartListModel.getImageLink()).into(holder.thumbnailImage);
-
+        if (cartListModel.getImageLink().isEmpty()){
+            holder.thumbnailImage.setImageResource(R.drawable.placeholder_loading);
+        }
         Picasso.with(mContext).load(cartListModel.getImageLink())
                 .placeholder(R.drawable.placeholder_loading)
                 .fit().centerInside()

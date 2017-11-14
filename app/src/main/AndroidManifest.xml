@@ -64,7 +64,6 @@
         <activity android:name=".userinfo.activity.OrderHistory"/>
         <activity android:name=".MyAccount"/>
         <activity android:name=".CurrencyChange"/>
-        <activity android:name=".EasyPaisaWebView"/>
         <activity android:name=".ccavenuepayment.CCAvenueActivity"/>
         <activity android:name=".SearchProductActivity"/>
         <activity android:name=".ShowFullImage"/>
